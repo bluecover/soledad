@@ -1,0 +1,15 @@
+<%page args='palettes'/>
+
+<div class="modals-group dlg-record-detail">
+  <div class="onemodal-hd">
+    <a href="#" rel="onemodal:close"><i class="iconfont icon-close" ></i></a>
+    <h4 class="text-success">好规划理财</h4>
+  </div>
+
+  <div class="onemodal-bd">
+    您有${palettes[0].properties['expiring_coupon_count']}张礼券还有1天就要失效了，快来使用吧 > >
+  </div>
+  <div class="onemodal-ft">
+    <a href="${url_for('welfare.index',_anchor='coupon')" class="btn btn-green">立即查看</a>
+  </div>
+</div>

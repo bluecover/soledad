@@ -1,0 +1,90 @@
+<%inherit file="./base.html" />
+
+<%def name="main()">
+  <%
+    from operator import itemgetter
+
+    from core.models.promotion.festival.spring import SpringGift
+    from jupiter.views.ajax._bankcard import bankcard_to_dict
+
+    if product_type == 'regular':
+      order_data = {
+        'frozen_time': product.profit_period['min'].value,
+        'frozen_days': product.frozen_days,
+        'annual_rate': product.profit_annual_rate['min'],
+        'coupons': coupons,
+        'invest_min_amount': product.min_amount,
+        'product_id': product.product_id,
+        'product_name': product.local_name,
+        'start_date': product.start_date.isoformat(),
+        'due_date': product.due_date.isoformat(),
+        'user_balance': user_balance,
+      }
+    elif product_type == 'newcomer':
+      order_data = {
+        'frozen_days': product.profit_period['min'].value,
+        'start_date': unicode(product.start_date),
+        'annual_rate': product.annual_rate,
+        'coupon_rate': product.bonus_annual_rate,
+        'invest_min_amount': product.min_amount,
+        'invest_max_amount': product.max_amount,
+        'product_name': product.local_name,
+        'product_id': product.raw_product.product_id,
+        'wrapped_product_id': product.id_,
+      }
+    else:
+      order_data = {
+        'start_date': unicode(product.start_date),
+        'first_due_date': unicode(product.first_due_date),
+        'last_due_date': unicode(product.final_due_date),
+        # TODO (tonyseek) 确认降息后下线房贷宝加息
+        'coupons': coupons,
+        'rate_layers': sorted(annual_rate_layers or product.annual_rate_layers, key=itemgetter('min_days'), reverse=True),
+        'invest_min_amount': product.min_amount,
+        'invest_max_amount': product.max_amount,
+        'product_id': product.product_id,
+        'product_name': product.local_name,
+        'user_balance': user_balance,
+      }
+
+    bank_data = [
+      {
+        'bank_id': bank.id_,
+        'bank_name': bank.name,
+        'amount_limit': amount_limit,
+        'is_first': None if min(bank.zwlib_amount_limit) != max(bank.zwlib_amount_limit) and
+                    min(bank.zwlib_amount_limit) == amount_limit else True,
+        'telephone': bank.telephone,
+        'icon_url': bank.icon_url,
+      }
+      for bank, amount_limit in banks]
+
+    bankcards_data = [bankcard_to_dict(b, partner, g.user.id_) for b in bankcards]
+  %>
+
+  <div class="savings-order-wrapper">
+    <div id="js_order_info">
+      <div class="text-center block-wrapper">
+        <img src="{{{img/misc/loading.gif}}}" height="30">
+      </div>
+    </div>
+    <div id="js_pay_info"></div>
+  </div>
+
+  <input type="hidden" id="origin_data"
+    data-product-type="${product_type}"
+    data-order="${json.dumps(order_data)}"
+    data-bankcards="${json.dumps(bankcards_data)}"
+    data-bank="${json.dumps(bank_data)}"
+    data-coupons="${json.dumps(coupons)}"
+    data-placebo="${'1' if spring_gift and spring_gift.status is SpringGift.Status.reserved else ''}"
+    data-partner="${partner.value}"
+    data-agreement-url="${agreement_url}"
+    data-product-category="savings"/>
+
+</%def>
+
+<%def name="title()">攒钱助手 - 好规划</%def>
+<%def name="js()">
+  <script src="{{{js/savings/order.js}}}"></script>
+</%def>

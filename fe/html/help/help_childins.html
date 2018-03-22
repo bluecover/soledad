@@ -1,0 +1,71 @@
+<%inherit file="../base.html" />
+
+<%def name="sidenav_content()">
+  <%include file="../mods/sidenav_help_about.html" />
+</%def>
+
+<%def name="main()">
+  <div class="block-wrapper help-wrapper">
+    <div class="help-title">
+      <img class="childins-logo" src="{{{img/logo/childins_logo.png}}}" alt="">
+      <span>常见问题</span>
+    </div>
+    <div class="js-help-main">
+      <div class="section">
+        <h3 class="text-bold" id="section1">1.关于规划</h3>
+        <h4 id="intro">1.1规划简介</h4>
+        <div class="hide">
+          <p>好规划理财师针对儿童特点，为不同家庭和儿童量身定制适合其特定成长阶段的保险规划。</p>
+          <p>
+            我们承诺客观甄选、中立推荐，从您家庭实际需求出发，在市面上近千种少儿产品中精选出最值得购买的保险、科学搭配，力求帮您花最少的钱，获得最完善的保障。</p>
+        </div>
+        <h4 id="service">1.2服务指南</h4>
+        <div class="hide">
+          <p>您可以关注好规划的微信公众号（plan141），随时与专业理财师进行一对一沟通和咨询。儿童保险规划定制和购买过程中的任何问题，都欢迎您的垂询，理财师会尽快为您答复。</p>
+        </div>
+      </div>
+      <div class="section">
+        <h3 class="text-bold" id="section2">2.专业保障</h3>
+        <h4 id="financial">2.1资深理财师</h4>
+        <div class="hide">
+          <p>
+            好规划理财师团队全部由国际（CFP）、国内（AFP）认证的专业理财师组成，拥有多年保险、银行、理财机构从业经验。 团队全职服务于好规划用户，因此只对用户利益负责，真正客观、中立、负责。
+          </p>
+        </div>
+        <h4 id="platform">2.2专业网销平台</h4>
+        <div class="hide">
+          <p>
+            好规划儿童险销售合作伙伴慧择网是国内最大的保险网销平台，多年销售经验，安全可靠。
+          </p>
+          <p>
+            网上购买保险，即时生成电子保单，与线下保单具有同等法律效力；同时省去中间成本费用更优惠，也避免了被推销员“忽悠”的可能，省心省力。</p>
+        </div>
+      </div>
+      <div class="section">
+        <h3 class="text-bold" id="section3">3.投保与理赔</h3>
+        <h4 id="insure">3.1投保流程</h4>
+        <div class="hide">
+         <p>
+          确定投保产品后，请详细查看保险条款，之后请准确填写投保信息、在线支付，即完成投保，半小时内就可收到电子保单。 任何问题也欢迎垂询好规划微信公众号（plan141），好规划理财师将尽快解决您的问题
+         </p>
+        </div>
+        <h4 id="claims">3.2理赔流程</h4>
+        <div class="hide">
+          <p>
+            慧择网24小时理赔电话：4006 366 366 好规划的合作伙伴慧择网承诺全年 24 小时受理理赔服务，用户拨打上述理赔电话，即可享受专业、及时的理赔服务。 任何问题也欢迎垂询好规划微信公众号（plan141），或参考：<a href="http://www.hzins.com/claims/" target="_blank">理赔流程与攻略</a>、<a href="http://www.hzins.com/help/questiondetail-106" target="_blank">各大保险公司客服电话</a>。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="title()">儿童保险规划 - 帮助中心</%def>
+
+<%def name="js()">
+  <script src="{{{js/help/help.js}}}"></script>
+</%def>
+
+<%def name="pagetitle()">
+  <% return '帮助中心' %>
+</%def>

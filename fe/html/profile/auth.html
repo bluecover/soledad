@@ -1,0 +1,66 @@
+<%inherit file="./base.html" />
+
+<%def name="main()">
+  <div class="auth-wrapper block-wrapper">
+    <div class="auth-title-wrapper">
+      <span class="auth-title">身份验证</span>
+      <span class="auth-subtitle">${subtitle or '为了保证您的账号和资金安全，请验证您的身份信息'}</span>
+      <input type="hidden" name="next-url" data-val="${next_url}">
+      % if channel_url:
+      <input type="hidden" name="channel-url" data-val="${channel_url}">
+      % endif
+    </div>
+    <div class="form-wrapper">
+      <form method="post" action="" class="js-auth-form" autocomplete="on">
+        <input type="hidden" name="csrf_token" value="${csrf_token()}">
+        <div class="item multiple-line-item">
+          <span class="title">姓名</span>
+          <div class="input-con">
+            <input type="text" ${'disabled' if identity else ''} class="js-name validate" name="person_name" data-validate="require" value="${identity.person_name if identity else ''}"/>
+            % if channel_name:
+              <div class="accounts-tip js-need-fillup">*请与绑定的 <span class="text-orange">${channel_name}</span> 账号保持一致</div>
+            % endif
+          </div>
+        </div>
+        <div class="item">
+          <span class="title">身份证号</span>
+          <div class="input-con">
+            <input type="text" ${'disabled' if identity else ''} class="js-id validate" name="person_ricn" data-validate="require,idCard,ageVerify" value="${identity.person_ricn if identity else ''}"/>
+          </div>
+        </div>
+        % if not mobile_phone:
+          <div class="phone-verify-wrapper js-phone-verify"></div>
+        % endif
+        <div class="item">
+          <span class="title"></span>
+          <a class="btn btn-primary btn-form js-btn-verified" href="#">下一步</a>
+        </div>
+        % if identity:
+        <div class="item tips-item">
+          <span class="title"></span>
+          <div class="input-con">
+            <span class="text-12 text-light">您已输入过身份信息，如需修改请联系微信客服 (微信号：plan141)</span>
+          </div>
+        </div>
+        % endif
+      </form>
+    </div>
+    % if channel_name:
+    <div class="modals-group dlg-auth js-dlg-auth">
+      <div class="onemodal-bd">
+        <img src="{{{img/misc/loading.gif}}}" alt="" width="40">
+        <p class="js-dlg-waiting">正在验证信息，请稍候……</p>
+        <p class="js-dlg-tips hide">请在${channel_name}登录以绑定好规划账号<br>为确保正常使用，请务必使用您在<em class="text-blue text-bold text-16">好规划验证过的身份证号</em>登录${channel_name}</p>
+      </div>
+    </div>
+    % endif
+  </div>
+</%def>
+
+<%def name="title()">身份信息绑定</%def>
+<%def name="pagetitle()">
+  <% return '身份信息绑定' %>
+</%def>
+<%def name="js()">
+  <script src="{{{js/profile/auth.js}}}"></script>
+</%def>

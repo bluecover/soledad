@@ -1,0 +1,172 @@
+.plan-wrapper
+  background: #fff
+  position: relative
+  .plan-menu
+    padding: 10px
+    border: 1px solid #ddd
+    position: absolute
+    top: 35px
+    right: 65px
+    @media $mobile
+      top: 30px
+      right: 3%
+    span
+      triangle(6px, top, color=$brand_blue)
+      position: relative
+      top: 5px
+  .plan-nav
+    z-index: 1
+    display: none
+    position: absolute
+    border: 1px solid #ddd
+    top: 70px
+    padding: 0 10px
+    right: 65px
+    background: #fff
+    @media $mobile
+      top: 65px
+      right: 3%
+    li
+      border-bottom: 1px solid #ddd
+      width: 120px
+      line-height: 40px
+      &:last-child
+        border-bottom: none
+      a
+        display: block
+
+
+.plan-content
+  padding: 35px 65px
+  @media $mobile
+    padding: 30px 3% 20px
+
+  .chapter-title
+    margin-bottom: 35px
+
+  .chapter-num
+    font-size: 35px
+    font-weight: 700
+    line-height: 43px
+    width: 43px
+    color: #fff
+    background: $brand_blue
+    text-align: center
+    padding-right: 0
+
+  .title-content
+    padding-left: 10px
+
+  h1
+    font-size: 20px
+    color: $brand_blue
+
+  .title-desc
+    margin: 0
+    margin-bottom: 5px
+    color: $gray
+    line-height: 14px
+
+  h2,
+  h3
+    font-size: 16px
+    color: $gray_dark
+    margin-bottom: 10px
+    margin-top: 40px
+    line-height: 22px
+    span
+      font-size: 14px
+      color: $gray_light
+  h3.action
+    color: $brand_orange
+    .iconfont
+      font-size: 40px
+      vertical-align: middle
+
+  p,
+  ul,
+  ol
+    line-height: 26px
+    margin: 0 0 20px
+  p.gh-tips
+    background: $brand_blue
+    display: inline-block
+    color: #fff
+    padding: 5px 10px
+  ol
+    list-style-type: decimal
+    padding-left: 20px
+
+  .list-title
+    line-height: 26px
+
+  .data-table
+    margin: 20px 0 30px
+    .table-title
+      text-align: center
+      margin-top: 0
+      margin-bottom: 15px
+      .risk-num
+        font-size: 22px
+        color: $primary_color
+    .table-title-response
+      @media $mobile
+        font-size: 16px
+      span
+        @media $mobile
+          font-size: 20px
+          color: $primary_color
+    table
+      border-collapse: collapse
+      width: 100%
+    thead
+      tr
+        background: $brand_blue
+      tr.hd-green
+        background: $brand_green
+      tr.hd-red
+        background: $brand_red
+      tr.hd-orange
+        background: $brand_orange
+      th
+        border: 1px solid #b9b9b9
+        border-right: 1px solid #fff
+        padding: 5px
+        line-height: 28px
+        color: #fff
+        text-align: center
+        &.last
+           border-right: 1px solid #b9b9b9
+    tbody
+      td
+        border: 1px solid #b9b9b9
+        padding: 5px
+        line-height: 20px
+        text-align: center
+    .table-comment
+      margin-top: 15px
+      font-size: 12px
+      color: $gray_light
+      line-height: 18px
+  .invest-table
+    font-size: 12px
+    tbody
+      tr.fix-bg
+        background: #efefef
+      td
+        padding: 3px
+    .rec-comment
+      color: $brand_red
+
+.plan-pager-wrapper
+  background: #fff
+  border: 1px solid $border_color
+  text-align: center
+  margin-top: 20px
+  border-bottom-width: 2px
+  @media $mobile
+    width: 90%
+    margin: 30px auto 0
+  a
+    display: block
+    padding: 15px

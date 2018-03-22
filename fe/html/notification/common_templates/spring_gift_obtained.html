@@ -1,0 +1,25 @@
+<%page args="palette,link"/>
+
+<%def name="notification_title(palette)">
+  您已获得体验金！
+</%def>
+
+<%def name="notification_timestamp(palette)">
+  ${palette.creation_time.strftime('%Y-%m-%d %H:%M:%S')}
+</%def>
+
+<%def name="notification_content(palette)">
+  恭喜您获得8888元新春体验金，到期之后收益部分将转入您的卡中！
+  <br/>立即查看还有机会升级收益率哦！
+</%def>
+
+<div class="notice-main">
+  <div class="title">
+    <h3>${self.notification_title(palette)}</h3>
+  </div>
+  <p class="notice-date">${self.notification_timestamp(palette)}</p>
+  <p class="notice-info">${self.notification_content(palette)}</p>
+  % if link:
+    <i class="iconfont icon-forward mobile-element"></i>
+  % endif
+</div>

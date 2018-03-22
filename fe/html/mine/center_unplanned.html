@@ -1,0 +1,56 @@
+<%inherit file="./base.html" />
+
+<%def name="main()">
+  <%include file="./mods/carousel.html" />
+  <div class="center-wrapper center-unplanned-wrapper">
+
+    <%include file="./mods/center_products.html" />
+    <div class="hd"><h2 class="plan-title">您的规划书</h2></div>
+    <div class="center-unplanned-items block-wrapper">
+      <div class="bd clearfix">
+
+        <div class="center-unplanned-item">
+          <div class="item-pic"><img src="{{{img/mine/plan_1.png}}}"/></div>
+          <h2 class="center-unplanned-item-title">每月收支分析</h2>
+        </div>
+
+        <div class="center-unplanned-item">
+          <div class="item-pic"><img src="{{{img/mine/plan_2.png}}}"/></div>
+          <h2 class="center-unplanned-item-title">资产分类统计</h2>
+        </div>
+
+        <div class="center-unplanned-item">
+          <div class="item-pic"><img src="{{{img/mine/plan_3.png}}}"/></div>
+          <h2 class="center-unplanned-item-title">家庭保险建议</h2>
+        </div>
+
+        <div class="center-unplanned-item">
+          <div class="item-pic"><img src="{{{img/mine/plan_4.png}}}"/></div>
+          <h2 class="center-unplanned-item-title">风险能力测试</h2>
+        </div>
+
+        <div class="center-unplanned-item">
+          <div class="item-pic"><img src="{{{img/mine/plan_5.png}}}"/></div>
+          <h2 class="center-unplanned-item-title">资产增值预估</h2>
+        </div>
+      </div>
+    </div>
+    <div class="center-unplanned-start-item block-wrapper">
+      <h2>规划书</h2>
+      <h3>固定收益高效增值<br />多种期限可选加速达成攒钱目标</h3>
+      <a href="/mine/info" class="btn btn-primary btn-start-plan">立即创建规划书</a>
+    </div>
+
+  </div>
+</%def>
+
+<%def name="title()">我的理财中心 - 好规划</%def>
+<%def name="pagetitle()">
+  <% return '理财中心' %>
+</%def>
+
+<%def name="js()">
+  <script src="{{{js/lib/highcharts.min.js}}}"></script>
+  <script src="{{{js/mine/center_unplanned.js}}}"></script>
+</%def>
+

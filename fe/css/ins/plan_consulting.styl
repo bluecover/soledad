@@ -1,0 +1,100 @@
+@import '../core/_global.styl'
+
+@import './plan/_var.styl'
+@import './plan/_header.styl'
+@import './plan/_forms.styl'
+@import './plan/_bubbles.styl'
+
+.ins-plan-body
+  .content-wrapper
+    margin: 0 auto
+  .main-wrapper
+    min-width: 0
+    width: 80%
+    margin: 0 auto
+    max-width: $min_width
+    @media $mobile
+      width: 100%
+
+.modals-group
+  @media $mobile
+    width: 90%
+
+#ins_survey_form
+  display: none
+
+.ins-plan-app
+  padding-bottom: 200px
+
+.m-plan-consulting
+  strong
+    color: $primary_color
+    font-weight: bold
+  >.bd
+    background-color: #fff
+    padding: 30px 30px 100px 30px
+    margin-bottom: 30px
+    @media $mobile
+      background-color: $page_bg
+      padding: 10px 10px 70px 10px
+      margin-bottom: 0
+
+.m-planner
+  padding: 20px 0
+  @media $mobile
+    background-color: #fff
+  >.hd
+    @extend $avatar
+    float: left
+    margin: 0 10px
+  >.bd
+    overflow: hidden
+    line-height: 1.4
+  .name
+    @media $mobile
+      color: $gray
+  .desc
+    color: $gray
+    @media $mobile
+      color: $gray_light
+
+.m-ins-reclist
+  .title
+    color: $primary_color
+    font-weight: bold
+
+.m-plan-weixin
+  >.hd
+    float: left
+    margin-right: 5px
+    .qrcode
+      width: 100px
+      height: 100px
+  >.bd
+    overflow: hidden
+    padding-top: 20px
+    p
+      font-weight: bold
+      font-size: 16px
+    .tip
+      color: $gray
+      font-size: 12px
+      font-weight: normal
+      margin-top: 5px
+
+.ins-msg-tip
+  display: none
+  position: fixed
+  bottom: 15px
+  right: 20px
+  background-color: $brand_orange
+  color: #fff
+  border-radius: 6px
+  padding: 7px 10px
+  &:before
+    position: absolute
+    content: ''
+    border-right: 8px solid $brand_orange
+    border-bottom: 6px solid transparent
+    right: 5px
+    bottom: -5px

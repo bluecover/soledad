@@ -1,0 +1,100 @@
+<%def name="wallet()">
+<div class="wallet-product product-invest-mod">
+  <div class="hd desktop-element">
+    <h4 class="title">零钱包</h4>
+    <a class="action" href="${url_for('wallet.landing.index', dcm='guihua', dcs='mine-center')}">
+      <i class="iconfont icon-forward"></i>
+    </a>
+  </div>
+  <div class="bd clearfix">
+
+    <div class="invest-total">
+      <div class="hd">
+        <i class="icon"></i>
+        <span class="title">昨日收益 ${round_half_up(wallet_profile.latest_profit_amount, 2)} 元</span>
+      </div>
+      <div class="bd">
+        <div class="title">零钱总额</div>
+        <% balance_integer, balance_decimal = unicode(round_half_up(wallet_profile.balance, 2)).split('.', 1) %>
+        <div class="profit-num">
+          <strong>${balance_integer}.</strong>
+          ${balance_decimal}元
+        </div>
+        <div class="action-btns">
+          <a class="btn btn-primary btn-deposit" href="${url_for('wallet.transaction.deposit')}">存入零钱</a>
+          % if wallet_profile.balance > 0:
+            <a class="btn btn-withdraw btn-blue-ghost" href="${url_for('wallet.transaction.withdraw', dcm='guihua', dcs='mine-center')}">取出零钱</a>
+          % else:
+            <a class="btn btn-blue-ghost btn-withdraw gray" href="#">取出零钱</a>
+          % endif
+        </div>
+      </div>
+    </div>
+
+    ${profit_chart()}
+  </div>
+</div>
+</%def>
+
+<%def name="profit_chart()">
+<div class="profit-chart-mod">
+  <%
+  from datetime import timedelta
+
+  profit_items = {p.date: p.amount for p in wallet_profile.weekly_profits}
+  profit_dates = [wallet_profile.date - timedelta(days=x) for x in xrange(7, 0, -1)]
+  profit_amounts = [profit_items.get(date, 0) for date in profit_dates]
+
+  def format_profit_date(date):
+      yesterday = wallet_profile.date - timedelta(days=1)
+      return u'昨日' if date == yesterday else date.strftime(u'%m/%d')
+  %>
+  <div class="chart-title">每日收益</div>
+  <div class="bd js-profit-chart"
+    data-date="${json.dumps([format_profit_date(d) for d in profit_dates])}"
+    data-amount="${json.dumps([round_half_up(a, 2) for a in profit_amounts])}">
+  </div>
+</div>
+</%def>
+
+<%def name="savings()">
+<div class="js-saving-product desktop-element saving-product product-invest-mod">
+  <div class="hd desktop-element">
+    <h4 class="title">攒钱助手</h4>
+    <a class="action" href="${url_for('savings.landing.index', dcm='guihua', dcs='mine-center')}">
+      <i class="iconfont icon-forward"></i>
+    </a>
+  </div>
+  <div class="bd">
+
+    <div class="invest-total">
+      <div class="hd">
+        <i class="icon"></i>
+        <span class="title">每日收益 ${round_half_up(savings_manager.daily_profit, 2)} 元</span>
+      </div>
+      <div class="bd">
+        <div class="title js-saving-amount" data-saving-amount="${int(savings_manager.on_account_invest_amount)}">攒钱总额</div>
+        <% balance_integer, balance_decimal = unicode(round_half_up(savings_manager.on_account_invest_amount, 2)).split('.', 1) %>
+        <div class="profit-num">
+          <strong >${balance_integer}.</strong>
+          ${balance_decimal}元
+        </div>
+        <div class="action-btns">
+          <a class="btn btn-primary btn-save desktop-element" href="${url_for('savings.landing.index')}">攒一笔</a>
+          <a class="btn btn-primary-ghost mobile-element" href="${url_for('savings.landing.index')}">进入攒钱助手</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="js-invest-goal invest-goal-mod">
+      <div class="hd">
+        <div class="title">我的攒钱目标<strong class="js-plan-amount" data-plan-amount="${savings_manager.plan_amount}">${savings_manager.plan_amount}</strong>元</div>
+      </div>
+      <div class="bd">
+      </div>
+    </div>
+
+  </div>
+</div>
+</%def>
+

@@ -1,0 +1,38 @@
+
+<%def name="app_download_float(dcs='bottom', dcm='guihua')">
+% if g.show_app_download_banner:
+<div class="gm-app-float mobile-element js-g-app-float">
+  <div class="hd">
+    <img class="logo" src="{{{img/app/app_logo.png}}}" alt="好规划 LOGO">
+  </div>
+  <div class="bd">
+    <div class="desc">
+      <h2 class="title">好规划</h2>
+      <h3 class="subtitle">你的私人理财师</h3>
+    </div>
+
+    <div class="btns">
+      <span class="btns-wrapper">
+        % if request.user_agent.is_android:
+        <a class="btn btn-blue btn-android"
+          target="_blank" href="${url_for('app.landing.index', dcm=dcm, dcs=dcs)}">
+          <svg class="icon icon-android" src="{svg{{img/app/android_icon.svg}}}"></svg>下载安卓客户端
+        </a>
+        % endif
+        % if request.user_agent.is_ios:
+        <a class="btn btn-blue btn-ios" target="_blank" href="${url_for('app.landing.index', dcm=dcm, dcs=dcs)}">
+          <svg class="icon icon-ios" src="{svg{{img/app/ios_icon.svg}}}"></svg>下载 iOS 客户端
+        </a>
+        % endif
+      </span>
+    </div>
+
+  </div>
+  <div class="ft">
+    <a class="btn-close js-g-btn-close" href="#">
+      <svg class="svgicon-close" src="{svg{{img/app/close_icon.svg}}}"></svg>
+    </a>
+  </div>
+</div>
+% endif
+</%def>

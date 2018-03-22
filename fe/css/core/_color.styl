@@ -1,0 +1,37 @@
+$clr_list_red         = (#ffebee #ffcdd2 #ef9a9a #e57373 #ef5350 #e53935 #d32f2f #c62828 #b71c1c)
+$clr_list_pink        = (#f9ebef #f3d6de #edc1cf #e19aaf #d67390 #d86181 #cd4e72 #c83e64 #b23d60)
+$clr_list_purple      = (#f3e5f5 #e1bee7 #ce93d8 #ba68c8 #ab47bc #8e24aa #7b1fa2 #6a1b9a #4a148c)
+$clr_list_deep_purple = (#ede7f6 #d1c4e9 #b39ddb #9575cd #7e57c2 #5e35b1 #512da8 #4527a0 #311b92)
+$clr_list_indigo      = (#e8eaf6 #c5cae9 #9fa8da #7986cb #5c6bc0 #3949ab #303f9f #283593 #1a237e)
+$clr_list_blue        = (#e3f2fc #badefa #8fc9fa #63b5f5 #42a6f5 #1f87e6 #1975d1 #1466bf #0d47a1)
+$clr_list_cyan        = (#e0f7fa #b3ebf2 #80deeb #4cd1e0 #26c7d9 #00abc2 #0096a6 #00828f #006163)
+$clr_list_teal        = (#e0f2f1 #b2dfdb #80cbc4 #4db6ac #26a69a #00897b #00796b #00695c #004d40)
+$clr_list_green       = (#f1f8e9 #dcedc8 #c5e1a5 #aed581 #9ccc65 #7cb342 #689f38 #558b2f #33691e)
+$clr_list_light_green = (#f9fbe7 #f0f4c3 #e6ee9c #dce775 #d4e157 #c0ca33 #afb42b #9e9d24 #827717)
+$clr_list_deep_green  = (#e8f5e9 #c8e6c9 #a5d6a7 #81c784 #66bb6a #43a047 #388e3c #2e7d32 #1b5e20)
+$clr_list_yellow      = (#fffde7 #fff9c4 #fff59d #fff176 #ffee58 #fdd835 #fbc02d #f9a825 #f57f17)
+$clr_list_orange      = (#fff3e0 #ffe0b2 #ffcc80 #ffb74d #ffa726 #fb8c00 #f57c00 #ef6c00 #e65100)
+$clr_list_deep_orange = (#fae8e8 #ffccbd #ffab91 #ff8a66 #ff7042 #f5521f #e64a19 #d94214 #bf360d)
+$clr_list_brown       = (#f0ebe8 #d6ccc7 #bdaba3 #a18780 #8c6e63 #6e4c40 #5c4038 #4f332e #3d2624)
+$clr_list_blue_gray   = (#e4e8f1 #a3bed3 #83a8c2 #6192b3 #4e7da3 #40769a #3d6e8f #3a6788 #385f7d)
+$clr_list_purple_gray = (#cbc5d1 #a9a2b4 #877f97 #665b7b #463760 #3c3153 #372c4e #332a49 #2f2442)
+$clr_list_fancy_gray  = (#edf0f2 #cfd9db #b0bfc4 #8fa3ad #788f9c #546e7a #455963 #38474f #263338)
+$clr_list_gray        = (#f5f5f5 #eeeeee #dddddd #cccccc #999999 #666666 #444444 #333333 #111111)
+
+
+$clr_list = ($clr_list_red $clr_list_pink $clr_list_purple $clr_list_deep_purple\
+             $clr_list_indigo $clr_list_blue $clr_list_cyan\
+             $clr_list_teal $clr_list_green $clr_list_light_green $clr_list_deep_green\
+             $clr_list_yellow $clr_list_orange $clr_list_deep_orange $clr_list_brown\
+             $clr_list_blue_gray $clr_list_purple_gray $clr_list_fancy_gray $clr_list_gray)
+
+$clr_list_name = ('$red' '$pink' '$purple' '$deep_purple' '$indigo' '$blue'\
+                  '$cyan' '$teal' '$green' '$light_green' '$deep_green'\
+                  '$yellow' '$orange' '$deep_orange' '$brown' '$blue_gray' '$purple_gray'\
+                  '$fancy_gray' '$gray')
+
+$clr_item_name = (10 20 30 40 50 60 70 80 90)
+
+for list, i_list in $clr_list
+  for color, index in list
+    define($clr_list_name[i_list] + '_'  + $clr_item_name[index], color)

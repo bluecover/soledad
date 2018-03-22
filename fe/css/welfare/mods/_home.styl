@@ -1,0 +1,136 @@
+.savings-welfare-wrapper
+  h2
+    margin: 25px 0 8px
+    &.coins-title
+      margin-top: -5px
+    @media $mobile
+     margin-left: 20px
+  .btn-all
+    margin-top: 20px
+    background-color: #fafafa
+    padding: 3px 30px
+    border: 1px solid $gray_30
+    transition: all ease .3s
+    &:hover
+      background-color: #FFF
+      transition: all ease .3s
+    @media $mobile
+      margin-top: 20px
+      width: 70%
+   .nav-box
+     clearfix()
+     a
+       span(.5)
+       text-align: center
+       padding: 15px 20px
+       font-size: 16px
+       color: $gray_50
+       &.cur
+         font-weight: bold
+         color: $orange_70
+         border-bottom: 3px solid $orange_70
+  .cash-back-wrapper
+    clearfix()
+    height: 225px
+    overflow: hidden
+    @media $mobile
+      height: auto
+      overflow: visiblle
+    .cash-box
+      span(.4)
+      background-color: $orange_40
+      padding: 40px 50px
+      text-align: center
+      color: #fff
+      position: relative
+      @media $mobile
+        padding: 30px 20px
+        stack()
+    .history
+      position: absolute
+      right: 20px
+      top: 20px
+    .cash-num
+      font-size: 50px
+      margin: 15px auto 30px
+    .btn-use
+      border: 1px solid #fff
+      color: #fff
+      transition: all ease .3s
+      &:hover
+        border-color: rgba(255, 255, 255, .8)
+        background-color: rgba(255, 255, 255, .1)
+        transition: all ease .3s
+    .rules-box
+      span(.6)
+      padding: 40px 50px
+      background-color: #FFF
+      @media $mobile
+        stack()
+        padding: 20px
+        height: auto
+      h4
+        margin-bottom: 20px
+      p
+        margin-top: 5px
+        line-height: 1.8
+
+  .coupon-wrapper
+    padding: 50px
+    background-color: #FFF
+    @media $mobile
+      padding: 20px
+    .coupon-tips
+      margin-bottom: 20px
+    .icon-coupon
+      width: 50px
+      height: 50px
+      margin-bottom: 10px
+    .coupon-text
+      font-size: 14px
+      color: $gray_40
+    .coupon-main
+      font-size: 0
+      @import '../../mods/_coupon.styl'
+      .coupon-item
+        cursor: default
+        &.coupon-void
+          h5
+            color: $gray_50
+          img
+          >span
+            display: block
+        img
+          position: absolute
+          top: -6px
+          right: -6px
+          width: 60px
+          display: none
+        h5
+          margin: 10px 0 15px
+          color: $orange_50
+          span
+            font-size: 32px
+            font-weight: 200
+        p
+          margin-top: 10px
+          font-size: 12px
+          color: $gray_50
+        >span
+          position: absolute
+          right: 0
+          top: 13px
+          display: none
+          transform: rotate(50deg)
+
+  .record-wrapper
+    .icon-search
+      width: 50px
+      height: 50px
+      margin-bottom: 10px
+      margin-top: 15px
+    .record-text
+      color: $gray_40
+    .mod-record-wrapper
+      td
+        text-align: center

@@ -1,0 +1,148 @@
+<%inherit file="./base.html" />
+
+<%def name="info_content()">
+  <form action="" method="POST" class="js-form-info2 form-wrapper">
+    <input type="hidden" name="csrf_token" value="${csrf_token()}">
+    <div class="info-tip">
+      <p>理财师将帮助您分析、改进目前的收支情况，指导您获得更健康的收支结余。</p>
+    </div>
+
+    <div class="info-section separate-line js-income-con">
+      <h2>您${'与配偶' if g.plan.data.spouse else ''}的税后收入</h2>
+      <div class="item">
+        <span class="title">月工资收入</span>
+        <div class="input-con">
+          <input type="text" class="validate two-col" name="income_month_salary" pattern="[0-9]*" value="${g.plan.data.income_month_salary or ''}" data-validate="guihuaLimit" data-validate-keyup="nature"/>
+          <span class="input-unit" data-title="月工资收入">元</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <span class="title">月其他收入</span>
+        <div class="input-con">
+          <input type="text" class="validate two-col" name="income_month_extra" pattern="[0-9]*" value="${g.plan.data.income_month_extra or ''}" data-validate="guihuaLimit" data-validate-keyup="nature"/>
+          <span class="input-unit">元</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <span class="title">年终奖</span>
+        <div class="input-con">
+          <input type="text" class="validate two-col" name="income_year_bonus" pattern="[0-9]*" value="${g.plan.data.income_year_bonus or ''}" data-validate="guihuaLimit" data-validate-keyup="nature"/>
+          <span class="input-unit">元</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <span class="title">其他年收入</span>
+        <div class="input-con">
+          <input type="text" class="income-year-extra validate two-col" name="income_year_extra" pattern="[0-9]*" value="${g.plan.data.income_year_extra or ''}" data-validate="guihuaLimit${',incomeLimit' if not g.plan.data.spouse else ''}" data-validate-keyup="nature" data-validate-msg="包含投资收益等项目"/>
+          <span class="input-unit">元</span>
+        </div>
+      </div>
+
+      %if g.plan.data.spouse:
+      <div class="item">
+        <span class="title">配偶月工资收入</span>
+        <div class="input-con">
+          <input type="text" class="validate two-col" name="spouse_income_month_salary" pattern="[0-9]*" value="${g.plan.data.spouse_income_month_salary or ''}" data-validate="guihuaLimit" data-validate-keyup="nature" />
+          <span class="input-unit">元</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <span class="title">配偶月其他收入</span>
+        <div class="input-con">
+          <input type="text" class="validate two-col" name="spouse_income_month_extra" pattern="[0-9]*" value="${g.plan.data.spouse_income_month_extra or ''}" data-validate="guihuaLimit" data-validate-keyup="nature" />
+          <span class="input-unit">元</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <span class="title">配偶年终奖</span>
+        <div class="input-con">
+          <input type="text" class="validate two-col" name="spouse_income_year_bonus" pattern="[0-9]*" value="${g.plan.data.spouse_income_year_bonus or ''}" data-validate="guihuaLimit" data-validate-keyup="nature" />
+          <span class="input-unit">元</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <span class="title">配偶其他年收入</span>
+        <div class="input-con">
+          <input type="text" class="income-year-extra validate two-col" name="spouse_income_year_extra" pattern="[0-9]*" value="${g.plan.data.spouse_income_year_extra or ''}" data-validate="guihuaLimit,incomeLimit" data-validate-keyup="nature" data-validate-msg="包含投资收益等项目"/>
+          <span class="input-unit">元</span>
+        </div>
+      </div>
+      %endif
+    </div>
+
+    <div class="info-section js-expend-con">
+      % if g.plan.data.children or g.plan.data.spouse:
+      <h2>您的家庭支出</h2>
+      % else:
+      <h2>您的个人支出</h2>
+      % endif
+      <div class="item">
+        <span class="title">每月餐饮娱乐</span>
+        <div class="input-con">
+          <input type="text" class="validate two-col" name="expend_month_ent" pattern="[0-9]*" value="${g.plan.data.expend_month_ent or ''}" data-validate="guihuaLimit" data-validate-keyup="nature"/>
+          <span class="input-unit">元</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <span class="title">每月交通通讯</span>
+        <div class="input-con">
+          <input type="text" class="validate two-col" name="expend_month_trans" pattern="[0-9]*" value="${g.plan.data.expend_month_trans or ''}" data-validate="guihuaLimit" data-validate-keyup="nature"/>
+          <span class="input-unit">元</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <span class="title">每月家居购物</span>
+        <div class="input-con">
+          <input type="text" class="validate two-col" name="expend_month_shopping" pattern="[0-9]*" value="${g.plan.data.expend_month_shopping or ''}" data-validate="guihuaLimit" data-validate-keyup="nature"/>
+          <span class="input-unit">元</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <span class="title">每月房租房贷</span>
+        <div class="input-con">
+          <input type="text" class="validate two-col" name="expend_month_house" pattern="[0-9]*" value="${g.plan.data.expend_month_house or ''}" data-validate="guihuaLimit" data-validate-keyup="nature"/>
+          <span class="input-unit">元</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <span class="title">每月其他支出</span>
+        <div class="input-con">
+          <input type="text" class="validate two-col" name="expend_month_extra" pattern="[0-9]*" value="${g.plan.data.expend_month_extra or ''}" data-validate="guihuaLimit" data-validate-keyup="nature"/>
+          <span class="input-unit">元</span>
+        </div>
+      </div>
+
+      <div class="item">
+          <span class="title">其他年度支出</span>
+        <div class="input-con">
+          <input type="text" class="validate two-col" name="expend_year_extra" pattern="[0-9]*" value="${g.plan.data.expend_year_extra or ''}" data-validate="guihuaLimit,expendLimit" data-validate-keyup="nature" data-validate-msg="不含人身保险的保费支出，可填礼金、学费、取暖费、车强险等"/>
+          <span class="input-unit">元</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="submit-section">
+      <span class="title"></span>
+      % if err_message:
+      <div class="error-msg">表单填写有误</div>
+      % endif
+      <a class="btn btn-green js-submit-form btn-form" href="#">保存，下一步</a>
+    </div>
+  </form>
+</%def>
+
+<%def name="title()">收支情况 - 好规划</%def>
+
+<%def name="js()">
+  <script src="{{{js/mine/info_2.js}}}"></script>
+</%def>

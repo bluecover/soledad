@@ -1,0 +1,22 @@
+<%namespace name="utils" file="/utils.html"/>
+<%
+ chk_path = utils.chk_path
+ cur_path = request.endpoint.replace(request.blueprint + '.', '')
+ arr_help = ['help','help_savings','help_wallet','help_ins','help_childins','help_fund']
+%>
+
+<ul class="nav-list">
+  <li class="nav-item ${'on' if cur_path in arr_help else ''}"><a href="/help">帮助中心</a></li>
+   <ul class="nav-sub-list ${'hide' if cur_path not in arr_help else ''}">
+     <li class="nav-item ${chk_path('help_savings', cur_path)}"><a href="/help/savings">攒钱助手</a></li>
+     <li class="nav-item ${chk_path('help_wallet', cur_path)}"><a href="/help/wallet">零钱包</a></li>
+     <li class="nav-item ${chk_path('help_ins', cur_path)}"><a href="/help/ins">保险精选</a></li>
+     <li class="nav-item ${chk_path('help_childins', cur_path)}"><a href="/help/childins">儿童保险规划</a></li>
+     ## <li class="nav-item ${chk_path('help_fund', cur_path)}"><a href="/help/fund">基金管家</a></li>
+   </ul>
+  <li class="nav-item ${utils.chk_path('about', cur_path)}"><a href="/about">关于好规划</a></li>
+  <li class="nav-item ${utils.chk_path('join', cur_path)}"><a href="/join">加入我们</a></li>
+  <li class="nav-item ${utils.chk_path('contact', cur_path)}"><a href="/contact">联系方式</a></li>
+  <li class="nav-item ${utils.chk_path('feedback', cur_path)}"><a href="/feedback">咨询客服</a></li>
+  <li class="nav-item ${utils.chk_path('useragreement', cur_path)}"><a href="/legal/useragreement">用户协议</a></li>
+</ul>

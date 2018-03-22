@@ -1,0 +1,7 @@
+include README.md requirements.txt
+recursive-include jupiter *.cfg
+recursive-include jupiter/templates *.html
+recursive-include jupiter/static/dist *.json *.css *.js *.gif *.png *.jpg *.ico *.svg *.ttf *.woff *.eot
+recursive-include libs *.ttf
+recursive-include docs *.rst
+prune docs/_build

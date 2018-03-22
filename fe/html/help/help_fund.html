@@ -1,0 +1,72 @@
+<%inherit file="../base.html" />
+
+<%def name="sidenav_content()">
+  <%include file="../mods/sidenav_help_about.html" />
+</%def>
+
+<%def name="main()">
+  <div class="block-wrapper help-wrapper">
+    <div class="help-title">
+      <img class="fund-logo" src="{{{img/logo/fund_logo.png}}}" alt="">
+      <span>常见问题</span>
+    </div>
+    <div class="js-help-main">
+      <div class="section">
+        <h3 class="text-bold" id="section1">1.关于基金管家</h3>
+        <h4 id="intro">1.1服务简介</h4>
+        <div class="hide">
+          <p>基金管家是好规划基金研究中心推出的基金投资规划服务，通过不同的基金组合建议满足不同用户的基金投资需求，并通过持续的跟踪服务确保建议切实有效。</p>
+          <p>基金管家是免费服务，目前也并不支持基金购买，仅供您投资参考。
+          </p>
+        </div>
+        <h4 id="service">1.2服务优势</h4>
+        <div class="hide">
+          <p>专业研究团队：好规划基金研究中心团队均来自于知名基金投资研究机构、知名券商和基金公司等金融机构，具备多年投研工作经验。</p>
+          <p>专业分析流程：好规划通过定量、定性分析等多种手段，精选优质基金，把握未来趋势。</p>
+        </div>
+      </div>
+      <div class="section">
+        <h3 class="text-bold" id="section2">2.组合产品</h3>
+        <h4 id="portfolio">2.1基金组合</h4>
+        <div class="hide">
+          <p>
+            基金管家会根据市场情况和用户需求，适时的推出不同的基金组合供您投资参考。</p>
+          <p>
+            您可以选择感兴趣的组合进行“跟踪组合”操作，从而获得模拟的收益情况、调仓提醒以及组合周报等贴心服务。
+          </p>
+        </div>
+        <h4 id="process">2.2筛选流程</h4>
+        <div class="hide">
+          <p>
+            1、好规划基金研究中心精心制定投资策略，构建基金筛选模型。
+          </p>
+          <p>
+            2、在既定策略下，根据基金筛选模型，精选基金产品，构成各类型基础基金池，并持续维护基础基金池。
+          </p>
+          <p>3、根据基金组合产品设计需求，在基础基金池中，精选符合需求的基金构建基金组合。</p>
+        </div>
+      </div>
+      <div class="section">
+        <h3 class="text-bold" id="section3">3.管家服务</h3>
+        <h4 id="news">3.1组合周报</h4>
+        <div class="hide">
+          <p>
+            基金管家会在每周固定时间，通过微信和网页等渠道，针对不同组合发布组合周报，每支不同的组合都会有自己的周报。组合周报会汇报组合整体情况、收益情况以及操作建议调仓通知等，非常值得关注。
+          </p>
+        </div>
+        <h4 id="consultant">3.2投资顾问</h4>
+        <div class="hide">
+          <p>您可以关注好规划的微信公众号（plan141），随时与专业投资顾问进行一对一沟通和咨询。基金管家服务使用过程中的任何问题，都欢迎您的垂询，投资顾问会尽快为您答复。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</%def>
+<%def name="title()">儿童保险规划 - 帮助中心</%def>
+<%def name="js()">
+  <script src="{{{js/help/help.js}}}"></script>
+</%def>
+<%def name="pagetitle()">
+  <% return '关于好规划' %>
+</%def>

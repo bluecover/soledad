@@ -1,0 +1,24 @@
+<%inherit file="./base.html" />
+
+<%def name="content()">
+  <div class="beauty38-login-wrapper">
+    <div class="block-wrapper login-tips">
+      <div class="text-center">
+        <img src="{{{img/invite/smile.png}}}" alt="笑脸">
+        <h3 class="title">您已经是好规划的用户了</h3>
+        <p>登录后输入“beauty38”兑换码即可获得加息礼券</p>
+      </div>
+      <div class="accounts-box beauty38-register-wrapper accounts-aside-wrapper clearfix">
+        <div class="accounts-content">
+          <div class="js-accounts-form gm-account accounts-content-form" data-phone="${mobile}" data-dcs="beauty38" data-dcm="guihua" data-url="${url_for('savings.landing.index')}">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="js()">
+  <script src="{{{js/activity/beauty38/login.js}}}"></script>
+</%def>
+

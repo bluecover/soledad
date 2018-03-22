@@ -1,0 +1,108 @@
+<%!
+  from core.models.utils import dec_2_pct
+%>
+<%inherit file="./plan.html" />
+
+<%def name="plan_content()">
+  <div class="plan-content">
+    <div class="chapter-title">
+      <div class="twocol-content middle-align">
+        <span class="chapter-num left-col">1</span>
+        <div class="title-content right-col">
+          <p class="title-desc">理财的起点</p>
+          <h1>资产现状</h1>
+        </div>
+      </div>
+    </div>
+
+    <p class="gh-tips">好规划建议：${gh_suggest_assets_doc}</p>
+    <p>盘点您家庭现有的资产和负债，是进行理财规划的第一步。</p>
+
+    <div class="data-table">
+      <table>
+        <thead>
+          <tr class="hd-green">
+            <th colspan="4" class="last">资产总计：${format(total_assets,',')} 元</th>
+          </tr>
+        </thead>
+        <tbody>
+          % if len(physical_assets_l)>0:
+            <tr>
+              <td rowspan="${len(physical_assets_l)}" width="20%">实物资产</td>
+              <td>${physical_assets_l[0][0]}</td>
+              <td width="25%">${format(physical_assets_l[0][1],',')} 元</td>
+              <td rowspan="${len(physical_assets_l)}" width="20%">${format(physical_assets,',')} 元</td>
+            </tr>
+            % for a in physical_assets_l[1:]:
+              <tr>
+                <td>${a[0]}</td>
+                <td>${format(a[1],',')} 元</td>
+              </tr>
+            % endfor
+          % endif
+
+          % if len(fin_assets_l)>0:
+            <tr>
+              <td rowspan="${len(fin_assets_l)}" width="20%">金融资产</td>
+              <td>${fin_assets_l[0][0]}</td>
+              <td width="25%">${format(fin_assets_l[0][1],',')} 元</td>
+              <td rowspan="${len(fin_assets_l)}" width="20%">${format(fin_assets,',')} 元</td>
+            </tr>
+            % for a in fin_assets_l[1:]:
+              <tr>
+                <td>${a[0]}</td>
+                <td>${format(a[1],',')} 元</td>
+              </tr>
+            % endfor
+          % endif
+
+        </tbody>
+      </table>
+    </div>
+
+    <div class="data-table">
+      <table>
+        <thead>
+          <tr class="hd-red">
+            <th colspan="4" class="last">负债总计：${format(total_debt,',')} 元</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="2" width="20%">负债</td>
+            <td>未还房贷</td>
+            <td width="25%">${format(real_estate_loan*10000,',')} 元</td>
+            <td rowspan="2" width="20%">${format(total_debt,',')} 元</td>
+          </tr>
+          <tr>
+            <td>信用卡债/消费贷款</td>
+            <td>${format(consumer_loans,',')} 元</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>一、您的${'家庭' if relation_number else '个人'}财富（净资产）= ${format(net_assets, ',')}元，${net_assets_ratio_con}${dec_2_pct(net_assets_ratio)}的${'家庭' if relation_number else '个人'}。</h2>
+
+    <p>净资产 = 资产总计${format(total_assets, ',')}元 - 负债总计${format(total_debt, ',')}元 = ${format(net_assets, ',')}元</p>
+
+    <p>
+      ${assets_eval_doc}
+    </p>
+    <h2>二、您${'家庭' if relation_number else ''}的资产负债率 = ${dec_2_pct(debt_ratio)}，财务风险${debt_con}。</h2>
+
+    <p>资产负债率 = 负债总计${format(total_debt, ',')}元 / 资产总计${format(total_assets, ',')}元 = ${dec_2_pct(debt_ratio)}</p>
+
+    <p>
+      ${debt_doc.decode('utf-8') | n}
+    </p>
+  </div>
+</%def>
+
+<%def name="plan_pager()">
+  <div class="plan-pager-wrapper">
+    <a href="/mine/plan/balance">下一章：支出分析</a>
+  </div>
+</%def>
+
+<%def name="title()">1. 资产现状 - 好规划</%def>

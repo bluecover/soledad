@@ -1,0 +1,58 @@
+<%!
+  from core.models.utils import dec_2_pct
+  from core.models.product.fund import Fund
+%>
+
+<div class="center-block center-invest-block twocol-content">
+  <div class="left-col block-item-left">
+    <a class="block-left-title" href="/mine/plan/risk">投资建议</a>
+    % if rtw_rank == 1:
+      <img class="block-left-img" src="{{{img/mine/invest_1.png}}}"/>
+    % elif rtw_rank == 2:
+      <img class="block-left-img" src="{{{img/mine/invest_2.png}}}"/>
+    % elif rtw_rank == 3:
+      <img class="block-left-img" src="{{{img/mine/invest_3.png}}}"/>
+    % elif rtw_rank == 4:
+      <img class="block-left-img" src="{{{img/mine/invest_4.png}}}"/>
+    % else:
+      <img class="block-left-img" src="{{{img/mine/invest_5.png}}}"/>
+    % endif
+    <div class="left-item">
+      <p class="text-light text-12">您当前的风险偏好：</p>
+      <p class="text-24 text-dark text-bold">${rtw_rank_doc}</p>
+    </div>
+    <div class="left-item">
+      <p class="text-light text-12">您能承受的风险：</p>
+      <p class="text-24 text-dark text-bold">${risk_rank_ratio}</p>
+    </div>
+  </div>
+
+  <div class="right-col block-item-right">
+    <div class="block-item-summary">
+      <p>结合您目前的可投资资产（除去紧急备用金部分之后的金融资产）及您的风险等级“<em class="text-dark text-bold">${rtw_rank_doc}</em>”（可承受<em class="text-dark text-bold">${risk_rank_ratio}</em>的投资风险）</p>
+      <p>我们建议您按照<em class="text-dark text-bold">${dec_2_pct(low_risk_ratio)}：${dec_2_pct(medium_risk_ratio)}：${dec_2_pct(high_risk_ratio)}</em>的比例，分别配置低风险、中风险和高风险资产。按照过去10年各类资产的平均收益率计算，这一组合的预期年化收益率为<em class="text-bold">${dec_2_pct(expect_ave_return, place=2)}</em></p>
+    </div>
+    <h4 class="block-right-title">投资组合建议</h4>
+    <table class="block-item-table">
+      <tr>
+        <th class="th_blue">低风险 ${dec_2_pct(low_risk_ratio)}</th>
+        <th class="th_orange">中风险 ${dec_2_pct(medium_risk_ratio)}</th>
+        <th class="th_red">高风险 ${dec_2_pct(high_risk_ratio)}</th>
+      </tr>
+      <tr>
+        <td>
+          <p><span class="text-dark text-bold">投资金额：</span> <span class="text-bold text-red">${low_risk_assets} 元</span></p>
+          <p><span class="text-dark text-bold">投资种类：</span> <span>货币基金、银行理财产品、国债、部分互联网理财产品</span></p>
+        </td>
+        <td>
+          <p><span class="text-dark text-bold">投资金额：</span> <span class="text-bold text-red">${medium_risk_assets} 元</span></p>
+          <p><span class="text-dark text-bold">投资种类：</span> <span>二级债券型基金、优选P2P网贷</span>、<a href="/savings">攒钱助手</a></p>
+        </td>
+        <td>
+          <p><span class="text-dark text-bold">投资金额：</span> <span class="text-bold text-red">${high_risk_assets} 元</span></p>
+          <p><span class="text-dark text-bold">投资种类：</span> <span>股票型基金、指数型基金、混合型基金</span></p>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

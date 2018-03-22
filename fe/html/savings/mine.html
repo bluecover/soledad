@@ -1,0 +1,375 @@
+<%inherit file="./base.html" />
+<%namespace name="app_download" file="../mods/app_download_float.html" />
+<%namespace name="utils" file="/utils.html" />
+
+<%!
+  from operator import attrgetter
+
+  from core.models.utils import round_half_up
+  from core.models.utils.switch import spring_promotion_switch
+  from jupiter.views.ajax.qrcode import make_qrcode_url
+%>
+
+<%def name="app_download_float()">
+  ${app_download.app_download_float(dcs='savings-mine-float')}
+</%def>
+
+<%def name="main()">
+  <div id="share_wrapper"></div>
+  <%
+    from datetime import datetime
+    is_sell_time = datetime.now().hour >= 11
+  %>
+  <input type="hidden" id="sell_time" value="${'true' if is_sell_time  else ''}">
+  <div class="savings-mine-wrapper">
+    ${utils.notification()}
+    ## <div class="gm-top-banner">
+    ##   % if request.user_agent.is_mobile:
+    ##     <a href="${url_for('activity.cake.index', dcm='guihua', dcs='savings')}">
+    ##       <img class="banner" src="{{{img/activity/cake/banner_mobi.png}}}" alt="超级甜点师" />
+    ##     </a>
+    ##   % else:
+    ##     <a href="#js-modal-cake" rel="onemodal:open">
+    ##       <img class="banner" src="{{{img/activity/cake/banner.png}}}" alt="超级甜点师" />
+    ##     </a>
+    ##   %endif
+    ## </div>
+    ${self.flash_msg()}
+    ${self.mine_tips()}
+    ${self.carousel()}
+    ${self.mine_info()}
+    ${self.product_list()}
+    ${self.trading_info()}
+    ${self.modal_tmpl()}
+  </div>
+</%def>
+
+<%def name="flash_msg()">
+  <% msgs = get_flashed_messages(with_categories=True) %>
+  % if msgs:
+    % for category, msg in msgs:
+    <div class="alert alert-danger">
+      <i class="iconfont icon-close js-alert-close"></i>
+      <p>${'错误原因: ' if category=='error' else ''}${msg}</p>
+    </div>
+    % endfor
+  % endif
+</%def>
+
+<%def name="mine_tips()">
+  <div class="tips-wrapper js-tips hide">
+    <div class="tips-con">
+      <p>今日攒钱助手已售罄，建议大家将到期资金存入零钱包（可实时赎回到账）。<a href="${url_for('wallet.landing.index', dcm='guihua', dcs='savings-soldout')}">点击前往零钱包 &gt;&gt;</a></p>
+    </div>
+    <a href="#" class="js-tips-close js-sold-out-close"><i class="iconfont icon-close"></i></a>
+  </div>
+</%def>
+
+<%def name="carousel()">
+  <div class="carousel-wrapper js-carousel">
+    <div>
+      <a href="${url_for('savings.landing.suixinzan')}" target="_blank">
+        <img class="desktop-element" src="{{{img/savings/carousel_2.jpg}}}" alt="">
+        <img class="mobile-element" src="{{{img/savings/mobile_carousel_2.png}}}" alt="">
+      </a>
+    </div>
+    <div>
+      <a href="${url_for('savings.landing.suixinzan')}" target="_blank">
+        <img class="desktop-element" src="{{{img/savings/carousel_2.jpg}}}" alt="">
+        <img class="mobile-element" src="{{{img/savings/mobile_carousel_2.png}}}" alt="">
+      </a>
+    </div>
+  </div>
+</%def>
+
+<%def name="mine_info()">
+  % if not (request.user_agent.is_mobile and int(saving_manager.on_account_invest_amount) == 0):
+    <div class="savings-mine-info">
+      <h2 class="title desktop-element">攒钱助手</h2>
+      <div class="summary-mask js-loading-box">
+        <div class="loading">
+          <div class="js-loading">
+            <img src="{{{img/misc/loading.gif}}}" height="30">
+            <p class="loading-text">加载中……</p>
+          </div>
+          <div class="hide js-reload">
+            <a class="btn btn-primary js-reload-order">重新加载</a>
+          </div>
+        </div>
+      </div>
+      <div class="summary-wrapper js-info-box">
+        <div class="summary-col">
+          <p class="text-center total-desc">累计收益</p>
+          <p class="total-num text-center"><em class='js-total-profit'>0</em><span>元</span></p>
+          <p class="everyday-profit"><em class="triangle"></em>每日收益<span class="js-daily-profit">0</span>元</p>
+        </div>
+        <div class="summary-col">
+          <p class="text-center text-orange target-desc">我的攒钱总额 <span class="js-invest-amount">0</span> 元 </p>
+          <p class="text-center text-12">攒钱目标<span class="js-plan-amount">0</span>元 <a class="js-edit-target" href="#">修改</a></p>
+          <div class="water-level-box">
+            <div class="line js-line">
+              <div class="mark-box text-12"><span class="js-invest-amount">0</span>元</div>
+            </div>
+            <div class="bottle js-bottle">
+              <p class="text-orange text-center js-over-text hide">超过</p>
+              <p class="text-orange text-center number-box"><em class="js-plan-num">0</em>%</p>
+              <div class="water js-water"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  % endif
+</%def>
+
+<%def name="trading_info()">
+  <div class="block-wrapper mod-record-wrapper">
+    <div class="block-title">攒钱记录</div>
+    <div id="js_record_info">
+      <table>
+        <thead>
+          <tr>
+            <td>攒钱金额</td>
+            <td class="text-center desktop-element">交易日期</td>
+            <td class="text-center">到期日</td>
+            <td class="text-right">年化收益率</td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+  <div class="text-center block-wrapper js-loading-box">
+    <div class="js-loading">
+      <img src="{{{img/misc/loading.gif}}}" height="30">
+      <p class="loading-text">加载中……</p>
+    </div>
+    <div class="hide js-reload">
+      <a class="btn btn-primary js-reload-order">重新加载</a>
+    </div>
+  </div>
+  <%include file="mods/savings_footer.html"/>
+</%def>
+
+<%def name="modal_tmpl()">
+  <div class="modal-dialog onemodal dlg-set-target js-dlg-target">
+    <div class="modal-dialog-hd text-center">我要攒</div>
+    <div class="input-con">
+      <input type="text" placeholder="请输入金额" value="${plan_amount}" class="js-saving-input text-center" pattern="[0-9]*">
+      <span class="prefix">目标</span>
+      <span>元</span>
+    </div>
+    <p class="error-text js-target-error"></p>
+    <a href="#" class="btn btn-primary btn-saving js-confirm-target">确定目标</a>
+  </div>
+
+  <div class="modals-group cake-modal" id="js-modal-cake">
+    ##<a href="#" rel="onemodal:close"><i class="iconfont icon-close" ></i></a>
+    <div class="onemodal-bd text-center">
+      <img src="{{{img/activity/cake/code.jpg}}}" alt="" width="250px">
+      <p class="text-16 text-dark">微信扫一扫开始玩</p>
+    </div>
+  </div>
+</%def>
+
+<%def name="product_list()">
+  <div class="product-item-wrapper">
+    ${self.zhiwang_newcomer()}
+  </div>
+  <div class="product-item-wrapper">
+    ${self.zhiwang()}
+    ${self.zhiwang_regular()}
+    ${self.xinmi_regular()}
+  </div>
+</%def>
+
+<%def name="zhiwang_newcomer()">
+  % for s in sorted(ncm_products):
+  <div class="product-item-title">
+    <h2>
+      ${s.wrapped_product_type.label}
+      <span class="sub">新用户可享 ${round_half_up(s.annual_rate,1)}% 超高收益</span>
+    </h2>
+    <span class="badge">专享</span>
+  </div>
+  <div class="product-item js-zhiwang-item">
+    <div class="product-content">
+      <div class="item-col">
+          <p class="info-text"><em class="text-orange">10</em>%</p>
+          <p>年化收益率</p>
+      </div>
+      <div class="item-col">
+          <p class="info-text"><em>25</em>天</p>
+          <p>封闭期</p>
+      </div>
+      <div class="item-col state-col mobile-element">
+        ${self.btn_zhiwang(s)}
+      </div>
+      <div class="item-col info-col">
+        <div class="info-box">
+          <p class="desktop-element"><em>·</em>对接债权：宜信</p>
+          <p><em>·</em>可投金额 ${int(s.min_amount)} - ${int(s.max_amount)} 元</p>
+        </div>
+      </div>
+      <div class="item-col state-col desktop-element">
+        ${self.btn_zhiwang(s)}
+      </div>
+    </div>
+  </div>
+  % endfor
+</%def>
+
+<%def name="zhiwang()">
+  % for s in sorted(fdb_products, key=attrgetter('final_due_date')):
+  <%
+    # 筛选匹配礼券
+    matched_coupons = [c for c in coupons if c.is_available_for_product(s)]
+  %>
+  <div class="product-item js-zhiwang-item">
+    <div class="product-content">
+      <div class="item-col">
+        <%
+          min_annual_rate = s.profit_annual_rate['min']
+          max_annual_rate = s.profit_annual_rate['max']
+        %>
+        <p class="info-text"><em class="text-orange">${round_half_up(min_annual_rate, 2)}</em>%<span class="symbol">~</span><em class="text-orange">${round_half_up(max_annual_rate, 1)}</em>%</p>
+        <p>年化收益率</p>
+      </div>
+      <div class="item-col">
+        <p class="info-text">
+          <em class="text-orange">${s.profit_period['min'].value}</em><span class="symbol">~</span><em class="text-orange">${s.profit_period['max'].value}</em>天
+        </p>
+        <p>自选到期日</p>
+      </div>
+      <div class="item-col state-col mobile-element">
+        ${self.btn_zhiwang(s)}
+      </div>
+      <div class="item-col info-col">
+        <div class="info-box">
+          % if matched_coupons:
+            <p class="text-orange"><em>·</em>有礼券可用</p>
+          % endif
+          <p class="desktop-element"><em>·</em>对接债权：宜信</p>
+          <p><em>·</em>起投金额 ${int(s.min_amount)} 元</p>
+        </div>
+      </div>
+      <div class="item-col state-col desktop-element">
+        ${self.btn_zhiwang(s)}
+      </div>
+    </div>
+  </div>
+  % endfor
+</%def>
+
+<%def name="btn_zhiwang(s)">
+  <%
+    if s.wrapped_product_type:
+      url = url_for('savings.zhiwang.purchase', product_id=s.raw_product.product_id, wrapped_product_id=s.id_)
+    else:
+      url = url_for('savings.zhiwang.purchase', product_id=s.product_id)
+  %>
+  % if s.in_stock:
+    % if can_quick_reg_zhiwang:
+      <a href="#" class="btn btn-primary btn-start js-btn-start" data-verify-url="${url_for('jauth.channel_zhiwang')}" data-url="${url}"><span class="desktop-element">立即</span>攒钱</a>
+    % else:
+      <a class="btn btn-primary btn-start" href="${url}"><span class="desktop-element">立即</span>攒钱</a>
+    % endif
+  % else:
+    <a href="#" class="btn btn-disable btn-sold-out">11点起售<img class="js-stamp hide" src="{{{img/savings/sold_out.png}}}"></a>
+  % endif
+</%def>
+
+<%def name="btn_xinmi(s)">
+  <%
+      url = url_for('savings.xinmi.purchase', product_id=s.product_id)
+  %>
+  % if s.in_stock:
+    % if can_quick_reg_xm:
+      <a href="#" class="btn btn-primary btn-start js-btn-start" data-verify-url="${url_for('jauth.channel_xm')}" data-url="${url}"><span class="desktop-element">立即</span>攒钱</a>
+    % else:
+      <a class="btn btn-primary btn-start" href="${url}"><span class="desktop-element">立即</span>攒钱</a>
+    % endif
+  % else:
+    <a href="#" class="btn btn-disable btn-sold-out">卖光了<img src="{{{img/savings/sold_out.png}}}"></a>
+  % endif
+</%def>
+
+<%def name="zhiwang_regular()">
+  % for s in sorted(cls_products, key=attrgetter('annual_rate')):
+    <%
+      # 筛选匹配礼券
+      matched_coupons = [c for c in coupons if c.is_available_for_product(s)]
+    %>
+    <div class="product-item">
+      <div class="product-content">
+        <div class="item-col">
+          <p class="info-text"><em class="text-orange">${round_half_up(s.annual_rate,1)}</em>%</p>
+          <p>年化收益率</p>
+        </div>
+        <div class="item-col">
+          <p class="info-text"><em>${s.profit_period['min'].value}</em>${s.profit_period['min'].display_unit}</p>
+          <p>封闭期</p>
+        </div>
+        <div class="item-col state-col mobile-element">
+          ${self.btn_zhiwang(s)}
+        </div>
+        <div class="item-col info-col">
+          <div class="info-box">
+            % if matched_coupons:
+            <p class="text-orange"><em>·</em>有礼券可用</p>
+            % endif
+            <p class="desktop-element"><em>·</em>对接债权：宜信</p>
+            <p><em>·</em>起投金额 ${int(s.min_amount)} 元</p>
+          </div>
+        </div>
+        <div class="item-col state-col desktop-element">
+          ${self.btn_zhiwang(s)}
+        </div>
+      </div>
+    </div>
+  % endfor
+</%def>
+
+<%def name="xinmi_regular()">
+  % for s in sorted(xm_products, key=attrgetter('annual_rate')):
+    <%
+      # 筛选匹配礼券
+      matched_coupons = [c for c in coupons if c.is_available_for_product(s)]
+    %>
+    <div class="product-item">
+      <div class="product-content">
+        <div class="item-col">
+          <p class="info-text"><em class="text-orange">${round_half_up(s.annual_rate,1)}</em>%</p>
+
+          <p>年化收益率</p>
+        </div>
+        <div class="item-col">
+          <p class="info-text">
+            <em>${s.profit_period['min'].value}</em>${s.profit_period['min'].display_unit}</p>
+
+          <p>封闭期</p>
+        </div>
+        <div class="item-col state-col mobile-element">
+          ${self.btn_xinmi(s)}
+        </div>
+        <div class="item-col info-col">
+          <div class="info-box">
+            % if matched_coupons:
+              <p class="text-orange"><em>·</em>有礼券可用</p>
+            % endif
+            <p class="desktop-element"><em>·</em>对接债权：宜信</p>
+            <p><em>·</em>起投金额 ${int(s.min_amount)} 元</p>
+          </div>
+        </div>
+        <div class="item-col state-col desktop-element">
+          ${self.btn_xinmi(s)}
+        </div>
+      </div>
+    </div>
+  % endfor
+</%def>
+
+<%def name="js()">
+  <script src="{{{js/savings/mine.js}}}"></script>
+</%def>
+
+<%def name="title()">攒钱助手 - 好规划</%def>

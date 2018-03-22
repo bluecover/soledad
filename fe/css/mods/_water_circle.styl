@@ -1,0 +1,73 @@
+.water-circle-mod
+  position: relative
+  z-index: 0
+
+  >.hd
+    position: absolute
+    z-index: 10
+    width: 100%
+    white-space: nowrap
+  .measure-mark
+    position: relative
+    display: inline-block
+    padding: 3px
+    background-color: $orange_40
+    vertical-align: middle
+    border-radius: 4px
+    margin-left: 10px
+    font-size: 12px
+    &:before
+      content: ''
+      display: inline-block
+      triangle(6px, right, $orange_40)
+      position: absolute
+      left: -10px
+    @media $mobile
+      left: -35px
+      top: -17px
+      &:before
+        left: 5px
+        top: 17px
+        triangle(6px, top, $orange_40)
+  .measure-line
+    display: inline-block
+    width: 200px
+    border: 1px dashed $orange_40
+    margin-left: -22px
+    vertical-align: middle
+
+  >.bd
+    position: relative
+    width: 145px
+    height: 145px
+    border-radius: 50%
+    overflow: hidden
+    color: $orange_60
+    font-size: 16px
+  .exceed-text
+    margin-top: 30px
+    position: relative
+    z-index: 20
+  .rate
+    margin-top: 10px
+    margin-left: 10px
+    position: relative
+    z-index: 20
+    strong
+      font-size: 40px
+  .circle
+    width: 145px
+    height: 145px
+    border-radius: 50%
+    position: absolute
+    z-index: 10
+    border: 1px solid $orange_50
+    bottom: 0
+  .water
+    position: absolute
+    bottom: 0
+    left: 0
+    background-color: #fdf6e5
+    height: 0
+    width: 145px
+

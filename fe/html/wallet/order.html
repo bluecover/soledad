@@ -1,0 +1,63 @@
+<%inherit file="./base.html" />
+<%namespace name="utils" file="/utils.html" />
+
+<%def name="main()">
+  ${utils.notification()}
+  <div class="wallet-deposit-wrapper">
+    <div id="deposit_wrapper">
+      <div class="text-center block-wrapper ">
+        <img src="{{{img/misc/loading.gif}}}" width="40">
+      </div>
+    </div>
+
+    <div id="js_pay_info"></div>
+  </div>
+
+  <%
+    from core.models.bank import Partner
+    from jupiter.views.ajax.bankcard import _bankcard_to_dict
+
+    sort_keys = {
+      'valid': 0,
+      'unbound': 1,
+      'invalid': 2,
+    }
+    bank_data = [
+      {
+        'bank_id': bank.id_,
+        'bank_name': bank.name,
+        'amount_limit': bank.zslib_amount_limit,
+        'telephone': bank.telephone,
+        'icon_url': bank.icon_url,
+      }
+      for bank in g.banks]
+
+    bank_cards = g.bankcards.get_all()
+    if g.bind_cards:
+        bank_cards = g.bind_cards
+
+    bankcards_data = [
+      _bankcard_to_dict(b, g.wallet_provider.bank_partner, g.user.id_)
+      for b in bank_cards]
+    bankcards_data.sort(key=lambda x: sort_keys[x['status']])
+
+    balance_data = round_half_up(g.wallet_profile.balance, 2)
+  %>
+  <input type="hidden" id="origin_data"
+         data-balance="${balance_data}"
+         data-bank="${json.dumps(bank_data)}"
+         data-type="${order_type}"
+         data-bankcards="${json.dumps(bankcards_data)}"
+         data-date="${unicode(value_date) if value_date else ''}"
+         data-product-category="wallet"
+  >
+</%def>
+
+<%def name="notification()">
+</%def>
+
+<%def name="js()">
+  <script src="{{{js/wallet/deposit.js}}}"></script>
+</%def>
+
+<%def name="title()">零钱包 - 好规划</%def>

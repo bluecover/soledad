@@ -1,0 +1,19 @@
+<div class="modals-group">
+  <div class="onemodal-hd">
+    <a href="#" rel="onemodal:close"><i class="iconfont icon-close"></i></a>
+    <h4 class="text-success">兑换码</h4>
+  </div>
+  <div class="onemodal-bd form-wrapper">
+    <div class="input-con">
+      <input type="text" class="js-code" placeholder="请输入你的兑换码" value={{redeem_code}}>
+      {{#if tips_text}}
+      <p class="text-orange">{{ tips_text }}</p>
+      {{/if}}
+      <p class="js-error text-red"></p>
+    </div>
+  </div>
+  <div class="onemodal-ft">
+    <a class="btn btn-gray" href="#" rel="onemodal:close">取消</a>
+    <a class="btn btn-primary js-btn-code" href="#">提交</a>
+  </div>
+</div>

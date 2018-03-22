@@ -1,0 +1,116 @@
+<%inherit file="./base.html" />
+
+<%def name="info_content()">
+  <form action="" method="POST" class="js-form-info4 form-wrapper">
+    <input type="hidden" name="csrf_token" value="${csrf_token()}">
+    <div class="info-tip">
+      <p>理清自己的理财目标，知道自己想要什么，它们是怎样的优先级。</p>
+      <p>理财师会根据它们帮你制定规划。请好好想下，认真合理地设定。</p>
+    </div>
+
+    <div class="info-section separate-line">
+      <h2>您的理财目标</h2>
+      <div class="item">
+        <span class="title"></span>
+        <input type="hidden" name="target" id="target" data-val="${json.dumps(g.plan.data.target) if g.plan.data.target else ''}">
+        <a href="#" class="js-add-target" data-name="item_target">+ 添加更多目标</a>
+      </div>
+    </div>
+
+    <div class="info-section risk-info">
+      <h2>您的风险承受能力</h2>
+      <div class="item">1、到目前为止，您有多少年投资于风险类资产的经验？( 如基金、股票、贵金属、外汇等 )</div>
+      <div class="item risk-afford">
+        <input id="exp1" type="radio" name="invest_exp" class="styled-input" value="1" ${'checked' if g.plan.data.invest_exp=='1' else ''}/>
+        <label for="exp1" class="option-item">5年以上</label>
+        <input id="exp2" type="radio" name="invest_exp" class="styled-input" value="2" ${'checked' if g.plan.data.invest_exp=='2' else ''}/>
+        <label for="exp2" class="option-item">3-5年</label>
+        <input id="exp3" type="radio" name="invest_exp" class="styled-input" value="3" ${'checked' if g.plan.data.invest_exp=='3' else ''}/>
+        <label for="exp3" class="option-item">1-3年</label>
+        <input id="exp4" type="radio" name="invest_exp" class="styled-input" value="4" ${'checked' if g.plan.data.invest_exp=='4' else ''}/>
+        <label for="exp4" class="option-item">1年以内</label>
+        <input id="exp5" type="radio" name="invest_exp" class="styled-input validate" data-validate="radioRequire" value="5" ${'checked' if g.plan.data.invest_exp=='5' else ''}/>
+        <label for="exp5" class="option-item">无经验</label>
+      </div>
+
+      <div class="item risk-fix-padding">2、进行一笔投资时，您更关心的是？</div>
+      <div class="item risk-afford">
+        <input id="concern1" type="radio" name="invest_concern" class="styled-input" value="1" ${'checked' if g.plan.data.invest_concern=='1' else ''}/>
+        <label for="concern1" class="option-item">收益最大化</label>
+        <input id="concern2" type="radio" name="invest_concern" class="styled-input" value="2" ${'checked' if g.plan.data.invest_concern=='2' else ''}/>
+        <label for="concern2" class="option-item">本金安全性</label>
+        <input id="concern3" type="radio" name="invest_concern" class="styled-input validate" data-validate="radioRequire" value="3" ${'checked' if g.plan.data.invest_concern=='3' else ''}/>
+        <label for="concern3" class="option-item">二者平衡</label>
+      </div>
+
+      <div class="item risk-fix-padding">3、如果由于市场火爆，您的投资组合突然大涨10%，您会如何应对？</div>
+      <div class="item risk-afford">
+        <input id="increase1" type="radio" name="invest_increase" class="styled-input" value="1" ${'checked' if g.plan.data.invest_increase=='1' else ''}/>
+        <label for="increase1" class="option-item">马上追加投资</label>
+        <input id="increase2" type="radio" name="invest_increase" class="styled-input" value="2" ${'checked' if g.plan.data.invest_increase=='2' else ''}/>
+        <label for="increase2" class="option-item">继续持有</label>
+        <input id="increase3" type="radio" name="invest_increase" class="styled-input" value="3" ${'checked' if g.plan.data.invest_increase=='3' else ''}/>
+        <label for="increase3" class="option-item">部分卖出</label>
+        <input id="increase4" type="radio" name="invest_increase" class="styled-input validate" data-validate="radioRequire" value="4" ${'checked' if g.plan.data.invest_increase=='4' else ''}/>
+        <label for="increase4" class="option-item">赶紧止盈脱手</label>
+      </div>
+
+      <div class="item risk-fix-padding">4、如果由于市场低迷，您的投资组合在一个月内亏损了10%，您会如何应对？</div>
+      <div class="item risk-afford">
+        <input id="handle1" type="radio" name="invest_handle" class="styled-input" value="1" ${'checked' if g.plan.data.invest_handle=='1' else ''}/>
+        <label for="handle1" class="option-item">全部卖出</label>
+        <input id="handle2" type="radio" name="invest_handle" class="styled-input" value="2" ${'checked' if g.plan.data.invest_handle=='2' else ''}/>
+        <label for="handle2" class="option-item">部分卖出</label>
+        <input id="handle3" type="radio" name="invest_handle" class="styled-input" value="3" ${'checked' if g.plan.data.invest_handle=='3' else ''}/>
+        <label for="handle3" class="option-item">观望等待</label>
+        <input id="handle4" type="radio" name="invest_handle" class="styled-input validate" data-validate="radioRequire" value="4" ${'checked' if g.plan.data.invest_handle=='4' else ''}/>
+        <label for="handle4" class="option-item">越跌越买</label>
+      </div>
+    </div>
+
+    <div class="submit-section submit-info4">
+      <span class="title"></span>
+      % if err_message:
+      <div class="error-msg">表单填写有误</div>
+      % endif
+      <a class="btn btn-green js-submit-form btn-form" href="#">完成！</a>
+    </div>
+  </form>
+
+  <script id="tmpl_target" type="text/template">
+    <div class="item js-target-item">
+      <span class="title"><i class="iconfont icon-revdel js-del-target"></i> 理财目标 <span class="js-target-num"></span></span>
+      <div class="input-con narrow">
+        <select class="validate js-target-type" data-validate="require">
+          <option value="1">旅行</option>
+          <option value="2">购物</option>
+          <option value="3">继续教育</option>
+          <option value="4">结婚</option>
+          <option value="5">育儿</option>
+          <option value="6">子女教育</option>
+          <option value="7">买车</option>
+          <option value="8">买房首付</option>
+          <option value="9">提前还贷</option>
+          <option value="10">养老金储备</option>
+          <option value="11">其他</option>
+        </select>
+      </div>
+      <div class="input-con narrow">
+        <input class="js-target-money validate three-col" pattern="[0-9]*" type="text" data-validate="require,guihuaLimitRequire" data-validate-keyup="nature"/>
+        <span class="input-prefix">需</span>
+        <span class="input-unit" data-title="目标金额">元</span>
+      </div>
+      <div class="input-con narrow">
+        <input class="js-target-year validate three-col" pattern="[0-9]*" type="text" data-validate="require,targetYearLimt" maxlength="2" data-validate-keyup="nature"/>
+        <span class="input-prefix">计划</span>
+        <span class="input-unit" data-title="目标期限">年完成</span>
+      </div>
+    </div>
+  </script>
+</%def>
+
+<%def name="title()">风险测评 - 好规划</%def>
+
+<%def name="js()">
+  <script src="{{{js/mine/info_4.js}}}"></script>
+</%def>

@@ -1,0 +1,142 @@
+<%inherit file="./base.html" />
+
+<%!
+  from core.models.utils import round_half_up
+%>
+
+<%def name="main()">
+  <div class="savings-welfare-wrapper">
+    ${self.cash()}
+    ${self.coupon()}
+  </div>
+</%def>
+
+<%def name="cash()">
+  <div class="nav-box mobile-element">
+    <a href="#" class="js-nav cur">攒钱红包</a>
+    <a href="#" class="js-nav">我的礼券</a>
+  </div>
+  <h2 class="text-lighter desktop-element coins-title">攒钱红包</h2>
+  <div class="cash-back-wrapper js-section">
+    <div class="cash-box">
+      <a class="history desktop-element" href="./coins">查看历史</a>
+      <h3>现有红包金额（元）</h3>
+      <p class="cash-num">${g.firewood_flow.balance}</p>
+      <a href="/savings/mine/" class="btn btn-use">立即使用</a>
+    </div>
+    <div class="rules-box">
+      <h4 class="text-bold">红包使用规则</h4>
+      <p class="text-lighter">1.攒钱时，可按5‰比例抵扣，最小抵扣单位1元</p>
+      <p class="text-lighter">2.攒钱红包无有效期限制</p>
+      <p class="text-lighter">3.攒钱红包可用于“自由期限”及“固定期限产品”</p>
+      <p class="text-lighter">4.好规划网保留最终解释权</p>
+    </div>
+    <h2 class="mobile-element">红包记录</h2>
+    <div class="record-wrapper block-wrapper mobile-element">
+      % if g.records:
+        <div class="mod-record-wrapper">
+          <table class="text-12">
+            <thead>
+             <tr>
+               <td>日期</td>
+               <td>变动金额</td>
+               <td>红包余额</td>
+               <td>备注</td>
+             </tr>
+            </thead>
+            <tbody>
+            % for record in g.records:
+             <tr class="js-record ${'hide' if loop.index > 4 else ''}">
+               <td>${record.creation_time.date().isoformat()}</td>
+               <td>${record.display_amount}</td>
+               <%
+                  idx = loop.index
+                  balance = sum([r.signed_amount for r in g.records][idx:])
+               %>
+               <td>${round_half_up(balance, 2)}元</td>
+               <td>${record.display_remark}</td>
+             </tr>
+            % endfor
+            </tbody>
+          </table>
+        </div>
+        % if len(g.records) > 5:
+          <div class="text-center">
+            <a href="#" class="btn btn-all js-btn-record">查看更多记录</a>
+          </div>
+        % endif
+
+      % else:
+        <div class="text-center">
+          <svg class="icon-search" src="{svg{{img/misc/search_icon.svg}}}"></svg>
+          <p class="record-text">暂无记录</p>
+        </div>
+      % endif
+    </div>
+  </div>
+</%def>
+
+<%def name="coupon()">
+  <h2 class="text-lighter desktop-element">攒钱礼券</h2>
+  <div class="coupon-wrapper js-section desktop-element">
+    % if not g.coupon_manager.available_coupons:
+      <div class="text-center coupon-tips js-coupon-tips">
+        <svg class="icon-coupon" src="{svg{{img/misc/coupon_icon.svg}}}"></svg>
+        <p class='coupon-text'>暂无可用礼券</p>
+      </div>
+    % endif
+
+    <div class="coupon-main js-coupon-main">
+      % for coupon in g.coupon_manager.available_coupons:
+        <div class="coupon-item">
+          <% sign, content, unit = coupon.regulation.benefit_detail %>
+          <h5><em>${sign}</em><span>${content}</span><em>${unit}</em></h5>
+          <p>${coupon.name}，${coupon.description}</p>
+          <p>${coupon.display_product_requirement}</p>
+          <p>有效期至${coupon.display_expire_time}</p>
+        </div>
+      % endfor
+
+      % for coupon in g.coupon_manager.history_coupons:
+        <div class="coupon-item coupon-void hide">
+          <%
+            from core.models.welfare import Coupon
+            if coupon.status is Coupon.Status.consumed:
+               tag = '已使用'
+            elif coupon.outdated:
+               tag = '已过期'
+            else:
+               # impossible
+               tag = ''
+            sign, content, unit = coupon.regulation.benefit_detail
+          %>
+          <span class="text-lighter text-12" >${tag}</span>
+          <img src="{{{img/misc/unmet.png}}}" alt="${tag}">
+          <h5><em class="text-16" >${sign}</em><span>${content}</span><em class="text-12">${unit}</em></h5>
+          <p>${coupon.name}，${coupon.description}</p>
+          <p>${coupon.display_product_requirement}</p>
+          <p>有效期至${coupon.display_expire_time}</p>
+        </div>
+      % endfor
+    </div>
+
+    % if g.coupon_manager.history_coupons:
+      <div class="text-center">
+        <a href="#" class="btn btn-all js-btn-history">查看历史礼券</a>
+      </div>
+    % endif
+  </div>
+</%def>
+
+<%def name="notification()">
+  <input type="hidden">
+</%def>
+
+<%def name="js()">
+  <script src="{{{js/welfare/welfare.js}}}"></script>
+</%def>
+
+<%def name="title()">福利中心 - 好规划</%def>
+<%def name="pagetitle()">
+  <% return '我的福利' %>
+  </%def>

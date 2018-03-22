@@ -1,0 +1,47 @@
+<div class="m-ins-detail m-ins-{{name}}-detail">
+  <div class="hd">
+    <h2 class="title">{{ins_name}}</h2>
+    {{{logo}}}
+    <a class="btn-back" href="#"><i class="iconfont icon-back"></i></a>
+  </div>
+  <div class="bd">
+    <ul class="products-list">
+      {{#each products}}
+        <li class="m-ins-product">
+          <div class="hd">
+            <p class="category">{{this.category}}</p>
+          </div>
+          <div class="bd">
+            <h3 class="title">{{this.title}}</h3>
+            <a class="price"
+              target="_blank"
+              href="{{this.url}}"
+              data-partner-logo-src="{{this.partner_logo_src}}"
+              data-url="{{this.external_url}}">
+              <span class="symbol">&yen;</span>
+              <span class="num">{{this.price}}</span>
+              <span class="price-desc">
+              {{#if this.price_desc}}
+                {{this.price_desc}}
+              {{else}}
+                起
+              {{/if}}
+              </span>
+              <i class="iconfont icon-forward"></i>
+            </a>
+            <p class="desc">{{this.desc}}</p>
+          </div>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+  {{#if footer}}
+  <div class="ft">
+    <a
+      class="btn btn-primary btn-children-plan"
+      href="https://www.guihua.com/ins/children/?dcm=web_ins&dcs=aggregate"
+      target="_blank">
+      免费儿童险规划</a>
+  </div>
+  {{/if}}
+</div>

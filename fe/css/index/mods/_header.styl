@@ -1,0 +1,153 @@
+// 首页 header 特殊样式
+.header-wrapper
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  min-width: 0
+  z-index: 10
+  background: rgba(255, 255, 255, .95)
+  border-bottom: 1px solid $gray_20
+
+  .m-desktop-header
+    line-height: $header_height
+    height: $header_height
+    .guihua-logo
+      height: $header_height
+      display: block
+      .svgicon
+        width: 105px
+        height: 41px
+        vertical-align: middle
+        margin-top: -4px
+    >.hd
+      position: relative
+      z-index: 1
+      margin-left: 44px
+      float: left
+      @media $screen_768
+        margin-left: 25px
+    >.bd
+      position: relative
+
+  .m-product-menu
+    width: 630px
+    margin: 0 auto
+    @media $screen_768
+      width: 540px
+    >li
+      display: inline-block
+
+  .m-menu-item
+    position: relative
+    margin: 0 25px
+    cursor: default
+    font-size: 16px
+    @media $screen_768
+      margin: 0 10px
+    &:hover
+      .title
+        color: $brand_blue
+      >.hd
+        .iconfont
+          visibility: visible
+    .title
+      display: inline-block
+      color: $gray_70
+    >.hd
+      .iconfont
+        display: inline-block
+        width: 13px
+        font-size: 12px
+        visibility: hidden
+        color: $brand_blue
+        vertical-align: top
+    >.bd
+      display: none
+
+    .submenu.m-submenu-wx
+      width: 350px
+      line-height: 1.5
+      >.hd
+        float: left
+      .wx-qrcode
+        display: block
+        width: 90px
+        margin: 25px
+      >.bd
+        overflow: hidden
+        padding-right: 10px
+      .title
+        font-weight: bold
+        color: $gray_70
+        padding: 34px 0 10px 0
+      .content
+        font-size: 14px
+        color: $gray_50
+
+    .submenu
+      width: 180px
+      position: absolute
+      top: $header_height
+      left: -40px
+      @extend $dropdown
+      .iconfont
+        font-size: 18px
+        margin-right: 6px
+        color: $gray_70
+      >li
+        line-height: 50px
+        height: 50px
+        border-bottom: 1px dotted $gray_30
+        font-size: 14px
+        &:last-child
+          border-bottom: 0
+        a
+          display: block
+          padding-left: 30px
+          color: $gray_70
+          &:hover
+            color: $brand_blue
+            background: $gray_10
+            .iconfont
+              color: $brand_blue
+
+  .menu-wrap-2
+    position: absolute
+    top: 0
+    right: 46px
+    @import '../../mods/_app_download_nav.styl'
+    @media $screen_768
+      right: 16px
+    a
+      color: $gray_70
+      &:hover
+        color: $brand_blue
+    .app-download
+      &:hover
+        opacity: 1
+        .svgicon
+          path
+            fill: $brand_blue
+    >li
+      display: inline-block
+      margin-left: 30px
+      font-size: 16px
+    .btn-register
+      line-height: 1
+      border: 1px solid $brand_blue
+      border-radius: 4px
+      padding:  8px 16px
+      display: block
+      font-size: 14px
+      &:hover
+        background: #3a6788
+        color: #fff
+
+  .mobile-header
+    .guihua-logo
+      display: inline-block
+      padding-top: 5px
+      .svgicon
+        width: (30/42)*108 px
+        height: 30px

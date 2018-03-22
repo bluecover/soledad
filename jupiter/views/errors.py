@@ -1,0 +1,2 @@
+class ChallengeFailError(Exception):
+    pass

@@ -1,0 +1,73 @@
+@import '../../mods/_loading_dot.styl'
+
+.auth-title-wrapper
+  padding-bottom: 20px
+  border-bottom: 1px dotted $border_color
+  margin-bottom: 20px
+  .auth-title
+    color: #111
+    font-size: 18px
+    margin-right: 5px
+    line-height: 1.5
+    @media $mobile
+      display: block
+  .auth-subtitle
+    font-size: 13px
+    color: $gray_light
+    @media $mobile
+      display: block
+      margin-top: 5px
+      line-height: 1.2
+
+.auth-wrapper
+  .form-wrapper
+    .item
+      padding: 15px 0
+      @media $mobile
+        padding: 10px 0
+    .tips-item
+      padding: 0
+    .btn-form
+      @media $mobile
+        width: 100%
+    .accounts-tip
+      font-size: 12px
+      text-align: center
+      background: #f5f5f5
+      line-height: 1.6
+      padding: 5px
+
+.dlg-auth
+  text-align: center
+  padding:30px 0
+  .auth-dot
+    width: 8px
+    height: 8px
+    vertical-align: top
+    margin-top: 30px
+    margin-right: 5px
+    display: inline-block
+    border-radius: 50%
+    background-color: $gray_40
+    @media $mobile
+       width: 5px
+       height: 5px
+       margin-right: 0
+       margin-top: 20px
+    &.cur
+      background-color: $orange_70
+  .guihua-logo
+    width: 150px
+    margin-right: 10px
+    @media $mobile
+      width: 105px
+      margin-right: 0
+  .yrd-logo
+    width: 150px
+    margin-left: 10px
+    @media $mobile
+      width: 105px
+      margin-left: 0
+  p
+    margin-top: 30px
+    line-height: 1.5

@@ -1,0 +1,25 @@
+<%inherit file="./base_unregister.html" />
+
+<%def name="content()">
+<div class="register-success-wrapper block-wrapper">
+  <div class="inner-wrapper">
+    <div class="verification-box">
+    <h2><i class="iconfont icon-smcheck"></i>注册成功！</h2>
+  </div>
+  <div class="success-desc">
+    <p class="text">恭喜您获得攒钱大礼包!</p>
+    <p class="text">可前往<a class="text-orange" href="${url_for('welfare.index')}#coupon">「我的福利」</a>中查看</p>
+  </div>
+    <div class="success-todo">
+    <div class="hd">
+      <h3 class="title">现在您可以</h3>
+    </div>
+    <div class="bd">
+      <a class="btn btn-primary" href="${url_for('savings.mine.index', dcm='guihua', dcs='invitation')}">去攒钱</a></div>
+      <ul>
+        <li class="todo-item">新注册用户可享受 <span class="text-orange">25</span>天,<span class="text-orange">10%</span>年化收益的新手专享。 </li>
+      </ul>
+    </div>
+    </div>
+</div>
+</%def>

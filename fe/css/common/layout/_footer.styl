@@ -1,0 +1,76 @@
+.footer-wrapper
+  text-align: center
+  margin-top: 20px
+  padding: 20px 0 0
+  @media $mobile
+    margin-top: 0
+    padding-bottom: 25px
+    padding-top: 30px
+
+  .footer-info
+    margin: 0 auto
+    position: relative
+    @media $mobile
+      width: auto
+
+  .footer-nav
+    line-height: 30px
+    .nav-item
+      padding: 0 12px
+      color: $gray_50
+      display: inline-block
+      line-height: 14px
+      height: 14px
+      border-right: 1px solid $gray_50
+      &:hover
+        color: $brand_blue
+      &:last-of-type
+        border-right: none
+      @media $mobile
+        padding: 0 9px
+
+  .friendly-link
+    padding: 0 12px
+    display: inline-block
+    cursor: pointer
+    position: relative
+    color: $gray_50
+    border-left: 1px solid $gray_50
+    &:hover
+      color: $brand_blue
+
+  .friendly-link-detail
+    cursor: default
+    display: none
+    padding: 10px 0 10px 20px
+    position: absolute
+    right: -78px
+    bottom: 120%
+    width: 550px
+    text-align: left
+    @extend $dropdown
+    li
+      width: 25%
+      float: left
+      a
+        line-height: 2.2
+        display: block
+        color: $gray_light
+        padding-right: 0px
+        &:hover
+          color: #00a3d8
+    .triangle
+      position: absolute
+      triangle(10px, top, color=$gray_30)
+      bottom: -20px
+      left: 420px
+      .triangle
+        position: absolute
+        triangle(10px, top, #fff)
+        top: -11px
+        left: -10px
+
+  .copyright
+    color: $fancy_gray_30
+    line-height: 20px
+    font-size: 12px

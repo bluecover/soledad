@@ -1,0 +1,189 @@
+.product-item-wrapper
+  margin-bottom: 15px
+  position: relative
+  @media $mobile
+    margin-bottom: 10px
+  h1
+    position: absolute
+    top: -60px
+    color: #fff
+    left: 180px
+    z-index: 100
+    font-size: 30px
+    @media $mobile
+      font-size: 14px
+      left: 50%
+      width: 280px
+      top: -30px
+      transform: translateX(-50%)
+
+.product-item-title
+  background-color: #fff
+  border-bottom: 1px solid #eee
+  padding: 15px 20px
+  position: relative
+  overflow: hidden
+  h2
+    font-size: 16px
+    color: $gray
+  .sub
+    font-size: 12px
+    border: 1px solid $blue_gray_40
+    color: $blue_gray_40
+    border-radius: 10px
+    padding: 3px 5px
+    line-height: 20px
+    vertical-align: middle
+  .badge
+    width: 60px
+    height: 20px
+    font-size: 12px
+    line-height: 20px
+    text-align: center
+    color: #fff
+    position: absolute
+    background-color $brand_blue
+    top: 5px
+    right: -18px
+    transform: rotate(50deg)
+    @media $mobile
+      font-size: 10px
+      top: 5px
+      right: -18px
+
+.product-item
+  padding: 0 50px
+  background-color: #FFF
+  position: relative
+  color: $gray_60
+  overflow: hidden
+  @media $mobile
+    padding: 20px 20px 0
+    margin-bottom: 10px
+    .product-content
+      border-bottom: none
+    @media $mobile
+      margin-bottom: 10px
+  &:last-child
+    padding: 0 50px
+    @media $mobile
+      padding: 20px 20px 0
+    .product-content
+      border-bottom: 0
+
+  .badge
+    width: 80px
+    height: 20px
+    font-size: 12px
+    line-height: 20px
+    text-align: center
+    color: #fff
+    position: absolute
+    background-color $red_60
+    top: 10px
+    left: -24px
+    transform: rotate(-50deg)
+    @media $mobile
+      font-size: 10px
+      left: -27px
+      top: 8px
+  .product-content
+    border-bottom: 1px dotted $gray_30
+    padding: 30px 0
+    clearfix()
+    @media $mobile
+      padding: 0
+      border-bottom: none
+    .item-col
+      span(1/4)
+      height: 80px
+      @media $mobile
+        height: 60px
+      &:first-child,
+      &:nth-child(2)
+        border-right: 1px dotted $gray_20
+        text-align: center
+        @media $mobile
+          span(0.4)
+      &:nth-child(2)
+        @media $mobile
+          padding-left: 10px
+          border-right: none
+    .info-text
+      margin-bottom: 10px
+      margin-top: 10px
+      @media $mobile
+        font-size: 14px
+      em
+        font-size: 36px
+        @media $mobile
+          font-size: 20px
+    .symbol
+      @media $mobile
+        font-size: 12px
+    .info-col
+      display: table
+      height: 50px
+      @media $mobile
+        stack()
+      &:before
+        content: ''
+        clearfix()
+      .info-box
+        display: table-cell
+        padding-left: 20%
+        vertical-align: middle
+        font-size: 12px
+        color: $gray_50
+        @media $mobile
+          display: block
+          padding-left: 0
+          width: 100%
+          border-top: 1px dotted $gray_30
+          padding-top: 10px
+          margin-top: 5px
+      .invite-tip
+        color: #e53935
+      p
+        margin-bottom: 3px
+        @media $mobile
+          font-size: 12px
+          display: inline-block
+          margin-right: 15px
+        em
+          font-size: 24px
+          color: $gray_50
+          font-weight: bold
+          position: relative
+          top: 4px
+          margin-right: 5px
+          @media $mobile
+            font-size: 20px
+            margin-right: 3px
+            top: 2px
+      img
+        width: 15px
+        position: relative
+        top: 2px
+    .state-col
+      position: relative
+      @media $mobile
+        span(0.2)
+      .btn
+        align(vertical)
+        right: 10px
+        padding-top: 3px
+        padding-bottom: 3px
+        @media $mobile
+          min-width: 60px
+          padding: 3px 10px
+          font-size: 12px
+        img
+          width: 60px
+          top: -15px
+          position: absolute
+          left: 50%
+          margin-left: -30px
+          z-index: 1
+          @media $mobile
+            top: -10px

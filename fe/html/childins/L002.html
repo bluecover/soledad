@@ -1,0 +1,280 @@
+<%inherit file="./products_base.html" />
+
+<%namespace import="more_L001,more_A001,more_CI001" file='./mods/more_product.html' />
+
+<%!
+  from libs.linker import make_url
+  from jupiter.integration.weixin import get_weixin_config
+%>
+
+<%def name="main()">
+  <div class="ins-common-wrapper childins-l002-wrapper">
+    ${self.head()}
+    ${self.neck()}
+    ${self.body()}
+    ${parent.common_compensation_guide()}
+    ${self.reason()}
+    ${self.more()}
+    <%include file="./mods/ins_qrcode.html" />
+  </div>
+</%def>
+
+<%def name="head()">
+  <input type="hidden" id="ins_data" data-url="${url_for('ajax.mail', dcm='email_savi', dcs='phonetopc')}" data-val="${get_weixin_config(jsApiList=['onMenuShareTimeline', 'onMenuShareAppMessage'])}" data-title="合众爱家无忧定期寿险 - 好规划" data-desc="好规划保险精选  无需体检的最简洁寿险"/>
+  <div class="head-wrapper">
+    <div class="desc">
+      <h4 class="text-16">好规划保险精选 <em class="text-green">无需体检的最简洁寿险 </em></h4>
+      <h2 class="text-bold">合众爱家无忧定期寿险</h2>
+      <dl class="ins-info">
+        <dt class="text-12">保险信息</dt>
+        <dd>定期寿险</dd>
+        <dd>消费型</dd>
+        <dd>期限可选</dd>
+      </dl>
+      <dl>
+        <dt class="text-12">保障范围</dt>
+        <dd><i class="iconfont icon-checked"></i>身故</dd>
+      </dl>
+    </div>
+    <div class="buy text-center">
+      <p  class="text-orange">￥<em>100.00</em> 起</p>
+      <a href="#" class="btn btn-primary btn-large btn-start js-btn-start" data-type="zm" data-url="${make_url(redirect_url)}">立即投保</a>
+    </div>
+  </div>
+</%def>
+
+<%def name="neck()">
+  <div class="title-box">性价比超高的寿险</div>
+  <div class="block-wrapper section-wrapper">
+    <div class="clause-wrapper">
+      <h3>简明版保险条款</h3>
+      <div class="twocol-content">
+        <div class="left-col">
+          <div class="circle-box">1</div>
+        </div>
+        <div class="right-col">
+          <h4>保什么</h4>
+          <p>在保障期限内一旦<span class="text-green">身故</span>，得到一笔一次性大额赔付。</p>
+        </div>
+      </div>
+      <div class="twocol-content">
+        <div class="left-col">
+          <div class="circle-box">2</div>
+        </div>
+        <div class="right-col">
+          <h4>如何简单投保</h4>
+          <p><span class="text-green">无需体检</span>、无需等待，全程在线投保。</p>
+          <p>投保时请如实填写健康问卷；问卷中未涉及的健康问题无需告知保险公司，也不会影响投保和理赔。</p>
+        </div>
+      </div>
+      <div class="twocol-content">
+        <div class="left-col">
+          <div class="circle-box">3</div>
+        </div>
+        <div class="right-col">
+          <h4>犹豫期和等待期</h4>
+          <p>犹豫期10天，期间退保仅扣除少量工本费；犹豫期后退保只能退回很少的保费。</p>
+          <p>等待期180天，为行业平均水平；期间由疾病造成身故，仅退还已交保费；因意外身故，按保额全额赔付。</p>
+        </div>
+      </div>
+      <div class="twocol-content">
+        <div class="left-col">
+          <div class="circle-box">4</div>
+        </div>
+        <div class="right-col">
+          <h4>如何理赔</h4>
+          <p>一经确认身故，即可拨打销售网站客服电话400-8822-300，将有专业人员全程协助您报案理赔。</p>
+        </div>
+      </div>
+      <div class="tips">
+        <p>
+          <span class="text-orange">*  </span>查阅详细条款，请点击“立即投保”按钮，在“保障内容”一节找到“具体条款”。
+        </p>
+        <p>&nbsp;&nbsp;更多问题也欢迎至好规划微信号plan141咨询。</p>
+      </div>
+    </div>
+    <div class="category-wrapper">
+      <h3 class="text-dark">好规划精选<em class="text-green text-bold">全网底价</em>保险，以30岁女性投保50万寿险（20年期）为例，保费对比如下</h3>
+      <div class="category-row">
+        <div class="desc-box">平安幸福定期保（A,2004）</div>
+        <div class="fee-box">
+          <p class="plan1">等待期：365天 <span>保费：1000元</span></p>
+        </div>
+      </div>
+      <div class="category-row">
+        <div class="desc-box">新华i守护定期寿险</div>
+        <div class="fee-box">
+          <p class="plan2">等待期：730天 <span>保费：500元</span></p>
+        </div>
+      </div>
+      <div class="category-row">
+        <div class="desc-box">合众爱家无忧定期寿险</div>
+        <div class="fee-box">
+          <p class="plan3">等待期：180天 <span>保费：500元</span></p>
+        </div>
+      </div>
+      <p class="text-light text-12 tips-text">* 本保险产品及后续服务由中民保险网提供，中民保险网具有保监会网销资格的正规资质（保险经纪业务许可证：260636000000800）</p>
+    </div>
+    <div class="service-wrapper">
+      <h3 class="text-dark">还有贴心服务，省时省心</h3>
+      <div class="service-box">
+        <div class="twocol-content middle-align">
+          <div class="left-col">
+            <img src="{{{img/childins/a_002.png}}}" alt="">
+          </div>
+          <div class="right-col">
+            <p class="text-dark text-16">24小时理赔</p>
+            <p class="text-lighter">客服电话400-8822-300</p>
+          </div>
+        </div>
+      </div>
+      <div class="service-box">
+        <div class="twocol-content middle-align">
+          <div class="left-col">
+            <img src="{{{img/childins/a_001.png}}}" alt="">
+          </div>
+          <div class="right-col">
+            <p class="text-dark text-16">在线快速投保</p>
+            <p class="text-lighter">5分钟填保单，在线支付</p>
+          </div>
+        </div>
+      </div>
+      <div class="service-box">
+        <div class="twocol-content middle-align">
+          <div class="left-col">
+            <img src="{{{img/childins/a_008.png}}}" alt="">
+          </div>
+          <div class="right-col">
+            <p class="text-dark text-16">每年缴费提醒</p>
+            <p class="text-lighter">提前1月提醒，从容缴费</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="body()">
+  <div class="title-box">投保指南</div>
+  <div class="block-wrapper section-wrapper">
+    <table class="table-coverage">
+      <tr class="coverage-row">
+        <td class="text-lighter">推荐<br class="desktop-element">方案</td>
+        <td>20年期20年交，保额50万元，保费200元/年起。</td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">投保<br class="desktop-element">年龄</td>
+        <td>
+          <p>18 – 50周岁。</p>
+        </td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">保障<br class="desktop-element">期限</td>
+        <td class="last-child">
+          <div class="desc-text">
+            <p>20年（推荐）、30年、至60岁、至70岁。</p>
+          </div>
+          <div class="coverage-detail-box">
+            <div class="text-16 title"><i class="iconfont icon-ciask"></i><span class="text-green">保障期限怎么选</span></div>
+            <p>定期寿险的意义在于“去世后为他人留笔钱”，保险期限一般以实际需求为准，如保至孩子完成学业；或以房贷年限作为保障期限。</p>
+            <p>年轻人可以先投一笔性价比最高的20年期保险，未来收入增长、家庭责任变大后再补投一单。</p>
+          </div>
+        </td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">基本<br class="desktop-element">保额</td>
+        <td class="last-child">
+          <div class="desc-text">
+            <p>5 – 50万元；</p>
+            <p>不同年龄段的保额限制：18-35岁最高50万元，36-40岁最高30万元，41-45岁最高20万元，46-50岁最高10万元。</p>
+          </div>
+          <div class="coverage-detail-box">
+            <div class="text-16 title"><i class="iconfont icon-ciask"></i><span class="text-green">寿险保额怎么选</span></div>
+            <p>寿险保额应以家庭责任为限，通常包括赡养父母、抚养子女、照顾配偶、偿还债务等。</p>
+            <p>相应地，以父母余生各项费用缺口、孩子成年或完成学业所需费用、债务金额作为保额都是合理的。 </p>
+            <p>不过，建议整体保额在个人年收入10倍以内，过高的保障将造成不合理的保费压力。</p>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</%def>
+
+<%def name="reason()">
+  <div class="title-box">为什么买定期寿险</div>
+  <div class="block-wrapper reason-wrapper">
+    <div class="section">
+      <h2 class="text-green text-16">什么是定期寿险</h2>
+      <p><em class="text-dark">“定期”</em>表示保险责任在一定的保障期内有效，并非终身保障；</p>
+      <p><em class="text-dark">“寿险”</em>是针对身故进行赔付的险种，不区分身故原因 <em class="text-lighter">（不包括除外责任，详情请参考保险合同）</em>；</p>
+      <p>定期寿险就是在保障期内以被保险人死亡为前提给付保险金的人身保险。</p>
+    </div>
+    <div class="section">
+      <h2 class="text-green text-16">为什么买定期寿险</h2>
+      <h4 class="text-dark"><svg class="icon-lightning" src="{svg{{img/childins/lightning.svg}}}"></svg>身故损失大</h4>
+      <p> 多数年轻人上有老下有小，还有房贷车贷等多重负担。一旦不幸身故，家人在伤痛之余生活质量也将难以保证。尤其家庭经济支柱身故，会带来难以承受的经济压力。</p>
+    </div>
+    <div class="section">
+      <h4 class="text-dark"><svg class="icon-lightning" src="{svg{{img/childins/lightning.svg}}}"></svg>风险须防范</h4>
+      <table class="table-box">
+        <tr>
+          <td>身故人数</td>
+          <td>25岁</td>
+          <td>35岁</td>
+          <td>40岁</td>
+        </tr>
+        <tr>
+          <td>男性</td>
+          <td>750</td>
+          <td>1170</td>
+          <td>1669</td>
+        </tr>
+        <tr>
+          <td>女性</td>
+          <td>345</td>
+          <td>557</td>
+          <td>816</td>
+        </tr>
+        <tr>
+          <td colspan="5" class="align-right">单位：每百万人身故人数</td>
+        </tr>
+      </table>
+      <p>随着年龄增长，因为疾病、意外身故的人数均有增长，男性的死亡率甚至接近千分之2。</p>
+    </div>
+    <div class="section">
+      <h4 class="text-dark"><svg class="icon-lightning" src="{svg{{img/childins/lightning.svg}}}"></svg>性价比更高</h4>
+      <p>同等保额的终身寿险，保费动辄为定期寿险的十几倍；而终身保障并不必要：老年阶段子女已独立、房贷已还完，肩负的家庭责任较少。应该将节省下来的保费用于养老金规划。</p>
+      <div class="coverage-detail-box">
+        <div class="text-16 title"><i class="iconfont icon-ciask"></i><span class="text-green">您是否需要寿险</span></div>
+        <p class="text-lighter">如果您不幸身故，将导致某人生活陷入困境，并且保障此人的生活质量是您的责任，您就需要投保寿险，并以他/她作为受益人；如果身故不会明显影响任何人的物质生活质量，则无需投保。</p>
+      </div>
+    </div>
+    <p>定期寿险有效分担身故带来的经济压力，是给家人的一份安心保障，建议所有成年人投保。</p>
+    <p>（本保险仅适用于成人，为儿童构筑保障请戳：<a href="/ins/children/?dcm=web_ins&dcs=L002">儿童保险</a>）</p>
+    <div class="text-center">
+      <a class="btn btn-primary btn-start js-btn-start" data-type="zm" href="#" data-url="${make_url(redirect_url)}">立即投保</a>
+      <p class="text-12 text-lighter"><em class="text-orange">*</em> 本页面仅作推荐用途，保险条款以保险合同为准，<br class="mobile-element">付款前请详细了解</p>
+    </div>
+  </div>
+</%def>
+
+<%def name="more()">
+  <div class="title-box">更多精选保险</div>
+  <div class="block-wrapper more-wrapper">
+    ${more_L001()}
+    ${more_A001()}
+    ${more_CI001()}
+  </div>
+</%def>
+
+<%def name="js()">
+  <script src='{{{js/lib/wx_sdk.js}}}'></script>
+  <script src="{{{js/childins/ins.js}}}"></script>
+</%def>
+
+<%def name="pagetitle()">
+  <% return '保险精选' %>
+</%def>
+
+
+<%def name="title()">合众爱家无忧定期寿险 - 好规划</%def>

@@ -1,0 +1,22 @@
+<div class="modals-group dlg-record-detail">
+  <div class="onemodal-hd">
+    <a href="#" rel="onemodal:close"><i class="iconfont icon-close" ></i></a>
+    <h4>支付信息</h4>
+  </div>
+  <div class="onemodal-bd">
+    <P>攒钱产品：{{ savings_product }}</P>
+    <P>攒钱金额：{{ order_amount }}元</P>
+    <P>起息时间：{{ interest_start_date }}</P>
+    {{#if due_date}}
+      <P>到期时间：{{ due_date }}</P>
+    {{/if}}
+    <P>红包抵扣：{{ deduction_text }}</P>
+    <P>礼券：{{ coupon_text }}</P>
+    <p>银行卡：{{ bankcard }}</p>
+    <p>实际需支付：<span class="text-orange">{{ pay_amount }}元</span></p>
+  </div>
+  <div class="onemodal-ft">
+    <a href="#" class="btn btn-gray" rel="onemodal:close">取消</a>
+    <a href="#" class="btn btn-primary js-btn-confirm" >确定</a>
+  </div>
+</div>

@@ -1,0 +1,156 @@
+<%inherit file="./base.html" />
+
+<%def name="main()">
+  <div class="block-wrapper info-user-wrapper">
+    ${self.banner()}
+    ${self.info()}
+  </div>
+    ## %if show_mask:
+    ##   <div class="mask-main">
+    ##      <a href="${url_for('accounts.login.login', dcm='guihua', dcs='wxplan', next=url_for('.result'))}" class="text-white">已完成规划？点此<em class="text-bold">登录</em>查看结果</a><i class="iconfont icon-close js-close"></i>
+    ##   </div>
+    ## %endif
+</%def>
+
+<%def name="banner()">
+  <div class="banner">
+    <div class="img-box">
+      <img src="{{{img/plan/salary.png}}}" alt="">
+    </div>
+    <p>工资，羞羞答答地来，痛痛快快地去。你还来不及感受它的多少，它就已经没剩多少了。让规划君来帮你做一个工资规划，通过合理的安排，为你加薪。</p>
+    <p>目前，在好规划的帮助下完成了工资理财规划的用户已有<em class="text-16 text-white">${user_count}</em>名。</p>
+  </div>
+</%def>
+
+<%def name="info()">
+  <form action="" class="form-wrapper js-info-form">
+    <div class="block-wrapper section-wrapper gender">
+      <h5 class="text-dark">为了更加准确的为您进行规划，我们需要了解一些您的私人信息，比如您的性别：</h5>
+      <div class="gender-main">
+        <label class="gender-box text-center" for="info_male">
+          <input type="radio" id="info_male" name="info_gender" value="0" ${'checked' if wxplan and wxplan['gender']==0 else ''}>
+          <div class="circle">
+            <svg src="{svg{{img/plan/male.svg}}}"></svg>
+            <i class="iconfont icon-ghicon"></i>
+          </div>
+          <p class="text-lighter text-12">我是男生</p>
+        </label>
+        <label class="gender-box text-center" for="info_female">
+          <input type="radio" id="info_female" name="info_gender" value="1" ${'checked' if not wxplan or wxplan['gender']==1 else ''}>
+          <div class="circle">
+            <svg src="{svg{{img/plan/female.svg}}}"></svg>
+            <i class="iconfont icon-ghicon"></i>
+          </div>
+          <p class="text-lighter text-12">我是女生</p>
+        </label>
+      </div>
+    </div>
+    <div class="block-wrapper section-wrapper">
+      <h5 class="text-dark">我今年：</h5>
+      <div class="age-main">
+        <div class="age-box">
+          <input type="radio" id="older_age" name="info_age" value="30" ${'checked' if wxplan and wxplan['age']<35 else ''}>
+          <label for="older_age">35岁以上</label>
+          <i class="iconfont icon-ghcheck"></i>
+        </div>
+        <div class="age-box">
+          <input type="radio" id="younger_age" name="info_age" value="40" ${'checked' if not wxplan or wxplan['age']>=35 else ''}>
+          <label for="younger_age">35岁以下</label>
+          <i class="iconfont icon-ghcheck"></i>
+        </div>
+      </div>
+    </div>
+    <div class="block-wrapper section-wrapper">
+      <h5 class="text-dark">我生活居住在：</h5>
+      <div class="input-con">
+        <select name="province" class="js-province">
+          % for p in location.children:
+            <option value="${p.id}" ${'selected' if wxplan and p.id==wxplan['province_code'] else ''}>${p.name_cn}</option>
+          % endfor
+        </select>
+      </div>
+    </div>
+    <div class="block-wrapper section-wrapper">
+      <h5 class="text-dark">工资去哪了？（多选）</h5>
+      <div class="balloon-box">
+        <div class="balloon">
+          <input type="checkbox" class="js-expend-property" name="expend" id="info_stock" value="${wxplan['stock'] if wxplan else '-1'}" ${"checked" if wxplan and int(wxplan['stock'])>-1 else ''}>
+          <label for="info_stock">股票<em>基金</em></label> <i class="iconfont icon-ghcheck"></i>
+        </div>
+        <div class="balloon">
+          <input type="checkbox" class="js-expend-property" name="expend" id="info_ins" value="${wxplan['insurance'] if wxplan else '-1'}" ${"checked" if wxplan and int(wxplan['insurance'])>-1 else ''}>
+          <label for="info_ins">日常支出</label> <i class="iconfont icon-ghcheck"></i>
+        </div>
+        <div class="balloon">
+          <input type="checkbox" class="js-expend-property" name="expend" id="info_travel" value="${wxplan['tour'] if wxplan else '-1'}" ${"checked" if wxplan and int(wxplan['tour'])>-1 else ''}>
+          <label for="info_travel">旅游</label> <i class="iconfont icon-ghcheck"></i>
+        </div>
+        <div class="balloon">
+          <input type="checkbox" class="js-expend-property" name="expend" id="info_children" value="${wxplan['has_children'] if wxplan else '-1'}" ${"checked" if wxplan and int(wxplan['has_children'])>-1 else ''}>
+          <label for="info_children">子女<em>抚养</em></label> <i class="iconfont icon-ghcheck"></i>
+        </div>
+        <div class="balloon">
+          <input type="checkbox" class="js-expend-property js-checkbox-property" data-property-str="月供支出" data-property-ele="js-monthly-box" name="expend" id="info_monthly" value="${wxplan['mpayment'] if wxplan else '-1'}" ${"checked" if wxplan and int(wxplan['mpayment'])>-1 else ''}>
+          <label for="info_monthly">月供</label> <i class="iconfont icon-ghcheck"></i>
+        </div>
+        <div class="balloon">
+          <input type="checkbox" class="js-expend-property js-checkbox-property" data-property-str="房租花费" data-property-ele="js-rent-box" name="expend" id="info_rent" value="${wxplan['rent'] if wxplan else '-1'}" ${"checked" if wxplan and int(wxplan['rent'])>-1 else ''}>
+          <label for="info_rent">房租</label> <i class="iconfont icon-ghcheck"></i>
+        </div>
+      </div>
+    </div>
+    <div class="block-wrapper section-wrapper budget-wrapper">
+      <h5 class="text-dark">我目前：</h5>
+      <div class="item">
+        <div class="input-con">
+          <input type="text" class="validate js-input-income" value="${wxplan['mincome'] if wxplan else ''}" data-validate="require,nature,budgetCheck" pattern="[0-9]*">
+          <span class="text-lighter input-prefix">税后月收入</span>
+          <span class="text-lighter input-unit">元</span>
+        </div>
+      </div>
+      % if wxplan and int(wxplan['mpayment'])>-1:
+        <div class="js-monthly-box">
+          <div class="item">
+            <div class="input-con">
+              <input type="text" class="validate" value="${wxplan['mpayment'] if wxplan else '-1'}" data-validate="require,nature,optional" pattern="[0-9]*">
+              <span class="text-lighter input-prefix">月供支出</span>
+              <span class="text-lighter input-unit">元</span>
+            </div>
+          </div>
+        </div>
+      % endif
+      % if wxplan and int(wxplan['rent'])>-1:
+        <div class="js-rent-box">
+          <div class="item">
+            <div class="input-con">
+              <input type="text" class="validate" value="${wxplan['rent'] if wxplan else '-1'}" data-validate="require,nature,optional" pattern="[0-9]*">
+              <span class="text-lighter input-prefix">房租话费</span>
+              <span class="text-lighter input-unit">元</span>
+            </div>
+          </div>
+        </div>
+      %endif
+      <div class="item js-savings">
+        <div class="input-con">
+          <input type="text" class="validate js-input-savings" value="${wxplan['savings'] if wxplan else ''}" data-validate="require,nature" pattern="[0-9]*">
+          <span class="text-lighter input-prefix">拥有积蓄</span>
+          <span class="text-lighter input-unit">元</span>
+        </div>
+      </div>
+      <p class="text-lighter text-12 text-center">你填写的所有数据会受到严格保密，请放心填答。</p>
+    </div>
+    <a href="#" class="btn btn-primary btn-start js-btn-submit">测测好规划能为您加薪多少</a>
+    <div class="text-center">
+      <img class="logo-img" nsrc="{{{img/logo_trans.png}}}" alt="">
+    </div>
+  </form>
+</%def>
+
+<%def name="footer()">
+</%def>
+
+<%def name="title()">工资规划 - 个人信息</%def>
+
+<%def name="js()">
+  <script src="{{{js/plan/info.js}}}"></script>
+</%def>

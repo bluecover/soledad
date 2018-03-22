@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <title>Color Palette</title>
+    <link rel="stylesheet" href="{{{css/common/common.css}}}" />
+    <link rel="stylesheet" href="{{{css/pages/colors.css}}}" />
+    <script src="{{{js/lib/base.min.js}}}"></script>
+  </head>
+  <body>
+    <div class="color-palette-wrapper">
+      <h1>Color Palette</h1>
+      
+      <div class="color-list-con js-con">
+      </div>
+    </div>
+
+    <script>
+      (function() {
+        var classes = ['red', 'pink', 'purple', 'deep-purple', 'indigo', 'blue', 'cyan', 'teal', 'green', 'light-green', 'deep-green', 'yellow', 'orange', 'deep-orange', 'brown', 'blue-gray', 'purple-gray', 'fancy-gray', 'gray']
+
+        function hex(x) {
+          return ("0" + parseInt(x).toString(16)).slice(-2);
+        }
+
+        $.each(classes, function(index, item) {
+          var array = []
+          var con = $('<div class="color-list"></div>')
+          for(var i=1; i<10; i++) {
+            var name = i + '0';
+            var tmpl = '<div class="color-item '+item+'-'+name+'">'+item+'-'+name+'</div>'
+            con.append(tmpl)
+          }
+          $('.js-con').append(con)
+        })
+
+        $('.color-item').each(function(index, item) {
+          var text = $(item).text()
+          var bg = $(this).css('backgroundColor')
+          bg = bg.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+          var he = " #" + hex(bg[1]) + hex(bg[2]) + hex(bg[3]);
+          text += he
+          $(item).text(text)
+        })
+
+      })()
+    </script>
+  </body>
+</html>

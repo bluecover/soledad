@@ -1,0 +1,20 @@
+<%inherit file="./base.html" />
+<%def name="main()">
+  <div class="index-childins-wrapper">
+    ${self.banner()}
+  </div>
+</%def>
+
+<%def name="banner()">
+  <div class="childins-banner">
+    <div class="main">
+      <h2>儿童保险规划</h2>
+      <div class="text-center">
+        <a href="${url_for('ins.children.program') if g.user else url_for('accounts.login.login')}" class="btn btn-primary btn-start">免费获得规划</a>
+        <p class="desc">已帮<em class="text-16"> ${count} </em>位家长构筑儿童险保障</p>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="title()">儿童保险规划 - 好规划</%def>

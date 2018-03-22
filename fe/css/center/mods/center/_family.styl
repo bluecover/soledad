@@ -1,0 +1,82 @@
+.center-family-block
+  .block-item-tab
+    overflow: hidden
+    zoom: 1
+    border-bottom: 1px solid #e6e6e6
+    li
+      float: left
+      width: 60px
+      font-size: 16px
+      line-height: 32px
+      text-align: center
+      color: $gray_dark
+      margin-right: 30px
+      padding-bottom: 5px
+      cursor: pointer
+      @media $mobile
+        margin-right: 10px
+
+  .lisel
+    font-weight: bold
+    border-bottom: 2px solid $gray_dark
+
+  .tabcon-title
+    line-height: 24px
+    padding-top: 20px
+
+  .tabcon-insurance
+    padding: 10px 0
+    span
+      display: inline-block
+      padding: 5px 30px 3px
+      line-height: 25px
+      color: #fff
+      margin-right: 10px
+      margin-bottom: 10px
+      background: $blue_gray_50 url('{{{img/misc/smchk.png}}}') right center no-repeat
+
+  .tabcon-suggest
+    border: 1px solid #e5e5e5
+    margin-top: 10px
+    margin-bottom: 15px
+    position: relative
+    .left-col
+      line-height: 30px
+      background-color: #d6d7d8
+      width: 110px
+      text-align: center
+      color: #fff
+      padding-right: 0
+      @media $mobile
+        vertical-align: middle
+
+    .right-col
+      line-height: 30px
+      padding-left: 10px
+      .item
+        display: inline-block
+        padding-right: 20px
+        min-width: 140px
+        @media $mobile
+          display: block
+
+    .tabcon-suggest-btn
+      position: absolute
+      right: 10px
+      top: 0
+      display: inline-block
+      @media $mobile
+        position:static
+        margin-left: 0
+
+  .tabcon-recomment-hide
+    display: none
+    margin-bottom: 20px
+
+  .tabcon-recomment-secure
+    margin-bottom: 10px
+    .tabcon-recomment-name
+      line-height: 24px
+    p
+      line-height: 22px
+      font-size: 12px

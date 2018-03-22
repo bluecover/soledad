@@ -1,0 +1,68 @@
+web:
+  build: .
+  command: "python manage.py runserver"
+  container_name: guihua-web
+  ports:
+    - "5000:5000"
+  links:
+    - "mysql:mysql"
+    - "redis:redis"
+    - "beanstalkd:beanstalkd"
+    - "couchdb:couchdb"
+  volumes:
+    - .:/opt/solar/src
+  env_file:
+    - .env.compose.default
+    - .env.compose
+
+worker:
+  build: .
+  command: "python manage.py runworker"
+  container_name: guihua-worker
+  links:
+    - "mysql:mysql"
+    - "redis:redis"
+    - "beanstalkd:beanstalkd"
+    - "couchdb:couchdb"
+  volumes:
+    - .:/opt/solar/src
+  env_file:
+    - .env.compose.default
+    - .env.compose
+
+f2e:
+  build: .
+  command: "npm run dev"
+  container_name: guihua-f2e
+  volumes:
+    - .:/opt/solar/src
+  env_file:
+    - .env.compose.default
+    - .env.compose
+
+mysql:
+  image: mariadb:10.1.2
+  container_name: guihua-db
+  ports:
+    - "3306:3306"
+  environment:
+    - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    - MYSQL_DATABASE=solar
+
+redis:
+  image: redis:2.8
+  container_name: guihua-redis
+  ports:
+    - "6379:6379"
+
+beanstalkd:
+  image: kdihalas/beanstalkd
+  container_name: guihua-beanstalkd
+  ports:
+    - "11300:11300"
+
+couchdb:
+  image: klaemo/couchdb:1.6
+  container_name: guihua-couchdb
+  ports:
+    - "5984:5984"

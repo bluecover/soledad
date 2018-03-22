@@ -1,0 +1,44 @@
+global-reset()
+
+*
+  box-sizing(border-box)
+
+*:before,
+*:after
+  box-sizing(border-box)
+
+// android no highlight
+*{-webkit-tap-highlight-color: rgba(0,0,0,0);}
+
+body
+  font-size: 14px
+  font-family: Helvetica, Tahoma, Arial, Hiragino Sans GB, "冬青黑体", "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", SimSun, "宋体", Heiti, "黑体", sans-serif
+  color: $text_color
+  background: $page_bg
+  -webkit-font-smoothing: antialiased
+
+a
+  color: $blue_80
+  text-decoration: none
+
+  &:hover,
+  &:focus
+    text-decoration: none
+    color: $blue_60
+
+  &:focus
+    tab-focus()
+
+.hide
+  display: none !important
+
+.clearfix
+  clearfix()
+
+@media $desktop
+  .mobile-element
+    display: none !important
+
+@media $mobile
+  .desktop-element
+    display: none !important

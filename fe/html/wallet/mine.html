@@ -1,0 +1,162 @@
+<%inherit file="./base.html" />
+<%namespace name="utils" file="/utils.html" />
+<%namespace name="app_download" file="../mods/app_download_float.html" />
+
+<%def name="app_download_float()">
+  ${app_download.app_download_float(dcs='wallet-mine-float')}
+</%def>
+
+<%def name="main()">
+  <div class="wallet-mine-wrapper">
+    ${utils.notification()}
+    ${self.info_con()}
+    ${self.profit_info()}
+    ${self.record()}
+  </div>
+  <%include file="mods/wallet_footer.html"/>
+</%def>
+
+<%def name="info_con()">
+  ## 此处经常会有文案变动，若去掉公告可以注释代码，不用删除
+  ## <div class="tips-wrapper js-tips">
+  ##   <div class="tips-con">
+  ##     好规划将于今日 18:10 分对服务器进行升级，升级时间预计 5 分钟，请您谅解！
+  ##   </div>
+  ##   <a class="js-tips-close" href="#"><i class="iconfont icon-close"></i></a>
+  ## </div>
+
+  <div class="info-con">
+    <h2 class="title desktop-element">零钱包 <span class="total">| 零钱总额 ${round_half_up(profile.balance, 2)} 元</span></h2>
+    <div class="profit">
+      <div class="profit-item profit-number">
+        <div class="text-light">昨日收益 (元)</div>
+        <div class="text-orange number">${round_half_up(profile.latest_profit_amount, 2)}</div>
+        <div class="mobile-element number-total">零钱总数<span class="total">${round_half_up(profile.balance, 2)}</span>元</div>
+        <div class="btn-con">
+          <a class="btn btn-deposit js-btn-wallet " data-order-type="deposit" href="#">存入零钱</a>
+          % if round_half_up(profile.balance, 2) == 0:
+            <a class="btn btn-withdraw gray" href="#">取出零钱</a>
+          % else:
+            <a class="btn btn-withdraw  js-btn-wallet blue" data-order-type="withdraw" href="#">取出零钱</a>
+          % endif
+        </div>
+      </div>
+      <div class="profit-item profit-chart">
+        <%
+          from datetime import timedelta
+
+          profit_items = {p.date: p.amount for p in profile.weekly_profits}
+          profit_dates = [profile.date - timedelta(days=x) for x in xrange(7, 0, -1)]
+          profit_amounts = [profit_items.get(date, 0) for date in profit_dates]
+
+          def format_profit_date(date):
+            yesterday = profile.date - timedelta(days=1)
+            if date == yesterday:
+              return u'昨日'
+            return date.strftime('%m/%d')
+        %>
+        <div class="chart-title">每日收益</div>
+        <div class="js-profit-chart"
+          data-date="${json.dumps([format_profit_date(d) for d in profit_dates])}"
+            data-amount="${json.dumps([round_half_up(a, 2) for a in profit_amounts])}">
+        </div>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="profit_info()">
+  <div class="profit-info-con">
+    <%
+      annual_rate_data = [
+        (unicode(r.date), round_half_up(r.annual_rate, 2))
+        for r in dashboard.weekly_annual_rates]
+      latest_date = dashboard.latest_annual_rate.date
+      latest_rate = round_half_up(dashboard.latest_annual_rate.annual_rate, 2)
+      latest_ttp = round_half_up(dashboard.latest_annual_rate.ten_thousand_pieces_income, 2)
+    %>
+    <div class="seven-item desktop-element js-seven-chart" data-annual-rates="${json.dumps(annual_rate_data)}"></div>
+    <div class="profit-grid">
+      <div class="item mobile-element">
+        <div class="desc">七日年化收益率</div>
+        <div class="number">${latest_rate}%</div>
+      </div>
+      <div class="item">
+        <p class="desc">万份收益 (元)</p>
+        <p class="number">${latest_ttp}</p>
+      </div>
+      <div class="item">
+        <p class="desc">近一周收益 (元)</p>
+        <p class="number">${round_half_up(profile.weekly_profit_amount, 2)}</p>
+      </div>
+      <div class="item">
+        <p class="desc">累计收益 (元)</p>
+        <p class="number">${round_half_up(profile.total_profit_amount, 2)}</p>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="record()">
+  <div class="block-wrapper record-con">
+    <div class="block-title">交易记录</div>
+    <table>
+      <thead>
+        <tr>
+          <td class="text-lighter">交易金额（元）</td>
+          <td class="text-lighter text-center">交易日期</td>
+          <td class="text-lighter text-center">开始/结束计息日期</td>
+          <td class="text-lighter text-right desktop-element">银行信息</td>
+        </tr>
+      </thead>
+      <tbody class="js-record-table-bd">
+        % if not transactions:
+          <tr>
+            <td colspan="4" class="text-center non-deal">暂无交易记录</td>
+          </tr>
+        % else:
+          % for transaction in transactions:
+          <tr>
+            % if transaction.type_.name == 'purchase':
+            <td>
+              <span class="btn btn-badge-deposit">已存入</span>
+              <span class="number">
+                ${round_half_up(transaction.amount, 2)} 元
+              </span>
+            </td>
+            <td class="text-center">${transaction.creation_time.date()}</td>
+            <td class="text-center">${transaction.value_date}</td>
+            % elif transaction.type_.name == 'redeeming':
+            <td>
+              <span class="btn btn-badge-withdraw">已取出</span>
+              <span class="number">
+                ${round_half_up(transaction.amount, 2)} 元
+              </span>
+            </td>
+            <td class="text-center">${transaction.creation_time.date()}</td>
+            <td class="text-center">${transaction.creation_time.date()}</td>
+            % endif
+            <td class="text-right desktop-element">${transaction.bankcard.bank.name}: ${transaction.bankcard.display_card_number}</td>
+          </tr>
+          % endfor
+        % endif
+      </tbody>
+    </table>
+    ##% if len(profile.transactions) > 5:
+    % if total_transaction > len(transactions):
+    <div class="ft">
+      ##<a href="#" class="btn btn-gray">查看全部记录</a>
+      <a class="btn btn-gray btn-more js-btn-more" href="#">
+        <img class="js-icon-loading loading" src="{{{img/misc/loading.gif}}}">加载更多
+      </a>
+    </div>
+    % endif
+  </div>
+</%def>
+
+<%def name="js()">
+  <script src="{{{js/lib/highcharts.min.js}}}"></script>
+  <script src="{{{js/wallet/mine.js}}}"></script>
+</%def>
+
+<%def name="title()">零钱包 - 好规划</%def>

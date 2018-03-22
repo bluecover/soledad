@@ -1,0 +1,25 @@
+<%inherit file="./base.html" />
+
+<%def name="content()">
+  <div class="beauty38-index-wrapper">
+    <div class="banner text-center">
+      <h2>女王节快乐</h2>
+      <p>好规划为你送上一点心意</p>
+      <img src="{{{img/misc/beauty38.png}}}" alt="">
+    </div>
+    <div id="phone_form" data-action="${url_for('activity.beauty38.index')}"></div>
+    <div class="rules">
+      <p class="text-lighter">1. <a href="https://www.guihua.com">"好规划"</a> 为你提供量身定制、中立、专业易懂和可执行的，在线理财规划及咨询服务；</p>
+      <p class="text-lighter">2.  本次活动仅针对3月8日注册的好规划新用户；</p>
+      <p class="text-lighter">3.  活动最终解释权归好规划理财所有。</p>
+    </div>
+  </div>
+</%def>
+
+<%def name="body_class()">beauty38-index-body</%def>
+
+<%def name="js()">
+  <script src='{{{js/activity/beauty38/index.js}}}'></script>
+</%def>
+
+<%def name="title()">女王节快乐</%def>

@@ -1,0 +1,28 @@
+<%!
+  from core.models.utils import dec_2_pct
+%>
+<div class="center-block center-target-block twocol-content">
+  <div class="left-col block-item-left">
+    <a class="block-left-title" href="/mine/plan/invest">收益预估</a>
+    <img class="block-left-img" src="{{{img/mine/target.png}}}"/>
+  </div>
+
+  <div class="right-col block-item-right">
+    <p class="block-item-summary">
+      基于您目前的资产和收支情况，推荐您保持<span class="text-dark">${dec_2_pct(target_balance_month_ratio)}</span>的结余率、追求<span class="text-dark">${dec_2_pct(expect_ave_return)}</span>的投资收益率和<span class="text-dark">${dec_2_pct(expect_income_ratio)}</span>的年收入增长率。在这个基础上，您将获得如下图所示的资产变化。
+    </p>
+    <div class="js-chart-target-column chart-target-column" data-balance="${value_predict_data_balance}" data-invest="${value_predict_data_invest}" data-assets="${value_predict_data_assets}"></div>
+    <div class="detail-box-item">
+      <h3 class="detail-box-tiem-title">推荐月结余率</h3>
+      <span class="detail-box-tiem-number">${dec_2_pct(target_balance_month_ratio, place=2)}</span>
+    </div>
+    <div class="detail-box-item">
+      <h3 class="detail-box-tiem-title">预计投资收益率</h3>
+      <span class="detail-box-tiem-number">${dec_2_pct(expect_ave_return, place=2)}</span>
+    </div>
+    <div class="detail-box-item">
+      <h3 class="detail-box-tiem-title">预计年收入增长率</h3>
+      <span class="detail-box-tiem-number">${dec_2_pct(expect_income_ratio, place=2)}</span>
+    </div>
+  </div>
+</div>

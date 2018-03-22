@@ -1,0 +1,101 @@
+.activity61-wrapper
+  .img-con
+    position: relative
+    margin-bottom: -3px
+    min-height: 180px
+    @media $mobile
+      min-height: 127px
+    .bear
+      position: absolute
+      bottom: -10%
+      right: 10%
+      @media $mobile
+        width: 40%
+        right: 4%
+
+  .act-desc
+    line-height: 25px
+
+  .participate-title
+    margin-top: 60px
+    padding-bottom: 20px
+    border-bottom: 1px dotted #ccc
+    @media $mobile
+      margin-top: 30px
+
+  .product-footer-wrapper
+    margin-top: -20px
+
+
+  .coupon-con
+    margin-top: 30px
+  .coupon-item
+    height: 80px
+    width: 150px
+    margin-right: 20px
+    display: inline-block
+    position: relative;
+    text-align: center
+    background: $cyan_10
+    @media $mobile
+      col(1/2, gutter:6, cycle:2)
+      margin-right: 0
+      margin-bottom: 10px
+      height: 65px
+    &:after
+      content: ""
+      display: block
+      background:	linear-gradient(-135deg, transparent 50%, #fff 50%) 0 50%,
+                  linear-gradient(-45deg, transparent 50%, #fff 50%) 0 50%,
+                  linear-gradient(45deg, $cyan_10, $cyan_10)
+      background-repeat: repeat-y
+      background-size: 8px 8px, 8px 8px, cover, cover
+      position: absolute
+      height: 100%
+      left: -8px
+      top: 0px
+      width: 8px
+    &:before
+      content: ""
+      display: block
+      background:	linear-gradient(-135deg, transparent 50%,$cyan_10 50%) 0 50%,
+                  linear-gradient(-45deg, transparent 50%, $cyan_10 50%) 0 50%,
+                  linear-gradient(45deg, #fff, #fff)
+      background-repeat: repeat-y
+      background-size: 8px 8px, 8px 8px, cover, cover
+      position: absolute
+      height: 100%
+      right: -8px
+      top: 0px
+      width: 8px
+    .left-col
+      text-align: left
+      padding: 10px
+      @media $mobile
+        font-size: 12px
+    .right-col
+      padding-top: 25px
+      padding-left: 25px
+      color: $brand_blue
+      @media $mobile
+        padding-top: 20px
+    .money
+      color: $brand_blue
+      font-size: 30px
+      padding-bottom: 10px
+      @media $mobile
+        font-size: 24px
+        padding-bottom: 5px
+
+  .btn-back
+    min-width: 80%
+    display: inline-block
+    margin-bottom: 20px
+  .act-footer
+    margin-top: -20px
+    background: #f8f8f8
+    padding: 30px
+    img
+      margin-bottom: 10px
+    p
+      line-height: 1.6

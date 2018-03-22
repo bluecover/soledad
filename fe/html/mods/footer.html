@@ -1,0 +1,45 @@
+<%page args="hide_in_mobile=False"/>
+
+  <div class="footer-wrapper ${'desktop-element' if hide_in_mobile else ''}">
+    <div class="footer-info">
+      <div class="footer-nav">
+        <a class="nav-item" href="/about" target="_blank">关于我们</a>
+        <a class="nav-item" href="/join" target="_blank">加入我们</a>
+        <a class="nav-item" href="/contact" target="_blank">联系我们</a>
+        <div class="nav-item friendly-link desktop-element">友情链接
+          <div class="friendly-link-detail">
+            <ul>
+              <li>
+                <a href="http://www.talicai.com" target="_blank">她理财</a>
+                <a href="http://www.jijindou.com" target="_blank">基金豆</a>
+                <a href="http://finance.qq.com/money" target="_blank">腾讯理财</a>
+              </li>
+              <li>
+                <a href="http://money.cnfol.com" target="_blank">中金在线</a>
+                <a href="http://finance.youth.cn" target="_blank">中国青年网财经</a>
+                <a href="http://money.hexun.com" target="_blank">和讯理财</a>
+              </li>
+              <li>
+                <a href="http://www.finance.hc360.com" target="_blank">慧聪网资讯</a>
+                <a href="http://life.dayoo.com/money" target="_blank">大洋金融</a>
+                <a href="http://money.cnnb.com.cn" target="_blank">中国宁波网金融</a>
+              </li>
+              <li>
+                <a href="http://money.stockstar.com" target="_blank">证券之星</a>
+                <a href="http://www.baofen.cn" target="_blank">宝粉网</a>
+                <a href="http://finance.china.com.cn/money" target="_blank">中国网理财</a>
+              </li>
+              <div class="triangle"><p class="triangle"></p></div>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <%
+        from datetime import date
+        copy_year = date.today().year
+        %>
+        &copy;${copy_year} Guihua.com 京ICP备14053123号-1
+      </div>
+    </div>
+  </div>

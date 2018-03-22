@@ -1,0 +1,18 @@
+<%def name="more_product(category='', title='', subtitle='', url='', icon='',price='20.00', price_desc='起')">
+  <a href="${url}" class="product-item" target="_blank">
+     <div class="icon-box">
+        <i class="iconfont ${icon}"></i>
+        <h6>${category}</h6>
+     </div>
+     <div class="product-info">
+        <div>
+           <div class="fr">
+            <span><em class="text-orange">￥${price}</em> ${price_desc}<i class="iconfont icon-forward mobile-element"></i></span>
+            <div class="btn btn-primary btn-small btn-detail desktop-element">了解详情</div>
+          </div>
+          <h5>${title}</h5>
+        </div>
+        <p class="text-lighter">${subtitle}</p>
+     </div>
+  </a>
+</%def>

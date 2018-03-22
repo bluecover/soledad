@@ -1,0 +1,71 @@
+@import '../core/_global.styl'
+@import '../mods/_product_footer.styl'
+@import '../mods/_redirect_dlg.styl'
+@import './mods/_rules.styl'
+
+.ins-body-wrapper
+  min-width: 800px
+
+.ins-index-wrapper
+  clearfix()
+  .product-footer-wrapper
+    clear: both
+
+  @import './mods/_plan_qrcode_block.styl'
+  @import './mods/_ins_refining_banner.styl'
+  @import './mods/_ins_product_block.styl'
+  @import './mods/_ins_product_footer.styl'
+
+  .ins-children-banner
+    width: 58%
+    float: left
+    margin-right: 2%
+    margin-bottom: 15px
+    height: 180px
+    background-color: $green_50
+    color: #fff
+    position: relative
+    padding: 25px 20px 20px 30px
+    &:hover
+      cursor: pointer
+    @media $mobile
+      float: none
+      width: 100%
+    .childins-logo
+      display: inline-block
+      width: 240px
+      margin-bottom: 10px
+      margin-right: 10px
+    .subtitle
+      color: $blue_gray_90
+      font-size: 22px
+      margin-bottom: 25px
+      @media $mobile
+        margin-bottom: 5px
+    .feature-box-desktop
+      display: inline-block
+      vertical-align: top
+      padding-top: 2px
+      p
+        line-height: 1.1
+        font-size: 12px
+    .feature-box-mobile
+      margin-bottom: 30px
+      color: #fff
+      @media $mobile
+        margin-bottom: 5px
+      span
+        margin-right: 15px
+    .childins-img
+      height: 180px
+      position: absolute
+      right: 30px
+      top: 0
+    .icon-checked
+      margin-right: 5px
+      font-size: 18px
+      opacity: .8
+    .btn-start
+      font-size: 14px
+      line-height: 28px
+

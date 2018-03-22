@@ -1,0 +1,280 @@
+.plan-pie-chart
+  zoom: 1
+  margin: 0 auto
+  padding-left: 40px
+  max-width: 600px
+  @media $mobile
+    padding: 0
+  .pie-con
+    display: table-cell
+    vertical-align: middle
+    height: 240px
+    width: 240px
+    overflow: hidden
+    @media $mobile
+      display: block
+      margin: 0 auto
+
+    .pie-holder
+      height: 240px
+      width: 240px
+
+  .pie-data
+    padding-left: 50px
+    display: table-cell
+    vertical-align: middle
+    @media $mobile
+      display: block
+      padding: 0
+      width: 200px
+      margin: 0 auto
+
+    li
+      margin-bottom: 15px
+      &:last-child
+        margin-bottom: 0
+
+    .pie-number
+      padding-left: 40px
+
+    .pie-bg
+      width: 18px
+      height: 18px
+      margin-right: 8px
+      margin-top: 3px
+      display: inline-block
+      background: #ccc
+
+.plan-bar-chart
+  border-bottom: 1px solid #ccc
+  width: 100%
+  overflow: hidden
+  .bar-container
+    position: relative
+    top: 2px
+    text-align: center
+    display: inline-block
+    width: 49%
+    @media $mobile
+      text-align: left
+      padding-left: 8%
+  .bar-title
+    color: $gray_dark
+    font-size: 15px
+    margin-bottom: 15px
+  .bar-line-con
+    display: inline-block
+    border: 1px solid #2CCEFC
+    width: 40px
+    height: 260px
+    position: relative
+  .bar-line-content
+    width: 100%
+    position: absolute
+    bottom: 0
+    background: #727BC6
+    &.negtive
+      background: #FF6752
+      max-height: 20%
+      top: 100%
+    &.break
+      &:before
+        content: ''
+        width: 40px
+        background: #fff
+        height: 7px
+        position: absolute
+        top: 13px
+        left: -1px
+        border-top: 1px solid #777
+        border-bottom: 1px solid #777
+        transform: rotate(-10deg)
+
+  .bar-front-tip,
+  .bar-back-tip
+    position: absolute
+    top: 50%
+    .number
+      padding-top: 3px
+      color: $gray_light
+    &:before
+      position: absolute
+      content: ''
+      width: 35px
+      height: 1px
+      background: #333
+      @media $mobile
+        width: 15px
+
+  .bar-back-tip
+    left: -115px
+    text-align: left
+    @media $mobile
+      left: 50px
+    &:before
+      left: 95px
+      @media $mobile
+        left: -20px
+    .bar-back-content
+      min-width: 80px
+      text-align: right
+      position: absolute
+      top: -15px
+      left: 0
+      @media $mobile
+        text-align: left
+
+  .bar-front-tip
+    left: 70px
+    text-align: right
+    &:before
+      left: -45px
+      @media $mobile
+        left: -20px
+    @media $mobile
+      left: 50px
+    .bar-front-content
+      min-width: 120px
+      text-align: left
+      position: absolute
+      top: -15px
+      left: 0
+      @media $mobile
+        min-width: 80px
+
+.plan-risk-chart,
+.plan-risk-type-chart
+  height: 240px
+  overflow: hidden
+  max-width: 620px
+  margin: 0 auto
+.risk-tips
+  line-height: 26px
+  padding: 5px 15px 35px
+  @media $mobile
+    padding: 0
+  .title
+    color: $brand_blue
+
+.fluctuation-risk-chart,
+.value-predict-chart
+  height: 400px
+
+.insurance-principle-chart
+  position: relative
+  padding-left: 80px
+  height: 300px
+  max-width: 600px
+  margin: 0 auto
+  div
+    color: $gray_dark
+    position: absolute
+    left: 360px
+    span
+      padding-top: 8px
+      display: block
+      color: $gray
+  .insure-child
+    top: 16px
+  .insure-life
+    top: 80px
+  .insure-live
+    top: 145px
+  .insure-society
+    top: 230px
+  .insure-title
+    color: $gray_dark
+    padding-left: 95px
+    padding-top: 10px
+
+.insurance-principle-chart-mobile
+  text-align: center
+
+.balance_advice_chart
+  text-align: center
+  padding-top: 5px
+  @media $mobile
+    font-size: 12px
+  div
+    text-align: left
+    display: inline-block
+    vertical-align: top
+    width: 49%
+    margin-top: 20px
+    padding-left: 80px
+    @media $mobile
+      padding: 0
+
+    span
+      margin-top: 10px
+      display: block
+      @media $mobile
+        margin-left: 20px
+    .title
+      font-size: 16px
+      color: $gray_dark
+      @media $mobile
+        font-size: 14px
+    &.balance-chart-right
+      padding-left: 45px
+      @media $mobile
+        padding: 0
+
+.deploy-value-chart
+  .risk-desc
+    .risk-title
+      font-size: 16px
+    .risk-content
+      color: $gray_light
+  .deploy-pie-title
+    font-size: 16px
+    color: $gray_dark
+    text-align: center
+    margin-bottom: 10px
+  .deploy-pie-subtitle
+    font-size: 14px
+    text-align: center
+
+.target-chart
+  width: 90%
+  margin: 30px auto 0
+  @media $mobile
+    margin: 30px 0 0 0
+    width: 100%
+  .target-item
+    margin-bottom: 30px
+  .target-item-title
+    float: left
+    font-size: 16px
+    text-align: right
+    width: 125px
+    margin-right: 5px
+    .iconfont
+      padding-left: 18px
+      color: $brand_green
+      font-size: 20px
+      @media $mobile
+        padding-left: 8px
+    .icon-caution
+      color: $brand_orange
+  .target-item-content
+    overflow: hidden
+  .target-chart-bg
+    background: #ccc
+    height: 18px
+    line-height: 18px
+    width: 100%
+    color: #fff
+    text-align: center
+    min-width: 25% !important
+  .target-chart-progress
+    background: $brand_blue
+    height: 18px
+    width: 100%
+  .target-chart-desc
+    margin-top: 5px
+  .unfinished
+    .target-chart-progress
+      background: $brand_red
+    .target-chart-desc
+      color: $brand_red

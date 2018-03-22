@@ -1,0 +1,119 @@
+<%inherit file="../base.html" />
+
+<%namespace import="help_content" file="./mods/_help_content.html" />
+
+<%def name="sidenav_content()">
+  <%include file="../mods/sidenav_help_about.html" />
+</%def>
+
+<%def name="main()">
+<%
+  help_ins_doc = [
+    {
+      "title":"1. 关于保险精选",
+      "subsections":[
+        {
+          "id":"refining",
+          "subtitle":"1.1 精选标准",
+          "content":[
+            "好规划决心在保险市场中精选最优产品，帮您解决选保险、投保、投保组合的各种难题。",
+            "<strong>精选标准 · 保险公司</strong>：规模大、口碑好、投保理赔都靠谱，好规划只选择这样的保险公司及其产品，力求选出的每个保险都保得安心、服务舒心。",
+            "<strong>精选标准 · 销售平台</strong>：投保安全、客服正规、协助理赔，好规划只与这样的销售平台合作，希望投保体验也像保险本身同样出色。",
+            "<strong>精选标准 · 保障为本</strong>：保险的本质是提供保障，好规划严选保障范围合理、保额充足、条款宽松的产品，摒弃一切华而不实的“包装”，选出能提供优质保障的保险。",
+            "<strong>精选标准 · 高性价比</strong>：除了保费实惠甚至全网底价，好规划也优选等待期短、无需体检、有组合优惠的超值保险。"
+          ]
+        },
+        {
+          "id":"service",
+          "subtitle":"1.2 服务指南",
+          "content":[
+            "您可以关注好规划的微信公众号（plan141），随时与专业理财师免费一对一沟通和咨询。关于家庭保险规划、保险产品和投保过程中的任何问题，都欢迎垂询，理财师会尽快为您答复。"
+          ]
+        }
+      ]
+    },
+
+    {
+      "title":"2. 专业保障",
+      "subsections":[
+        {
+          "id":"financial",
+          "subtitle":"2.1 资深理财师",
+          "content":[
+            "好规划理财师团队全部由国际（CFP）、国内（AFP）认证的专业理财师组成，拥有多年保险、银行、理财机构从业经验。 团队全职服务于好规划用户，因此只对用户利益负责，真正客观、中立、负责。"
+          ]
+        },
+        {
+          "id":"platform",
+          "subtitle":"2.2 专业网销平台",
+          "content":[
+            "好规划保险销售合作伙伴均为国内领先的保险网销平台，具备多年销售、客服经验，安全可靠。",
+            "网上投保，即时生成电子保单，与线下保单具有同等法律效力；同时省去中间成本费用更优惠，也避免了被推销员“忽悠”的可能，省心省力。"
+          ]
+        }
+      ]
+    },
+
+    {
+      "title":"3. 投保与理赔",
+      "subsections":[
+        {
+          "id":"insure",
+          "subtitle":"3.1 投保流程",
+          "content":[
+            "确定投保产品后，首先请详细查看保险条款，然后准确填写投保信息、在线支付，即完成投保。一般投保后半小时内，就能收到电子保单。",
+            "任何问题也欢迎垂询好规划微信公众号（plan141），好规划理财师将尽快为您解决。"
+          ]
+        },
+        {
+          "id":"claims",
+          "subtitle":"3.2 理赔流程",
+          "content":[
+            "好规划的合作网销平台均承诺全年提供协助理赔服务，用户拨打理赔电话，即可享受专业、及时的理赔服务：中民网客服400-8822-300，700度客服400-101-1136，慧择网客服4006-366-366。",
+            "任何问题也欢迎垂询好规划微信公众号（plan141），或参考：<a href='http://www.zhongmin.cn/Complaint/ClaimIndex.aspx' target='_blank'>中民网在线理赔申请</a>、<a href='https://ssl.700du.cn/help/20.html' target='_blank'>700度理赔说明</a>、<a href='http://www.hzins.com/claims/' target='_blank'>慧择网在线理赔申请</a>。"
+          ]
+        }
+      ]
+    },
+
+    {
+      "title":"4. 合作伙伴",
+      "subsections":[
+        {
+          "id":"zm",
+          "subtitle":"4.1 中民网",
+          "content":[
+            "客服电话：400-8822-300"
+          ]
+        },
+        {
+          "id":"700",
+          "subtitle":"4.2 700度网",
+          "content":[
+            "客服电话：400-101-1136"
+          ]
+        },
+        {
+          "id":"hzw",
+          "subtitle":"4.3 慧择网",
+          "content":[
+            "客服电话：4006-366-366"
+          ]
+        }
+      ]
+    }
+  ]
+%>
+
+  ${help_content(title='保险精选', help_doc=help_ins_doc)}
+</%def>
+
+<%def name="title()">保险精选 - 帮助中心</%def>
+
+<%def name="js()">
+  <script src="{{{js/help/help.js}}}"></script>
+</%def>
+
+<%def name="pagetitle()">
+  <% return '帮助中心' %>
+</%def>

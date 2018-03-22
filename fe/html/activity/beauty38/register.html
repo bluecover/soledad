@@ -1,0 +1,19 @@
+<%inherit file="./base.html" />
+
+
+<%def name="content()">
+  <div class="accounts-box beauty38-register-wrapper accounts-aside-wrapper clearfix">
+    <div class="accounts-content">
+      <dvi class="banner">
+        <span>女王节快乐，<br class="mobile-element">好规划为你送上一点心意</span>
+        <img src="{{{img/misc/beauty38.png}}}" alt="">
+      </dvi>
+      <div class="js-accounts-form gm-account accounts-content-form" data-phone="${mobile}" data-dcs="invitation" data-dcm="guihua" data-url="${url_for('savings.mine.index')}">
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="js()">
+  <script src="{{{js/activity/beauty38/register.js}}}"></script>
+</%def>

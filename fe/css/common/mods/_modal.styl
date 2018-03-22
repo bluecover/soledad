@@ -1,0 +1,135 @@
+.onemodal-bounceIn
+  animation-fill-mode: both
+  animation-name: onemodalBounceIn
+  animation-duration: 0.2s
+.onemodal-bounceOut
+  animation-fill-mode: both
+  animation-name: onemodalBounceOut
+  animation-duration: 0.2s
+
+@keyframes onemodalBounceIn
+  0%
+    transform: scale(.5)
+    opacity: 0
+  70%
+    transform: scale(1.03)
+  100%
+    transform: scale(1)
+@keyframes onemodalBounceOut
+  0%
+    transform: scale(1)
+  30%
+    transform: scale(1.03)
+  100%
+    transform: scale(.7)
+    opacity: 0
+
+.onemodal,
+.modal
+  display: none;
+  width: 500px;
+  background: #fff;
+  padding: 35px 40px 25px;
+  box-shadow: 0 0 3px #555;
+  @media $mobile
+    width: 90%
+    padding: 25px 15px;
+
+.modal-dialog
+  display: none;
+  background: #fff
+
+.modal-dialog-hd
+  font-size: 18px
+  color: $gray_dark
+  margin-bottom: 18px
+
+.modal-dialog-bd
+  margin-bottom: 28px
+  line-height: 26px
+
+.modal-dialog-ft
+  text-align: right
+
+.onemodal-black
+  text-align: center
+  background: rgba(0, 0, 0, 0.6)
+  width: 200px
+  @media $desktop
+    width: 300px
+
+  img
+    display: block
+    width: 40px
+    margin: 0 auto 20px
+  .modal-dialog-hd
+    color: #fff
+
+.modals-group
+  width: 580px
+  background-color: #fff
+  box-shadow: 0 0 0 10px rgba(255,255,255,.5)
+  display: none
+  @media $mobile
+    width: 90%
+    box-shadow: none
+    border-radius: 5px
+
+  .btn
+    min-width: 60px
+
+  .onemodal-hd
+    border-bottom: 1px solid #f3f3f3
+    padding: 20px
+    .icon-close
+      float: right
+      cursor: pointer
+      color: $fancy_gray_30
+    h4
+      font-size: 16px
+      &.text-success
+        color: $deep_green_50
+      &.text-error
+        color: $red_50
+
+  .onemodal-bd
+    padding: 30px
+    line-height: 1.6
+    @media $mobile
+      padding: 20px
+    .bd-icon
+      margin-right: 8px
+      font-size: 44px
+      line-height: 1
+    .icon-wrong
+      color:  $red_50
+    .icon-ghicon
+      color:  $deep_green_50
+
+
+  .onemodal-loading
+    padding: 50px 30px
+    img.loading
+      width: 40px
+      float: left
+      margin-top: -13px
+      margin-right: 40px
+  .onemodal-ft
+    border-top: 1px solid #f3f3f3
+    padding: 20px
+    clearfix()
+    .btn
+      float: right
+      &:last-child
+        margin-right: 20px
+
+.onemodal-wechat
+  position: relative
+  p
+    margin-top: 10px
+    line-height: 1.6
+    font-size: 13px
+  img
+    position: absolute
+    top: 20px
+    right: 20px

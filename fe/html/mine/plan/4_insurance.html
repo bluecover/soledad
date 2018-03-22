@@ -1,0 +1,298 @@
+<%!
+  from core.models.utils import dec_2_pct
+  from core.models.plan.formula.data import target_insure_explain_data
+%>
+<%inherit file="./plan.html" />
+
+<%def name="plan_content()">
+  <div class="plan-content">
+    ${self.head_start()}
+    ${self.principle()}
+    ${self.insure_stat()}
+    ${self.full_insured()}
+  </div>
+</%def>
+
+<%def name="head_start()">
+  <div class="chapter-title">
+    <div class="twocol-content middle-align">
+      <span class="chapter-num left-col">4</span>
+      <div class="title-content right-col">
+        <p class="title-desc">保护好您和家人</p>
+        <h1>保险规划</h1>
+      </div>
+    </div>
+  </div>
+  <p class="gh-tips">好规划建议：${gh_suggest_insure_doc}</p>
+
+  <p>备足紧急备用金后，我们还需要充分的保障，来帮助个人和家庭抵御一些重大风险，如重大疾病、意外伤害或身故等。当万一遭遇这些突发状况时，保险可以提供有力的现金支援，避免我们和家人陷入财务危机。</p>
+</%def>
+
+<%def name="principle()">
+  <h2>一、购买保险的四大原则</h2>
+
+  <ol>
+    <li><span class="text-bold text-dark">先保障，后投资</span>：应严格区分保险和投资，避免在基本保障尚未完善前，就错误购买不必要的理财型险种。</li>
+    <li><span class="text-bold text-dark">先社保，后商业保险</span>：社保由企业或政府分担缴费，是性价比最高的保险，应优先参保。</li>
+    <li><span class="text-bold text-dark">先保障生存，后保障生活</span>：先通过意外险、重疾险和寿险建立基本的生存保障，再购买医疗险、教育保险、商业养老保险等保障生活质量的险种。</li>
+    <li><span class="text-bold text-dark">先保障大人，后保障小孩</span>：父母才是孩子最大的保障，应在大人的保障完善后，再考虑小孩。</li>
+  </ol>
+
+  <div class="data-table">
+    <div class="insurance-principle-chart desktop-element">
+      <img src="{{{img/plan/insurance.png}}}" alt="insurance principle" width="270">
+      <h4 class="insure-title">保险金字塔</h4>
+      <div class="insure-child">专项保障：<span>养老险 + 教育金险</span></div>
+      <div class="insure-life">生活保障：<span>医疗险 + 少儿险</span></div>
+      <div class="insure-live">生存保障：<span>意外险 + 重疾险 + 寿险</span></div>
+      <div class="insure-society">社保</div>
+    </div>
+    <div class="insurance-principle-chart-mobile mobile-element">
+      <img src="{{{img/plan/insurance-mobile.png}}}" alt="insurance principle" width="270">
+    </div>
+  </div>
+</%def>
+
+<%def name="full_insured()">
+  %if not is_full_insured:
+    <p>
+      ${cur_insure_stat_doc}因此，好规划建议您${'与家人' if relation_number else ''}：
+      <br>
+      <span class="text-blue">${insure_suggest_doc}。${'为家庭' if relation_number else ''}建立必要且基本的保障。</span>
+    </p>
+
+    <p>更完善的保障，在未来的人生阶段中再继续补充和优化。</p>
+
+    <h3 class="action">
+      <i class="iconfont icon-note"></i>
+      行动计划
+    </h3>
+    <p>根据您${'家庭' if relation_number else ''}的财务和保险现状，我们为您${'与家人' if relation_number else ''}制订行动计划如下：</p>
+
+    <div class="data-table">
+      <table>
+        <thead>
+          <tr class="hd-orange">
+            <th>被投保人</th>
+            <th>险种</th>
+            <th>保额</th>
+            <th class="last">保费预估</th>
+          </tr>
+        </thead>
+        <tbody>
+          % for p in target_insure_plan:
+            <tr>
+              <td>${p[0]}</td>
+              <td>${p[1]}</td>
+              <td>${p[2]}</td>
+              <td>${p[3]}</td>
+            </tr>
+          % endfor
+        </tbody>
+      </table>
+    </div>
+
+    <div class="list-title">说明：</div>
+    <ol>
+      % for explain in target_insure_explain_key:
+        <li>
+        ${explain}——${target_insure_explain_data.get(explain)}
+        </li>
+      % endfor
+      <li>以上商业保险保费均基于保额、对照各大保险公司当前市价得出；社保保费基于现行政策得出，各省市可能稍有区别。</li>
+      <li>对于具体保险产品，好规划已为您作出优选，请参见您的<a href="/mine" target="_blank">行动计划</a>。</li>
+    </ol>
+  % else:
+    <p>
+      非常难得的是，您${'与家人' if relation_number else ''}已经投保了所有必备险种，基本保障已经完备，在未来继续优化即可。
+      <br>
+      不过，需要您注意的是，各项保费之和占年收入的10%比较合适，超过15%就可视为过度投保了。把过多的资金投入保险，将会影响理财效率。
+    </p>
+    <h3 class="action">行动计划</h3>
+    <p>根据您${'家庭' if relation_number else ''}的财务和保险现状，我们为您${'与家人' if relation_number else ''}制订行动计划如下：</p>
+
+    <div class="data-table">
+      <table>
+        <thead>
+          <tr class="hd-orange">
+            <th>行动</th>
+            <th class="last">保费预估</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>持续优化保险规划</td>
+            <td>年收入10%：${format(int(income_year*0.1),',')}元/年</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="table-comment">注：如需替换现有保险，好规划为您优选出若干性价比较高的险种，供您参考。详情请见您的<a href="/mine" target="_blank">行动计划</a>。</div>
+    </div>
+  % endif
+</%def>
+
+<%def name="insure_stat()">
+  <h2>二、您${'与配偶' if relation_number else ''}的保险现状和建议</h2>
+
+  <div class="data-table">
+    <h4 class="table-title">您${'与配偶' if spouse else ''}的保险现状</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>被保险人</th>
+          <th>优先级</th>
+          <th>险种</th>
+          <th>保障什么</th>
+          <th class="last">现状</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="5">本人<br>${age}岁</td>
+          <td class="text-red">必备</td>
+          <td>社保</td>
+          <td>基本养老和医疗等</td>
+          <td>${cur_mine_insure.get('社保')}</td>
+        </tr>
+        <tr>
+          <td class="text-red">必备</td>
+          <td>意外险</td>
+          <td>意外伤害给付</td>
+          % if cur_mine_insure.get('2'):
+            <td>保额${format(int(cur_mine_insure.get('2').get('insure_quota')),',')}元</td>
+          % else:
+            <td class="text-red">无</td>
+          % endif
+        </tr>
+        <tr>
+          <td class="text-red">必备</td>
+          <td>重疾险</td>
+          <td>重大疾病给付</td>
+          % if cur_mine_insure.get('1'):
+            <td>保额${format(int(cur_mine_insure.get('1').get('insure_quota')),',')}元</td>
+          % else:
+            <td class="text-red">无</td>
+          % endif
+        </tr>
+        <tr>
+          <td class="${'text-red' if len(insure_plan)==4 else ''}">${'必备' if len(insure_plan)==4 else '可选'}</td>
+          <td>寿险</td>
+          <td>主要为身故给付</td>
+          % if cur_mine_insure.get('3'):
+            <td>保额${format(int(cur_mine_insure.get('3').get('insure_quota')),',')}元</td>
+          % else:
+            <td class="${'text-red' if len(insure_plan)==4 else ''}">无</td>
+          % endif
+        </tr>
+        <tr>
+          <td>可选</td>
+          <td>医疗险</td>
+          <td>医疗费用给付</td>
+          % if cur_mine_insure.get('4'):
+            <td>保额${format(int(cur_mine_insure.get('4').get('insure_quota')),',')}元</td>
+          % else:
+            <td>无</td>
+          % endif
+        </tr>
+        % if spouse:
+          <tr>
+            <td rowspan="5">配偶<br>${spouse_age}岁</td>
+            <td class="text-red">必备</td>
+            <td>社保</td>
+            <td>基本养老和医疗等</td>
+            <td>${cur_spouse_insure.get('社保')}</td>
+          </tr>
+          <tr>
+            <td class="text-red">必备</td>
+            <td>意外险</td>
+            <td>意外伤害给付</td>
+            % if cur_spouse_insure.get('2'):
+              <td>保额${format(int(cur_spouse_insure.get('2').get('insure_quota')),',')}元</td>
+            % else:
+              <td class="text-red">无</td>
+            % endif
+          </tr>
+          <tr>
+            <td class="text-red">必备</td>
+            <td>重疾险</td>
+            <td>重大疾病给付</td>
+            % if cur_spouse_insure.get('1'):
+              <td>保额${format(int(cur_spouse_insure.get('1').get('insure_quota')),',')}元</td>
+            % else:
+              <td class="text-red">无</td>
+            % endif
+          </tr>
+          <tr>
+            <td class="text-red">必备</td>
+            <td>寿险</td>
+            <td>主要为身故给付</td>
+            % if cur_spouse_insure.get('3'):
+              <td>保额${format(int(cur_spouse_insure.get('3').get('insure_quota')),',')}元</td>
+            % else:
+              <td class="text-red">无</td>
+            % endif
+          </tr>
+          <tr>
+            <td>可选</td>
+            <td>医疗险</td>
+            <td>医疗费用给付</td>
+            % if cur_spouse_insure.get('4'):
+              <td>保额${format(int(cur_spouse_insure.get('4').get('insure_quota')),',')}元</td>
+            % else:
+              <td>无</td>
+            % endif
+          </tr>
+        % endif
+      </tbody>
+    </table>
+  </div>
+
+  % if children:
+    <div class="data-table">
+      <h4 class="table-title">您子女的保险现状</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>被保险人</th>
+            <th>优先级</th>
+            <th>险种</th>
+            <th>保障什么</th>
+            <th class="last">现状</th>
+          </tr>
+        </thead>
+        <tbody>
+          % for index, child in enumerate(children):
+            <%
+              child_insure = cur_children_insure[index]
+            %>
+            <tr>
+              <td rowspan="2">子女${index+1}<br>${child.get('age')}岁</td>
+              <td class="text-red">必备</td>
+              <td>少儿医保 (社保)</td>
+              <td>基本医疗</td>
+              <td class="${'text-red' if not child_insure['社保']=='少儿医保、学生医保' else ''}">${'有' if child_insure['社保']=='少儿医保、学生医保' else '无'}</td>
+            </tr>
+            <tr>
+              <td class="text-red">必备</td>
+              <td>儿童险</td>
+              <td>重疾、意外、医疗等风险</td>
+              % if child_insure.get('5'):
+                <td>保额${format(int(child_insure.get('5').get('insure_quota')),',')}元</td>
+              % else:
+                <td class="text-red">无</td>
+              % endif
+            </tr>
+          % endfor
+        </tbody>
+      </table>
+    </div>
+  % endif
+</%def>
+
+<%def name="plan_pager()">
+  <div class="plan-pager-wrapper">
+    <a href="/mine/plan/risk">下一章：风险承受能力和偏好</a>
+  </div>
+</%def>
+
+<%def name="title()">4. 保险规划 - 好规划</%def>

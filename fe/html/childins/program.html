@@ -1,0 +1,70 @@
+<%inherit file="./base.html" />
+
+<%def name="main()">
+  ${self.program_header()}
+  ${self.program_main()}
+</%def>
+
+<%def name="program_header()">
+  <div class="block-wrapper childins-common-header">
+    <div class="step-wrapper">
+      <div class="step-box first-child">
+        <div class="circle-box cur">1</div>
+      </div>
+      <div class="step-main"></div>
+      <div class="step-box last-child">
+        <div class="circle-box">2</div>
+      </div>
+      <span class="left">选择保障方案</span>
+      <span class="right">填写儿童信息</span>
+    </div>
+  </div>
+</%def>
+
+<%def name="program_main()">
+  <div class="program-select-wrapper block-wrapper">
+    <h2>选购儿童险时，您希望：</h2>
+    <form action="${url_for('ins.children.program')}" method="POST">
+      <input type="hidden" name="csrf_token" value="${csrf_token()}">
+      <div class="select-main">
+        <input type="radio" id="program-a" name="childins_program" class="program-input" value="1" checked>
+        <label for="program-a" class="select-box">
+          <div class="badge">
+            推荐
+            <span class="triangle"></span>
+          </div>
+          <h3>获得<em>均衡全面</em>的保障</h3>
+          <p>性价比最高</p>
+          <i class="iconfont icon-ghcheck"></i>
+        </label>
+        <input type="radio" id="program-b" name="childins_program" class="program-input" value="2" ${'checked' if profile and profile.user_will== '2' else ''}>
+        <label for="program-b" class="select-box">
+          <div class="badge badge-hot">
+            热门
+            <span class="triangle"></span>
+          </div>
+          <h3>侧重于<em>医疗保障</em></h3>
+          <p>更高的住院医疗保障</p>
+          <i class="iconfont icon-ghcheck"></i>
+        </label>
+        <input type="radio" id="program-c" name="childins_program" class="program-input" value="4" ${'checked' if profile and profile.user_will== '4' else ''}>
+        <label for="program-c" class="select-box">
+          <h3>侧重于<em>重疾保障</em></h3>
+          <p>更高的重大疾病与医疗保障</p>
+          <i class="iconfont icon-ghcheck"></i>
+        </label>
+        <input type="radio" id="program-d" name="childins_program" class="program-input" value="5" ${'checked' if profile and profile.user_will== '5' else ''}>
+        <label for="program-d" class="select-box">
+          <h3>侧重于<em>意外保障</em></h3>
+          <p>更高的意外门诊保障</p>
+          <i class="iconfont icon-ghcheck"></i>
+        </label>
+      </div>
+      <div class="text-center">
+        <input type="submit" class="btn btn-primary btn-select" value="下一步">
+      </div>
+    </form>
+  </div>
+</%def>
+
+<%def name="title()">儿童保险规划 - 好规划</%def>

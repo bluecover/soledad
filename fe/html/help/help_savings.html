@@ -1,0 +1,122 @@
+<%inherit file="../base.html" />
+
+<%def name="sidenav_content()">
+  <%include file="../mods/sidenav_help_about.html" />
+</%def>
+
+<%def name="main()">
+  <div class="block-wrapper help-wrapper">
+    <div class="help-title">
+      <img class="savings-logo" src="{{{img/logo/savings_logo.png}}}" alt="">
+      <span>常见问题</span>
+    </div>
+    <div class="js-help-main">
+      <div class="section">
+        <h3 class="text-bold" id="section1">1.服务介绍及安全保障</h3>
+        <h4 id="intro">1.1服务简介</h4>
+        <div class="hide">
+          <p>“攒钱助手”是好规划推出的攒钱规划服务，帮你“极速攒钱”。使用户在形成攒钱习惯的同时可以获得不错的收益，快速完成自己的攒钱目标！攒钱助手对接产品，全部为好规划专业理财师团队筛选出的市场上安全、稳健型产品，目前攒钱助手对接宜信的优质债权。</p>
+        </div>
+        <h4 id="safety">1.2安全性保障</h4>
+        <div class="hide">
+          <p>
+            1.攒钱助手中所售产品，全部为好规划专业理财师团队筛选出的市面上安全、稳健型固收类产品，帮您筛选出放心产品。</p>
+          <p>2.充足的风险准备金机制：如果借款人到期未能及时偿还借款，宜信平台会使用准备金先行支付给出借者，保障用户的本金和利息不受损失。</p>
+          <p>3.宜信公司和广发银行达成战略合作协议，由银行来监管用户的资金安全，每一笔交易都得到见证，更加透明，更加放心。</p>
+          <p>4.隐私安全：严格遵守国家相关的法律法规，对用户的隐私信息进行保护。未经您的同意，好规划网不会向任何第三方公司、组织和个人披露您的个人信息、账户信息以及交易信息（法律法规另有规定的除外）。</p>
+        </div>
+        <h4 id="service">1.3服务优势</h4>
+        <div class="hide">
+          <p>1.好规划把关：好规划是一个由专业理财师团队组成的财富管理网站，提供定制的理财规划和中立的理财建议。好规划在产品选择上会替用户把一道关，拒绝任何不靠谱的理财产品。</p>
+          <p>2.助你攒钱：在“攒钱助手”制定目标、跟踪攒钱进度，可以让攒钱这件事变得更轻松、更有规划、更胸有成竹。</p>
+          <p>3.更多福利：除了更低的投资门槛，好规划还会为大家更多争取福利，比如返现、投资奖励等等，把更多的福利返还给用户。</p>
+        </div>
+        <h4 id="contract">1.4电子合同的有效性</h4>
+        <div class="hide">
+          <p>
+            电子合同是受法律保护的，跟纸质合同一样安全。 根据《合同法》和《电子签名法》的规定，当事人可以采用合同书、信件和数据电文（包括电报、电传、传真、电子数据交换和电子邮件）等形式订立合同，并通过以电子形式所含、所附用于识别签名人身份并表明签名人认可其中内容的数据电文等电子签名方式进行签署，当事人不能仅因合同采用电子签名、数据电文的形式就否定其法律效力。
+          </p>
+        </div>
+      </div>
+      <div class="section">
+        <h3 id="section2">2.产品购买</h3>
+        <h4 id="free">2.1全程免手续费</h4>
+        <div class="hide">
+          <p>攒钱助手从购买到到期资金入账，全程不收取任何手续费。</p>
+        </div>
+        <h4 id="pay">2.2快捷支付介绍</h4>
+        <div class="hide">
+          <p>购买攒钱助手使用的银行卡不需要开通网银，购买是通过快捷支付实时到账的，用户提供卡号、持卡人姓名身份证号、银行预留手机号就能完成支付购买。</p>
+        </div>
+        <h4 id="bank">2.3银行卡限制条件</h4>
+        <div class="hide">
+          <div class="savings-bank-limit">
+            ${savings_bank_limit_table()}
+          </div>
+          <p>攒钱助手支持如下银行支付：${u'、'.join(bank.name for bank in g.savings_banks)}。</p>
+          <p>如果您使用的银行卡自行设置了快捷支付限额，那么将以二者中较低的限额为准。如有需要您可以自行联系开户银行，修改快捷支付限额。</p>
+        </div>
+      </div>
+      <div class="section">
+        <h3 id="section3">3.到期赎回</h3>
+        <h4 id="operation">3.1到账时间及操作</h4>
+        <div class="hide">
+          <p>自定义理财计划和固定到期日理财计划的确认计息时间，均为支付后T+1个工作日，省去了1-3个工作日确认的等待期；到期后，到期后通常T+1个工作日即可赎回到账。</p>
+          <img class="help-savings-img bearing" src="{{{img/help/bearing.png}}}" alt="">
+        </div>
+        <h4 id="mistake">3.2开户行填写出错的处理</h4>
+        <div class="hide">
+          <p>通常第三方快捷支付通道会自动识别支付卡的正确开户行。如果到期后资金没有顺利入账，我们客服会与您取得联系。</p>
+        </div>
+        <h4 id="lose">3.3银行卡丢失的处理</h4>
+        <div class="hide">
+          <p>如果您因为补卡、换卡导致银行卡号码变更，请您及时联系微信客服，好规划的客服将立即为您办理变更手续。（微信号公众号 plan141）</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="savings_bank_limit_table()">
+<table>
+  <tbody>
+    % for bank in g.savings_banks:
+      <tr>
+        <td>
+          <img class="bank-logo" src=${bank.icon_url['hdpi']} alt="银行图标" />
+          <span class="bank-name">${bank.name}</span>
+        </td>
+        <td>
+          <%
+          first_limit = min(bank.zwlib_amount_limit)
+          second_limit = max(bank.zwlib_amount_limit)
+          %>
+          % if first_limit >= 10000:
+            <p>首笔支付限额 ${first_limit / 10000} 万元</p>
+          % else:
+            <p>首笔支付限额 ${first_limit} 元</p>
+          % endif
+
+          % if second_limit >= (1000 * 10000):
+            <p>次笔起无额度限制</p>
+          % elif second_limit >= 10000:
+            <p>次笔起支付限额 ${second_limit / 10000} 万元</p>
+          % else:
+            <p>次笔起支付限额 ${second_limit} 元</p>
+          % endif
+        </td>
+      </tr>
+    % endfor
+  </tbody>
+</table>
+</%def>
+
+<%def name="title()">攒钱助手 - 帮助中心</%def>
+
+<%def name="js()">
+  <script src="{{{js/help/help.js}}}"></script>
+</%def>
+
+<%def name="pagetitle()">
+  <% return '帮助中心' %>
+</%def>

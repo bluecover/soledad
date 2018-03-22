@@ -1,0 +1,79 @@
+<%def name="wallet()">
+<%!
+  from more_itertools import first
+  from core.models.utils import round_half_up
+
+  PERIOD_UNITS = {'day': u'天', 'month': u'个月'}
+%>
+
+<%
+  annual_rate_data = [
+    (unicode(r.date), round_half_up(r.annual_rate, 2))
+    for r in wallet_dashboard.weekly_annual_rates]
+%>
+<div class="wallet-product-mod product-info-mod">
+  <div class="hd">
+    <div class="seven-day-interest js-seven-chart" data-annual-rates="${json.dumps(annual_rate_data)}"></div>
+  </div>
+  <div class="bd">
+    <div class="product-desc-mod">
+      <h3 class="title">零钱包</h3>
+      <p class="desc">短期灵活理财首选<br />收益远高于银行理财产品</p>
+      <a class="btn" href="${url_for('wallet.landing.index', dcm='guihua', dcs='mine-center-landing')}">查看详情</a>
+    </div>
+  </div>
+</div>
+</%def>
+
+<%def name="savings()">
+<div class="saving-product-mod desktop-element product-info-mod">
+  <div class="hd">
+    <div class="product-card-mod">
+      <%
+        sxb_rate = round_half_up(sxb_products[0].rate*100, 1)
+        sxb_min_amount = round_half_up(sxb_products[0].min_amount, 0)
+      %>
+      <div class="hd">
+        <h4 class="title">随心攒</h4>
+        <p class="desc">活期</p>
+      </div>
+      <div class="bd">
+        <strong class="interest">${sxb_rate or 0}%</strong>
+        <p>年化收益率</p>
+        <p class="tip">起投金额：${sxb_min_amount or 0} 元</p>
+      </div>
+      <div class="badge">App</div>
+    </div>
+
+    <div class="product-card-mod">
+      <%
+        profit_periods = sorted(p.profit_period['min'].value for p in xm_products)
+        profit_annual_rates = sorted(p.profit_annual_rate['min'] for p in xm_products)
+      %>
+      <div class="hd">
+        <h4 class="title">固定期限</h4>
+        % if xm_products:
+        <%
+          profit_period_unit = PERIOD_UNITS[xm_products[0].profit_period['min'].unit]
+        %>
+        <p class="desc">${'/'.join(map(unicode, profit_periods))} ${profit_period_unit}</p>
+        % endif
+      </div>
+      <div class="bd">
+        <strong class="interest">${round_half_up(min(profit_annual_rates or [0]), 2)}% <em class="text-16">~</em>  ${round_half_up(max(profit_annual_rates or [0]), 2)}%</strong>
+        <p>年化收益率</p>
+        <p class="tip">起投金额：${min(p.min_amount for p in xm_products) if xm_products else 0} 元</p>
+      </div>
+    </div>
+
+  </div>
+  <div class="bd">
+    <div class="product-desc-mod">
+      <h3 class="title">攒钱助手</h3>
+      <p class="desc">固定收益高效增值<br />多种期限可选加速达成攒钱目标</p>
+      <a class="btn" href="${url_for('savings.landing.index', dcm='guihua', dcs='mine-center-landing')}">查看详情</a>
+    </div>
+  </div>
+</div>
+</%def>
+

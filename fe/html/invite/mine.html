@@ -1,0 +1,143 @@
+<%inherit file="./base.html" />
+
+<%!
+  from datetime import datetime, timedelta
+
+  from jupiter.integration.weixin import get_weixin_config
+  from jupiter.views.ajax.qrcode import make_qrcode_url
+  from core.models.invitation.invitation import Invitation
+%>
+
+<%def name="main()">
+  <div class="invite-mine-wrapper">
+    <input type="hidden" id="wx_config" data-val="${get_weixin_config(jsApiList=['onMenuShareTimeline', 'onMenuShareAppMessage'])}"/>
+
+    ${self.share()}
+    ${self.banner()}
+    ${self.body()}
+  </div>
+</%def>
+
+<%def name="share()">
+  <div class="share-box mobile-element">
+     % if has_identity:
+      <p class="title">点击右上角，分享到朋友圈<img class="arrow-img" src="{{{img/misc/arrow.png}}}" alt="分享朋友圈"></p>
+      <p class="text-12 text-lighter">或复制我的邀请链接邀请好友</p>
+      <p class="invite-link text-12 text-blue" href="#">${invite_url}</p>
+      % else:
+      <div class="text-center">
+        <img class="icon-smile" src="{{{img/invite/smile_yellow.png}}}"/><span class="invite-text saving-tip">
+        您必须先<a class="link-saving" href="${url_for('savings.auth.zhiwang', dcm='guihua', dcs='invitation', next=url_for('.mine'))}">身份验证</a>才能参与此活动
+        </span>
+      </div>
+      % endif
+  </div>
+</%def>
+
+<%def name="banner()">
+  <div class="top-banner">
+    <img class="banner" src="{{{img/invite/invite_banner.png}}}" alt="邀请朋友来攒钱">
+  </div>
+</%def>
+
+<%def name="body()">
+  <div class="block-wrapper">
+    ${self.activity_content()}
+    ${self.invite_list()}
+  </div>
+</%def>
+
+<%def name="activity_content()">
+<div class="activity-content">
+  <div class="invite-mod  desktop-element">
+    <div class="invite-mod-bd">
+      % if has_identity:
+      <h5 class="text-bold">分享给朋友</h5>
+        <div class="share-mod js-share-mod">
+          <div class="bd">
+            <div id="share-btns" class="share-btns" data-tag="share_1">
+              <a href="#" class="share-btn btn-weixin" data-type="weixin" data-image-url="${make_qrcode_url(invite_url)}" title="分享到微信"></a>
+              <a href="#" class="share-btn btn-qzone" data-type="qzone" target="_blank" title="分享到QQ空间"></a>
+              <a href="#" class="share-btn btn-tsina" data-type="tsina" target="_blank" title="分享到新浪微博"></a>
+            </div>
+          </div>
+        </div>
+        <span class="invite-text  text-12 text-lighter">或复制链接邀请朋友：</span>
+        <a class="invite-link text-12 js-invite-link" href="#">${invite_url}</a>
+      % else:
+        <img class="icon-smile" src="{{{img/invite/smile_yellow.png}}}"/><span class="invite-text saving-tip">
+        您必须先<a class="link-saving" href="${url_for('savings.auth.zhiwang', dcm='guihua', dcs='invitation', next=url_for('.mine'))}">身份验证</a>才能参与此活动</span>
+      % endif
+    </div>
+  </div>
+  <div class="invite-desc-mod">
+    <div class="hd"><h3 class="title text-orange text-bold">邀请说明</h3></div>
+    <div class="bd">
+      <ul>
+        <li><span class="mark num-mark">1</span><p class="desc">攒钱助手隆重推出邀请新人送红包活动</p></li>
+        <li><span class="mark num-mark">2</span><p class="desc">邀请好友通过您的邀请链接注册并使用攒钱助手。</p></li>
+        <li><span class="mark num-mark">3</span><p class="desc">每成功邀请一位好友注册并完成一笔攒钱,您将获得<span class="text-orange">20元</span>红包奖励。</p></li>
+        <li><span class="mark num-mark">4</span><p class="desc">数量不封顶,多邀多得,您可以分享邀请链接至各社交平台,快速邀请好友获得红包。</p></li>
+        <li><span class="mark num-mark">5</span><p class="desc">可在「我的福利」中查看自己的红包。</p></li>
+        <li><span class="mark"></span><p class="desc text-lighter"><span class="text-orange">*</span>红包可用于任何攒钱产品抵扣。</p></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</%def>
+
+<%def name="invite_list()">
+<div class="invite-list">
+  <div class="hd">
+    <h3 class="title text-bold text-orange">邀请列表</h3>
+    <div class="stats-info">
+      <span class="people">累计邀请人数：${len(invitations)}</span>
+      <span class="num">累计奖励金额：<strong>${total_award}</strong>元</span>
+    </div>
+  </div>
+
+  <div class="bd">
+    % if invitations:
+      <table>
+        <thead>
+          <tr>
+            <td class="desktop-element">注册日期</td>
+            <td>被邀请人</td>
+            <td>是否攒钱</td>
+            <td>奖励</td>
+          </tr>
+        </thead>
+        <tbody>
+          %for invitation in invitations:
+            <tr>
+              <td class="desktop-element">${invitation.invitee.create_time.strftime('%Y-%m-%d')}</td>
+              <td>${invitation.invitee.name}</td>
+              <td>
+                % if invitation.status is Invitation.Status.sent:
+                  未攒钱
+                % else:
+                  是
+                % endif
+              </td>
+              <td>
+                % if invitation.status is Invitation.Status.sent:
+                  未符合条件
+                % else:
+                  ${package_worth}元红包
+                % endif
+              </td>
+            </tr>
+          %endfor
+        </tbody>
+      </table>
+    % endif
+  </div>
+</div>
+</%def>
+
+<%def name="js()">
+  <script src='{{{js/lib/wx_sdk.js}}}'></script>
+  <script src='{{{js/invite/mine.js}}}'></script>
+</%def>
+
+<%def name="title()">邀请新人 - 好规划</%def>

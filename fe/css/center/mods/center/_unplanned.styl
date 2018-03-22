@@ -1,0 +1,61 @@
+@import 'jeet'
+
+.center-unplanned-wrapper
+  .center-unplanned-items
+    margin-bottom: 0
+    overflow: hidden
+    color: $gray_60
+    >.bd
+      background-color: #fff
+      padding-top: 60px
+      clearfix()
+      @media $mobile
+        padding-top: 0
+
+  .center-unplanned-item
+    col(1/5,gutter:0)
+    text-align: center
+    @media $mobile
+      stack()
+      height: auto
+      padding: 20px 0
+      margin-bottom: 0px
+      border-bottom: 1px solid $border_color
+    .item-pic
+      width: 110px
+      height: 110px
+      margin: 0 auto
+      border-radius: 70px
+      background-color: $gray_10
+
+    img
+      width: 70px
+      margin: 20px auto
+      display: inline-block
+      @media $mobile
+        width: 100px
+
+  .center-unplanned-start-item
+    text-align: center
+    clear: both
+    h2
+      color: #4e82aa
+      font-size: 40px
+      margin: 0 0 25px
+      font-weight: bold
+
+    h3
+      font-size: 16px
+      margin-bottom: 40px
+      line-height: 1.5
+
+  .btn-start-plan
+    border-radius: 2px
+    width: 180px
+    @media $mobile
+      display: block
+      margin: 0 auto
+
+  .center-unplanned-item-title
+    font-size: 16px
+    margin-top: 20px

@@ -1,0 +1,114 @@
+<%inherit file="./base.html" />
+<%!
+  from jupiter.integration.weixin import get_weixin_config
+%>
+
+<%def name="main()">
+  <input type="hidden" id="wx_config" data-val="${get_weixin_config(jsApiList=['onMenuShareTimeline', 'onMenuShareAppMessage'])}"/>
+
+  <div class="activity61-wrapper">
+    <div class="img-con">
+      <img src="{{{img/childins/act_bg_web.png}}}" alt="" width="100%" class="desktop-element">
+      <img src="{{{img/childins/act_bg_m.png}}}" alt="" width="100%" class="mobile-element">
+      <img src="{{{img/childins/act_bear.png}}}" alt="" width="250" class="bear">
+    </div>
+
+    <div class="block-wrapper">
+      <div class="block-title">这个儿童节，送孩子一份保障：</div>
+      <p class="act-desc">即日起至 <span class="text-orange">6 月 10 日</span>，邀请妈妈们来做儿童保险规划，即得话费福利，邀请越多话费越多！</p>
+      <ul class="coupon-con clearfix">
+        <li class="coupon-item twocol-content ">
+          <div class="left-col">
+            <p class="money">10元</p>
+            <p>邀请 5 人</p>
+          </div>
+          <div class="right-col">话费</div>
+        </li>
+        <li class="coupon-item twocol-content ">
+          <div class="left-col">
+            <p class="money">20元</p>
+            <p>邀请 10 人</p>
+          </div>
+          <div class="right-col">话费</div>
+        </li>
+        <li class="coupon-item twocol-content ">
+          <div class="left-col">
+            <p class="money">30元</p>
+            <p>邀请 20 人</p>
+          </div>
+          <div class="right-col">话费</div>
+        </li>
+        <li class="coupon-item twocol-content ">
+          <div class="left-col">
+            <p class="money">50元</p>
+            <p>邀请 30 人</p>
+          </div>
+          <div class="right-col">话费</div>
+        </li>
+      </ul>
+
+      ${self.parti_item()}
+
+      <div class="text-center mobile-element">
+        <a class="btn btn-gray btn-back" href="/ins/children">返回</a>
+      </div>
+    </div>
+
+      ${self.act_footer()}
+  </div>
+</%def>
+
+<%def name="parti_item()">
+  <div class="block-title participate-title">参与方式</div>
+  <div class="participate-wrapper">
+    <div class="twocol-content participate-item">
+      <div class="left-col"><span>1</span></div>
+      <div class="right-col">
+        <p><span class="text-blue text-bold">分享如下链接</span>，渠道不限，微信、QQ、微博、论坛等均可</p>
+        <div class="desc-con">
+          <input type="text" value="${share_url}" class="input-url js-input-url" data-url="${share_url}">
+        </div>
+        <div class="desc-con mobile-element">
+          <span class="text-lighter text-12">您也可以直接 </span>&nbsp;
+          <a class="btn btn-primary js-btn-wechat btn-small" href="#">微信分享</a>
+        </div>
+      </div>
+    </div>
+    <div class="twocol-content participate-item">
+      <div class="left-col"><span>2</span></div>
+      <div class="right-col">
+        <p>好友通过您分享的链接来访，并且完成儿童保险规划，即算成功邀请1人</p>
+        <div class="desc-con"><span class="text-blue text-bold">您已成功邀请 <span class="text-orange">${count}</span> 人</span></div>
+      </div>
+    </div>
+    <div class="twocol-content participate-item">
+      <div class="left-col"><span>2</span></div>
+      <div class="right-col">
+        <p>6月10日活动截止，其后根据您邀请的人数，3个工作日内向您的手机号送出话费</p>
+        <div class="desc-con">
+          % if g.user.mobile:
+            <span class="text-blue text-bold">您的手机号码：</span> <span class="text-orange">${g.user.mobile}</span>
+          % else:
+            <span class="text-blue text-bold">您的手机号码：</span>
+            <span class="unbind">未绑定</span>
+            <a href="/accounts/settings" target="_blank">点此绑定</a>
+            <span class="tip"><span class="text-orange">*</span> 10日前未绑定手机号，即视为自动弃权</span>
+          % endif
+        </div>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="act_footer()">
+  <div class="act-footer text-center">
+    <img src="{{{img/misc/qrcode.png}}}" alt="" width="150" class="desktop-element">
+    <p class="text-dark">扫码关注好规划微信公众号 plan141</p>
+    <p class="text-lighter">随时咨询答疑、获取理财资讯</p>
+  </div>
+</%def>
+
+<%def name="js()">
+  <script src='{{{js/lib/wx_sdk.js}}}'></script>
+  <script src="{{{js/childins/act61.js}}}"></script>
+</%def>

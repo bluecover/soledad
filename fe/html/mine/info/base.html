@@ -1,0 +1,45 @@
+<%inherit file="/base.html" />
+
+<%def name="main()">
+  ${self.info_nav()}
+
+  <div class="info-wrapper">
+    <div class="progress-dot"><i></i></div>
+    ${self.info_content()}
+  </div>
+</%def>
+
+<%def name="info_nav()">
+  <%
+    step = g.plan.step if g.plan else 1
+  %>
+
+  <div class="progress-nav">
+    <a href="/mine/info/1" class="${'on' if current_step==1 else ''}">
+      <i class="iconfont icon-revuser desktop-element"></i>&nbsp;
+      <span class="title">个人信息</span>
+    </a>
+    <a href="/mine/info/2" class="${'on' if current_step==2 else ''} ${'disabled' if step < 2 else ''}">
+      <i class="iconfont icon-revdollar desktop-element"></i>&nbsp;
+      <span class="title">收支情况</span>
+    </a>
+    <a href="/mine/info/3" class="${'on' if current_step==3 else ''} ${'disabled' if step < 3 else ''}">
+      <i class="iconfont icon-revmoney desktop-element"></i>&nbsp;
+      <span class="title">资产详情</span>
+    </a>
+    <a href="/mine/info/4" class="${'on' if current_step==4 else ''} ${'disabled' if step < 4 else ''}">
+      <i class="iconfont icon-revchart desktop-element"></i>&nbsp;
+      <span class="title">风险测评</span>
+    </a>
+  </div>
+</%def>
+
+<%def name="info_content()"></%def>
+
+<%def name="css()">
+  <link rel="stylesheet" href="{{{css/center/info.css}}}" />
+</%def>
+
+<%def name="pagetitle()">
+  <% return '更新个人数据' %>
+</%def>

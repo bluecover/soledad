@@ -1,0 +1,24 @@
+<%inherit file="/base.html" />
+
+<%def name="content()">
+  <div class="weixin-bound-wrapper">
+    <div class="weixin-txt">
+      <h1><i class="iconfont icon-ghcheck"></i>您已成功登录好规划</h1>
+      <h2>已登录账号名：${g.user.screen_ident}</h2>
+    </div>
+    <form method="post" action="${request.path}">
+      <input type="hidden" name="csrf_token" value="${csrf_token()}">
+      % if is_bound:
+      <input type="hidden" name="method" value="delete" />
+      <input type="submit" class="btn bind-weixin-btn unbind" type="submit" value="取消绑定" />
+      % else:
+      <input type="hidden" name="method" value="post" />
+      <input type="submit" class="btn bind-weixin-btn" type="submit" value="绑定" />
+      % endif
+    </form>
+  </div>
+</%def>
+
+<%def name="css()">
+  <link rel="stylesheet" href="{{{css/center/weixin.css}}}">
+</%def>

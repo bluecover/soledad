@@ -1,0 +1,205 @@
+.gm-account
+  display: none
+  input
+    &:-webkit-autofill
+      -webkit-box-shadow: 0 0 0px 1000px white inset
+
+  .m-account
+    .wrapper
+      background-color: $sidenav_bg
+      position: relative
+      @media $mobile
+        background: none
+      >.hd
+        float: left
+        width: 136px
+        height: 100%
+      >.bd
+        margin-left: 136px
+        width: 444px
+        background-color: #fff
+        @media $mobile
+          width: 100%
+          margin: 0
+
+  .m-account-header
+    height: 100%
+    color: $sidenav_font_color
+    >.hd
+      text-align: center
+      font-size: 16px
+      img
+        display: inline-block
+        width: 95px
+        margin: 25px auto 15px auto
+      .title
+        color: $fancy_gray_40
+    >.ft
+      position: absolute
+      width: 136px
+      bottom: 20px
+      left: 0
+      text-align: center
+      img
+        display: inline-block
+        width: 90px
+        opacity: .6
+      .desc
+        color: $fancy_gray_90
+        font-size: 12px
+        text-align: center
+
+  .m-account-form
+    margin-left: 55px
+    width: 318px
+    padding-bottom: 10px
+    @media $mobile
+      margin: 0
+      padding: 30px 30px
+      width: 100%
+    input,
+    button
+      outline: none
+      margin: 0
+      &:focus
+        outline: none !important
+    >.hd
+      padding: 35px 0 20px 0
+      .title
+        font-size: 20px
+        font-weight: bold
+        line-height: 1
+    .all-error
+      color: $brand_red
+      line-height: 1.2
+      margin-top: 10px
+    .form-group
+      position: relative
+      label
+        position: absolute
+        top: 0
+        left: 30px
+        color: $gray_50
+        padding-top: 14px
+      .iconfont
+        position: absolute
+        left: 10px
+        top: 13px
+        color: $gray_30
+      input
+        font-size: 14px
+        padding: 10px 10px 10px 30px
+        border: 1px solid $gray_30
+        border-radius: 2px
+        line-height: 18px
+        width: 100%
+        &:focus
+          border: 1px solid $blue_20
+      .help-block
+        color: $gray_40
+        line-height: 18px
+        min-height: 20px
+        margin-bottom: 4px
+        visibility: hidden
+        font-size: 12px
+        @media $mobile
+          font-size: 12px
+      .help-block.visible
+        visibility: visible
+      &.has-error
+        .help-block
+          color: $brand_red
+          .iconfont
+            color: $brand_red
+            display: inline-block
+            position: static
+    .pic-captcha,
+    .sms-captcha
+      input
+        width: 60%
+        margin-right: 5%
+        padding-left: 12px
+      label
+        left: 15px
+      .captcha
+        display: inline-block
+        width: 35%
+        height: 40px
+        vertical-align: top
+        margin: 0
+        img
+          display: block
+          width: 100%
+          height: 40px
+    .sms-captcha
+      .captcha
+        line-height: 40px
+        font-size: 14px
+        min-width: 0
+        padding: 0
+    .btn
+      margin: 0 0 22px 0
+      width: 100%
+      border: none
+      line-height: 40px
+    .btn-register,
+    .btn-login
+      color: $blue_80
+      border: 1px solid $gray_30
+      background-color: #fafafa
+      line-height: 38px
+      &:hover
+        color: $blue_60
+        background-color: #fff
+    .btn-register-submit,
+    .btn-login-submit
+      margin-bottom: 0
+    .forget-psd
+      margin-top: -10px
+      line-height: 30px
+    .agreement-desc
+      color: $gray_40
+      margin: 10px 0 0 0
+      font-size: 12px
+      line-height: 1.2
+    .split-line
+      text-align: center
+      position: relative
+      margin: 20px 0 18px 0
+      @media $mobile
+        border-top: 1px solid $gray_20
+      .circle
+        display: inline-block
+        color: $gray_40
+        width: 24px
+        height: 24px
+        font-size: 12px
+        border-radius: 50%
+        padding-top: 6px
+        background-color: $gray_10
+        border: 1px solid $gray_20
+        @media $mobile
+          display: none !important
+        &:before,
+        &:after
+          content: ''
+          border-top: 1px solid $gray_10
+          width: 47%
+          position: absolute
+          top: 50%
+        &:before
+          left: 0
+    >.ft
+      position: absolute
+      right: 20px
+      top: 20px
+      @media $mobile
+        right: 5px
+        top: 5px
+        .icon-close
+          font-size: 14px !important
+      .icon-close
+        font-size: 16px
+        color: $gray_40
+        &:hover
+          color: $gray_50

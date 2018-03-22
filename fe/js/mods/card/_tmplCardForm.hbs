@@ -1,0 +1,57 @@
+<form autocomplete="off" class="form-wrapper card-form-wrapper">
+  <div class="item multiple-line-item">
+    <span class="title">银行</span>
+    <div class="input-con">
+      {{#if cardData}}
+      <input type="text" disabled="disabled" value="{{cardData.bank_name}}"/>
+      <input type="hidden" class="js-bank" value="{{cardData.bank_id}}">
+      {{else}}
+      <select class="js-bank validate" data-validate="require">
+        <option value="">请选择银行</option>
+        {{#each bankData}}
+        <option value="{{bank_id}}" data-limit="{{amount_limit}}" data-tele="{{telephone}}">{{bank_name}}</option>
+        {{/each}}
+      </select>
+      {{/if}}
+    </div>
+  </div>
+
+  <div class="item">
+    <span class="title">银行卡号</span>
+    <div class="input-con">
+      {{#if cardData}}
+      <input type="text" max-length="20" value="{{cardData.display_card_number}}" disabled="disabled"/>
+      {{else}}
+      <input type="text" class="js-cardnum validate" pattern="[0-9]*"  data-validate="require,cardnum" max-length="20"/>
+      {{/if}}
+    </div>
+  </div>
+
+  <div class="item">
+    <span class="title">银行属地</span>
+    {{#if cardData}}
+      <div class="input-con">
+        <input type="text" max-length="20" value="{{cardData.local_name}}" disabled="disabled"/>
+        <input type="hidden" class="js-city" value="{{cardData.city_id}}">
+      </div>
+    {{else}}
+      <div class="input-con narrower">
+        <select class="validate js-province" data-validate="require"></select>
+      </div>
+      <div class="input-con narrower">
+        <select class="validate js-city" data-validate="require"></select>
+      </div>
+    {{/if}}
+  </div>
+
+  <div class="item">
+    <span class="title">预留手机号</span>
+    <div class="input-con">
+      {{#if cardData}}
+      <input type="text" class="validate js-phone" data-validate="require,phone" value="{{cardData.mobile_phone}}"/>
+      {{else}}
+      <input type="text" class="validate js-phone" data-validate="require,phone" />
+      {{/if}}
+    </div>
+  </div>
+</form>

@@ -1,0 +1,100 @@
+<div class="header-wrapper">
+  ${desktop_header()}
+  ${mobile_header()}
+</div>
+
+<%def name="desktop_header()">
+<div class="m-desktop-header desktop-element">
+  <div class="hd">
+    <a class="guihua-logo" href="/">
+      <svg src="{svg{{img/misc/logo_guihua_blue.svg}}}" alt="好规划"></svg>
+    </a>
+  </div>
+  <div class="bd">
+    <ul class="m-product-menu">
+      <li class="m-menu-item">
+        <div class="hd">
+          <a href="${url_for('savings.landing.index', dcm='guihua', dcs='header')}">
+            <i class="iconfont icon-ghcheck"></i>
+            <span class="title">攒钱助手</span>
+          </a>
+        </div>
+      </li>
+
+      <li class="m-menu-item">
+        <div class="hd">
+          <a class="menu-title" href="${url_for('wallet.landing.index', dcm='guihua', dcs='header')}">
+            <i class="iconfont icon-ghcheck"></i>
+            <span class="title">零钱包</span>
+          </a>
+        </div>
+      </li>
+
+      <li class="m-menu-item">
+        <div class="hd">
+          <a class="menu-title" href="${url_for('ins.landing.index', dcm='guihua', dcs='header')}">
+            <i class="iconfont icon-ghcheck"></i>
+            <span class="title">保险精选</span>
+          </a>
+        </div>
+      </li>
+
+      <li class="m-menu-item js-dropdown-toggle">
+        <div class="hd">
+          <i class="iconfont icon-ghcheck"></i>
+          <h3 class="title">理财咨询</h3>
+        </div>
+        <div class="bd js-dropdown">
+          <div class="submenu m-submenu-wx">
+            <div class="hd">
+              <img class="wx-qrcode" src="{{{img/index/dimen2.png}}}"/>
+            </div>
+            <div class="bd">
+              <h3 class="title">关注微信公共号</h3>
+              <p class="content">及时接收投资机会和理财攻略，随时向理财师提问咨询。</p>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <ul class="menu-wrap-2">
+      ${app_download()}
+      <li>
+        <a class="btn-login js-g-login" data-url="${url_for('mine.mine.mine')}" href="${url_for('accounts.login.login')}">登录</a>
+      </li>
+      <li>
+        <a class="btn-register js-g-register" data-url="${url_for('mine.mine.mine')}" href="${url_for('accounts.register.register')}">注册</a>
+      </li>
+    </ul>
+  </div>
+ </div>
+</%def>
+
+<%def name="mobile_header()">
+<div class="header-content mobile-element">
+<div class="mobile-header">
+  <a class="guihua-logo" href="/">
+    <svg src="{svg{{img/misc/logo_guihua_blue.svg}}}" alt="好规划"></svg>
+  </a>
+  <a href="#" class="lines-button js-sidenav-switch">
+    <span class="lines"></span>
+  </a>
+  <a class="app-download" target="_blank" href="${url_for('app.landing.index', dcm='guihua', dcs='nav')}">
+    <svg class="icon-mobile" src="{svg{{img/app/phone_icon.svg}}}"></svg>
+  </a>
+  <span class="account js-dropdown-toggle">
+    <i class="iconfont icon-account"></i>
+    <ul class="dropdown-menu js-dropdown">
+      <li><a href="/accounts/login">登录</a></li>
+      <li><a href="/accounts/register">注册</a></li>
+    </ul>
+  </span>
+</div>
+</div>
+</%def>
+
+
+<%def name="app_download()">
+<%include file="../../mods/app_download_nav.html" />
+</%def>

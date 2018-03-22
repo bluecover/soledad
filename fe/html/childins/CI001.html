@@ -1,0 +1,305 @@
+<%inherit file="./products_base.html" />
+
+<%namespace import="more_CI002,more_L001,more_A003" file='./mods/more_product.html' />
+
+<%!
+  from libs.linker import make_url
+  from jupiter.integration.weixin import get_weixin_config
+%>
+
+<%def name="main()">
+  <div class="ins-common-wrapper childins-ci001-wrapper">
+    ${self.head()}
+    ${self.neck()}
+    ${self.body()}
+    ${parent.common_compensation_guide()}
+    ${self.reason()}
+    ${self.more()}
+    <%include file="./mods/ins_qrcode.html" />
+  </div>
+</%def>
+
+<%def name="head()">
+  <input type="hidden" id="ins_data" data-url="${url_for('ajax.mail', dcm='email_savi', dcs='phonetopc')}" data-val="${get_weixin_config(jsApiList=['onMenuShareTimeline', 'onMenuShareAppMessage'])}" data-title="新华i健康定期重大疾病保障计划 - 好规划" data-desc="好规划保险精选  无需体检的低价重疾险"/>
+  <div class="head-wrapper">
+    <div class="desc">
+      <h4 class="text-16">好规划保险精选 <em class="text-green">无需体检的低价重疾险</em></h4>
+      <h2 class="text-bold">新华i健康定期重大疾病保障计划</h2>
+      <dl class="ins-info">
+        <dt class="text-12">保险信息</dt>
+        <dd>定期重疾险</dd>
+        <dd>消费型</dd>
+        <dd>期限可选</dd>
+      </dl>
+      <dl>
+        <dt class="text-12">保障范围</dt>
+        <dd><i class="iconfont icon-checked"></i>45种重大疾病</dd>
+        <dd><i class="iconfont icon-checked"></i>身故</dd>
+      </dl>
+    </div>
+    <div class="buy text-center">
+      <p  class="text-orange">￥<em>210.00</em> 起</p>
+      <a href="#" class="btn btn-primary btn-large btn-start js-btn-start" data-type="700du" data-url="${make_url(redirect_url)}">立即投保</a>
+    </div>
+  </div>
+</%def>
+
+<%def name="neck()">
+  <div class="title-box">性价比超高的重疾险</div>
+  <div class="block-wrapper section-wrapper">
+    <div class="clause-wrapper">
+      <h3>简明版保险条款</h3>
+      <div class="twocol-content">
+        <div class="left-col">
+          <div class="circle-box">1</div>
+        </div>
+        <div class="right-col">
+          <h4>保什么</h4>
+          <p>确诊患<span class="text-green">45种重大疾病</span>之一，或因为疾病/意外身故，得到一笔一次性大额赔付。</p>
+        </div>
+      </div>
+      <div class="twocol-content">
+        <div class="left-col">
+          <div class="circle-box">2</div>
+        </div>
+        <div class="right-col">
+          <h4>如何简单投保</h4>
+          <p><span class="text-green">无需体检</span>、无需等待，全程在线投保。</p>
+          <p>投保时请如实填写健康问卷；问卷中未涉及的健康问题无需告知保险公司，也不会影响投保和理赔。</p>
+        </div>
+      </div>
+      <div class="twocol-content">
+        <div class="left-col">
+          <div class="circle-box">3</div>
+        </div>
+        <div class="right-col">
+          <h4>犹豫期和等待期</h4>
+          <p>犹豫期10天，期间退保仅扣除少量工本费；犹豫期后退保只能退回很少的保费。</p>
+          <p>等待期180天，为行业平均水平；期间由疾病造成重疾或身故，仅退还已交保费；因意外身故，按保额全额赔付。</p>
+        </div>
+      </div>
+      <div class="twocol-content">
+        <div class="left-col">
+          <div class="circle-box">4</div>
+        </div>
+        <div class="right-col">
+          <h4>如何赔付</h4>
+          <p>一经确认身故，或在二级/二级以上医院确诊上述重大疾病，即可拨打销售网站客服电话400-101-1136，将有专业人员协助您报案理赔。</p>
+        </div>
+      </div>
+      <div class="tips">
+        <p>
+          <span class="text-orange">*  </span>查阅详细条款，请点击“立即投保”按钮，选择“阅读条款”；其中第6节“释义”包含45种病种清单。
+        </p>
+        <p>&nbsp;&nbsp;更多问题也欢迎至好规划微信号plan141咨询。</p>
+      </div>
+    </div>
+    <div class="category-wrapper">
+      <h3 class="text-dark">好规划精选<em class="text-green text-bold">全网超值</em>保险，以30岁女性投保20万重疾险（20年期）为例，几款热销产品保费对比如下</h3>
+      <div class="category-row">
+        <div class="desc-box">人保健康关爱专家</div>
+        <div class="fee-box">
+          <p class="plan1">保费：1040元 <span>保险病种：31</span></p>
+        </div>
+      </div>
+      <div class="category-row">
+        <div class="desc-box">合众定期重大疾病保障计划</div>
+        <div class="fee-box">
+          <p class="plan2">保费：940元 <span>保险病种：32</span></p>
+        </div>
+      </div>
+      <div class="category-row">
+        <div class="desc-box">新华i健康定期重疾保障计划</div>
+        <div class="fee-box">
+          <p class="plan3">保费：920元 <span>保险病种：45</span></p><em class="text-orange text-12 tips-text">* 本产品由700度网提供</em>
+        </div>
+      </div>
+    </div>
+    <div class="service-wrapper">
+      <h3 class="text-dark">还有贴心服务，省时省心</h3>
+      <div class="service-box">
+        <div class="twocol-content middle-align">
+          <div class="left-col">
+            <img src="{{{img/childins/a_002.png}}}" alt="">
+          </div>
+          <div class="right-col">
+            <p class="text-dark text-16">24小时理赔</p>
+            <p class="text-lighter">客服电话400-101-1136</p>
+          </div>
+        </div>
+      </div>
+      <div class="service-box">
+        <div class="twocol-content middle-align">
+          <div class="left-col">
+            <img src="{{{img/childins/a_003.png}}}" alt="">
+          </div>
+          <div class="right-col">
+            <p class="text-dark text-16">为全家投保</p>
+            <p class="text-lighter">可以代配偶、父母投保</p>
+          </div>
+        </div>
+      </div>
+      <div class="service-box">
+        <div class="twocol-content middle-align">
+          <div class="left-col">
+            <img src="{{{img/childins/a_008.png}}}" alt="">
+          </div>
+          <div class="right-col">
+            <p class="text-dark text-16">每年缴费提醒</p>
+            <p class="text-lighter">提前1月提醒，从容缴费</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="body()">
+  <div class="title-box">投保指南</div>
+  <div class="block-wrapper section-wrapper">
+    <table class="table-coverage">
+      <tr class="coverage-row">
+        <td class="text-lighter">推荐<br class="desktop-element">方案</td>
+        <td>
+          <p>27岁，女性：30年期30年交，保额20万元，保费1060元/年；</p>
+          <p>35岁，女性：20年期20年交，保额40万元，保费2640元/年。</p>
+        </td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">投保<br class="desktop-element">年龄</td>
+        <td>30天 - 60周岁（仅推荐成年人投保）。</td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">保险<br class="desktop-element">期间</td>
+        <td class="last-child">
+          <div class="desc-text">
+            <p>10年、20年、30年。</p>
+          </div>
+          <div class="coverage-detail-box">
+            <div class="text-16 title"><i class="iconfont icon-ciask"></i><span class="text-green">重疾险期限怎么选</span></div>
+            <p>重疾保障应终身具备，但保障期限越长保费越高。</p>
+            <p>建议35岁以下投保30年期，35岁以上投保20年期；并且每年拿出保费1-2倍的资金自行储备，用作自己年老后的医疗基金，以不低于国债的收益率进行理财，就能逐渐赶上并超过重疾险的保额。只有对家庭财务没有规划、收入非常不稳定的人更适合昂贵的终身重疾险。</p>
+            <p>更多疑问，欢迎移步好规划微信号plan141咨询。</p>
+          </div>
+        </td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">缴费<br class="desktop-element">方式</td>
+        <td>
+          期交（推荐）、趸交。
+        </td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">缴费<br class="desktop-element">期间</td>
+        <td class="last-child">
+          <div class="desc-text">
+            <p>5年、10年、20年、30年。</p>
+          </div>
+          <div class="coverage-detail-box">
+            <div class="text-16 title"><i class="iconfont icon-ciask"></i><span class="text-green">缴费期间怎么选</span></div>
+            <p>建议与保险期间一致（20年或30年）。因为缴费期限越长，每年保费负担越小；一旦出险，剩余年份的保费也不必交纳了。</p>
+          </div>
+        </td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">产品<br class="desktop-element">保额</td>
+        <td class="last-child">
+          <div class="desc-text">
+            <p>重疾：10 – 50万元；</p>
+            <p>身故：与重疾享同等保额。</p>
+          </div>
+          <div class="coverage-detail-box">
+            <div class="text-16 title"><i class="iconfont icon-ciask"></i><span class="text-green">重疾险保额怎么选</span></div>
+            <table class="table-box">
+              <tr>
+                <td>年收入（个人）</td>
+                <td>保额下限</td>
+              </tr>
+              <tr>
+                <td>6万元以下</td>
+                <td>10万元</td>
+              </tr>
+              <tr>
+                <td>6 - 15万元</td>
+                <td>20万元</td>
+              </tr>
+              <tr>
+                <td>15万元以上</td>
+                <td>30万元</td>
+              </tr>
+            </table>
+            <p>另外，尚无任何医疗保障者，应在此基础上提高保额10-20万元。</p>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</%def>
+
+<%def name="reason()">
+  <div class="title-box">为什么买重疾险</div>
+  <div class="block-wrapper reason-wrapper">
+    <div class="section">
+      <h2 class="text-green text-16">什么是重疾险</h2>
+      <p>重大疾病保险提供的保障是：当被保险人罹患合同约定的疾病时，获得一大笔保险金。</p>
+      <p>疾病的种类以合同条款规定为准，并非患任意严重疾病都能获得赔付；</p>
+      <p>保险金赔付以医院确诊为准，与医疗费用的实际支出无关，可以自行决定保险金的用途；</p>
+      <p>重疾险与社保、商业医疗险等报销型保险不冲突，可叠加投保。</p>
+    </div>
+    <div class="section">
+      <h2 class="text-green text-16">重疾险是成人必备险种</h2>
+      <p> 加班熬夜、环境污染，长期亚健康导致重大疾病成为高发风险。以女性为例，随年龄增长，重疾患病率明显增高：</p>
+      <table class="table-box">
+        <tr>
+          <td>重疾种类</td>
+          <td>25岁</td>
+          <td>35岁</td>
+          <td>55岁</td>
+        </tr>
+        <tr>
+          <td>6种核心重疾</td>
+          <td>540</td>
+          <td>1454</td>
+          <td>7343</td>
+        </tr>
+        <tr>
+          <td>25种标准重疾</td>
+          <td>651</td>
+          <td>1596</td>
+          <td>8081</td>
+        </tr>
+        <tr>
+          <td colspan='4' class="align-right">单位：每百万人身故人数</td>
+        </tr>
+      </table>
+      <p>一旦不幸患上重大疾病，治疗康复费用少则十几万，多则数十万；且治疗期间难以从事原有工作，收入损失也很大。</p>
+      <p>重大疾病保险可以帮助我们极大缓解经济压力，是给家人的一份安心保障，建议所有成年人投保。</p>
+    </div>
+    <p>（本保险仅适用于成人，为儿童构筑保障请戳：<a href="/ins/children/?dcm=web_ins&dcs=CI001">儿童保险</a>）</p>
+    <div class="text-center">
+      <a class="btn btn-primary btn-start js-btn-start" data-type="700du" href="#" data-url="${make_url(redirect_url)}">立即投保</a>
+      <p class="text-12 text-lighter"><em class="text-orange">*</em> 本页面仅作推荐用途，保险条款以保险合同为准，<br class="mobile-element">付款前请详细了解</p>
+    </div>
+  </div>
+</%def>
+
+<%def name="more()">
+  <div class="title-box">更多精选保险</div>
+  <div class="block-wrapper more-wrapper">
+   ${more_A003()}
+   ${more_CI002()}
+   ${more_L001()}
+  </div>
+</%def>
+
+<%def name="js()">
+  <script src='{{{js/lib/wx_sdk.js}}}'></script>
+  <script src="{{{js/childins/ins.js}}}"></script>
+</%def>
+
+<%def name="pagetitle()">
+  <% return '保险精选' %>
+</%def>
+
+
+<%def name="title()">新华i健康定期重大疾病保障计划 - 好规划</%def>

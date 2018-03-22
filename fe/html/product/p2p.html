@@ -1,0 +1,50 @@
+<%!
+from libs.linker import make_url
+%>
+
+<%inherit file="./base.html" />
+
+<%def name="main()">
+  % for p in ps:
+  <div class="product-wrapper">
+    <div class="product-title">
+      <h2>${p.name}</h2>
+    </div>
+
+    <div class="product-content clearfix">
+      <div class="item-wrapper">
+      % for (name, attr) in p2p_property:
+        % if getattr(p, attr):
+          <div class="item clearfix">
+            <div class="item-key">
+              ${name}
+            </div>
+            <div class="item-value">
+              ${getattr(p,attr)}
+            </div>
+          </div>
+        % endif
+      % endfor
+      </div>
+      <div class="product-detail">
+        <a href="${make_url(p.link)}" target="_Blank" class="btn btn-primary product-detail-btn">
+          产品详情
+        </a>
+      </div>
+    </div>
+
+    <div class="recommend-reason">
+      <h3>推荐理由:
+        % for i in range(int(p.rec_rank)):
+        <i class="iconfont icon-star"></i>
+        % endfor
+      </h3>
+      <p class="reason-content">
+        ${p.rec_reason}
+      </p>
+    </div>
+  </div>
+  % endfor
+</%def>
+
+<%def name="title()">P2P网贷 - 好规划</%def>

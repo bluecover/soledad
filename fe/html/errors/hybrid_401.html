@@ -1,0 +1,27 @@
+<%inherit file="../base.html" />
+
+<%def name="main()">
+  % if request.user_agent.is_guihua_app:
+    正在获取登录状态
+  % else:
+    请在好规划 App 中浏览
+  % endif
+</%def>
+
+<%def name="js()">
+  % if request.user_agent.is_guihua_app:
+  <script src="{{{js/error/hybrid_401.js}}}"></script>
+  % endif
+</%def>
+
+<%def name="floatbar()"></%def>
+<%def name="sidenav()"></%def>
+<%def name="header()"></%def>
+<%def name="account()"></%def>
+<%def name="notification()"></%def>
+<%def name="footer()"></%def>
+
+<%def name="title()">登录中</%def>
+<%def name="pagetitle()">
+  <% return '登录中' %>
+</%def>

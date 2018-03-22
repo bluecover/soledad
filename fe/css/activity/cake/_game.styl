@@ -1,0 +1,145 @@
+@import 'jeet'
+
+.game-wrapper
+  width: 100%
+  overflow-x: hidden
+  .oven-wrapper
+    position: relative
+    width: 120px
+    margin: 0 auto
+    .line-left
+      width: 25px
+      position: absolute
+      left: -30px
+      top: 20px
+    .line-right
+      width: 25px
+      position: absolute
+      right: -30px
+      top: 20px
+
+  .oven
+    width: 120px
+    margin: 25px auto 0
+  .board
+    margin: 20px auto
+    background: #fff2bd
+    width: 94%
+    height: 220px
+    border-radius: 12px
+    position: relative
+    padding: 30px 0 20px
+  .nail
+    position: absolute
+    width: 12px
+    height: 12px
+    background: #ffdea6
+    border-radius: 50%
+    &:nth-child(1)
+      left: 10px
+      top: 10px
+    &:nth-child(2)
+      right: 10px
+      top: 10px
+    &:nth-child(3)
+      left: 10px
+      bottom: 10px
+    &:nth-child(4)
+      right: 10px
+      bottom: 10px
+  .record-table
+    width: 100%
+    font-size: 18px
+    line-height: 38px
+    border-collapse: collapse
+    td
+      width: 30%
+      height: 40px
+      text-align: center
+      border-top: 1px solid #ffdea6
+      border-bottom: 1px solid #ffdea6
+      color: darken(#ffdea6, 60)
+      &:nth-child(2)
+        border-left: 1px solid #ffdea6
+        border-right: 1px solid #ffdea6
+    .result
+      td
+        border: none
+        div
+          min-height: 90px
+      img
+        width: 75px
+  .result-tip
+    height: 14px
+    color: darken(#ffdea6, 60)
+    position: relative
+    top: -3px
+  .text-award
+    font-size: 30px
+    line-height: 50px
+    color: darken(#ffdea6, 60)
+  .text-award-tip
+    font-size: 16px
+    line-height: 24px
+    padding: 5px 40px
+    color: darken(#ffdea6, 60)
+  .pig-award
+    position: absolute
+    bottom: -50px
+    left: 50%
+    margin-left: -72px
+    width: 145px
+  .award-btn-wrapper
+    margin-top: 80px
+  .text-coupon
+    line-height: 1.4
+  .coupon-wrapper
+    padding: 20px 25px 10px
+    .img-wrapper
+      col(1/3, gutter:3)
+      text-align: center
+    img
+      width: 75px
+
+  .award-phone-wrapper
+    input
+      line-height: 40px
+      width: 70%
+      text-align: center
+      border: 1px solid darken(#ffdea6, 30)
+      border-radius: 5px
+      outline: none
+      font-size: 18px
+      padding: 0 10px
+      margin: 20px auto
+
+  .btn-timing
+    width: 100px
+    height: 100px
+    display: inline-block
+    border-radius: 50%
+    background: #524432
+    border: 1px solid #453623
+    user-select: none
+    -webkit-user-select: none
+    -webkit-touch-callout: none
+
+
+  .zqzs-con
+    width: 94%
+    background: #fff
+    margin: 20px auto
+    text-align: left
+    img
+      width: 100%
+    p
+      font-size: 16px
+      padding: 15px
+      &:before
+        width: 8px
+        height: 8px
+        content: ''
+        background: $brand_orange
+        border-radius: 50%
+        margin-right: 10px
+        display: inline-block

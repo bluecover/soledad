@@ -1,0 +1,268 @@
+@import '../core/_global.styl'
+@import '../mods/_redirect_dlg.styl'
+@import '../mods/_product_footer.styl'
+
+@import './plan/_var.styl'
+@import './plan/_header.styl'
+
+$small_screen = 'screen and (max-width: 1000px)'
+
+$m-ins-scheme
+  margin: 20px 0
+  >.hd
+    font-weight: bold
+    font-size: 16px
+    line-height: 1.8
+    @media $mobile
+      font-size: 14px
+  >.bd
+    line-height: 1.5
+
+$m-ins
+  position: relative
+  padding: 0 0 50px 70px
+  border-left: 1px dotted $gray_light
+  max-width: $min_width
+  width: 80%
+  margin: 0 auto
+  @media $mobile
+    width: auto
+    padding: 0 10px 50px 20px
+    margin-left: 22px
+  .title
+    font-weight: bold
+    margin-bottom: 10px
+  >.hd
+    .num
+      position: absolute
+      width: 25px
+      height: 25px
+      line-height 25px
+      background-color: $gray_light
+      text-align: center
+      color: #fff
+      font-size: 16px
+      border-radius: 50%
+      left: -12px
+      top: 5px
+      @media $mobile
+        height: 15px
+        width: 15px
+        left: -8px
+        font-size: 12px
+        line-height: 15px
+        top: 2px
+    .title
+      color: $primary_color
+      font-size: 24px
+      line-height: 1.5
+      @media $mobile
+        font-size: 18px
+        line-height: 1
+    .subtitle
+      line-height: 1.5
+      color: $gray
+  >.bd,
+  >.ft
+    margin-top: 30px
+    .title
+      font-size: 16px
+      @media $mobile
+        font-size: 14px
+  >.bd
+    p
+      color: $gray
+      line-height: 1.2
+
+.ins-plan-body
+  background-color: #fff
+  .content-wrapper
+    margin: 0 auto
+  .main-wrapper
+    max-width: none
+    min-width: 0
+
+.ins-plan-wrapper
+  @import './mods/_ins_product_footer.styl'
+  .product-footer-wrapper
+    .title,
+    .info-con
+      width: 80%
+      max-width: $min_width
+      margin: 0 auto
+    .title
+      margin-bottom: 40px
+
+  .m-planning-intro
+    padding: 0px 0 30px 60px
+    border-bottom: 1px dotted $gray_light
+    position: relative
+    border-left: 1px dotted $gray_light
+    max-width: $min_width
+    width: 80%
+    margin: 60px auto 0 auto
+    @media $mobile
+      width: auto
+      padding: 0 10px 0 20px
+      margin: 30px 0 0 22px
+    >.hd
+      float: left
+      .wrap
+        position: absolute
+        left: -45px
+        top: -20px
+        text-align: center
+        @media $mobile
+          left: -18px
+          top: -2px
+      .avatar
+        width: 90px
+        height: 90px
+        padding-top: 10px
+        border-radius: 50%
+        background-color: $primary_color
+        img
+          height: 70px
+        @media $mobile
+          padding-top: 8px
+          width: 34px
+          height: 34px
+          img
+            height: 20px
+      a
+        display: block
+        margin-top: 10px
+        padding: 5px 0
+        background-color: #fff
+        position: absolute
+        right: 17px
+    >.bd
+      overflow: hidden
+      margin-left: 10px
+      >.title
+        font-size: 30px
+        font-weight: bold
+        padding-bottom: 4px
+        @media $mobile
+          padding-bottom: 0
+          font-size: 24px
+          display: inline
+      .btn-replan
+        float: right
+        margin-top: 5px
+
+  .m-ins-priority,
+  .m-ins-risk,
+  .m-ins-premium
+    @extend $m-ins-scheme
+
+  .m-ins-accident,
+  .m-ins-ci,
+  .m-ins-life,
+  .m-ins-guide,
+  .m-ins-consulting
+    @extend $m-ins
+
+  .m-ins-accident
+    padding-top: 50px
+    >.hd
+      .num
+        top: 55px
+        @media $mobile
+          top: 51px
+  .m-ins-guide
+    padding-top: 50px
+    border-top: 1px dotted $gray_light
+    >.hd
+      .num
+        top: 55px
+        @media $mobile
+          top: 50px
+    >.bd
+      a
+        display: block
+        height: 30px
+        line-height: 30px
+  .m-ins-consulting
+    border-left: none
+    >.bd
+      margin-top: 5px
+      margin-left: -5px
+    .wexin-qrcode
+      width: 90px
+      height: 90px
+
+  .m-product-rec
+    .product
+      margin: 0 0 20px 0
+    .desc
+      display: inline-block
+      background-color: $primary_color
+      color: #fff
+      border-radius: 2px
+      padding: 0 4px
+      font-size: 12px
+      line-height: 18px
+    .product-title
+      margin-left: 4px
+      line-height: 1.2
+      @media $mobile
+        display: block
+        margin-left: 0
+        margin-top: 8px
+
+  .m-ins-recommendation
+    background-color: $primary_color
+    padding-bottom: 40px
+    @media $mobile
+      padding-bottom: 20px
+    >.hd
+      padding: 50px 0 40px 0
+      text-align: center
+      @media $mobile
+        padding: 30px 0 10px 0
+      .title
+        color: #fff
+        font-size: 30px
+        font-weight: bold
+        @media $mobile
+          font-size: 24px
+    >.bd
+      text-align: center
+    >.ft
+      margin: 30px 0 20px 0
+      text-align: center
+      @media $mobile
+        margin: 10px 0 10px 0
+      .btn-green-ghost
+        &:hover
+          background-color: $primary_color
+
+    .m-product-rec
+      .products-group
+        width: 910px
+        margin: 0 auto
+        text-align: left
+        @media $small_screen
+          width: 300px
+      .product
+        display: inline-block
+        margin-bottom: 30px
+        width: 450px
+        @media $mobile
+          display: block
+          margin: 20px auto
+          width: 280px
+        .desc
+          color: $primary_color
+          background-color: #fff
+        .product-title
+          color: #fff
+          font-size: 16px
+          vertical-align: middle
+          &:hover
+            font-weight: bold
+
+  .m-more-plan
+    text-align: center
+    padding: 50px 0 60px 0

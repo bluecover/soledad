@@ -1,0 +1,41 @@
+<div class="m-planner js-m-planner" data-id={{id}}>
+  <div class="hd">
+    <div class="avatar">{{{ avatar }}}</div>
+  </div>
+  <div class="bd">
+    <span class="name">{{owner}}</span>
+    {{#if is_completed}}
+    <span class="planning-state completed">
+    {{else}}
+    <span class="planning-state">
+    {{/if}}
+      {{#if is_completed}}
+      已规划
+      {{else}}
+      未规划
+      {{/if}}
+    </span>
+
+    {{#if accident_coverage}}
+    <p class="planning-scheme">
+      <span class="coverage">意外险：保险额 {{accident_coverage}} 万元</span>
+      <span class="coverage">重疾险：保险额 {{ci_coverage}} 万元</span>
+      {{#if life_coverage}}
+      <span class="coverage">寿险：保险额 {{life_coverage}} 万元</span>
+      {{/if}}
+    </p>
+    {{/if}}
+  </div>
+  <div class="ft">
+    <a class="btn btn-primary" href="{{href}}">
+      {{#if is_completed}}
+      查看规划书
+      {{else}}
+      立即规划
+      {{/if}}
+    </a>
+    <a class="btn-del js-btn-del">
+      <i class="iconfont icon-close"></i>
+    </a>
+  </div>
+</div>

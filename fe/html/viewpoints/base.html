@@ -1,0 +1,13 @@
+<%inherit file="/base.html" />
+
+<%def name="sidenav_content()">
+  % if is_article_fund:
+    ${parent.sidenav_content()}
+  % else:
+    <%namespace name="utils" file="/utils.html"/>
+    <ul class="nav-list">
+      <li class="nav-item ${utils.chk_path('viewpoints', cur_path)}"><a href="/viewpoints">理财师观点</a></li>
+      <li class="nav-item ${utils.chk_path('consultations', cur_path)}"><a href="/consultations">咨询理财师</a></li>
+	</ul>
+  % endif
+</%def>

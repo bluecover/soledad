@@ -1,0 +1,142 @@
+.brief-result-wrapper
+  p
+    line-height: 1.8
+  .result-wrapper
+    background-color: $teal_30
+    color: $teal_10
+    margin-bottom: 0
+    padding-bottom: 10px
+    position: relative
+    a
+      position: absolute
+      right: 20px
+    h2
+      font-size: 48px
+      margin: 5px 0 20px
+      em
+        font-size: 25px
+    .tips
+      margin-top: 22px
+      padding-top: 10px
+      border-top: 1px dotted $teal_10
+      line-height: 1.5
+      opacity: .7
+
+  .compare-wrapper
+    em
+      font-size: 30px
+    .desc
+      color: $gray_50
+    .people-wrapper
+      clearfix()
+      margin-top: 15px
+      .item-box
+        span(0.1)
+        height: 30px
+        background: url('{{{img/plan/people.svg}}}') bottom center no-repeat
+        background-size: 130% 100%
+        &.cur
+          height: 50px
+          position: relative
+          top: -15px
+          background: url('{{{img/plan/hands_up.svg}}}') bottom center no-repeat
+          background-size: 130% 100%
+    .drag-box
+      width: 90%
+      border-radius: 3px
+      background-color: #fafafa
+      border: 1px solid $gray_30
+      margin: 5px auto 30px
+      height: 20px
+      line-height: 15px
+      text-align: right
+      position: relative
+      padding-right: 10px
+      cursor: pointer
+      .drag-btn
+        border: 1px solid $gray_40
+        height: 30px
+        position: absolute
+        background: radial-gradient(circle closest-side, #fff 40%, $gray_10);
+        top: -6px
+        width: 30px
+        border-radius: 3px
+        z-index: 2
+        &:before
+          content: '|'
+          color: $gray_30
+          position: absolute
+          left: 35%
+          top: 5px
+        &:after
+          content: '|'
+          color: $gray_20
+          position: absolute
+          right: 35%
+          top: 5px
+      .bg
+        height: 100%
+        position: absolute
+        left: 0
+        top: 0
+        z-index: 1
+        border-radius: 5px
+        background-color:  $teal_10
+
+  .process-wrapper
+    margin-bottom: 0
+    h3
+      font-size: 22px
+      margin-top: 20px
+      margin-bottom: 30px
+    h5
+      font-size: 16px
+      text-align: left
+      margin-bottom: 5px
+    p
+      color: $gray_60
+    .process-main
+      padding-left: 13px
+    .process-box
+      border-left: 1px dotted $gray_30
+      padding-left: 20px
+      position: relative
+      padding-bottom: 25px
+      &:last-child
+        border-left: none
+        padding-bottom: 5px
+      span
+        border-radius: 50%
+        width: 25px
+        height: 25px
+        line-height: 25px
+        margin: 20px auto
+        display: block
+        background-color: $teal_20
+        color: #fff
+        position: absolute
+        left: -13px
+        top: -25px
+      p
+        color: $gray_50
+
+  .register-submit
+    margin-top: 20px
+    width: 100%
+    padding-top: 4px
+    padding-bottom: 4px
+
+  .gm-account
+    margin-left: 30px
+    display: block
+    margin-top: 30px
+
+    .m-account-form
+      padding: 0
+      .forget-psd
+        a
+          font-size: 12px
+      .agreement-desc
+        display: none
+      >.ft
+        display: none

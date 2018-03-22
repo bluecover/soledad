@@ -1,0 +1,25 @@
+<%page args="palette,link"/>
+
+
+<%def name="notification_title(palette)">
+    新春攒钱送体验金
+</%def>
+
+<%def name="notification_timestamp(palette)">
+  ${palette.creation_time.strftime('%Y-%m-%d %H:%M:%S')}
+</%def>
+
+<%def name="notification_content(palette)">
+  <p>在2月1日至3月10日成功攒钱即可免费获赠8888元体验金！</p>
+</%def>
+
+<div class="notice-main">
+  <div class="title">
+    <h3>${self.notification_title(palette)}</h3>
+  </div>
+  <p class="notice-date">${self.notification_timestamp(palette)}</p>
+  <p class="notice-info">${self.notification_content(palette)}</p>
+  % if link:
+    <i class="iconfont icon-forward mobile-element"></i>
+  % endif
+</div>

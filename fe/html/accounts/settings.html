@@ -1,0 +1,140 @@
+<%inherit file="/base.html" />
+<%def name="main()">
+  <div class="block-wrapper">
+    <h2 class="accounts-title-wrapper">
+      <span class="accounts-title">
+        账户信息设置
+      </span>
+    </h2>
+    <div class="accounts-setting-wrapper form-wrapper">
+      <div class="item">
+        <span class="title">手机号：</span>
+        <div class="input-con">
+          % if mobile:
+            <p class="text-light">${mobile} 可直接用手机号登录（如需变更手机号，请联系微信客服）</p>
+          % else:
+            <a href="#" class="js-bind-text">立即绑定手机号</a>
+          % endif
+        </div>
+      </div>
+      <div class="item">
+        <span class="title">身份认证：</span>
+        <div class="input-con">
+          % if identity:
+            <p class="text-light">${identity.masked_name}－已认证</p>
+          % else:
+          <p class="text-light">尚未认证（会在首次购买产品前引导您进行认证）</p>
+          % endif
+        </div>
+      </div>
+      <div class="item">
+        <span class="title">登录密码：</span>
+        <div class="input-con">
+          <a href="#" class="js-modify-text">修改登录密码</a>
+        </div>
+      </div>
+      <form  action="" method="post" class="js-modify-password-form hide">
+        <input type="hidden" name="csrf_token" value="${csrf_token()}">
+        <div class="item">
+          <span class="title text-indent">原密码：</span>
+          <div class="input-con">
+            <input type="password" name="old-password" class="validate common-input js-oldpwd-txt" data-validate="require" />
+          </div>
+        </div>
+        <div class="item">
+          <span class="title text-indent">新密码：</span>
+          <div class="input-con">
+            <input type="password" placeholder="新密码(至少六位)" name="new-password" class="validate common-input js-newpwd-txt" data-validate="require,verify" />
+          </div>
+        </div>
+        <div class="item">
+          <span class="title">确认密码：</span>
+          <div class="input-con">
+            <input type="password" class="validate common-input js-repwd-txt" name="repwd-txt" data-validate="require,confirm" />
+          </div>
+          <p class="text-red form-error-con js-form-error"></p>
+        </div>
+        <div class="item">
+          <div class="input-con">
+            <a href="#" class="btn btn-blue btn-saving js-confirm-password">保存设置</a>
+            <a href="#" class="btn btn-gray btn-cancel js-btn-cancel">取消</a>
+          </div>
+        </div>
+      </form>
+
+      % if check_is_inhouse():
+      <div class="item">
+        <span class="title">两步认证：</span>
+        <div class="input-con">
+        % if g.twofactor and g.twofactor.is_enabled:
+          两步认证已启用
+          （<a href="#" class="js-twofactor-deinit-text">停用</a>）
+        % else:
+          <a href="#" class="js-twofactor-init-text">开启两步认证</a>
+        % endif
+        </div>
+      </div>
+      % endif
+
+      <div class="modals-group modal-bind js-bind-wrapper">
+        <form action="" class="js-bind-form" method="post">
+          <input type="hidden" name="csrf_token" value="${csrf_token()}">
+          <div class="onemodal-hd">
+            <a href="#" rel="onemodal:close"><i class="iconfont icon-close" ></i></a>
+            <h4>绑定手机号</h4>
+          </div>
+          <div class="onemodal-bd form-wrapper">
+            <div class="js-phone-verify"></div>
+            <p class="js-bind-error text-red bind-error"></p>
+          </div>
+          <div class="onemodal-ft">
+            <a class="btn btn-primary js-btn-verified" href="#">确定</a>
+          </div>
+        </form>
+      </div>
+
+      <div class="modals-group modal-bind js-twofactor-wrapper">
+        <div class="onemodal-bd form-wrapper">
+          <div class="js-twofactor-preview hide">
+            <%
+              from markupsafe import Markup
+              twofactor_links = Markup(u'、').join(
+                Markup(u'<a href="%s" target="_blank">%s</a>') % (url, name)
+                for name, url in g.twofactor_apps)
+            %>
+            <p>使用 ${twofactor_links} 等移动应用扫描二维码</p>
+            <div class="js-img-wrapper"></div>
+          </div>
+          <div class="item">
+            <span class="title">验证码</span>
+            <div class="input-con">
+              <input type="text" class="js-twofactor-input">
+            </div>
+          </div>
+          <div class="item-info text-red hide">
+            <i class="iconfont icon-wrong"></i>
+            <span class="js-twofactor-error">您的提交出现了错误</span>
+          </div>
+        </div>
+        <div class="onemodal-ft">
+          <a class="btn btn-primary js-btn-enable-twofactor hide" href="#">开启两步认证</a>
+          <a class="btn btn-primary js-btn-disable-twofactor hide" href="#">关闭两步认证</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="notification()">
+</%def>
+
+<%def name="css()">
+  <link rel="stylesheet" href="{{{css/accounts/accounts.css}}}" />
+</%def>
+
+<%def name="js()">
+  <script src="{{{js/accounts/settings.js}}}"></script>
+  <script src="{{{js/accounts/twofactor.js}}}"></script>
+</%def>
+
+<%def name="title()">修改密码 - 好规划</%def>

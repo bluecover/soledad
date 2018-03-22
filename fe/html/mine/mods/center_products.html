@@ -1,0 +1,28 @@
+<%namespace name="product_invest" file='./center_product_invest.html' />
+<%namespace name="product_info" file='./center_product_info.html' />
+
+<div class="center-products">
+  <div class="hd desktop-element">
+    <h3 class="title">您的资产</h3>
+  </div>
+  <div class="hd mobile-element">
+    <div class="tabs clearfix js-product-tabs">
+      <a class="tab tab-wallet active" href="#">零钱包</a>
+      <a class="tab tab-saving" href="#">攒钱助手</a>
+    </div>
+  </div>
+  <div class="bd clearfix">
+  % if wallet_has_transaction:
+    ${product_invest.wallet()}
+  % else:
+    ${product_info.wallet()}
+  % endif
+
+  % if savings_manager.total_invest_amount > 0:
+    ${product_invest.savings()}
+  % else:
+    ${product_info.savings()}
+  % endif
+  </div>
+</div>
+

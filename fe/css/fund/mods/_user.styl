@@ -1,0 +1,244 @@
+.fund-user-wrapper
+  .font-green
+    color: $brand_green
+    @media $mobile
+      color: #fff
+  .title-wrapper
+    background-color: #DA5162
+    padding: 15px 20px
+    font-size: 24px
+  .unfollow-wrapper
+    padding: 20px
+    background-color: #fff
+    margin-bottom: 15px
+    @media $mobile
+      font-size: 11px
+      line-height: 1.5
+  .follow-wrapper
+    clearfix()
+    background-color: #fff
+    margin-bottom: 15px
+    .product-box
+      span(1/2)
+      @media $mobile
+        stack()
+    .product
+      padding: 20px 15px
+      border-right: 1px solid $gray_20
+      position: relative
+      height: 230px
+      &.half
+        span(1/2)
+      @media $mobile
+        background-color: #DA5162
+        color: white
+        padding: 20px 0
+      &:last-child
+        @media $mobile
+          border-right: none
+      h4
+        font-size: 18px
+        @media $mobile
+          text-align: center
+          font-size: 22px
+      >span
+        position: absolute
+        right: 20px
+        top: 20px
+        color: $gray_60
+        width: 100px
+        margin: 0 auto
+        @media $mobile
+          position: relative
+          display: block
+          text-align: center
+          right: auto
+          top: auto
+          margin-top: 10px
+          color: #fff
+      .total-profit
+        color: #DA5162
+        font-size: 16px
+        @media $mobile
+          color: #fff
+      .yesterday-profit
+        margin-top: 30px
+        color: $gray_60
+        em
+          font-size: 18px
+        @media $mobile
+          color: #fff
+      h2
+        font-size: 40px
+        color: #DA5162
+        margin-top: 40px
+        margin-bottom: 6px
+        @media $mobile
+          color: #fff
+          font-size: 30px
+      .tip-ballon
+        background-color: #DA5162
+        color: #fff
+        display: block
+        line-height: 20px
+        height: 20px
+        width: 60px
+        position: absolute
+        top: 30px
+        right: 10px
+        font-size: 14px
+        &:before
+          content:''
+          triangle(10px, right, color=#DA5162)
+          left: -20px
+          top: 0
+          position: absolute
+        @media $mobile
+          background-color: #FFF
+          color: #DA5162
+          height: 40px
+          width: 40px
+          text-align: center
+          padding-top: 8px
+          line-height: 12px
+          border-radius: 50%
+          top: 12px
+          right: -25px
+          font-size: 12px
+          &:before
+            triangle(5px, right, color=#fff)
+            left: -9px
+            top: 15px
+
+    .chart-box
+      span(1/2)
+      height: 230px
+      padding: 10px 20px
+      @media $mobile
+        stack()
+        height: 250px
+        padding: 10px 0
+      &.short
+        @media $mobile
+          height: auto
+      h4
+        font-size: 15px
+        margin: 10px 0 10px 10px
+      img
+        width: 100%
+        margin-top: 20px
+      .chart-wrapper
+        height: 180px
+        @media $mobile
+         height: 200px
+  .section-wrapper
+    padding-bottom: 0
+    margin-bottom: 0
+  .title-box
+    clearfix()
+    border-bottom: 1px solid $gray_20
+    padding-bottom: 20px
+    @media $mobile
+      padding-bottom: 0
+    h3
+      float: left
+      font-size: 22px
+      margin-top: 10px
+      @media $mobile
+        float: none
+        color: #DA5162
+        margin-bottom: 20px
+      a
+        font-size: 16px
+        @media $mobile
+          font-size: 12px
+  .btn-group
+    float: right
+    margin-top: 5px
+    @media $mobile
+      float: none
+      margin-bottom: 10px
+    i
+      margin-right: 0.5em
+    .btn-label
+      margin-right: 20px
+    .btn-follow
+      color: $gray_50
+      cursor: default
+
+  .product-main
+    clearfix()
+    .product-box
+      span(1/2)
+      position: relative
+      padding-right: 20px
+      padding-top: 30px
+      @media $mobile
+        stack()
+        border-right: none
+        padding-right: 0
+        margin-bottom: 30px
+      p
+        line-height: 1.7
+      img
+        width: 250px
+        display: block
+        margin: 30px auto 0
+      .tip-box
+        border: 1px solid $gray_20
+        cursor: pointer
+        padding: 5px
+        float: right
+        margin-top: 5px
+        margin-bottom: 20px
+        @media $mobile
+          margin-bottom: 0
+        img
+          width: 16px
+          display: inline-block
+          vertical-align: top
+          margin-right: 3px
+          margin-top: -2px
+    .chart-box
+      span(1/2)
+      padding-left: 20px
+      background-color: #fbfbfb
+      padding-top: 30px
+      @media $mobile
+        stack()
+        padding-left: 0
+      .chart-main
+        margin-top: 10px
+        height: 280px
+
+  .foot-row
+    background-color: $gray_10
+    border-top: 1px solid $gray_20
+    margin-bottom: 15px
+    @media $mobile
+      padding: 20px
+      border-top: none
+    .col-1
+      padding: 20px 50px
+      border-right: 1px solid $gray_20
+      display: inline-block
+      @media $mobile
+        width: 100%
+        padding: 0 0 20px
+        border-right: none
+        border-bottom: 1px solid $gray_20
+    .col-2
+      display: inline-block
+      padding-left: 20px
+      width: 80%
+      @media $mobile
+        width: 100%
+        padding: 20px 0 0
+      .time-box
+        float: right
+        @media $mobile
+          float: none
+          padding-top: 10px
+          display: block
+          color: $gray_60
+          font-size: 12px

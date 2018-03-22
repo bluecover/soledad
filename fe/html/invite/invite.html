@@ -1,0 +1,36 @@
+<%inherit file="./base_unregister.html" />
+
+<%!
+  from jupiter.integration.weixin import get_weixin_config
+%>
+
+<%def name="content()">
+  <div class="invite-index-wrapper">
+    <input type="hidden" id="wx_config" data-val="${get_weixin_config(jsApiList=['onMenuShareTimeline', 'onMenuShareAppMessage'])}"/>
+    ${self.body()}
+  </div>
+</%def>
+
+<%def name="body()">
+    <img class="invite-mail-pic" src="{{{img/invite/invite_envelop.png}}}" />
+    <div class="invite-mail">
+      <div class="invite-mail-hd">
+        <h3 class="title">
+           ${inviter_name} 邀请您使用攒钱助手
+        </h3>
+      </div>
+      <div class="invite-mail-bd">
+        <h6 class="text-orange">填写手机号领取115元新手礼包</h6>
+        <div id="phone_form"></div>
+      </div>
+    </div>
+</%def>
+
+<%def name="js()">
+<script src='{{{js/lib/wx_sdk.js}}}'></script>
+<script src='{{{js/invite/index.js}}}'></script>
+</%def>
+
+<%def name="title()">邀请新人 - 好规划</%def>
+
+<%def name="body_class()">body-invite</%def>

@@ -1,0 +1,35 @@
+<%page args='palettes'/>
+<%
+  from core.models.welfare.package import Package
+
+  palettes = palettes if isinstance(palettes, list) else [palettes]
+  package_kinds = [Package.get(p.properties.get('welfare_package_id')).kind for p in palettes]
+  dynamic_firewood_amount = sum([p.properties.get('dynamic_firewood_worth', 0) for p in palettes])
+
+  coupon_count = firewood_amount = 0
+  for p in package_kinds:
+    coupon_count += sum([c.amount for c in p.coupon_wrappers]) if p.coupon_wrappers else 0
+    firewood_amount += p.firewood_wrapper.worth if p.firewood_wrapper else 0
+%>
+<div class="modals-group dlg-record-detail">
+  <div class="onemodal-hd">
+    <a href="#" rel="onemodal:close"><i class="iconfont icon-close" ></i></a>
+    <h4 class="text-success">获赠福利</h4>
+  </div>
+
+  <div class="onemodal-bd">
+    <p class="text-bold">您已获赠以下奖励：</p>
+    % if firewood_amount:
+      <p>抵扣红包：${firewood_amount}元</p>
+    % elif dynamic_firewood_amount:
+      <p>抵扣红包：${dynamic_firewood_amount}元</p>
+    % endif
+    % if coupon_count:
+      <p>礼券：${coupon_count}张</p>
+    % endif
+  </div>
+  <div class="onemodal-ft">
+    <a href="#" class="btn btn-primary" rel="onemodal:close">确定</a>
+    <a href="${url_for('welfare.index',_anchor='coupon') if coupon_count else url_for('welfare.index')}" class="btn btn-green">立即查看</a>
+  </div>
+</div>

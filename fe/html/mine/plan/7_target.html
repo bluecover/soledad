@@ -1,0 +1,91 @@
+<%!
+  from core.models.utils import dec_2_pct
+  from core.models.plan.formula.data import target_name
+%>
+<%inherit file="./plan.html" />
+
+<%def name="plan_content()">
+  <div class="plan-content">
+    <div class="chapter-title">
+      <div class="twocol-content middle-align">
+        <span class="chapter-num left-col">7</span>
+        <div class="title-content right-col">
+          <p class="title-desc">开始行动吧</p>
+          <h1>实现理财目标</h1>
+        </div>
+      </div>
+    </div>
+    <p class="gh-tips">好规划建议：${gh_suggest_target_doc}</p>
+
+    <p>经过前面一系列的调整，您的财务状况将进入一个更为健康可持续的发展状态。这是您更快达成理财目标的基础。</p>
+
+
+    <div class="list-title">理财目标能否按时、全面地实现，主要取决于三个方面：</div>
+    <ul>
+      <li>
+        <span class="text-em">起点：</span>
+        <br>
+        现有可投资资产——前文计算结果为${format(investable_assets, ',')}元。
+      </li>
+      <li>
+        <span class="text-em">收支：</span>
+        <br>
+        当前年收入——${format(income_year, ',')}元；
+        <br>
+        年收入增长率——按社会平均水平10%计；
+        <br>
+        结余率——前文推荐结余率${dec_2_pct(target_balance_month_ratio)}。
+      </li>
+      <li>
+        <span class="text-em">投资收益：</span>
+        <br>
+        根据“投资规划”中的推荐方案，未来投资的整体收益率为${dec_2_pct(expect_ave_return,2)}。
+      </li>
+    </ul>
+
+    <p>据此，我们将为您预估每个目标到期时的达成比例，请见下图。</p>
+    <%
+    longest_target_year = int(general_target[-1].get('year'))*1.0
+    longest_target_year = longest_target_year if longest_target_year else 1.0
+    %>
+    <div class="data-table">
+      <div class="target-chart">
+        % for t in general_target:
+        <div class="target-item">
+          <div class="target-item-title">${target_name.get(t.get('target'))} <i class="iconfont ${'icon-caution' if t.get('rate')<1 else 'icon-ghcheck'}"></i></div>
+          <div class="target-item-content ${'unfinished' if t.get('rate')<1 else ''}">
+              <div class="target-chart-bg" style="width:${dec_2_pct(int(t.get('year'))/longest_target_year)};">
+              <div class="target-chart-progress">${dec_2_pct(t.get('rate'))}</div>
+            </div>
+            <div class="target-chart-desc">目标${format(int(t.get('money')),',')}元 ${t.get('year')+'年' if t.get('rate')==1 else t.get('year')+'年后可达成'+dec_2_pct(t.get('rate'))} </div>
+          </div>
+        </div>
+        % endfor
+      </div>
+    </div>
+
+    % if general_target_status == len(target):
+    <p>综上，在好规划的建议和您${'与家人' if relation_number else ''}的努力下，您设定的理财目标预计可以顺利达成。</p>
+    % else:
+      <p>如上，您的理财目标仅能部分达成。</p>
+    <p>首先，请不要气馁。理财目标在时间和金额上都有一定的弹性。您可以适当调整，缩减消费型、享受型的目标，优先保证重要和刚性目标的达成。</p>
+    <p>其次，您可以争取进一步提高自己的理财水平。收入增长很可能是达成目标的关键，您需要挑战每年大于15%的收入增幅。不过每个${'家庭' if relation_number else '人'}的提升空间不同，您可以从管理支出、提高收入或修炼投资能力等更适合自己的角度着手。</p>
+    % endif
+
+    <p>合理规划和有纪律地执行，是理财取得进展的前提。在此基础上，如果实际收支状况有所改变，或者投资市场有重大变化，有必要对理财规划进行调整。此外，在理财过程中试着多记录、思考和总结，一定会更有收获。</p>
+    <p>&nbsp;</p>
+
+    <p>以上是“好规划”为您量身定制的理财规划书。</p>
+
+    <p>在达成理财目标、创造美好生活的道路上，我们与您一同努力！</p>
+
+  </div>
+</%def>
+
+<%def name="plan_pager()">
+  <div class="plan-pager-wrapper">
+    <a href="/mine">查看理财行动计划</a>
+  </div>
+</%def>
+
+<%def name="title()">7. 实现理财目标 - 好规划</%def>

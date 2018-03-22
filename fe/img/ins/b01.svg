@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="259.8 533 120.1 68.4" enable-background="new 259.8 533 120.1 68.4" xml:space="preserve">
+<g>
+	<g id="XMLID_29_">
+		<path id="XMLID_30_" fill="#A9A9A9" d="M319.9,587.5c-21.5,0-41.9,5-60,13.9h120C361.8,592.5,341.4,587.5,319.9,587.5z"/>
+	</g>
+	<g id="XMLID_25_">
+		<defs>
+			<path id="XMLID_27_" d="M319.9,587.5c-21.5,0-41.9,5-60,13.9h120C361.8,592.5,341.4,587.5,319.9,587.5z"/>
+		</defs>
+		<use xlink:href="#XMLID_27_"  overflow="visible" fill="#9ACE5A"/>
+		<clipPath id="XMLID_32_">
+			<use xlink:href="#XMLID_27_"  overflow="visible"/>
+		</clipPath>
+		<ellipse id="XMLID_28_" clip-path="url(#XMLID_32_)" fill="#74A73C" cx="319.7" cy="593.9" rx="31.4" ry="7.6"/>
+	</g>
+	<polygon id="XMLID_24_" fill="#FFDE00" points="322.5,578.6 326.9,572.1 326.7,579.9 334,577.3 329.3,583.5 336.8,585.7 
+		329.3,587.9 334,594.1 326.7,591.5 326.9,599.3 322.5,592.8 318.1,599.3 318.3,591.5 311,594.1 315.7,587.9 308.2,585.7 
+		315.7,583.5 311,577.3 318.3,579.9 318.1,572.1 	"/>
+	<g id="XMLID_14_">
+		<path id="XMLID_23_" fill="#0075FF" d="M347.3,552.7c-5.4-5.4-14.1-5.4-19.5,0c-5.4,5.4-5.4,14.1,0,19.5"/>
+		<path id="XMLID_22_" fill="#376182" d="M337.6,562.4l-9.2-9.2c-0.3-0.3-0.8-0.3-1.1,0c-4.8,5.4-4.6,13.7,0.6,18.9"/>
+		
+			<path id="XMLID_21_" fill="#0075FF" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M341.2,553.4c-1.2-0.5-2.4-0.7-3.7-0.7"/>
+		<path id="XMLID_20_" fill="#00CFFF" d="M359.5,553.8c-2.1,5.3-5.2,10-9.1,13.9l-4,4l-4,4c-3.9,3.9-8.6,7-13.9,9.1l-4.1,1.7
+			c-1.2,0.5-2.3-0.7-1.9-1.9l4.8-11.8c0.1-0.2,0.2-0.3,0.3-0.5l9.6-9.6l9.6-9.6c0.1-0.1,0.3-0.2,0.5-0.3l11.8-4.8
+			c1.2-0.5,2.3,0.7,1.9,1.9L359.5,553.8z"/>
+		<g id="XMLID_18_">
+			<path id="XMLID_19_" fill="#00B8FF" d="M323,586.2c0.4,0.3,0.9,0.5,1.5,0.3l4.1-1.7c5.3-2.1,10-5.2,13.9-9.1l4-4l4-4
+				c3.9-3.9,7-8.6,9.1-13.9l1.7-4.1c0.2-0.6,0.1-1.1-0.3-1.5L323,586.2z"/>
+		</g>
+		<circle id="XMLID_17_" fill="#FFFFFF" cx="342.1" cy="566.9" r="2.1"/>
+		<circle id="XMLID_16_" fill="#FFFFFF" cx="333" cy="576.1" r="2.1"/>
+		<circle id="XMLID_15_" fill="#FFFFFF" cx="351.2" cy="557.8" r="2.1"/>
+	</g>
+	<g id="XMLID_1_">
+		<g id="XMLID_10_">
+			<path id="XMLID_13_" fill="#376182" d="M304.5,571.7l-16-4c-0.5-0.1-0.9-0.2-0.9-0.2l-6.5,6l5.8,1.4l26.8,6.7l-0.5-0.1l-6.2-8.1
+				C306.6,572.9,305,571.8,304.5,571.7z"/>
+			
+				<path id="XMLID_12_" fill="none" stroke="#FF3000" stroke-width="2.0292" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M279.7,572.4"/>
+			
+				<path id="XMLID_11_" fill="none" stroke="#FF3000" stroke-width="2.0292" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M315.7,584.1l-2-2.5l-5.5-6.9c-1.4-1.8-3.4-3.1-5.7-3.7l-4.2-1l-10.8-2.7"/>
+		</g>
+		<path id="XMLID_9_" fill="#FF3000" d="M316.2,582.6l-2.7-1.1l-26.3-6.6l-1.1-0.3l-4.8-1.2c-0.7-0.2-1.4,0.2-1.5,0.9l-1.7,6.8
+			c-0.5,2.1,0.7,4.1,2.8,4.6l1.6,0.4l0,0l0,0l8.3,2.1l2.1,0.5l16.3,4.1c2,0.5,4.6,1.1,8.3,2.1l0.6,0.1c1,0.3,2.1-0.4,2.3-1.4
+			l0.4-1.7C322,588.2,319.9,584.2,316.2,582.6z"/>
+		<circle id="XMLID_8_" fill="#FF3000" cx="308" cy="578.9" r="1.9"/>
+		<g id="XMLID_6_">
+			<polygon id="XMLID_7_" fill="#FF3000" points="283.3,577.4 281.2,575.1 289.2,567.5 289.2,567.5 291.8,568 292.5,568.8 			"/>
+		</g>
+		<circle id="XMLID_5_" fill="#376182" cx="286.4" cy="585.3" r="4.8"/>
+		<circle id="XMLID_4_" fill="#FFFFFF" cx="286.4" cy="585.3" r="1.6"/>
+		<circle id="XMLID_3_" fill="#376182" cx="313.1" cy="592" r="4.8"/>
+		<circle id="XMLID_2_" fill="#FFFFFF" cx="313.1" cy="592" r="1.6"/>
+	</g>
+</g>
+</svg>

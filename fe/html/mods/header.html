@@ -1,0 +1,147 @@
+<%page args="is_form=False, pagetitle='好规划'"/>
+<%!
+  from core.models.group import welfare_reminder_group, invitation_reminder_group
+  from core.models.profile.identity import has_real_identity
+  from core.models.notification import Notification
+%>
+
+<%
+  request_args = {
+    k: v for k, v in request.args.items()
+    if k in ('next', 'dcs', 'dcm') or k.startswith('utm_')}
+  if not request.endpoint.startswith('accounts.'):
+    request_args.setdefault('next', request.path)
+  g.account_urls = {
+    'login': url_for('accounts.login.login', **request_args),
+    'register': url_for('accounts.register.register', **request_args),
+  }
+%>
+<div class="header-wrapper">
+  <div class="header-content">
+    <%
+      is_remind_welfare = welfare_reminder_group.is_member(g.user.id_) if g.user else False
+      is_remind_invitation = invitation_reminder_group.is_member(g.user.id_) if g.user else False
+      is_remind_notification = bool(Notification.get_multi_unreads_by_user(g.user.id_)) if g.user else False
+    %>
+    ${self.desktop_nav(is_remind_welfare, is_remind_invitation, is_remind_notification)}
+    ${self.mobile_nav(pagetitle, is_remind_welfare, is_remind_invitation, is_remind_notification)}
+  </div>
+</div>
+
+<%def name="desktop_nav(is_remind_welfare, is_remind_invitation, is_remind_notification)">
+  <div class="desktop-element">
+    % if g.user:
+    <ul class="nav-con">
+      ${app_download()}
+      <li class="item js-dropdown-toggle">
+        <a class="welfare-nav" href="#">
+          福利中心
+          ${self.red_dot(is_remind_welfare)}
+        </a>
+        <ul class="dropdown-menu js-dropdown">
+          <li>
+            <a href="${url_for('welfare.index')}">
+              <span>我的福利
+              ${self.red_dot(is_remind_welfare)}
+              </span>
+            </a>
+          </li>
+            <li><a href="#" class="js-redeem-code" data-verify-back-url="${'' if has_real_identity(g.user) else url_for('profile.auth.supply', next=request.path)}">兑换码</a></li>
+        </ul>
+      </li>
+      <li class="item js-dropdown-toggle">
+        <a href="#" class="account-info">
+          <svg class="icon-admin" src="{svg{{img/misc/admin_icon.svg}}}"></svg>
+          <span>${g.user.screen_ident}</span>
+          ${self.red_dot(is_remind_invitation or is_remind_notification)}
+        </a>
+        <ul class="dropdown-menu js-dropdown">
+          <li>
+            <a href="${url_for('invite.mine')}">
+              <span>邀请得红包
+                ${self.red_dot(is_remind_invitation)}
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="${url_for('notification.index')}">
+              <span>通知中心
+                ${self.red_dot(is_remind_notification)}
+              </span>
+            </a>
+          </li>
+          <li><a href="${url_for('accounts.settings.settings')}">账号设置</a></li>
+          <li><a href="#" class="js-g-logout">退出登录</a></li>
+       </ul>
+      </li>
+    </ul>
+    % else:
+    <ul class="nav-con unlogin">
+      ${app_download()}
+      <li class="item"><a class="js-g-login" href="${g.account_urls['login']}">登录</a></li>
+      <li class="item active"><a class="js-g-register" href="${g.account_urls['register']}">注册</a></li>
+    </ul>
+    % endif
+  </div>
+</%def>
+
+<%def name="app_download()">
+  <%include file="./app_download_nav.html" />
+</%def>
+
+<%def name="mobile_nav(pagetitle, is_remind_welfare, is_remind_invitation, is_remind_notification)">
+  <div class="mobile-element mobile-header">
+    <span>${pagetitle}</span>
+    <a href="#" class="lines-button js-sidenav-switch">
+      <span class="lines"></span>
+    </a>
+    <a class="app-download" target="_blank" href="${url_for('app.landing.index', dcm='guihua', dcs='nav')}">
+      <svg class="icon-mobile" src="{svg{{img/app/phone_icon.svg}}}"></svg>
+    </a>
+    % if g.user:
+    <span class="welfare-nav js-dropdown-toggle">
+      <svg class="icon-gift" src="{svg{{img/welfare/gift_icon.svg}}}"></svg>
+      ${self.red_dot(is_remind_welfare)}
+      <ul class="dropdown-menu js-dropdown">
+        <li>
+          <a href="${url_for('welfare.index')}">
+            <span>我的福利
+            ${self.red_dot(is_remind_welfare)}
+            </span>
+          </a>
+        </li>
+          <li><a href="#" class="js-redeem-code" data-verify-back-url="${'' if has_real_identity(g.user) else url_for('profile.auth.supply', next=request.path)}">兑换码</a></li>
+      </ul>
+    </span>
+    % endif
+    <span class="account js-dropdown-toggle">
+      ${self.red_dot(is_remind_invitation or is_remind_notification)}
+      <i class="iconfont icon-account"></i>
+      <ul class="dropdown-menu js-dropdown">
+        % if g.user:
+          <li><a href="${url_for('invite.mine')}"><span>邀请得红包
+          ${self.red_dot(is_remind_invitation)}
+          </span></a></li>
+          <li>
+            <a href="${url_for('notification.index')}">
+            <span>通知中心
+            ${self.red_dot(is_remind_notification)}
+            </span>
+            </a>
+          </li>
+          <li><a href="${url_for('accounts.settings.settings')}">账号设置</a></li>
+          <li><a href="#" class="js-g-logout">退出登录</a></li>
+        % else:
+          <li><a href="${g.account_urls['login']}">登录</a></li>
+          <li><a href="${g.account_urls['register']}">注册</a></li>
+        % endif
+      </ul>
+    </span>
+  </div>
+  </%def>
+
+  <%def name="red_dot(is_show_dot)">
+     % if is_show_dot:
+        <em class="red-dot"></em>
+     % endif
+  </%def>

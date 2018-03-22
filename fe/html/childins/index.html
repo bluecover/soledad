@@ -1,0 +1,146 @@
+<%inherit file="./base.html" />
+
+<%def name="main()">
+  <div class="childins-index-wrapper">
+    ${self.banner()}
+    ${self.desc()}
+    ${self.advantage()}
+    ${self.foot()}
+    <%include file="mods/ins_footer.html"/>
+  </div>
+</%def>
+
+<%def name="banner()">
+  <div class="banner">
+    <img class="childins-logo" src="{{{img/logo/w_childins_logo.png}}}" alt="">
+    <div class="desktop-element feature-box-desktop">
+       <p><i class="iconfont icon-checked"></i>全面科学</p>
+       <p><i class="iconfont icon-checked"></i>性价比高</p>
+    </div>
+    <p class="subtitle">专业理财师帮你选保险</p>
+    <div class="feature-box-mobile mobile-element"><span><i class="iconfont icon-checked"></i>全面科学</span><span><i class="iconfont icon-checked"></i>性价比高</span></div>
+    <img class="childins-img" src="{{{img/childins/childbanner.png}}}" alt="">
+    % if g.user:
+      <a href="${url_for('ins.children.program')}" class="btn btn-primary btn-large btn-start">免费获得规划</a>
+    % else:
+      <a href="${url_for('ins.children.program')}" class="js-g-login btn btn-primary btn-large btn-start">免费获得规划</a>
+    % endif
+    <div class="slogan-box">
+      <p class="slogan">已帮<em class="text-16"> ${count} </em>位家长构筑儿童险保障</p>
+    </div>
+  </div>
+</%def>
+
+<%def name="desc()">
+  <div class="desc-wrapper block-wrapper">
+    <h3>儿童需要哪些保障？</h3>
+    <div class="desc-col">
+      <div class="circle-box">
+        <img src="{{{img/childins/desc1.png}}}" alt="健康保障">
+        <span>健康保障</span>
+      </div>
+      <p>儿童免疫力不完善较易生病，部分重疾发病率更高。合理的保障可以极大缓解医药费压力。</p>
+    </div>
+    <div class="desc-col">
+      <div class="circle-box">
+        <img src="{{{img/childins/desc2.png}}}" alt="意外保障">
+        <span>意外保障</span>
+      </div>
+      <p>小孩子活泼好动、自我保护意识薄弱。适当的保障可以帮助整个家庭更好地应对意外事件。</p>
+    </div>
+    <div class="desc-col">
+      <div class="circle-box">
+        <img src="{{{img/childins/desc3.png}}}" alt="教育金保障">
+        <span>教育金保障</span>
+      </div>
+      <p>小学到大学的教育金数额不小，应提前规划，尤其是家庭收入意外中断后如何保障教育金。</p>
+    </div>
+  </div>
+</%def>
+
+<%def name="advantage()">
+  <div class="advantage-wrapper block-wrapper">
+    <img class="title-cloud  mobile-element" src="{{{img/childins/title_cloud.png}}}" alt="">
+    <div class="title-box desktop-element">
+      <em>几千只儿童险怎么挑？</em>
+      <em>好儿童险什么样？</em>
+      <em>孩子需要什么保险？</em>
+      <em>怎么买最科学？</em>
+      <em>怎么买儿童险最靠谱？</em>
+      <em>怎么买保障最全面？</em>
+      <em>怎么买最实惠？</em>
+      <em>如何防忽悠？</em>
+      <em>哪买保险最省心？</em>
+    </div>
+    <h3>专业理财师帮你选保险！</h3>
+    <div class="advantage-col">
+      <div class="left-box">
+        <img src="{{{img/childins/desc4.png}}}" alt="">
+      </div>
+      <div class="right-box">
+        <h4>快捷省心</h4>
+        <p>快速获得专业保险规划</p>
+        <p>从近千只儿童险中精选产品</p>
+        <p>帮您节省时间和心力</p>
+      </div>
+    </div>
+    <div class="advantage-col">
+      <div class="left-box">
+        <img src="{{{img/childins/desc5.png}}}" alt="">
+      </div>
+      <div class="right-box">
+        <h4>精心组合</h4>
+        <p>专业视角构建最佳组合</p>
+        <p>主推“低保费高保障”产品</p>
+        <p>科学又实惠</p>
+      </div>
+    </div>
+    <div class="advantage-col">
+      <div class="left-box">
+        <img src="{{{img/childins/desc6.png}}}" alt="">
+      </div>
+      <div class="right-box">
+        <h4>专业负责</h4>
+        <p>国际 (CFP) 国内 (AFP) 认证</p>
+        <p>理财师团队坐镇</p>
+        <p>客观中立，只对用户利益负责</p>
+      </div>
+    </div>
+  </div>
+
+  % if share_id:
+  <div class="modals-group js-dlg-on-show">
+    <div class="onemodal-hd">
+      <a href="#" rel="onemodal:close"><i class="iconfont icon-close" ></i></a>
+      <h4 class="text-success">欢迎您应邀体验儿童保险规划</h4>
+    </div>
+    <div class="onemodal-bd">
+      <div class="twocol-content middle-align">
+        <div class="left-col">
+          <img src="{{{img/childins/huafei.png}}}" alt="" width="40">
+        </div>
+        <div class="right-col">
+          <p class="text-14 text-blue">完成规划后，邀请您的朋友即可领取一份话费福利</p>
+          <p class="text-light text-12">马上获得免费规划，也来参加“邀请得话费”活动吧！</p>
+        </div>
+      </div>
+    </div>
+    <div class="onemodal-ft">
+      <a class="btn btn-primary" rel="onemodal:close" href="#">确定</a>
+    </div>
+  </div>
+  % endif
+</%def>
+
+<%def name="foot()">
+  <div class="foot block-wrapper">
+    % if g.user:
+      <a href="${url_for('ins.children.program')}" class="btn btn-primary btn-large btn-start">免费获得规划</a>
+    % else:
+      <a href="${url_for('ins.children.program')}" class="js-g-login btn btn-primary btn-large btn-start">免费获得规划</a>
+    % endif
+    <p class="slogan">已帮<strong> ${count} </strong>位家长构筑儿童险保障</p>
+  </div>
+</%def>
+
+<%def name="title()">儿童保险规划 - 好规划</%def>

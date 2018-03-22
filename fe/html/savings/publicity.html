@@ -1,0 +1,121 @@
+<%inherit file="./base.html" />
+
+<%def name="main()">
+  <div class="savings-publicity-wrapper">
+    ${self.banner()}
+    ${self.body()}
+  </div>
+</%def>
+
+<%def name="banner()">
+  <div class="block-wrapper banner">
+    <div class="col-1">
+      <div class="title-box text-center">
+        <h5 class="text-orange desktop-element"><em class="text-bold">攒钱助手</em><img src="" alt="">全新产品</h5>
+        <h2>自选到期日</h2>
+        <p class="text-light sub-title">25天起售 </p>
+          % if product and product.in_stock:
+            % if can_quick_reg_zhiwang:
+              <a href="#" class="btn btn-primary btn-start btn-large desktop-element" data-verify-url="${url_for('jauth.channel_zhiwang')}" data-url="${url_for('savings.zhiwang.purchase', product_id=product.product_id)}"><span class="desktop-element">立即</span>攒钱</a>
+            % else:
+              <a class="btn btn-primary btn-start btn-large desktop-element" href="${url_for('savings.zhiwang.purchase', product_id=product.product_id)}">立即攒钱</a>
+            % endif
+          % else:
+            <a href="#" class="btn btn-disable btn-start desktop-element">已售罄</a>
+            <p class="text-lighter text-12 desktop-element">0点起售，敬请期待</p>
+          % endif
+      </div>
+    </div>
+    <div class="col-2">
+      <div class="chart-box js-chart-box"></div>
+      <div class="text-center mobile-element">
+        % if product and product.in_stock:
+          % if can_quick_reg_zhiwang:
+            <a href="#" class="btn btn-primary btn-start btn-large" data-verify-url="${url_for('jauth.channel_zhiwang')}" data-url="${url_for('savings.zhiwang.purchase', product_id=product.product_id)}"><span class="desktop-element">立即</span>攒钱</a>
+          % else:
+            <a class="btn btn-primary btn-start btn-large" href="${url_for('savings.zhiwang.purchase', product_id=product.product_id)}">立即攒钱</a>
+          % endif
+        % else:
+          <a href="#" class="btn btn-disable btn-start">已售罄</a>
+          <p class="text-lighter text-12">0点起售，敬请期待</p>
+        % endif
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="body()">
+  <div class="block-wrapper section-wrapper">
+    <div class="left-box">
+      <img src="{{{img/savings/publicity4.png}}}" alt="">
+    </div>
+    <div class="right-box">
+      <h3>可零可整</h3>
+      <p class="text-lighter">1000元起投，<em class="text-orange">1元递增</em>，零钱也能有收益</p>
+    </div>
+  </div>
+  <div class="block-wrapper section-wrapper reverse-mobile mobile-element">
+    <div class="left-box">
+      <img src="{{{img/savings/publicity3.png}}}" alt="">
+    </div>
+    <div class="right-box">
+      <h3>可长可短</h3>
+      <p class="text-lighter">自选到期日，享最高<em class="text-orange">7.3％</em>年化收益率 </p>
+    </div>
+  </div>
+  <div class="block-wrapper section-wrapper reverse desktop-element">
+    <div class="left-box">
+      <h3>可长可短</h3>
+      <p class="text-lighter">自选到期日，享最高<em class="text-orange">7.3％</em>年化收益率 </p>
+    </div>
+    <div class="right-box">
+      <img src="{{{img/savings/publicity3.png}}}" alt="">
+    </div>
+  </div>
+   <div class="block-wrapper section-wrapper">
+    <div class="left-box">
+      <img class="pig" src="{{{img/savings/publicity1.png}}}" alt="">
+    </div>
+    <div class="right-box">
+      <h3>快捷攒钱</h3>
+      <p class="text-lighter">随时随地，操作简单。<em class="text-orange">T+1</em>工作日即可起息</p>
+    </div>
+  </div>
+  <div class="block-wrapper section-wrapper reverse-mobile mobile-element">
+    <div class="left-box">
+      <img src="{{{img/savings/publicity2.png}}}" alt="">
+    </div>
+    <div class="right-box">
+      <h3>安全可靠</h3>
+      <p class="text-lighter">攒钱助手全部产品，享有<em class="text-orange">全额本息</em>保障 </p>
+    </div>
+  </div>
+  <div class="block-wrapper section-wrapper reverse desktop-element">
+    <div class="left-box">
+      <h3>安全可靠</h3>
+      <p class="text-lighter">攒钱助手全部产品，享有<em class="text-orange">全额本息</em>保障 </p>
+    </div>
+    <div class="right-box">
+      <img src="{{{img/savings/publicity2.png}}}" alt="">
+    </div>
+  </div>
+  <div class="block-wrapper text-center">
+      % if product and product.in_stock:
+        % if can_quick_reg_zhiwang:
+          <a href="#" class="btn btn-primary btn-start btn-large" data-verify-url="${url_for('jauth.channel_zhiwang')}" data-url="${url_for('savings.zhiwang.purchase', product_id=product.product_id)}"><span class="desktop-element">立即</span>攒钱</a>
+        % else:
+          <a class="btn btn-primary btn-start btn-large" href="${url_for('savings.zhiwang.purchase', product_id=product.product_id)}">立即攒钱</a>
+        % endif
+      % else:
+        <a href="#" class="btn btn-disable btn-start ">已售罄</a>
+        <p class="text-lighter text-12">0点起售，敬请期待</p>
+      % endif
+  </div>
+</%def>
+
+<%def name="js()">
+  <script src="{{{js/lib/highcharts.min.js}}}"></script>
+  <script src="{{{js/savings/publicity.js}}}"></script>
+</%def>
+
+<%def name="title()">攒钱助手 - 好规划</%def>

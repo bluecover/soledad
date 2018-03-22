@@ -1,0 +1,61 @@
+<%inherit file="../base.html" />
+
+<%!
+  from jupiter.integration.weixin import get_weixin_config
+%>
+
+<%def name="header()">
+<%include file="./mods/_header.html" />
+</%def>
+
+<%def name="content()">
+<div id="fullpage" class="index-wrapper">
+  <%include file="./mods/_sections.html" />
+</div>
+
+${section_menu()}
+
+<input type="hidden" id="wx_config" data-val="${get_weixin_config(jsApiList=['onMenuShareTimeline', 'onMenuShareAppMessage'])}"/>
+
+<div class="sidenav-wrapper js-sidenav mobile-element">
+  <a href="/" class="logo">
+    <img src="{{{img/logo.png}}}" alt="好规划"/>
+  </a>
+  <%include file="../mods/sidenav.html"/>
+</div>
+
+</%def>
+
+<%def name="section_menu()">
+<div id="section_menu" class="section-menu desktop-element">
+  <ul>
+    <li data-menuanchor="section-1" class="active"><a class="circle" href="#section-1"></a></li>
+    <li data-menuanchor="section-2"><a class="circle" href="#section-2"></a></li>
+    <li data-menuanchor="section-3"><a class="circle" href="#section-3"></a></li>
+    % if not request.user_agent.is_mobile:
+    <li data-menuanchor="section-4"><a class="circle" href="#section-4"></a></li>
+    % endif
+    % if request.user_agent.is_mobile:
+    <li data-menuanchor="section-7"><a class="circle" href="#section-7"></a></li>
+    <li data-menuanchor="section-8"><a class="circle" href="#section-8"></a></li>
+    % endif
+    <li data-menuanchor="section-5"><a class="circle" href="#section-5"></a></li>
+    <li data-menuanchor="section-6"><a class="circle" href="#section-6"></a></li>
+  </ul>
+</div>
+</%def>
+
+<%def name="floatbar()"></%def>
+
+<%def name="css()">
+<link rel="stylesheet" href="{{{css/index/index.css}}}">
+</%def>
+
+<%def name="js()">
+<script src='{{{js/lib/wx_sdk.js}}}'></script>
+<script src="{{{js/index.js}}}"></script>
+</%def>
+
+<%def name="body_class()">index-body-wrapper</%def>
+
+<%def name="html_class()">index-html-wrapper</%def>

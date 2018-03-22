@@ -1,0 +1,275 @@
+.m-survey-form
+  text-align: center
+  padding-top: 40px
+  >.hd
+    @media $desktop
+      height: 80px
+      border-bottom: 1px dotted $gray_light
+    .title
+      font-size: 20px
+      font-weight: bold
+      color: $primary_color
+    .subtitle
+      margin-top: 10px
+      color: $gray
+      h4
+        >span
+          display: block
+          line-height: 1.2
+  >.ft
+    height: 112px
+    margin-top: 40px
+    background-color: $page_bg
+    @media $desktop
+      background-color: #fff
+      border-top: 1px dotted $gray_light
+    .btn
+      margin: 20px 0 15px 0
+      line-height: 44px
+      width: 80%
+      border: none
+    .tip
+      font-size: 12px
+      line-height: 1.3
+      color: $gray
+    .close
+      position: absolute
+      right: 10px
+      top: 10px
+      color: $gray_light
+      &:hover
+        color: $gray
+
+.m-select
+  margin-top: 30px
+  @media $desktop
+    display: table
+    width: 100%
+  >.hd
+    @media $mobile
+      margin-bottom: 40px
+      .title
+        position: relative
+        font-weight: bold
+        &:before
+          content: ''
+          border-bottom: 1px dotted $gray_light
+          height: 0
+          width: 100%
+          position: absolute
+          top: 50%
+          left: 0
+      .text
+        position: relative
+        background: #fff
+        padding: 0 8px
+        z-index: 1
+    @media $desktop
+      display: table-cell
+      width: 30%
+      text-align: right
+      padding-right: 20px
+      .title
+        font-weight: bold
+  >.bd
+    @media $desktop
+      text-align: left
+      display: table-cell
+    .option
+      display: inline-block
+      min-width: 100px
+      width: 36%
+      border: 1px solid $gray_light
+      padding: 20px 5px
+      margin: 5px 4%
+      cursor: pointer
+      position: relative
+      z-index: 0
+      &.disabled
+        color: $gray_light
+        border-color: #eee
+      @media $desktop
+        text-align: center
+        min-width: 100px
+        width: 153px
+        padding: 0 5px
+        line-height: 40px
+        margin: 5px 10px 5px 0
+      .iconfont
+        display: none
+        position: absolute
+        line-height: 1
+        right: 5%
+        bottom: 5%
+      &.active
+        background-color: $primary_color
+        border-color: $primary_color
+        color: #fff
+        .iconfont
+          display: block
+
+.m-ci-form
+  @media $desktop
+    .m-select
+      >.hd
+        width: 34%
+
+.m-select.family_duty
+  @media $mobile
+    .options
+      position: relative
+      width: 300px
+      height: 250px
+      margin: 0 auto
+  .option
+    min-width: 0
+    width: 80px
+    height: 80px
+    border-radius: 50%
+    line-height: 40px
+    .iconfont
+      right: 40%
+      bottom: 0
+    @media $mobile
+      position: absolute
+      line-height: 1
+      padding: 25px
+      &:first-child
+        left: 52px
+      &:nth-child(2)
+        right: 52px
+      &:nth-child(3)
+        left: 20px
+        top: 90px
+      &:nth-child(4)
+        right: 20px
+        top: 90px
+      &:last-child
+        left: 98px
+        top: 142px
+  @media $desktop
+    .option
+      min-width: 100px
+      width: auto
+      border-radius: 0
+      height: 40px
+      padding: 0 5px
+      margin: 10px 3% 0 0
+      .iconfont
+        right: 5%
+        bottom: 5%
+
+.m-select.annual-premium
+  >.bd
+    .option
+      @media $mobile
+        width: 80%
+
+.m-select.m-select-gender
+  >.bd
+    .option
+      min-width: 0
+      width: 70px
+      height: 70px
+      vertical-align: top
+      border-radius: 50%
+      margin: 5px 9%
+      img
+        width: 30px
+        height: 30px
+        margin: 0 auto
+      .white
+        display: none
+      &.active
+        .gray
+          display: none
+        .white
+          display: inline-block
+        .iconfont
+          display: none
+      &.active:last-child
+        border-color: #fb6379
+        background-color: #fb6379
+  @media $desktop
+    >.bd
+      .option
+        border-radius: 50px
+        width: 153px
+        height: 40px
+        line-height: 40px
+        vertical-align: middle
+        margin: 5px 10px 5px 0
+        img
+          width: 22px
+          height: 22px
+          vertical-align: top
+          margin: 8px 10px 0 0
+
+.m-input-group
+  .input-group
+    @extend .m-select
+    >.hd
+      @media $desktop
+        padding-top: 20px
+    >.bd
+      text-align: center
+      @media $desktop
+        vertical-align: top
+        text-align: left
+  .input-group-error
+    text-align: left
+    padding-left: 30%
+    color: $brand_red
+
+.m-input
+  width: 80%
+  display: inline-block
+  margin-bottom: 20px
+  @media $desktop
+    vertical-align: top
+    min-width: 70%
+    margin: 5px 0
+  >.bd
+    position: relative
+    height: 40px
+    text-align: center
+    color: $gray
+    @media $desktop
+      margin: 0 10px 0 0
+  .title,
+  .unit
+    position: absolute
+    top: 14px
+  .title
+    left: 10px
+    color: $font_color
+  .unit
+    right: 10px
+  input
+    -webkit-appearance: none
+    padding: 14px 50px 10px 20px
+    border: 1px solid $gray_light
+    height: 40px
+    line-height: 20px
+    width: 100%
+    text-align: left
+    vertical-align: middle
+    font-size: 14px
+    outline: none
+    color: $font_color
+  >.ft
+    margin-top: 5px
+    line-height: 1.4
+    color: $brand_red
+
+.m-input
+  .annual-revenue-personal,
+  .annual-revenue-family
+    padding-left: 100px
+
+.m-life-complement-form
+  .m-input
+    input
+      padding-left: 50px
+    .asset
+      padding-left: 20px

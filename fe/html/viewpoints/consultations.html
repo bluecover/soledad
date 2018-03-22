@@ -1,0 +1,25 @@
+<%inherit file="./base.html" />
+
+<%def name="main()">
+  <div class="consultations-content">
+    % for a in articles:
+    <div class="consultations-item">
+      <p class="item-question">
+        问：${a.ask}
+      </p>
+      <div class="item-answer">
+        <span class="answer-word">答：</span>
+        <p class="answer-content">
+            ${a.answer}
+        </p>
+      </div>
+    </div>
+    % endfor
+  </div>
+  ##<%include file="mods/paginater.html" />
+</%def>
+
+<%def name="title()">咨询理财师 - 好规划</%def>
+<%def name="pagetitle()">
+  <% return '咨询理财师' %>
+</%def>

@@ -1,0 +1,61 @@
+.childins-common-header
+  background-color: $blue_gray_10
+  height: 120px
+  border-bottom: 1px dotted #C9CDD0
+  margin-bottom: 0
+  .step-wrapper
+    width: 271px
+    margin: 0 auto
+    font-size: 0
+    position: relative
+    span
+      position: absolute
+      margin-top: 5px
+      font-size: 14px
+      top: 40px
+      @media $mobile
+          font-size: 12px
+      &.left
+        left: -20px
+        @media $mobile
+          left: -12px
+      &.right
+        right: -20px
+        @media $mobile
+          right: -12px
+  .step-box
+    width: 36px
+    height: 36px
+    border-radius: 50%
+    background-color: #F1F4F8
+    display: inline-block
+    vertical-align: top
+    font-size: 14px
+    box-shadow: 0 -1px 0 #D4DCE0
+    &.first-child
+      left: 2px
+      position: relative
+    &.last-child
+      margin-left: -2px
+  .circle-box
+    width: 24px
+    height: 24px
+    margin: 6px
+    border-radius: 50%
+    text-align: center
+    line-height: 24px
+    background-color: $blue_gray_20
+    color: #fff
+    &.cur
+      background-color: $orange_70
+  .step-main
+    width: 200px
+    background-color: #F1F4F8
+    height: 16px
+    display: inline-block
+    vertical-align: top
+    margin-top: 10px
+    box-shadow: 0 -1px 0 #D4DCE0
+    position: relative
+    z-index: 0
+

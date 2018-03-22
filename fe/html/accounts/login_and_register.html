@@ -1,0 +1,41 @@
+<%inherit file="./base.html" />
+
+<%def name="content()">
+  <div class="accounts-box accounts-aside-wrapper clearfix">
+    <div class="accounts-content">
+      <div class="accounts-content-title-wrapper">
+        <h2 class="accounts-title"></h2>
+        <p class="title-bg"></p>
+      </div>
+      <div
+        class="gm-account accounts-content-form"
+        data-url="${redirect_url}"
+        data-dcm=${dcm}
+        data-dcs=${dcs}
+        data-account-type="${request.endpoint.rsplit('.', 1)[1]}">
+      </div>
+    </div>
+    <div class="login-aside accounts-aside">
+      <p>没有账号？</p>
+      <a class="js-to-register text-16 text-bold" href="#">免费注册 &gt;&gt;</a>
+    </div>
+    <div class="register-aside accounts-aside">
+      <p>已有账号?</p>
+      <a href="#" class="text-16 text-bold js-to-login">立即登录 &gt;&gt;</a>
+      <h3>即刻拥有自己的专属理财规划</h3>
+      <ul>
+        <li>对您的财务状况进行全面的梳理和分析</li>
+        <li>制定个性化的理财规划方案</li>
+        <li>给出切实可行的行动建议</li>
+        <li>通过微信获得理财资讯并与理财师进行沟通</li>
+      </ul>
+    </div>
+  </div>
+  <%include file="../mods/footer.html" />
+</%def>
+
+<%def name="account()"></%def>
+
+<%def name="js()">
+  <script src="{{{js/accounts/login_and_register.js}}}"></script>
+</%def>

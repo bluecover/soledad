@@ -1,0 +1,38 @@
+<%!
+  from collections import OrderedDict
+%>
+<%inherit file="../base.html" />
+
+<%def name="main()">
+  <div class="plan-wrapper">
+    ${self.plan_nav()}
+    ${self.plan_content()}
+  </div>
+
+  ${self.plan_pager()}
+</%def>
+
+<%def name="plan_content()"></%def>
+<%def name="plan_pager()"></%def>
+
+<%def name="js()">
+  <script src="{{{js/lib/highcharts.min.js}}}"></script>
+  <script src="{{{js/mine/report.js}}}"></script>
+</%def>
+
+<%def name="pagetitle()">
+  <% return '在线规划书' %>
+</%def>
+
+<%def name="plan_nav()">
+  <a class="plan-menu js-plan-menu" href="#">目录&nbsp;&nbsp;<span></span></a>
+  <ul class="plan-nav js-plan-nav">
+    <li><a href="/mine/plan/status">1 资产现状</a></li>
+    <li><a href="/mine/plan/balance">2 收支分析</a></li>
+    <li><a href="/mine/plan/urgent">3 紧急备用金</a></li>
+    <li><a href="/mine/plan/insurance">4 保险规划</a></li>
+    <li><a href="/mine/plan/risk">5 风险承受能力</a></li>
+    <li><a href="/mine/plan/invest">6 投资规划</a></li>
+    <li><a href="/mine/plan/target">7 实现理财目标</a></li>
+  </ul>
+</%def>

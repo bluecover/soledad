@@ -1,0 +1,156 @@
+<%inherit file="./base_plan.html" />
+<%def name="header()"></%def>
+
+<%def name="main()">
+${parent.wx_share()}
+<div class="ins-plan-wrapper">
+  <div class="m-section-1 js-section-1"
+    data-agent="${'mobile' if request.user_agent.is_mobile else 'pc'}">
+    ${self.top_banner()}
+
+    <div class="mobile-element">
+      <%include file="../mods/next_arrow.html" />
+    </div>
+  </div>
+
+  <div class="m-section-2">
+
+    <div class="m-recommendation">
+      <div class="hd">
+        <h3 class="title wow fadeInUp" data-wow-delay=".5s">为你量身定制投保建议</h3>
+      </div>
+      <div class="bd">
+        <ul class="reasons">
+          <li class="wow fadeInLeft">
+            <svg src="{svg{{img/ins/plan/select.svg}}}"></svg>
+            <h4 class="sub-title">合理的规划</h4>
+            <p class="desc">需要哪些险种，买多少保额最合适，如何选择期限...</p>
+          </li>
+          <li class="wow fadeInRight">
+            <svg src="{svg{{img/ins/plan/target.svg}}}"></svg>
+            <h4 class="sub-title">高性价比产品</h4>
+            <p class="desc">专业理财师筛选上千支保险，精选最实惠、可靠、适合你的产品</p>
+          </li>
+          <li class="wow fadeInLeft">
+            <svg src="{svg{{img/ins/plan/balance.svg}}}"></svg>
+            <h4 class="sub-title">客观中立的观点</h4>
+            <p class="desc">我们不隶属于任何保险销售机构，只对用户利益负责</p>
+          </li>
+          <li class="wow fadeInRight">
+            <svg src="{svg{{img/ins/plan/conversation.svg}}}"></svg>
+            <h4 class="sub-title">1 对 1 免费咨询</h4>
+            <p class="desc">规划后免费享受理财师咨询服务，理财问题全部为你解答</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="m-start-plan">
+      <div class="hd">
+        <h3 class="title">买保险 3 大注意事项</h3>
+      </div>
+      <div class="bd">
+        <ul>
+          <li>
+            <h4 class="sub-title">险种组合要合理</h4>
+            <p class="desc">
+              <span>每个险种大类下都有若干小类，各险种的保障多有重叠。</span>
+              <span>合理地组合险种，才能使保障既全面又避免重叠浪费。</span>
+            </p>
+          </li>
+          <li>
+            <h4 class="sub-title">保额与期限要适中</h4>
+            <p class="desc">
+              <span>保额太低、期限太短，直接导致保障不足；</span>
+              <span>但保额太高、期限太长，又会导致保费过高，影响整体的财务健康。</span>
+            </p>
+          </li>
+          <li>
+            <h4 class="sub-title">在中立机构买保险</h4>
+            <p class="desc">
+              <span>尽量在不隶属于任何保险公司的中立机构买保险，</span>
+              <span>才能获得全面、客观的保险推荐，也更少被黑心推销员误导。</span>
+            </p>
+          </li>
+        </ul>
+      </div>
+      <div class="ft">
+        <a class="btn btn-primary btn-large btn-start"
+          data-wow-delay=".5s"
+          href="${url_for('ins.plan.consulting')}">开始规划</a>
+        <p class="tip">获得更多投保建议，只需 5 分钟</p>
+      </div>
+    </div>
+
+  </div>
+
+  ${self.plan_footer()}
+</div>
+
+</%def>
+
+<%def name="top_banner()">
+<div class="logo-wrap desktop-element">
+<svg src="{svg{{img/ins/plan/ins_plan_index_logo.svg}}}"></svg>
+</div>
+<div class="m-top-banner">
+  <div class="hd">
+    <h2 class="title">想买保险</h2>
+    <h3 class="subtitle">保额和期限怎么选择最合理？</h3>
+    <svg class="mobile-element" src="{svg{{img/ins/plan/ins_plan_index_logo.svg}}}"></svg>
+  </div>
+  <div class="bd">
+    <h2 class="title">你需要一份<strong>保险规划</strong></h2>
+    <ul class="feature-box">
+      <li><i class="iconfont icon-checked"></i>专业</li>
+      <li><i class="iconfont icon-checked"></i>中立</li>
+      <li><i class="iconfont icon-checked"></i>量身定制</li>
+    </ul>
+  </div>
+  <div class="ft wow fadeInUp" data-wow-duration="1s">
+    <a class="btn btn-primary btn-large btn-start"
+      href="${url_for('ins.plan.consulting')}">开始规划</a>
+    <p class="tip">只需 5 分钟，免费做保险规划</p>
+  </div>
+</div>
+</%def>
+
+<%def name="plan_footer()">
+<div class="m-ins-plan-footer">
+  <div class="hd">
+    <h2 class="title">合作机构</h2>
+  </div>
+  <div class="bd">
+    <ul class="partners">
+      <li>
+        <svg class="logo-zm" src="{svg{{img/index/logo_zm.svg}}}"></svg>
+      </li>
+      <li>
+        <svg class="logo-700" src="{svg{{img/index/logo_700.svg}}}"></svg>
+      </li>
+      <li>
+        <svg class="logo-hz" src="{svg{{img/ins/logo_hz.svg}}}"></svg>
+      </li>
+      <li>
+        <svg class="logo-yxins" src="{svg{{img/ins/logo_yxins.svg}}}"></svg>
+      </li>
+    </ul>
+  </div>
+
+  <%include file="../mods/footer.html" />
+</div>
+</%def>
+
+<%def name="title()">
+在线保险规划 - 好规划
+</%def>
+
+<%def name="js()">
+<script src='{{{js/lib/wx_sdk.js}}}'></script>
+<script src="{{{js/lib/wow.min.js}}}"></script>
+<script src="{{{js/ins/plan.js}}}"></script>
+</%def>
+
+<%def name="css()">
+<link rel="stylesheet" href="{{{css/ins/plan.css}}}">
+</%def>

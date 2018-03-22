@@ -1,0 +1,16 @@
+.loading-dot
+  width: 8px
+  height: 8px
+  vertical-align: top
+  margin-top: 30px
+  margin-right: 5px
+  display: inline-block
+  border-radius: 50%
+  background-color: $gray_40
+  @media $mobile
+     width: 5px
+     height: 5px
+     margin-right: 0
+     margin-top: 20px
+  &.cur
+    background-color: $orange_70

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta content="charset=utf-8">
+  <meta name="renderer" content="webkit">
+  <title>好规划</title>
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+  <meta name="format-detection" content="telephone=no" />
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .header-content {
+    zoom: 1;
+    padding-left: 25px;
+    margin: 0 auto;
+    position: relative;
+    vertical-align: middle;
+    height: 50px;
+    background-color: #f6f6f8;
+  }
+
+  .header-content img {
+    margin-top: 10px;
+    height: 30px;
+  }
+
+  body {
+    font-size: 14px;
+    font-family: 'Microsoft YaHei' Helvetica, Arial, Sans-serif;
+    color: #444;
+    background: #edeef2;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .error-box {
+    width: 960px;
+    margin: 100px auto 200px;
+  }
+
+  .error-box h2 {
+    display: inline-block;
+    font-size: 50px;
+    font-weight: bold;
+    color: #80bbd5;
+    margin: 0 40px 0 240px;
+  }
+
+  .error-box h3 {
+    display: inline-block;
+    font-size: 28px;
+    color: #222;
+  }
+
+  .error-box p {
+    font-size: 14px;
+    color: #aaa;
+    padding-left: 410px;
+    line-height: 24px;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="header-content">
+    <a href="/"><img src="{{{img/logo_blue.png}}}" alt="好规划"></a>
+  </div>
+  <div class="error-box">
+    <h2>s<span>o</span>r<span>r</span>y</h2>
+    <h3>您的操作过于频繁，请稍后重试</h3>
+    <p>
+      <span class="js-countdown-num">5</span> 秒钟后，页面自动跳转到首页
+    </p>
+  </div>
+  <script src="{{{js/lib/base.min.js}}}"></script>
+  <script src="{{{js/error/error_page_countdown.js}}}"></script>
+</body>
+
+</html>

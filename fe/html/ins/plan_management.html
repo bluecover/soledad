@@ -1,0 +1,68 @@
+<%inherit file="./base_plan.html" />
+
+<%def name="main()">
+${parent.wx_share()}
+<div class="ins-plan-management-wrapper">
+  <div class="m-ins-plan-list js-ins-plan-list">
+    <div class="hd">
+      <h3 class="title">我的家庭保险规划</h3>
+    </div>
+
+    % for planner in planners:
+    <div class="m-planner js-m-planner" data-id=${planner['id']}>
+      <div class="hd">
+        % if planner['gender'] == u'男性':
+          <div class="avatar"><img src="{{{img/ins/plan/male_color.png}}}" alt="头像"></div>
+        % else:
+          <div class="avatar"><img src="{{{img/ins/plan/female_color.png}}}" alt="头像"></div>
+        % endif
+      </div>
+      <div class="bd">
+        <span class="name">${'我' if planner['owner'] == u'自己' else planner['owner']}</span>
+        <span class="planning-state ${'completed' if planner['is_completed'] else ''}">
+          ${'已规划' if planner['is_completed'] else '未规划'}
+        </span>
+        % if planner['is_completed']:
+        <p class="planning-scheme">
+          <span class="coverage">意外险：保额 ${planner['accident_coverage']} 万元</span>
+          <span class="coverage">重疾险：保额 ${planner['ci_coverage']} 万元</span>
+          % if planner['life_coverage'] and planner['life_coverage'] > 0:
+          <span class="coverage">寿险：保额 ${planner['life_coverage']} 万元</span>
+          % endif
+        </p>
+        % endif
+      </div>
+      <div class="ft">
+        <a class="btn btn-primary ${'completed' if planner['is_completed'] else ''}"
+          href="${planner['href']}">
+          ${'查看规划书' if planner['is_completed'] else '立即规划'}
+        </a>
+        % if planner['owner'] != u'自己':
+        <a class="btn-del js-btn-del">
+          <i class="iconfont icon-close"></i>
+        </a>
+        % endif
+      </div>
+    </div>
+    % endfor
+  </div>
+
+  <div class="js-m-add-planner m-add-planner ${'hide' if len(planners) > 1 else ''}">
+    <a class="js-add-planner add-planner">+ 添加配偶</a>
+  </div>
+</div>
+
+</%def>
+
+<%def name="title()">我的家庭保险规划 - 好规划</%def>
+
+<%def name="css()">
+<link rel="stylesheet" href="{{{css/ins/plan_management.css}}}">
+</%def>
+
+<%def name="footer()"></%def>
+
+<%def name="js()">
+<script src='{{{js/lib/wx_sdk.js}}}'></script>
+<script src="{{{js/ins/plan_management.js}}}"></script>
+</%def>

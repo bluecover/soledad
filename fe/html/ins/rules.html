@@ -1,0 +1,160 @@
+<%inherit file="./base.html" />
+
+<%!
+  from jupiter.integration.weixin import get_weixin_config
+%>
+
+<%def name="main()">
+<div class="invite-mine-wrapper">
+  <input type="hidden" id="wx_config" data-val="${get_weixin_config(jsApiList=['onMenuShareTimeline', 'onMenuShareAppMessage'])}"/>
+  ${self.banner()}
+  ${self.body()}
+</div>
+</%def>
+
+<%def name="banner()">
+<div class="top-banner">
+  <h2 class="activity-title text-bold text-center"><span class="home-title">保险精选<em class="mobile-element">·</em>年终福利</span><span class="text-white sub-title">投保就返攒钱礼券</span></h2>
+  <img src="{{{img/ins/bag_mobile.png}}}" alt="" class="activity-mobile-img mobile-element">
+  <div class="img-box desktop-element text-center">
+    <img src="{{{img/ins/bag.png}}}" alt="" class="activity-img">
+    <span>满减券</span>
+  </div>
+</div>
+</%def>
+
+<%def name="body()">
+  ${self.activity_content()}
+</%def>
+
+<%def name="activity_content()">
+<div class="block-wrapper">
+  <div class="invite-desc-mod">
+    <div class="hd"><h3 class="title text-green text-bold">活动规则</h3></div>
+    <div class="bd">
+      <ul>
+        <li>
+          <div class="twocol-content">
+            <div class="left-col"><span class="mark num-mark">1</span></div>
+            <div class="right-col">
+              <p>投保指定好规划保险精选产品，即得<span class="text-orange">攒钱助手“满减券”</span>，最高<span class="text-bold">220元</span>，收益猛增2%起！</p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="twocol-content">
+            <div class="left-col"><span class="mark num-mark">2</span></div>
+            <div class="right-col">
+              <p class="text-bold">指定产品如下（带有「送攒钱券」标识）：</p>
+              <p class="text-lighter"> ① 中民无忧综合意外基本计划（计划1，2，3都参与）</p>
+              <p class="text-lighter"> ② 新华 i 健康定期重大疾病保障计划（仅限20年、30年缴费期间）</p>
+              <p class="text-lighter"> ③ 合众爱家无忧定期寿险（仅限20年缴费期间）</p>
+              <p class="text-lighter"> ④ 中国人寿安心学生吉祥保障计划</p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="twocol-content">
+            <div class="left-col"><span class="mark num-mark">3</span></div>
+            <div class="right-col">
+              <p class="text-bold">攒钱助手“满减券”与保费对应关系：</p>
+              <table class="table-box">
+                <tr>
+                  <td>活动期间保费合计</td>
+                  <td>「满500减10」券</td>
+                  <td>「满1000减20」券</td>
+                  <td>「满5000减100」券</td>
+                </tr>
+                <tr>
+                  <td>1 - 300元</td>
+                  <td>1张</td>
+                  <td>1张 </td>
+                  <td>-</td>
+                </tr>
+                <tr>
+
+                  <td>301 - 1000元</td>
+                  <td>- </td>
+                  <td>1张  </td>
+                  <td>1张</td>
+                </tr>
+                <tr>
+                  <td>1001元及以上</td>
+                  <td>-</td>
+                  <td>1张</td>
+                  <td>2张</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="twocol-content">
+            <div class="left-col"><span class="mark num-mark">4</span></div>
+            <div class="right-col">
+              <p><span  class="text-bold">活动期限：</span>即日起至2015年12月31日24:00止。</p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="twocol-content">
+            <div class="left-col"><span class="mark num-mark">5</span></div>
+            <div class="right-col">
+              <p class="text-bold">参加方式：</p>
+              <p>购买好规划保险精选产品，投保成功后，请前往好规划网微信公众号（plan141），按照下例把中民订单号与好规划账号发送给规划君：
+              </p>
+              <p>“保险精选活动 + E1509251526050994 + 134****6670”。</p>
+              <p>好规划微信公众号：plan141</p>
+              <img src="{{{img/misc/qrcode.png}}}" alt="" width='100'>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="invite-desc-mod activity-notice">
+    <div class="hd"><h3 class="title text-green text-bold">活动须知</h3></div>
+    <div class="bd">
+      <ul>
+        <li>
+          <div class="twocol-content">
+            <div class="left-col"><span class="mark num-mark">1</span></div>
+            <div class="right-col">
+              <p class="text-bold">此次保险精选的年终福利活动，支持哪些购买渠道？</p>
+              <p class="text-lighter">此次活动，只支持好规划微信、好规划官网、她理财官网和她理财APP客户端进行。</p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="twocol-content">
+            <div class="left-col"><span class="mark num-mark">2</span></div>
+            <div class="right-col">
+              <p class="text-bold">满减券的适用范围？</p>
+              <p class="text-lighter"> 所有固定期限攒钱助手产品均适用（3个月、6个月、12个月期限产品）。</p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="twocol-content">
+            <div class="left-col"><span class="mark num-mark">3</span></div>
+            <div class="right-col">
+              <p class="text-bold">满减券什么时候发？有使用期限吗？</p>
+              <p class="text-lighter">活动截止后，规划君将汇总保单信息，2016年1月8日送出攒钱助手“满减券”，2016年1月8日当天起1个月内均可使用。</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="text-center">
+    <a href="/ins" class="btn  btn-back">返回</a>
+  </div>
+</div>
+</%def>
+
+<%def name="js()">
+  <script src="{{{js/lib/wx_sdk.js}}}"></script>
+  <script src="{{{js/ins/rules.js}}}"></script>
+</%def>
+
+<%def name="title()">保险精选年终福利 – 好规划</%def>

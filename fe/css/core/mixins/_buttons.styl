@@ -1,0 +1,33 @@
+button-variant($color, $bg, $hover_color_bg)
+  color: $color
+  background-color: $bg
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active
+    color: $color
+    background-color: $hover_color_bg
+
+  &:active,
+  &.active
+    background-image: none
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] &
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active
+      background-color: $bg
+      border-color: $border_color
+
+
+// Button sizes
+button-size($padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius)
+  padding: $padding-vertical $padding-horizontal
+  font-size: $font-size
+  line-height: $line-height
+  border-radius: $border-radius

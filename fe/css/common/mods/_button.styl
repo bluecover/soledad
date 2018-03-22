@@ -1,0 +1,93 @@
+.btn
+  display: inline-block
+  margin-bottom: 0 // For input.btn
+  font-weight: normal
+  text-align: center
+  vertical-align: middle
+  cursor: pointer
+  background-image: none // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+  white-space: nowrap
+  min-width: 108px
+  min-width: unquote('72px\9')
+  user-select: none
+  button-size(0, 18px, 16px, 34px, 3px)
+
+  &,
+  &:active,
+  &.active
+    &:focus
+      tab-focus()
+
+  &:hover,
+  &:focus
+    text-decoration: none
+
+  &:active,
+  &.active
+    outline: 0
+    background-image: none
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] &
+    cursor: not-allowed
+    pointer-events: none  // Future-proof disabling of clicks
+    opacity(.65)
+
+// color
+$btn_primary_hover=#ffa64d
+$btn_blue_hover=#4985b0
+$btn_green_hover=#7cb342
+
+// Alternate buttons
+.btn-primary
+  button-variant($yellow_10, $primary_color, $btn_primary_hover)
+.btn-primary-ghost
+  button-variant(#fff, transparent, $btn_primary_hover)
+  line-height: 32px
+  border: 1px solid #fff
+
+.btn-invert
+  button-variant($blue_80, #fafafa, #fff)
+  line-height: 32px
+  border: 1px solid $gray_30
+
+.btn-label
+  button-variant(#999, #fff, $brand_blue)
+  border: 1px solid #eee
+  &:hover,
+  &:focus,
+  &:active,
+  &.active
+    color: #fff
+
+.btn-blue
+  button-variant(#fff, $brand_blue, $btn_blue_hover)
+.btn-blue-ghost
+  button-variant(#fff, transparent, $btn_blue_hover)
+  border: 1px solid #fff
+  line-height: 32px
+
+.btn-green
+  button-variant(#fff, $brand_green, $btn_green_hover)
+.btn-green-ghost
+  button-variant(#fff, transparent, $btn_green_hover)
+  border: 1px solid #fff
+  line-height: 32px
+
+.btn-gray
+  button-variant(#333, #eee, #eee)
+  &:hover
+    button-variant(#fff, #ddd, #ddd)
+
+.btn-disable
+  button-variant(#fff, #ddd, #ddd)
+  &:hover
+    cursor: default
+
+//button-size($padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius)
+.btn-small
+  button-size(0, 10px, 14px, 28px, 3px)
+
+.btn-large
+  button-size(0, 20px, 20px, 48px, 3px)

@@ -1,0 +1,293 @@
+<%!
+  from core.models.utils import dec_2_pct
+%>
+<%inherit file="./plan.html" />
+
+<%def name="plan_content()">
+  <div class="plan-content">
+    <div class="chapter-title">
+      <div class="twocol-content middle-align">
+        <span class="left-col chapter-num">2</span>
+        <div class="right-col title-content">
+          <p class="title-desc">让结余更多</p>
+          <h1>收支分析</h1>
+        </div>
+      </div>
+    </div>
+
+    <p class="gh-tips">好规划建议：${gh_suggest_balance_doc}</p>
+
+    <p>健康的收支状况是未来财富增长的基础。为了顺利达成您的理财目标，开源节流、提高结余是关键。但我们不主张以降低生活品质为代价提高结余，所以需要您更聪明地管理收支，取得“达成理财目标”与“保证生活品质”的平衡。</p>
+
+    <div class="data-table">
+      <h4 class="table-title">您${'家庭' if relation_number else ''}的收支现状</h4>
+      <div class="plan-bar-chart">
+        <div class="bar-container">
+          <h4 class="bar-title">月收入 ${format(income_month, ',')} 元</h4>
+          <div class="bar-line-con">
+            <div class="bar-back-tip">
+              <div class="bar-back-content">
+                <div>月支出</div>
+                <div class="number">${format(expend_month, ',')} 元</div>
+              </div>
+            </div>
+            <div class="bar-line-content ${'negtive' if balance_month_ratio<0 else ''} ${'break' if balance_month_ratio<0 and balance_month_ratio<-0.2 else ''}" style="height: ${dec_2_pct(abs(balance_month_ratio))}">
+              <div class="bar-front-tip">
+                <div class="bar-front-content">
+                  <div>月结余率 <span class="${'text-red' if balance_month_ratio<0 else 'text-blue'}">${dec_2_pct(balance_month_ratio)}</span></div>
+                  <div class="number">${format(balance_month, ',')} 元</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bar-container">
+          <h4 class="bar-title">年收入 ${format(income_year, ',')} 元</h4>
+          <div class="bar-line-con">
+            <div class="bar-back-tip">
+              <div class="bar-back-content">
+                <div>年支出</div>
+                <div class="number">${format(expend_year, ',')} 元</div>
+              </div>
+            </div>
+            <div class="bar-line-content ${'negtive' if balance_year_ratio<0 else ''} ${'break' if balance_year_ratio<0 and balance_year_ratio<-0.2 else ''}" style="height: ${dec_2_pct(abs(balance_year_ratio))}}">
+              <div class="bar-front-tip">
+                <div class="bar-front-content">
+                  <div>年结余率 <span class="${'text-red' if balance_year_ratio<0 else 'text-blue'}">${dec_2_pct(balance_year_ratio)}</span></div>
+                  <div class="number">${format(balance_year, ',')} 元</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>一、您${'家庭' if relation_number else ''}的月结余率${balance_month_ratio_con}，${balance_month_title}${dec_2_pct(target_balance_month_ratio)}（${format(target_balance_month, ',')}元）。</h2>
+
+    <p>当前月结余率=（月收入${income_month}元-月支出${expend_month}元）/月收入${income_month}元=${dec_2_pct(balance_month_ratio)}</p>
+
+    <p>
+      ${balance_month_ratio_doc.decode('utf-8') | n}
+    </p>
+
+    <%
+        income_month_con = ''
+        income_month_doc = ''
+        if income_month > local_income*1.5:
+            income_month_con = '显著高于'
+            income_month_doc = '在这种情况下，您的理财重点是：保障收入来源稳定持续（通过保险计划），维持健康的结余状况，并积极投资增加被动收入。'
+        elif local_income < income_month <= local_income*1.5:
+            income_month_con = '略高于'
+            income_month_doc = '在这种情况下，开源潜力仍然较大，同时应重视学习积累理财知识并积极实践投资，为未来的财富积累打基础。'
+        elif income_month <= local_income:
+            income_month_con = '低于'
+            income_month_doc = '在这种情况下，开源潜力很大，同时应重视学习积累理财知识并积极实践投资，为未来的财富积累打基础。'
+        endif
+    %>
+    <h2>二、您${'家庭' if relation_number else ''}的税后月收入为${format(income_month,',')}元，${income_month_con}当地平均${'家庭' if relation_number else ''}收入 ( ${format(local_income, ',')}元 )。</h2>
+
+    <p>
+        ${income_month_doc}
+    </p>
+
+    ##收入来源个数评价：
+    % if family_member_number>=2 and income_resource_count==1:
+      <p>另外，从收入来源上来看，您的家庭属于典型的“单支柱”家庭，风险和负担比较集中。因此，对收入来源的保障非常重要，应该优先完善经济支柱成员的保险，并开拓更多收入渠道。</p>
+    % endif
+
+    <div class="list-title">此外，收入的年增长率通常需保持在至少5%，10%以上比较理想。大多数人通过以下手段有效地实现了“开源”：</div>
+    <ol>
+      <li>投资自己，获得加薪/晋升/跳槽；</li>
+      <li>积极理财，增加投资收益；</li>
+      <li>适当兼职，拓展收入来源。</li>
+    </ol>
+
+    <div class="data-table">
+      <h4 class="table-title">您的${'家庭' if relation_number else ''}月支出现状</h4>
+
+      <div class="plan-pie-chart balance-outcome-chart">
+        <div class="pie-con">
+          <div class="pie-holder"></div>
+        </div>
+        <ul class="pie-data">
+          <li><span class="pie-bg" data-num="${expend_month_ent}" data-color="#727BC6"></span> 餐饮娱乐 <span class="pie-number">${format(expend_month_ent, ',')} 元</span></li>
+          <li><span class="pie-bg" data-num="${expend_month_trans}" data-color="#2CCEFC"></span> 交通通讯 <span class="pie-number">${format(expend_month_trans, ',')} 元</span></li>
+          <li><span class="pie-bg" data-num="${expend_month_shopping}" data-color="#70C862"></span> 家居购物 <span class="pie-number">${format(expend_month_shopping, ',')} 元</span></li>
+          <li><span class="pie-bg" data-num="${expend_month_house}" data-color="#FFB56E"></span> 房租房贷 <span class="pie-number">${format(expend_month_house, ',')} 元</span></li>
+          <li><span class="pie-bg" data-num="${expend_month_extra}" data-color="#FF6752"></span> 其他支出 <span class="pie-number">${format(expend_month_extra, ',')} 元</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <%
+      expend_month_con = ''
+      expend_month_doc = ''
+      if expend_month_ratio >= 0.7:
+          expend_month_con = '偏高'
+          expend_month_doc = '您的%s月支出偏高：您%s的月支出超过了大多数%s，其中或多或少有一些节流空间。我们在本章的附录中为您准备了《非必要支出自检表》，建议您结合自己的消费习惯对照阅读。' % ('家庭' if relation_number else '', '家庭' if relation_number else '', '家庭' if relation_number else '人')
+      elif 0.35 <= expend_month_ratio < 0.7:
+          expend_month_con = '适中'
+          expend_month_doc = '您的%s月支出适中：您%s的月支出基本处于平均水平，但仍然建议您继续挖掘节流空间。我们在本章的附录中为您准备了《非必要支出自检表》，您可以结合自己的消费习惯对照阅读。' % ('家庭' if relation_number else '', '家庭' if relation_number else '')
+      elif expend_month_ratio < 0.35:
+          expend_month_con = '较低'
+          expend_month_doc = '您的%s月支出较低：您%s的月支出低于大多数%s，支出控制良好，请继续保持。'%('家庭' if relation_number else '', '家庭' if relation_number else '', '家庭' if relation_number else '人')
+      endif
+    %>
+    <h2>三、您${'家庭' if relation_number else ''}的月支出（${format(expend_month, ',')}元）${expend_month_con}，高于${dec_2_pct(expend_month_ratio)}的${'家庭' if relation_number else '个人'}。</h2>
+
+    <p>
+        ${expend_month_doc}
+    </p>
+
+    % if expend_month_house:
+    <p>
+    另外，您${'家庭' if relation_number else ''}的房租房贷支出为${format(expend_month_house,',')}元，占月收入比例为${dec_2_pct(expend_month_house_ratio)}，
+
+      % if expend_month_house_ratio>=0.5:
+        显著高于合理比例（35%以内）。这对收支健康不利，建议您考虑降低房租或提前还贷的可能性。
+      % elif 0.35<= expend_month_house_ratio <0.5:
+        略高于合理比例（35%以内）。这对收支健康不利，建议您考虑降低房租或提前还贷的可能性。
+      % elif expend_month_house_ratio < 0.35:
+        处于合理范围，请继续保持。
+      % endif
+      我们建议您在支出习惯和理财方法上做出以下改变，从而让结余目标更容易实现。
+    </p>
+    % endif
+
+    <div class="data-table">
+      <div class="balance_advice_chart">
+        <div class="balance-chart-left">
+          <img src="{{{img/plan/balance_left.png}}}" alt="" width="150">
+          <span class="title">收入 - 支出 = 储蓄</span>
+          <span>优先支出，剩余的才储蓄起来</span>
+        </div>
+        <div class="balance-chart-right">
+          <img src="{{{img/plan/balance_right.png}}}" alt="" width="150">
+          <span class="title">收入 - 储蓄 = 支出 </span>
+          <span>优先储蓄，剩余的合理安排支出</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="action">
+      <i class="iconfont icon-note"></i>
+      行动计划：
+    </h3>
+
+    <div class="data-table">
+      <table>
+        <thead>
+          <tr class="hd-orange">
+            <th>行动</th>
+            <th class="last">做法</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1. 记帐</td>
+            <td>明确了解收支现状，分析并改进支出结构。</td>
+          </tr>
+          <tr>
+            <td>2. 预算</td>
+            <td>在月初制订预算，在月末分析实际支出并对照改进。</td>
+          </tr>
+          <tr>
+            <td>3. 保证结余</td>
+            <td>将月结余率${target_balance_month_name}${dec_2_pct(target_balance_month_ratio)}（${format(target_balance_month, ',')}元）。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>附录：非必要支出自检表</h3>
+    <div class="data-table">
+      <table>
+        <thead>
+          <tr>
+            <th width="15%">收支占比</th>
+            <th colspan="4">项目</th>
+            <th width="34%" class="last">削支建议</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="2">必要支出<br>不要超过50%</td>
+            <td>房租房费</td>
+            <td>早午晚餐</td>
+            <td>服装鞋帽</td>
+            <td>手机上网费</td>
+            <td class="text-left">房租通过合理选择地段和居住条件来控制</td>
+          </tr>
+          <tr>
+            <td>水电煤气</td>
+            <td>日常用品</td>
+            <td>公共交通</td>
+            <td>医药费</td>
+            <td class="text-left">保持健康节约的生活方式</td>
+          </tr>
+          <tr>
+            <td rowspan="7">可选弹性支出不要超过25%</td>
+            <td>烟酒茶</td>
+            <td>水果零食</td>
+            <td>请客大餐</td>
+            <td></td>
+            <td class="text-left">吃：健康饮食、均衡营养、减少外出就餐</td>
+          </tr>
+          <tr>
+            <td>打车租车</td>
+            <td>私家车费用</td>
+            <td></td>
+            <td></td>
+            <td class="text-left">行：多乘公交， 绿色出行</td>
+          </tr>
+          <tr>
+            <td>数码装备</td>
+            <td>宠物爱好</td>
+            <td></td>
+            <td></td>
+            <td class="text-left">按需选择</td>
+          </tr>
+          <tr>
+            <td>运动健身</td>
+            <td>腐败聚会</td>
+            <td>休闲玩乐</td>
+            <td>旅游度假</td>
+            <td class="text-left">团购、穷游，适度而为</td>
+          </tr>
+          <tr>
+            <td>包包</td>
+            <td>化妆饰品</td>
+            <td></td>
+            <td></td>
+            <td class="text-left">不追大牌，合理预算</td>
+          </tr>
+          <tr>
+            <td>礼品礼金</td>
+            <td>孝敬家长</td>
+            <td></td>
+            <td></td>
+            <td class="text-left">量力而行，重情轻礼</td>
+          </tr>
+          <tr>
+            <td>其他杂费</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</%def>
+
+<%def name="plan_pager()">
+  <div class="plan-pager-wrapper">
+    <a href="/mine/plan/urgent">下一章：储备紧急备用金</a>
+  </div>
+</%def>
+
+<%def name="title()">2. 收支分析 - 好规划</%def>

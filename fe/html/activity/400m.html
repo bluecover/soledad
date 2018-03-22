@@ -1,0 +1,94 @@
+<%inherit file="/base.html" />
+
+<%!
+  from jupiter.integration.weixin import get_weixin_config
+%>
+
+<%def name="content()">
+  <div class="page-loading">
+    <img src="{{{img/misc/loading.gif}}}" alt="" width="30px">
+  </div>
+
+  <a class="btn-music" href="#">
+    <audio src="https://dn-ghimg.qbox.me/400m.mp3" autoplay="autoplay" preload="preload" loop="loop"></audio>
+  </a>
+
+
+  <div id="fullpage" class="hide">
+    <div class="section">
+      <div class="text-con wow" data-animate="slideInDown">
+        <p>听说那只会飞小猪</p>
+        <p>已经帮大家攒了</p>
+        <p><em>4 个亿了！</em></p>
+      </div>
+      <div class="one-img">
+        <img src="{{{img/activity/400m/magic_pig.png}}}" alt="" width="40%" class="one-pig wow" data-animate="slideInUp" data-delay="700">
+        <img src="{{{img/activity/400m/money.png}}}" alt="" width="92%" class="one-money wow" data-animate="bounceInDown" data-delay="200">
+        <img src="{{{img/activity/400m/star_more.png}}}" alt="" width="100%" class="one-star wow" data-animate="fadeIn" data-delay="700">
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="text-con wow" data-animate="slideInDown">
+        <p>工资不高，不懂理财的我</p>
+        <p>不知不觉中，竟然攒下了</p>
+        <p><em>这么多钱...</em></p>
+      </div>
+      <div class="two-img">
+        <div id="savings"></div>
+        <img src="{{{img/activity/400m/star_less.png}}}" alt="" width="80%" class="two-star wow" data-animate="fadeIn" data-delay="500">
+        <img src="{{{img/activity/400m/zan_pig.png}}}" alt="" width="35%" class="two-pig wow" data-animate="slideInUp" data-delay="1000">
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="text-con wow" data-animate="slideInDown">
+        <p>真诚邀请你来参加</p>
+        <p>11·18 攒钱助手</p>
+        <p><em>一周年爬梯</em></p>
+      </div>
+      <div class="three-img">
+        <div class="cake-con">
+          <img src="{{{img/activity/400m/cake.png}}}" alt="" width="36%" class="cake wow" data-animate="bounceInDown" data-delay="600">
+          <img src="{{{img/activity/400m/flyer.png}}}" alt="" width="60%" class="flyer wow" data-animate="fadeIn" data-delay="1800">
+          <img src="{{{img/activity/400m/savings_pig.png}}}" alt="" class="savings wow" width="12%" data-animate="bounceInDown" data-delay="1200">
+          <img src="{{{img/activity/400m/candle.png}}}" alt="" class="candle wow" width="4%" data-animate="bounceInDown" data-delay="1400">
+        </div>
+        <img src="{{{img/activity/400m/gift.png}}}" alt="" width="70%" class="gift wow" data-animate="lightSpeedIn" data-delay="700">
+        <div class="text wow" data-animate="lightSpeedIn" data-delay="700">
+          <p>11.18当日，+0.5%加息券来者有份</p>
+          <p>全天额度充足供应 满额还有百元礼包</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="text-con wow" data-animate="slideInDown">
+        <p>嘤嘤嘤...</p>
+        <p>有可能是今年</p>
+        <p><em>最后一次加息了</em></p>
+      </div>
+      <div class="four-img wow" data-animate="fadeIn" data-delay="300">
+        <p class="invite">邀请好友，11.18一起来薅羊毛</p>
+        <a class="btn btn-red js-wechat" href="#">发给TA看看</a>
+        <a class="btn btn-primary" href="/savings">现在就去攒钱</a>
+        <img src="{{{img/activity/400m/awe_pig.png}}}" alt="" width="30%" class="pig">
+      </div>
+    </div>
+  </div>
+  <input type="hidden" id="wx_config" data-val="${get_weixin_config(jsApiList=['onMenuShareTimeline', 'onMenuShareAppMessage'])}"/>
+</%def>
+
+<%def name="css()">
+  <link rel="stylesheet" href="{{{css/activity/400m.css}}}" type="text/css" />
+</%def>
+
+<%def name="js()">
+  <script src='{{{js/lib/wx_sdk.js}}}'></script>
+  <script src="{{{js/activity/400m.js}}}"></script>
+</%def>
+
+<%def name="title()">邀请函</%def>
+
+<%def name="header()"></%def>
+<%def name="floatbar()"></%def>

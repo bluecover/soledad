@@ -1,0 +1,24 @@
+<%page args="palette,link"/>
+
+<%def name="notification_title(palette)">
+  好规划理财
+</%def>
+
+<%def name="notification_timestamp(palette)">
+  ${palette.creation_time.strftime('%Y-%m-%d %H:%M:%S')}
+</%def>
+
+<%def name="notification_content(palette)">
+  您有${palette.properties['expiring_coupon_count']}张礼券还有1天就要失效了，快来使用吧 > >
+</%def>
+
+<div class="notice-main">
+  <div class="title">
+    <h3>${self.notification_title(palette)}</h3>
+  </div>
+  <p class="notice-date">${self.notification_timestamp(palette)}</p>
+  <p class="notice-info">${self.notification_content(palette)}</p>
+  % if link:
+    <i class="iconfont icon-forward mobile-element"></i>
+  % endif
+</div>

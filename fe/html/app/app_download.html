@@ -1,0 +1,75 @@
+<%inherit file="/base.html" />
+
+<%def name="content()">
+  ${self.main()}
+</%def>
+
+<%def name="main()">
+<div class="app-download-wrapper">
+  <div class="bd">
+    <div class="wrapper">
+      <span class="app-logo mobile-element">
+        <img class="logo" src="{{{img/app/app_logo.png}}}" alt="好规划 App">
+      </span>
+
+      <img class="phone-app-demo" src="{{{img/app/phone_for_web.png}}}" alt="好规划 App">
+
+      <div class="app-desc-mod">
+        <div class="hd desktop-element">
+          <span class="app-logo">
+            <img class="logo" src="{{{img/app/app_logo.png}}}" alt="好规划 App">
+          </span>
+        </div>
+        <div class="bd">
+          <h2 class="title">
+            <strong>好规划</strong>身边的理财顾问
+          </h2>
+          <h3 class="sub-title">帮您安全、快速、稳定地实现财富增值</h3>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="ft">
+    <div class="wrapper">
+
+      <div class="app-download-mod">
+        <div class="hd">
+          <div class="download-btns">
+            % if not request.user_agent.is_ios:
+            <a
+              class="btn btn-blue btn-android-download"
+              target="_blank"
+              href="${url_for('download.download_app', version=guihua_android_latest.public_version, dcm='guihua', dcs='app-download-android')}">
+              <svg class="icon icon-android" src="{svg{{img/app/android_icon.svg}}}"></svg>下载安卓客户端
+            </a>
+            % endif
+            % if not request.user_agent.is_android:
+            <a
+              class="btn btn-blue btn-ios-download"
+              href="${url_for('download.download_app', target='itunes', dcm='guihua', dcs='app-download-ios')}">
+              <svg class="icon icon-ios" src="{svg{{img/app/ios_icon.svg}}}"></svg>下载 iOS 客户端
+            </a>
+            % endif
+          </div>
+        </div>
+        <div class="bd desktop-element">
+          <span class="qrcode-wrap">
+            <img class="app-qrcode" src="{{{img/app/qrcode_download.png}}}" alt="好规划 App 二维码">
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</%def>
+
+<%def name="header()"></%def>
+<%def name="footer()"></%def>
+
+<%def name="body_class()">app-download-page</%def>
+
+<%def name="css()">
+<link rel="stylesheet" href="{{{css/app/app_download.css}}}" type="text/css" />
+</%def>

@@ -1,0 +1,163 @@
+<%inherit file="./base.html" />
+
+<%def name="main()">
+  ${self.info_header()} ${self.info_main()}
+</%def>
+
+<%def name="info_header()">
+  <div class="block-wrapper childins-common-header">
+    <div class="step-wrapper">
+      <div class="step-box first-child">
+        <div class="circle-box">1</div>
+      </div>
+      <div class="step-main"></div>
+      <div class="step-box last-child">
+        <div class="circle-box cur">2</div>
+      </div>
+      <span class="left">选择保障方案</span>
+      <span class="right">填写儿童信息</span>
+    </div>
+  </div>
+</%def>
+
+<%def name="info_main()">
+  <div class="info-childins-wrapper block-wrapper form-wrapper">
+    <form action="" method="POST" autocomplete="off" class="js-child-form">
+      <input type="hidden" name="csrf_token" value="${csrf_token()}">
+      <div class="item">
+        <h4 class="item-title">儿童的出生日期<em class="date-tips">(例：20150131)</em>：</h4>
+        <div class="input-row">
+          <div class="input-con narrowest">
+
+            <select class="js-year">
+              <option value="">年份</option>
+              % for year in range(1997,2016):
+              <option value="${year}" ${'selected' if profile and profile.baby_birthday and year== profile.baby_birthday.year else ""}>${year} 年 </option>
+              % endfor
+            </select>
+          </div>
+          <div class="input-con narrowest">
+            <select class="js-month">
+              <option value="">月份</option>
+              % for month in range(1,13):
+              <option value="${month}" ${'selected' if profile and profile.baby_birthday and month == profile.baby_birthday.month else "" }>${month} 月</option>
+              % endfor
+            </select>
+          </div>
+          <div class="input-con validate narrowest" data-validate="valid,birthdate">
+            <select class="js-day" >
+              <option value="">日期</option>
+              % for day in range(1,32):
+              <option value="${day}" ${'selected' if profile and profile.baby_birthday and day == profile.baby_birthday.day else ""}>${day} 日</option>
+              % endfor
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <h4 class="item-title">儿童的性别：</h4>
+
+        <div class="input-row">
+          <input type="radio" name="gender" id="male" value="1" class="input-radio" checked>
+          <label for="male" class="radio-desc"><span class="radio-circle"></span><em>男</em></label>
+          <input type="radio" name="gender" id="female" value="0" class="input-radio" ${'checked' if profile and profile.baby_gender=='0' else ""}>
+          <label for="female" class="radio-desc"><span class="radio-circle"></span><em>女</em></label>
+        </div>
+      </div>
+      <div class="item">
+        <h4 class="item-title">您的孩子有少儿医保/学生医保吗？</h4>
+        <div class="input-row">
+          <input type="radio" name="child_medicare" id="medicare" class="input-radio" value='1' checked>
+          <label for="medicare" class="radio-desc"><span class="radio-circle"></span><em>有</em></label>
+          <input type="radio" name="child_medicare" id="un_medicare" class="input-radio" value='0' ${'checked' if profile and profile.child_medicare =='0' else ""}>
+          <label for="un_medicare" class="radio-desc"><span class="radio-circle"></span><em>无</em></label>
+        </div>
+      </div>
+      <div class="item">
+        <h4 class="item-title">您的孩子有补充医疗保险吗？</h4>
+        <div class="input-row">
+          <input type="radio" name="childins_supplement" id="supplement" class="input-radio" value='1' checked>
+          <label for="supplement" class="radio-desc"><span class="radio-circle"></span><em>有</em></label>
+          <input type="radio" name="childins_supplement" id="un_supplement" class="input-radio" value='0' ${'checked' if profile and profile.childins_supplement== '0' else ''} >
+          <label for="un_supplement" class="radio-desc"><span class="radio-circle"></span><em>无</em></label>
+        </div>
+      </div>
+      <div class="item">
+        <h4 class="item-title">您的家族有无重疾遗传病史？</h4>
+        <div class="item-tips"><em class="text-orange">*</em> 如多名亲属患严重冠心病、重度糖尿病等</div>
+        <div class="input-row">
+          <input type="radio" name="child_genetic" id="genetic" class="input-radio" value='1' checked>
+          <label for="genetic" class="radio-desc"><span class="radio-circle"></span><em>有</em></label>
+          <input type="radio" name="child_genetic" id="un_genetic" class="input-radio" value='0' ${'checked' if profile and profile.child_genetic== '0' else ''}>
+          <label for="un_genetic" class="radio-desc"><span class="radio-circle"></span><em>无</em></label>
+        </div>
+      </div>
+      <div class="item item-edu js-child-edu-item">
+        <h4 class="item-title"> 您计划为孩子的教育金投保吗？</h4>
+        <div class="item-tips"><em class="text-orange">*</em> 预先储备孩子初中至大学的教育金，每年<em class="text-orange">返还</em>，<em class="text-orange">保费较高</em></div>
+        <div class="input-row">
+            <input type="radio" name="child_edu" id="edu" class="input-radio js-child-edu-input" value='1' ${'checked' if profile and profile.child_edu== '1' else ''}>
+          <label for="edu" class="radio-desc js-child-edu"><span class="radio-circle"></span><em>是</em></label>
+          <input type="radio" name="child_edu" id="un_edu" class="input-radio" value='0' checked>
+          <label for="un_edu" class="radio-desc js-child-unedu"><span class="radio-circle"></span><em>否</em></label>
+        </div>
+      </div>
+      <div class="project-wrapper js-project-wrapper">
+        <h4>请选择与您预期相近的保障方案，我们将给出保费参考：</h4>
+        <div class="project-box item js-project-a">
+          <div class="input-row">
+              <input type="radio" name="project" id="project-a-low" class="input-radio" value="a1" ${'checked' if profile and profile.project== 'a1' else ''}>
+            <label for="project-a-low" class="radio-desc"><span class="radio-circle"></span><em>主险 10000 元，初中 2000 元/年，高中 5000 元/年，大学 5000 元/年</em></label>
+          </div>
+          <div class="input-row">
+              <input type="radio" name="project" id="project-a-medium" class="input-radio" value="a2" ${'checked' if profile and profile.project== 'a2' else ''}>
+            <label for="project-a-medium" class="radio-desc"><span class="radio-circle"></span><em>主险 10000 元，初中 10000 元/年，高中 10000 元/年，大学 10000 元/年</em></label>
+          </div>
+          <div class="input-row">
+              <input type="radio" name="project" id="project-a-high" class="input-radio" value="a3" ${'checked' if profile and profile.project== 'a3' else ''}>
+            <label for="project-a-high" class="radio-desc"><span class="radio-circle"></span><em>主险 20000 元，初中 25000 元/年，高中 25000 元/年，大学 20000 元/年</em></label>
+          </div>
+        </div>
+        <div class="project-box item js-project-b">
+          <div class="input-row">
+              <input type="radio" name="project" id="project-b-low" class="input-radio" value="b1" ${'checked' if profile and profile.project== 'b1' else ''}>
+            <label for="project-b-low" class="radio-desc"><span class="radio-circle"></span><em>主险 10000 元，高中 5000 元/年，大学 5000 元/年，初中限 6 岁前投保</em></label>
+          </div>
+          <div class="input-row ">
+              <input type="radio" name="project" id="project-b-medium" class="input-radio" value="b2" ${'checked' if profile and profile.project== 'b2' else ''}>
+            <label for="project-b-medium" class="radio-desc"><span class="radio-circle"></span><em>主险 10000 元，高中 10000 元/年，大学 10000 元/年，初中限 6 岁前投保</em></label>
+          </div>
+          <div class="input-row">
+              <input type="radio" name="project" id="project-b-high" class="input-radio" value="b3" ${'checked' if profile and profile.project== 'b3' else ''}>
+            <label for="project-b-high" class="radio-desc"><span class="radio-circle"></span><em>主险 20000 元，高中 25000 元/年，大学 20000 元/年，初中限 6 岁前投保</em></label>
+          </div>
+        </div>
+        <div class="project-box item js-project-c">
+          <div class="input-row">
+              <input type="radio" name="project" id="project-c-low" class="input-radio" value="c1" ${'checked' if profile and profile.project== 'c1' else ''}>
+            <label for="project-c-low" class="radio-desc"><span class="radio-circle"></span><em>主险 10000 元，大学 5000 元/年，初中、高中限 9 岁前投保</em></label>
+          </div>
+          <div class="input-row">
+              <input type="radio" name="project" id="project-c-medium" class="input-radio" value="c2" ${'checked' if profile and profile.project== 'c2' else ''}>
+            <label for="project-c-medium" class="radio-desc"><span class="radio-circle"></span><em>主险 10000 元，大学 10000 元/年，初中、高中限 9 岁前投保</em></label>
+          </div>
+          <div class="input-row">
+              <input type="radio" name="project" id="project-c-high" class="input-radio validate" value="c3" data-validate="project" ${'checked' if profile and profile.project== 'c3' else ''}>
+            <label for="project-c-high" class="radio-desc"><span class="radio-circle"></span><em>主险 20000 元，大学 20000 元/年，初中、高中限 9 岁前投保</em></label>
+          </div>
+        </div>
+      </div>
+      <div class="text-center btn-group">
+        <input name="birthdate" type="hidden" value="" class="js-birth-date">
+        <a href="#" class="btn btn-primary btn-submit js-submit-form">完成</a>
+        <a href="${url_for('ins.children.program')}" class="btn btn-gray">返回</a>
+      </div>
+    </form>
+  </div>
+</%def>
+
+<%def name="js()">
+  <script src="{{{js/childins/info.js}}}"></script>
+</%def>
+
+<%def name="title()">填写信息 - 儿童保险规划</%def>

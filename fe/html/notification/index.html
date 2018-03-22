@@ -1,0 +1,95 @@
+<%inherit file="./base.html" />
+<%def name="header()">
+  % if not request.user_agent.is_guihua_app:
+    ${parent.header()}
+  % endif
+</%def>
+
+<%def name="main()">
+<%
+  import urllib
+  from pkg_resources import parse_version
+  from core.models.consts import CastKind
+%>
+  <div class="notice-index-wrapper">
+    <h2 class="text-lighter desktop-element notice-title">通知中心</h2>
+    <div class="block-title desktop-element">
+      <p>（共${len(notices)}条通知，其中 <em class="text-white text-bold">新通知</em> ${len([n  for n in notices if not n.is_read])}条)</p>
+    </div>
+    <div class="notice-list">
+    <%
+       available_version_for_new_product = (
+           request.user_agent.is_android and request.user_agent.app_info.version == parse_version('1.5.5'))
+    %>
+    % if bulletins and available_version_for_new_product:
+      % for bulletin in bulletins:
+      <%
+         target_link = bulletin.target_link
+
+         available_version_for_new_url = (
+             (request.user_agent.is_android and request.user_agent.app_info.version >= parse_version('1.5.5')),
+             (request.user_agent.is_ios and request.user_agent.app_info.version >= parse_version('1.2.4')))
+
+         if any(available_version_for_new_url) and target_link:
+           url_prefix = 'guihua://open/link?url='
+           target_link = url_prefix + urllib.quote(bulletin.target_link, safe='')
+      %>
+        % if g.user.id_ in bulletin.cast_tags or bulletin.cast_kind is CastKind.broadcast:
+          <a href="${target_link or '#'}" class="notice-item twocol-content js-notice-item">
+              <div class="icon-wrapper">
+                <div class="notice-dot"></div>
+              </div>
+              <%include file="/notification/common_templates/bulletin.html" args="bulletin=bulletin"/>
+          </a>
+        % endif
+      % endfor
+    % endif
+    % if notices:
+      % for notice in notices:
+        <%
+          target_link = notice.kind.app_target_link if request.user_agent.is_guihua_app else notice.kind.web_target_link
+
+          if not notice.kind.can_display(request.user_agent, g.user):
+            continue
+        %>
+        <a href="${target_link or '#'}" class="notice-item twocol-content js-notice-item ${'read' if notice.is_read else ''} ${'hide' if loop.index > 9 else ''}">
+          <div class="icon-wrapper">
+            % if notice.kind.icon_name:
+              <div class="icon-box">
+                % if notice.kind.icon_name == 'gift':
+                  <svg class="icon-gift" src="{svg{{img/notification/gift.svg}}}"></svg>
+                % endif
+              </div>
+            % else:
+              <div class="notice-dot"></div>
+            % endif
+          </div>
+          <%include file="/${notice.kind.common_template_location}" args="palette=notice,link=target_link"/>
+        </a>
+      % endfor
+      % if len(notices) > 9:
+        <div class="block-wrapper text-center more-wrapper">
+          <a href="#" class="btn btn-invert btn-more js-btn-more">查看更多</a>
+        </div>
+      % endif
+    % elif not bulletins or not available_version_for_new_product:
+      <p class="notice-tips">暂无通知</p>
+    % endif
+</div>
+  </div>
+</%def>
+
+<%def name="notification()">
+</%def>
+
+<%def name="footer()">
+  % if not request.user_agent.is_guihua_app:
+    ${parent.footer()}
+  % endif
+</%def>
+
+<%def name="js()">
+  <script src="{{{js/notification/index.js}}}"></script>
+</%def>
+
+<%def name="title()">攒钱助手 - 好规划</%def>

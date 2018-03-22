@@ -1,0 +1,144 @@
+<%inherit file="../base.html" />
+<%def name="sidenav_content()">
+  <%include file="../mods/sidenav_help_about.html" />
+</%def>
+<%def name="main()">
+  <div class="block-wrapper help-wrapper">
+    <div class="help-title">
+      <img class="wallet-logo" src="{{{img/logo/change_logo.png}}}" alt="">
+      <span>常见问题</span>
+    </div>
+    <div class="js-help-main">
+      <div class="section">
+        <h3 class="text-bold" id="section1">1. 服务及安全</h3>
+        <h4 id="intro">1.1 服务简介</h4>
+        <div class="hide">
+          <p>零钱包是好规划网推出的闲余资金增值服务，把钱存入零钱包即购买了${provider.fund_company_name}基金公司的现金宝货币基金（${provider.fund_code}），可获得较稳定收益。</p>
+          <p>货币基金是聚集社会闲散资金，由基金管理人运作，基金托管人保管资金的一种开放式基金，专门投向风险小的货币市场工具，具有高安全性、高流动性、稳定收益性，具有“准储蓄”的特征。</p>
+          <p><a href="${url_for('wallet.landing.agreement_ms')}" target="_blank">民生加银基金网上销售协议</a></p>
+        </div>
+        <h4 id="advantage">1.2 服务优势 </h4>
+        <div class="hide">
+          <p>零钱包帮助用户管理闲余资金，随时存取无任何手续费，并且能提供较稳定的资金收益，同时保障资金的安全。</p>
+        </div>
+        <h4 id="safety">1.3 安全保障</h4>
+        <div class="hide">
+          <p>1、零钱包会不会亏本：</p>
+          <p>您转入零钱包购买的货币基金，投资的范围都是一些高安全系数和稳定收益的品种，属于风险较低的投资品种，收益稳定风险极小。</p>
+          <p>2、如何保障资金安全：</p>
+          <p>货币基金由${provider.fund_company_name}基金公司管理，${provider.fund_bank_name}托管。同时严格遵循本人实名制银行卡进出，保障资金安全。</p>
+          <p>3、零钱包有关信息会不会被泄露：</p>
+          <p>好规划与${provider.fund_company_name}基金公司将严格遵守国家相关法律法规和相关行业数据安全标准，对用户信息进行严格的保护，绝不会将您录入的账户信息、银行信息以任何形式透露给第三方。</p>
+        </div>
+      </div>
+      <div class="section">
+        <h3 id="section2">2. 收益问题</h3>
+        <h4 id="calculation">2.1 计算收益</h4>
+        <div class="hide">
+          <p>1、如何计算当日收益：</p>
+          <p><code>当日收益 = (零钱包已确认份额的资金 ÷ 10000) × 每万份收益</code>。假设您已确认份额的资金为 10000 元，当天的每万份收益为 1.35 元，代入计算公式，您当日的收益为：1.35 元。</p>
+          <p>2、存入后什么时候开始算收益：</p>
+          <p>交易日 15:00 前转入零钱包的金额，将于下一个交易日开始计算收益；15:00 后转入零钱包的金额，将于2个交易日后开始计算收益（如遇双休日及法定节假日顺延）</p>
+          <p>3、收益是否需要缴税：</p>
+          <p>货币基金在分配收益时已经计提了相关费用，用户查看到的收益不需要额外再交税。</p>
+          <p>4、当天取出部分金额，那部分金额还有收益么：</p>
+          <p>零钱包余额可以随时转出，转出部分当天不再享受收益。</p>
+        </div>
+        <h4 id="show">2.2 显示收益</h4>
+        <div class="hide">
+          <p>1、零钱包显示的收益是当天的么：</p>
+          <p>零钱包中显示的是前一天的收益</p>
+          <p>2、资金存入零钱包，何时开始显示收益：</p>
+          <p>存入零钱包的资金将在第 2 个工作日由基金公司进行份额确认并开始计算收益，请在份额确认后的次日 15:00 后查看收益（注：15:00 后转入的资金会顺延 1 个工作日确认。双休日及法定节假日，基金公司不进行份额确认）。</p>
+          <p>示意图：</p>
+          <table class="help-wallet-earnings table-help">
+              <tr>
+                <td>转入时间</td>
+                <td>首次收益显示时间</td>
+              </tr>
+              <tr>
+                <td>周四 15:00 ~ 周五 15:00</td>
+                <td>下周二</td>
+              </tr>
+              <tr>
+                <td>周五 15:00 ~ 下周一 15:00</td>
+                <td>下周三</td>
+              </tr>
+              <tr>
+                <td>周一 15:00 ~ 周二 15:00</td>
+                <td>周四</td>
+              </tr>
+              <tr>
+                <td>周二 15:00 ~ 周三 15:00</td>
+                <td>周五</td>
+              </tr>
+              <tr>
+                <td>周三 15:00 ~ 周四 15:00</td>
+                <td>周六</td>
+              </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <h3 id="section3">3. 存入及取出</h3>
+        <h4 id="deposit">3.1 存入零钱包</h4>
+        <div class="hide">
+          <p>1、往零钱包存入资金的流程是什么：</p>
+          <p>登录账户-进入零钱包-点击“存入零钱”-按提示操作</p>
+          <p>2、零钱包最少起存，转入次数是否有限制：</p>
+          <p>零钱包单笔存入金额 ≥ 1 元即可，转入次数无限制。根据基金行业历史经验，建议您转入 100 元以上，可以有较高概率获得收益（若当天收益不到 0.01 元，系统可能不会分配收益，且也不会累积）</p>
+          <p>3、可以用什么方式存入零钱包：</p>
+          <p>目前支持国内各大主流银行的储蓄卡支付，不支持信用卡支付；</p>
+          <p>4、零钱包存入是否有限额：</p>
+          <p>存入金额单笔、单日的限制各家银行规则各有不同，将会在绑定银行卡后展示给用户；</p>
+        </div>
+        <h4 id="fetch">3.2 零钱包取出</h4>
+        <div class="hide">
+          <p>1、如何进行零钱包取出操作：</p>
+          <p>登录账户-进入零钱包-点击“取出零钱”-按提示操作</p>
+          <p>2、零钱包提现多久可以到账：</p>
+          <p>T + 0 快速到账；</p>
+          <p>3、零钱包提现有没有金额和次数限制：</p>
+          <p>暂无任何限制</p>
+        </div>
+        <h4 id="fee">3.3 存取费用</h4>
+        <div class="hide">
+          <p>存入/转出全程无需任何手续费。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="header()">
+  % if not request.user_agent.is_guihua_app:
+    ${parent.header()}
+  % endif
+</%def>
+
+<%def name="footer()">
+  % if not request.user_agent.is_guihua_app:
+    ${parent.footer()}
+  % else:
+    <div class="footer-wrapper ${'desktop-element' if hide_in_mobile else ''}">
+      <div class="footer-info">
+        <div class="copyright">
+          <%
+          from datetime import date
+          copy_year = date.today().year
+          %>
+          &copy;${copy_year} Guihua.com 京ICP备14053123号-1
+        </div>
+      </div>
+    </div>
+  % endif
+</%def>
+
+<%def name="title()">零钱包 - 帮助中心</%def>
+<%def name="js()">
+  <script src="{{{js/help/help.js}}}"></script>
+</%def>
+
+<%def name="pagetitle()">
+  <% return '帮助中心' %>
+</%def>

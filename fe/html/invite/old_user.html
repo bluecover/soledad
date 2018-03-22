@@ -1,0 +1,38 @@
+<%inherit file="./base_unregister.html" />
+
+<%!
+  from datetime import datetime, timedelta
+%>
+
+<%def name="main()">
+  <div class="invite-older-wrapper">
+    ${self.body()}
+  </div>
+</%def>
+
+<%def name="body()">
+  <div class="block-wrapper older-tips">
+    <div class="hd">
+      <h3 class="title">您已经是攒钱助手的用户了</h3>
+    </div>
+    <div class="bd">
+      <ul class="tips-list">
+        <li class="tip">攒钱助手隆重推出邀请新人送红包活动</li>
+        <li class="tip">邀请好友通过您的邀请链接注册并使用攒钱助手(非活期产品)。</li>
+        <li class="tip">每成功邀请一位好友注册并完成一笔攒钱,您将获得<span class="text-red">20元红包奖励</span>,你的朋友将获得<span class="text-red">115元新手礼包。</span></li>
+        <li class="tip">红包数量不封顶,多邀多得,您可以分享邀请链接至各社交平台,快速邀请好友获得红包。</li>
+        <li class="tip">可在「我的福利」中查看自己的红包</li>
+        <li class="tip">*红包可用于任何攒钱产品抵扣,永久有效。</li>
+      </ul>
+      % if g.user:
+          <a href="${url_for('.mine')}" class="btn btn-primary btn-view-detail">查看详情</a>
+      % else:
+          <a href="#" class="btn btn-primary btn-view-detail js-g-login desktop-element" data-url="${url_for('.mine')}">登录查看详情</a>
+          <a href="${url_for('accounts.login.login', next=url_for('.mine'))}" class="btn btn-primary btn-view-detail mobile-element">登录查看详情</a>
+      % endif
+    </div>
+    <div class="ft"><img src="{{{img/invite/smile.png}}}" alt="笑脸"></div>
+  </div>
+</%def>
+
+<%def name="title()">邀请新人 - 好规划</%def>

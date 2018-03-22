@@ -1,0 +1,80 @@
+.ins-product-block
+  padding: 0
+  >.hd
+    height: 82px
+    margin: 0 40px 0 25px
+    border-bottom: 1px solid $gray_30
+  .title-wrap
+    float: left
+    padding-top: 13px
+    .svgicon
+      width: 120px
+      height: 68px
+    .title
+      display: inline-block
+      font-size: 24px
+      font-weight: bold
+      position: relative
+      bottom: 15px
+  >.bd
+    padding: 35px 40px 20px
+    clearfix()
+
+.ins-product
+  width: 50%
+  padding-top: 40px
+  float: left
+  line-height: 1.5
+  border-bottom: 1px solid $gray_20
+  padding-right: 3%
+  &:first-child,
+  &:nth-child(2)
+    padding-top: 5px
+  &:last-child,
+  &:nth-last-child(2)
+    border-bottom: none
+  &:nth-child(2n)
+    padding-right: 0
+    padding-left: 2.5%
+    border-left: 1px solid $gray_20
+  >.hd
+    line-height: 1.8
+    .category
+      color: $brand_green
+    .title
+      font-size: 18px
+      a
+        color: #333
+    .desc
+      color: $gray_50
+  >.bd
+    margin-top: 40px
+    margin-bottom: 40px
+    line-height: 36px
+    .price
+      float: left
+      color: $brand_orange
+      height: 36px
+      &:before
+        content: '¥'
+      em
+        font-size: 24px
+        font-weight: bold
+        margin: 0 5px
+    .btn-product-detail
+      float: right
+      border: 1px solid $gray_30
+      background-color: #fafafa
+      font-size: 14px
+      min-width: 0
+      &:hover
+        background-color: #fff
+
+.ins-product-null
+  height: 215px
+  text-align: center
+  p:first-child
+    margin-top: 60px
+  p
+    line-height: 2
+    color: $gray_40

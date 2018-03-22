@@ -1,0 +1,19 @@
+<%inherit file="./base.html" />
+
+<%def name="content()">
+  <div class="accounts-box login-and-register-wrapper accounts-aside-wrapper clearfix">
+    <div class="accounts-content">
+      <div class="accounts-content-title-wrapper">
+        <h2 class="accounts-title">绑定微信</h2>
+        <p class="title-bg"></p>
+      </div>
+      <h2>${text}</h2>
+      % if show_btn:
+      <form class="accounts-content-form" method="post" action="/accounts/unbind_weixin">
+        <input type="hidden" name="csrf_token" value="${csrf_token()}">
+        <input type="submit" class="btn btn-blue" value="点击解绑">
+      </form>
+      % endif
+    </div>
+  </div>
+</%def>

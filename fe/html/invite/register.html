@@ -1,0 +1,20 @@
+<%inherit file="./base_unregister.html" />
+
+
+<%def name="content()">
+  <div class="accounts-box invite-register-wrapper accounts-aside-wrapper clearfix">
+    <div class="accounts-content">
+      <div class="top-banner">
+        <img class="banner-pic desktop-element" src="{{{img/invite/invite_banner2.png}}}" alt="">
+        <img class="banner-pic mobile-element"  src="{{{img/invite/invite_banner2_mobile.png}}}" alt="">
+      </div>
+      <div class="js-accounts-form gm-account accounts-content-form" data-phone="${mobile}" data-dcs="invitation" data-dcm="guihua" data-url="${url_for('.success')}">
+      </div>
+    </div>
+  </div>
+  <%include file="../mods/footer.html" />
+</%def>
+
+<%def name="js()">
+  <script src="{{{js/invite/register.js}}}"></script>
+</%def>

@@ -1,0 +1,240 @@
+<%inherit file="./base.html" />
+
+<%!
+from libs.markdown import render_markdown
+from libs.linker import make_url
+from core.models.insurance.packages import Package
+%>
+
+<%def name="main()">
+  <div class="childins-result-wrapper">
+    ## <div class="banner-wrapper">
+    ##   <a href="/ins/children/share"><img src="{{{img/childins/act_res_web.png}}}" width="100%" class="desktop-element"></a>
+    ##   <a href="/ins/children/share"><img src="{{{img/childins/act_res_m.png}}}" width="100%" class="mobile-element"></a>
+    ## </div>
+    ${self.result_type()}
+    ${self.recommend()}
+    ${self.basic()}
+    ${self.advice()}
+    ${self.dlg_modal()}
+    <%include file="mods/ins_footer.html"/>
+  </div>
+</%def>
+
+<%def name="result_type()">
+  <div class="block-wrapper result-type">
+    <a class="replan" href="${url_for('ins.children.program')}">重做规划</a>
+    <div class="twocol-content">
+      <div class="left-col">
+        <span class="icon-con">
+          <i class="iconfont icon-umbrella"></i>
+        </span>
+      </div>
+      <div class="right-col">
+          % if not profile:
+          <h2 class="title"><em class="text-green">均衡全面</em>的保障规划</h2>
+          % endif
+          % if int(profile.user_will) == 1:
+          <h2 class="title"><em class="text-green">均衡全面</em>的保障规划</h2>
+          % elif int(profile.user_will) == 2:
+          <h2 class="title"><em class="text-green">医疗保障</em>为主的规划</h2>
+          % elif int(profile.user_will) == 4:
+          <h2 class="title"><em class="text-green">重疾保障</em>为主的规划</h2>
+          % elif int(profile.user_will) == 5:
+          <h2 class="title"><em class="text-green">意外保障</em>为主的规划</h2>
+          % else:
+          <h2 class="title"><em class="text-green">均衡全面</em>的保障规划</h2>
+          % endif
+        <p class="user-info"><span>儿童性别：${gender}</span><span>出生日期：${baby_birthday}</span></p>
+      </div>
+    </div>
+    <div class="result-content">
+      ${render_markdown(quota.decode('utf-8'))|n}
+    </div>
+  </div>
+</%def>
+
+<%def name="recommend()">
+  <div class="block-wrapper result-title highlight">
+    <h3 class="title">推荐套餐</h3>
+    <span class="more">保费合计：<em class="text-bold">${rec_total}</em> 元 / 年</span>
+    <span class="desktop-element">${rec_pack.sub_title}</span>
+  </div>
+
+  <div class="result-recommend twocol-content">
+    <div class="left-col re-left">
+      % if rec_pack.radar == 'radar1.png':
+        <img src="{{{img/childins/radar1.png}}}" width="220">
+      % elif rec_pack.radar == 'radar2.png':
+        <img src="{{{img/childins/radar2.png}}}" width="220">
+      % elif rec_pack.radar == 'radar3.png':
+        <img src="{{{img/childins/radar3.png}}}" width="220">
+      % elif rec_pack.radar == 'radar4.png':
+        <img src="{{{img/childins/radar4.png}}}" width="220">
+      % elif rec_pack.radar == 'radar5.png':
+        <img src="{{{img/childins/radar5.png}}}" width="220">
+      % endif
+      <div class="recommend-info">
+        <div class="title text-bold">保障能力</div>
+        <p class="text-light">${rec_ability}</p>
+      </div>
+    </div>
+    <div class="right-col re-right">
+        % for recommend in recommend_ins:
+      <div class="recommend-item">
+          <a class="btn btn-primary btn-buy-ins btn-small js-buy-desktop desktop-element" target="_blank" href="${make_url(recommend['buy_url'])}">查看</a>
+          <a class="btn btn-primary btn-buy-ins btn-small js-buy-mobile mobile-element" href="${make_url(recommend['buy_url'])}">查看</a>
+        <a class="title" href="${make_url(recommend['buy_url'])}" target="_blank">${recommend['insurance_name']}</a>
+        <div class="desc text-light">${recommend['ins_sub_title']} | <span class="text-orange text-bold">${recommend['rate']}</span> 元 / 年</div>
+        <div class="reason twocol-content">
+          <div class="left-col">
+            <img src="{{{img/childins/ico_rec.png}}}" width="50">
+          </div>
+          <div class="right-col">
+            <div>${render_markdown(recommend['rec_reason'].decode('utf-8'))|n}</div>
+          </div>
+        </div>
+      </div>
+      % endfor
+    </div>
+  </div>
+</%def>
+
+<%def name="basic()">
+    % if backup_ins:
+  <div class="block-wrapper result-title js-btn-backup">
+      <h3 class="title">${backup_pack.name}</h3>
+      <i class="iconfont icon-back"></i>
+      <a class="more" href="#">保费合计：<em class="text-bold">${backup_total}</em> 元 / 年 </a>
+    <span class="desktop-element sub-title">${backup_pack.sub_title}</span>
+  </div>
+
+  <div class="result-recommend result-basic hide js-backup-con">
+    <div class="twocol-content">
+      <div class="left-col re-left">
+        % if backup_pack.radar == 'radar1.png':
+          <img src="{{{img/childins/radar1.png}}}" width="220">
+        % elif backup_pack.radar == 'radar2.png':
+          <img src="{{{img/childins/radar2.png}}}" width="220">
+        % elif backup_pack.radar == 'radar3.png':
+          <img src="{{{img/childins/radar3.png}}}" width="220">
+        % elif backup_pack.radar == 'radar4.png':
+          <img src="{{{img/childins/radar4.png}}}" width="220">
+        % elif backup_pack.radar == 'radar5.png':
+          <img src="{{{img/childins/radar5.png}}}" width="220">
+        % endif
+        <div class="recommend-info">
+          <div class="title text-bold">保障能力</div>
+          <p class="text-light">${backup_ability}</p>
+        </div>
+      </div>
+      <div class="right-col re-right">
+        % for backup in backup_ins:
+        <div class="recommend-item">
+            <a class="btn btn-primary btn-buy-ins btn-small js-buy-desktop desktop-element" target="_blank" href="${make_url(backup['buy_url'])}">查看</a>
+            <a class="btn btn-primary btn-buy-ins btn-small js-buy-mobile mobile-element" href="${make_url(backup['buy_url'])}">查看</a>
+          <a class="title" href="${make_url(backup['buy_url'])}" target="_blank">${backup['insurance_name']}</a>
+          <div class="desc text-light">${backup['ins_sub_title']} | <span class="text-orange text-bold">${backup['rate']}</span> 元 / 年</div>
+          <div class="reason twocol-content">
+            <div class="left-col">
+              <img src="{{{img/childins/ico_rec.png}}}" width="50">
+            </div>
+            <div class="right-col">
+              <div>${render_markdown(backup['rec_reason'].decode('utf-8'))|n}</div>
+            </div>
+          </div>
+        </div>
+        % endfor
+      </div>
+    </div>
+  </div>
+  % endif
+</%def>
+
+<%def name="advice()">
+  <div class="block-wrapper result-advice">
+    <h3 class="title">理财师建议</h3>
+    <p class="text-bold">给孩子构筑保障，这些原则应该了解</p>
+    <p class="text-light">1. 父母是孩子最重要的保障，请记得完善自己的保险配置，同时家庭保费总支出不应超过年收入的 10%。</p >
+    <p class="text-light">2. 买保险直到孩子成人或完成学业即可，一般不建议购买超长期保险。一是我国保险市场还未成熟，未来可以购买更先进的产品；二是考虑到通货膨胀、时间成本，超长期的产品性价比很低。</p >
+    <p class="text-light">3. 儿童重疾险应选为少儿定制的产品，以少儿易患疾病为主，帕金森等老年病无需涵盖，保费将更加实惠。</p>
+    <p class="text-bold">有了少儿医保，仍须补充医疗保障、重疾保障</p>
+    <p class="text-light">社保有起付线、封顶线、报销比例的限制，同时有定点医院、规定药品、规定医疗设备的限制。社保报销后，个人仍需负担 30-50%，因此通过商业医疗保险对自费部分再次报销可以有效分担费用。</p>
+    <p class="text-light">但医疗保险均属于报销性质，需要先行支付医疗费用，且报销上限是已支出的费用。重疾险则是确诊后即得相应的保险金，保额可低可高，对缓解医疗费压力帮助很大。</p>
+    <p class="text-bold">教育金保险购买指南</p>
+    <p class="text-light">教育险提供的保障有二：一是专款专用，有强制储蓄作用，同时所得教育金不属债务追偿范围，即使家庭破产投保的教育金仍是安全的；二是保费豁免，即当投保人出现全残、身故等状况时，可免交后续保费，保险合同依然有效，孩子仍可如数得到教育金。</p>
+    <p class="text-light">购买教育险时，建议您储备基本的教育费用即可，类似兴趣班、留学等弹性大金额高的费用则可通过稳健的投资实现，更合理地理财。</p>
+    <p class="text-bold">教育金保险并非适合所有家庭</p>
+    <p class="text-light">教育金保险投资期长、不宜间断，且投资收益偏低，因此不是理想的理财工具，仅适合教育金中断风险较高的家庭，如：无储蓄习惯、收入不规律、偶然获得大笔收入（如拆迁）、做生意（可能破产偿债）一类的人群。</p>
+    <p class="text-light">如果您的家庭有储蓄习惯和理财经验、收入比较稳定、家长已购买了较完善的保障（意外、重疾、寿险等），那么建议您自行规划、打理一份教育基金，不必购买教育金保险。</p>
+    <a class="btn btn-replan btn-primary" href="${url_for('ins.children.program')}">重做规划</a>
+  </div>
+</%def>
+
+<%def name="dlg_modal()">
+  <div class="modals-group dlg-result-tips  js-dlg-tips">
+    <div class="onemodal-hd">
+      <a href="#" rel="onemodal:close"><i class="iconfont icon-close" ></i></a>
+      <h4 class="text-error">友情提示</h4>
+    </div>
+    <div class="onemodal-bd">
+      <div class="twocol-content middle-align">
+        <div class="left-col"><i class="bd-icon iconfont icon-exclamation text-orange"></i></div>
+        <div class="right-col">
+          <p class="text-14 text-blue">电脑上买保险更方便</p>
+          <p class="text-light text-12">为方便于填写信息、阅读条款、建议使用电脑访问</p>
+        </div>
+      </div>
+    </div>
+    <div class="onemodal-ft">
+      <a class="btn btn-gray btn-cancle" rel="onemodal:close" href="#">取消</a>
+      <a class="btn btn-blue js-btn-continue" href="">继续访问</a>
+    </div>
+  </div>
+
+  ## % if not is_six_shown:
+  ## <div class="modals-group js-dlg-on-show dlg-result-act61">
+  ##   <div class="title-con">
+  ##     <h3>儿童节限时福利发送中</h3>
+  ##     <h4>邀请更多妈妈做规划 得话费</h4>
+  ##   </div>
+  ##   <div class="participate-wrapper">
+  ##     <div class="twocol-content participate-item">
+  ##       <div class="left-col"><span>1</span></div>
+  ##       <div class="right-col">
+  ##         <p>分享活动链接，邀请您的好友体验儿童保险规划</p>
+  ##         <div class="desc-con">
+  ##             <input type="text" value="${share_url}" class="input-url js-input-url" data-url="">
+  ##         </div>
+  ##       </div>
+  ##     </div>
+  ##     <div class="twocol-content participate-item">
+  ##       <div class="left-col"><span>2</span></div>
+  ##       <div class="right-col">
+  ##         <p>活动截止后，将向您的手机号送出话费</p>
+  ##         <div class="desc-con">
+  ##           % if g.user.mobile:
+  ##             <span class="text-blue text-bold">您的手机号码：</span> <span class="text-orange">${g.user.mobile}</span>
+  ##           % else:
+  ##             <span class="text-blue text-bold">您的手机号码：</span>
+  ##             <span class="unbind">未绑定</span>
+  ##             <a href="/accounts/bind" target="_blank">点此绑定</a>
+  ##             <span class="tip"><span class="text-orange">*</span> 10 日前未绑定手机号，即视为自动弃权</span>
+  ##           % endif
+  ##         </div>
+  ##       </div>
+  ##     </div>
+  ##   </div>
+
+  ##   <div class="btn-con">
+  ##     <a class="btn btn-act61" href="/ins/children/share">了解详情</a>
+  ##   </div>
+  ##   <img src="{{{img/childins/act_bear.png}}}" alt="" class="bear desktop-element" width="220">
+  ## </div>
+  ## % endif
+</%def>
+<%def name="title()">儿童保险规划 - 好规划</%def>
+
+<%def name="js()">
+  <script src="{{{js/childins/result.js}}}"></script>
+</%def>

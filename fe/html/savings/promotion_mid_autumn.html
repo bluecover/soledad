@@ -1,0 +1,211 @@
+<%inherit file="./base.html" />
+
+<%def name="main()">
+  <div class="saving-complete-wrapper">
+    ${self.detail()}
+  </div>
+</%def>
+
+<%def name="detail()">
+  <%
+    from operator import attrgetter
+
+    nearly_kinds = set(all_kinds) - set(taken_kinds) - set(available_kinds)
+    if nearly_kinds:
+      nearly_kind = min(nearly_kinds, key=attrgetter('milestone_amount'))
+    else:
+      nearly_kind = None
+  %>
+
+  % for message in get_flashed_messages():
+    <input type="hidden" value="${message}" class="js-flashed-message">
+  % endfor
+
+  <div class="savings-activity-wrapper">
+    <img src="{{{img/activity/mid_autumn/des_banner.png}}}" alt="" class="desktop-element" width="100%">
+    <img src="{{{img/activity/mid_autumn/mob_banner.png}}}" alt="" class="mobile-element" width="100%">
+    <div class="ticket-wrapper block-wrapper">
+      <p class="total-wrapper">活动期间您已累计攒钱：<span class="total-money js-total-money" data-val="${round_half_up(savings_amount, 2)}">${round_half_up(savings_amount, 2)}元</span></p>
+
+      <div class="progress-wrapper">
+        <div class="clearfix">
+          <div class="col-3 text-right ${'on' if savings_amount >= 30000 else ''}">
+            <span>赠精美月饼一盒 <img src="{{{img/activity/mid_autumn/gift.png}}}" alt="" height="18"></span>
+          </div>
+          <div class="col-8 text-right ${'on' if savings_amount >= 80000 else ''}">
+            <span>赠月兔杯 <img src="{{{img/activity/mid_autumn/gift.png}}}" alt="" height="18"></span>
+          </div>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-inner js-progress-inner"></div>
+        </div>
+        <div class="clearfix">
+          <div class="col-3 text-right text-lighter">
+            <span class="start">0</span>
+            <span>3万</span>
+          </div>
+          <div class="col-8 text-right text-lighter">
+            <span>8万</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prize-wrapper">
+        % if is_out_of_stock:
+          <p>
+            % if taken_kinds:
+              您已领取
+              % for kind in taken_kinds:
+                <span class="text-orange">${kind.label}</span>
+                % if not loop.last:
+                  和
+                % endif
+              % endfor
+              ，祝您中秋快乐！
+            % else:
+              <span class="text-orange">不好意思！月饼全被抢完啦~</span>
+            % endif
+          </p>
+          <div class="btn-wrapper">
+            <a href="${url_for('savings.mine.index', dcm='guihua', dcs='mid-autumn-2015')}" class="btn btn-primary btn-get-prize btn-go-savings">返回攒钱助手</a>
+          </div>
+        % elif available_kinds:
+          <form action="${request.url}" method="post" class="js-get-gift-form">
+            <input type="hidden" name="csrf_token" value="${csrf_token()}">
+            % for kind in available_kinds:
+              <input type="hidden" name="kind" value="${kind.value}">
+            % endfor
+          </form>
+
+          <p>
+            获赠
+            % for kind in taken_kinds + available_kinds:
+              <span class="text-orange">${kind.label}</span>
+              % if not loop.last:
+                和
+              % endif
+            % endfor
+          </p>
+          <div class="btn-wrapper">
+            % if not taken_kinds:
+            <a href="#" class="btn btn-primary btn-get-prize js-get-gift">领取</a>
+            % endif
+          </div>
+        % elif taken_kinds:
+          <p>
+            已领取
+            % for kind in taken_kinds:
+              <span class="text-orange">${kind.label}</span>
+              % if not loop.last:
+                和
+              % endif
+            % endfor
+
+            % if nearly_kind:
+            ，再攒 <span class="text-orange">${round_half_up(nearly_kind.milestone_amount - savings_amount, 2)}</span> 自动获赠 <span class="text-orange">${nearly_kind.label}</span>
+            % endif
+          </p>
+          <div class="btn-wrapper">
+            % if nearly_kind:
+            <a href="${url_for('savings.mine.index', dcm='guihua', dcs='mid-autumn-2015')}" class="btn btn-primary btn-get-prize btn-go-savings">去攒钱</a>
+            % endif
+          </div>
+        % else:
+          <p>再攒 <span class="text-orange">${round_half_up(nearly_kind.milestone_amount - savings_amount, 2)}</span> 元即可获赠 <span class="text-orange">${nearly_kind.label}</span></p>
+          <div class="btn-wrapper">
+            <a href="#" class="btn btn-get-prize btn-gray text-lighter btn-disable">领取</a>
+            <a href="${url_for('savings.mine.index', dcm='guihua', dcs='mid-autumn-2015')}" class="btn btn-primary btn-get-prize btn-go-savings">去攒钱</a>
+          </div>
+        % endif
+      </div>
+    </div>
+
+    ${self.rules()}
+  </div>
+</%def>
+
+<%def name="rules()">
+  <div class="activity-detail block-wrapper">
+    <h3 class="desktop-element">收货地址</h3>
+    <input type="hidden" name="address_id" data-val="${address.id_ if address else 0}">
+    <div class="address-wrapper">
+      <%
+        name = phone = region = street = ''
+        if address:
+          name = address.receiver_name
+          phone = address.receiver_phone
+          region = address.region[0]
+          street = address.street
+      %>
+      <div class="${'' if address else 'hide'} js-address-wrapper">
+       <h3 class="mobile-element">收货地址</h3>
+       <p><span class="text-bold js-name-txt">${name}</span> <span class="js-phone-txt">${phone}</span></p>
+        <p>
+          <span class="js-address-txt">${region}</span><span class="js-street-txt">${street}</span> <a href="#" class="js-address">修改地址</a><a href="#" class="js-address-cancel hide">取消修改</a>
+        </p>
+      </div>
+      <div class="${'hide' if address else ''} js-unaddress-wrapper">
+        <h4>你尚未绑定地址,<a href="#" class="js-address">点击绑定</a><a href="#" class="js-address-cancel hide">取消绑定</a></h4>
+        <span>请于9月24日前完成地址绑定，否则我们无法将礼品送到您的手中。</span>
+      </div>
+
+      <form action="" class="form-wrapper address-box js-address-form">
+        <input type="hidden" name="csrf_token" value="${csrf_token()}">
+        <div class="item">
+          <span class="title">收件人姓名：</span>
+          <div class="input-con">
+            <input type="text" class="js-name validate" data-validate="require" />
+          </div>
+        </div>
+        <div class="item">
+          <span class="title">收件人手机号：</span>
+          <div class="input-con">
+            <input type="text" class="js-phone validate" data-validate="require,phone" />
+          </div>
+        </div>
+        <div class="item address-item">
+          <span class="title">收件人地址：</span>
+          <input type="hidden" name="district_codes" data-val="${address.region[1] if address else [0,0,0]}">
+          <div class="input-con">
+              <select class="js-province" >
+                <option value='0' class="js-province-defalut">省份</option>
+              </select>
+              <select class="js-city">
+                <option value='0' class="js-city-defalut">县市</option>
+              </select>
+              <select class="js-district validate" data-validate="require,addselect">
+                <option value='0' class="js-district-defalut">地区</option>
+              </select>
+          </div>
+        </div>
+        <div class="item">
+          <div class="title"></div>
+          <div class="input-con">
+            <input type="text" placeholder="请输入你所在的具体地址" class="js-street validate" data-validate="require" />
+          </div>
+        </div>
+        <a href="#" class="btn btn-primary btn-confirm js-btn-confirm">确定</a>
+      </form>
+    </div>
+    <h3>活动规则</h3>
+    <div class="rules-wrapper">
+      <p><span>1</span> 活动时间：2015年9月7日上线之时起至2015年9月24日晚12:00</p>
+      <p><span>2</span> 参加活动的产品：攒钱助手<em class="text-red">3个月、6个月、9个月或12个月固定期限产品</em></p>
+      <p><span>3</span> 活动期间内，攒钱累计达3万元的用户，可以免费获赠精美月饼礼盒一个</p>
+      <p><img src="{{{img/activity/mid_autumn/yuebing.jpg}}}" alt="" width="250"></p>
+      <p><span>4</span> 活动期间，攒钱累计达8万元的用户，还可以免费获赠精美马克杯一个</p>
+      <p><img src="{{{img/activity/mid_autumn/cup.jpg}}}" alt="" width="250"></p>
+      <p><span>5</span> 活动礼品需要手动在本页面领取并填写地址，在活动截止日前未点击领取或未填写地址的视为主动放弃</p>
+      <p><span>6</span> 活动礼品会在领取后通过快递送出，请确认地址填写正确</p>
+      <p><span>7</span> 礼品数量有限，先到先得，送完为止</p>
+      <p><span>8</span> 该活动仅针对中国大陆地区用户，规则解释权归好规划所有</p>
+    </div>
+    <div class="text-center">
+      <a href="/savings/mine" class="btn btn-gray btn-back desktop-element">返回</a>
+    </div>
+  </div>
+</%def>
+
+<%def name="js()">
+  <script src="{{{js/savings/activity.js}}}"></script>
+</%def>

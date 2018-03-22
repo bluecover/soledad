@@ -1,0 +1,74 @@
+<%inherit file="./base.html" />
+
+<%def name="main()">
+  <div class="fund-user-wrapper">
+    ${self.head()}
+    ${self.product()}
+  </div>
+</%def>
+
+<%def name="head()">
+  <div class="title-wrapper text-white desktop-element">基金</div>
+  <div class="unfollow-wrapper text-center js-unfollow-wrapper">
+    你可以跟踪感兴趣的组合，获得每日收益情况及投资建议
+  </div>
+  <div class="follow-wrapper js-follow-wrapper hide">
+    <div class="product-box js-product-main">
+    </div>
+    <div class="chart-box js-chart-box">
+      <h4>跟踪以来累计收益率</h4>
+      <div class="chart-wrapper js-follow-chart" id="follow_chart"></div>
+      <img class="js-chart-pic hide" src="{{{img/fund/empty_chart.png}}}" alt="">
+    </div>
+  </div>
+</%def>
+
+<%def name="product()">
+  % for group in groups:
+  <div class="block-wrapper section-wrapper js-section-wrapper" data-id="${group.id}">
+    <div class="title-box">
+      <h3>${group.subject}</h3>
+      <div class="btn-group">
+        <a href="/fund/${group.id}" class="btn btn-label">查看组合详情</a>
+        <a href="#" class="btn btn-primary btn-unfollow js-btn-unfollow ${'hide' if group.is_liked else ''}">跟踪组合</a>
+        <a href="#" class="btn btn-follow js-btn-follow ${'' if group.is_liked else 'hide'}"><i class="iconfont icon-cicheck text-green"></i>已跟踪</a>
+      </div>
+    </div>
+    <div class="product-main">
+      <div class="product-box">
+        <p>${group.description}</p>
+        % if group.id=='1':
+          <img src="{{{img/fund/radar1.png}}}" alt="">
+        % else:
+          <img src="{{{img/fund/radar2.png}}}" alt="">
+        % endif
+        <div class="text-lighter tip-box text-12 js-tip-box"><img src="{{{img/fund/gray_mark.png}}}" alt="">名词解释</div>
+      </div>
+      <div class="chart-box">
+        <h4><span class="js-created-date"></span>成立以来累计收益：<span class="js-group-income"></span>%</h4>
+        <div class="chart-main js-chart-box"></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot-row">
+    <div class="col-1 text-lighter text-16">
+      组合周报
+    </div>
+    % if hasattr(group,'article'):
+      <div class="col-2">
+        <span>${group.article.title} <a href="/fund/weekly/${group.article.id}">（查看详情）</a></span>
+        <span class="time-box">更新时间${group.article.create_time.strftime('%Y-%m-%d')}</span>
+      </div>
+    % endif
+  </div>
+  % endfor
+  <%include file="mods/fund_footer.html" />
+</%def>
+
+<%def name="js()">
+  <script src="{{{js/lib/amcharts.min.js}}}"></script>
+  <script src="{{{js/lib/serial.min.js}}}"></script>
+  <script src="{{{js/fund/user.js}}}"></script>
+</%def>
+
+<%def name="title()">基金研究中心- 好规划</%def>

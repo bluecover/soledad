@@ -1,0 +1,59 @@
+@import 'jeet'
+@import '../mods/_mine_modal.styl'
+@import '../../mods/_tips.styl'
+@import '../../plugin/slick.css'
+@import '../../plugin/slick.theme.css'
+
+.savings-mine-wrapper
+  @import './_info.styl'
+  @import './_product_list.styl'
+
+  .banner
+    height: 88px
+    overflow: hidden
+    margin-bottom: 15px
+    display: block
+    img
+      width: 100%
+
+  .carousel-wrapper
+    height: 90px
+    overflow: hidden
+    margin-bottom: 5px
+    @media $mobile
+      height: auto
+    img
+      width: 100%
+
+  .loading-text
+    margin-top: 10px
+
+.mod-record-wrapper
+  margin-bottom: 0
+
+  .loading-text
+    margin-top: 10px
+
+  thead
+    td
+      &:first-child
+        padding-left: 30px
+        @media $mobile
+          padding-left: 0
+  tr
+    td
+      width: 25%
+      &:first-child
+        width: 20%
+      &:last-child
+        width: 20%
+  tbody
+    td
+      &:first-child
+        padding-left: 15px
+        @media $mobile
+          padding-left: 0
+      &:last-child
+        padding-right: 15px
+        @media $mobile
+          padding-right: 0

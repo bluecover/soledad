@@ -1,0 +1,63 @@
+.section-7,
+.section-8
+  .m-product-intro
+    width: 100%
+    height: auto
+    margin: 0
+    color: #fff
+    background-color: $orange_40
+    padding-top: 20px
+    padding-top: 5vh
+    >.hd
+      .svgicon
+        width: 244px
+        height: 60px
+        @media $mobile
+          width: 62%
+          height: auto
+    >.bd
+      .subtitle
+        @media $mobile
+          font-size: 16px
+          color: #fff
+      .desc
+        color: $brown_60
+      .svgicon
+        width: 75px
+        height: (75/58)* 61px
+        margin: 28px 0 20px 0
+        path
+          fill: #fff
+        @media $screen_height_low
+          width: 50px
+          height: (50/58)*61 px
+          margin: 18px 0 10px 0
+      li
+        border-bottom: 1px dotted rgba(245, 245, 245, .6)
+        &:last-child
+          border-bottom: none
+      .btn-plan
+        line-height: 44px
+        height: 44px
+        width: 75%
+  .section-wrap
+    >.ft
+      .anchor-next
+        .svgicon
+          path
+            fill: #fff
+
+.section-7
+  background-color: $orange_40
+
+.section-8
+  background-color: $blue_gray_40
+  .m-product-intro
+    background-color: $blue_gray_40
+    >.hd
+      .svgicon
+        @media $mobile
+          width: 50%
+    >.bd
+      .desc
+        color: $brand_blue

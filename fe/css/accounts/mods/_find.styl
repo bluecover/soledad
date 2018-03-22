@@ -1,0 +1,67 @@
+.find-password-wrapper
+  .find-password-content
+    float: left
+    padding:0 20px 150px 100px
+    width: 609px
+    border-right: 1px solid #cfdee4
+    @media $mobile
+      float: none
+      border: none
+      border-bottom: 1px solid #cfdee4
+      width: 100%
+      margin: 20px 0
+      padding: 0 5% 50px
+    h2
+      font-size: 18px
+      line-height: 40px
+      color: #222
+
+    .find-password-txt
+      line-height: 20px
+      margin: 20px 0
+
+    .email-form
+      .input-tips
+        @media $mobile
+          display: block
+          line-height: 2em
+
+      .pmail-txt
+        margin: 0 10px
+        font-size: 14px
+        line-height: 30px
+        @media $mobile
+          margin: 0 3% 0 0
+          width: 60%
+
+      .send-btn, .sending-btn
+        @media $mobile
+          width: 30%
+          padding: 0
+          min-width: 80px
+
+      .sending-btn
+        display: none
+
+    .email-prompt
+      display: none
+      color: red
+      padding:5px 0 0 125px
+      @media $mobile
+        padding-left: 0
+
+    .form-error
+      color: red
+      padding:5px 0 0 120px
+      @media $mobile
+        padding: 5px 0 0 0
+
+  .send-success-content
+    // display: none
+    .send-success-txt
+      font-size: 14px
+      margin: 26px 0
+      line-height: 20px
+
+    .resend-forgot-countdown
+      display: none

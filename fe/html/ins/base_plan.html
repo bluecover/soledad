@@ -1,0 +1,28 @@
+<%inherit file="./base.html" />
+
+<%!
+  from jupiter.integration.weixin import get_weixin_config
+%>
+
+<%def name="body_class()">
+ins-plan-body
+</%def>
+
+<%def name="header()">
+<div class="ins-header-wrapper">
+  <a class="logo" href="/">
+    <img src="{{{img/logo.png}}}" alt="好规划">
+  </a>
+  <h2 class="title">保险规划</h2>
+</div>
+</%def>
+
+<%def name="sidenav()"></%def>
+
+<%def name="wx_share()">
+  <input type="hidden"
+    id="wx_config"
+    data-val="${get_weixin_config(jsApiList=['onMenuShareTimeline', 'onMenuShareAppMessage'])}"/>
+</%def>
+ 
+<%def name="footer()"></%def>

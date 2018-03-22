@@ -1,0 +1,76 @@
+$screen_height_middle = 'screen and (max-height: 700px)'
+
+$m-product-top-banner
+  text-align: center
+  >.hd
+    width: 400px
+    margin: 0 auto
+    color: #fff
+    @media $mobile
+      width: auto
+    .title
+      font-size: 60px
+      font-weight: bold
+      display: inline-block
+      margin-right: 18px
+      vertical-align: top
+      @media $mobile
+        font-size: 50px
+        font-size: 14vw
+        margin-right: 4px
+    .feature-box
+      display: inline-block
+      text-align: left
+      overflow: hidden
+      p
+        margin-top: 4px
+        margin-bottom: 14px
+        @media $mobile
+          margin: 2px 0 8px 0
+          font-size: 13px
+      .iconfont
+        margin-right: 4px
+        display: inline-block
+        height: 20px
+        width: 20px
+        @media $mobile
+          margin-right: 0
+    .subtitle
+      clear: both
+      font-size: 30px
+      margin-top: 20px
+      color: $deep_green_80
+      @media $mobile
+        margin-top: 5px
+        font-size: 28px
+        font-size: 7vw
+        margin-top: 2%
+  >.bd
+    .img-wrap
+      vertical-align: top
+      margin: 20px auto
+      @media $mobile
+        margin: 12px auto 0 auto
+      img
+        width: 350px
+        height: 350px
+        @media $screen_height_middle
+          width: 260px
+          height: 260px
+        @media $mobile
+          width: 75%
+          height: 75%
+  >.ft
+    .desc
+      text-align: center
+      margin: 20px 0 12px 0
+      color: #fff
+      @media $mobile
+        margin: 10px 0 12px 0
+    .btn
+      margin-bottom: 15px
+      min-width: 200px
+    .tip
+      font-size: 12px
+      color: #fff
+      opacity: .7

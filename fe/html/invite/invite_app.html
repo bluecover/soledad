@@ -1,0 +1,63 @@
+<%inherit file="./base.html" />
+
+<%def name="header()">
+  % if not request.user_agent.is_guihua_app:
+    ${parent.header()}
+  % endif
+</%def>
+
+<%def name="main()">
+  <div class="invite-app-wrapper">
+    <div class="text-center invite-hd">
+      <div class="invite-info">
+        <div class="invite-circle">
+          <img src="{{{img/invite/invitation.png}}}" alt="">
+          <h5 class="text-white"><span>你已邀请</span></h5>
+          <p class="text-white"><em>${len(invitations)}</em>人</p>
+        </div>
+      </div>
+      % if has_identity:
+      <a href="#" class="btn btn-invite js-btn-invite" data-invite-url="${invite_url}" data-agent-ios-app="${'true' if request.user_agent.is_ios and request.user_agent.is_guihua_app else ''}" data-agent-android-app="${'true' if request.user_agent.is_android and request.user_agent.is_guihua_app else ''}">立即邀请好友</a>
+      <p>邀请好友注册并成功攒钱(非活期产品）</p>
+      <p>您将获得20元红包奖励</p>
+      % else:
+      <h3>未完成身份认证</h3>
+      <p>身份认证成功后方可收到邀请奖励红包</p>
+      <p>请重新访问本页完成认证</p>
+      % endif
+    </div>
+    <div class="invite-list block-wrapper">
+      <h4 class="text-center"><span>邀请详情</span></h4>
+      %if len(invitations)<1:
+        <p class="text-center tips">
+          暂无邀请好友
+        </p>
+      %else:
+        <ul>
+          <%
+            from core.models.invitation import Invitation
+          %>
+          %for invitation in invitations:
+            <li>${invitation.invitee.name}
+              <em>
+                % if invitation.status is Invitation.Status.sent:
+                  未攒钱
+                % else:
+                  已投资
+                % endif
+              </em>
+            </li>
+          %endfor
+        </ul>
+      %endif
+    </div>
+  </div>
+</%def>
+
+<%def name="footer()"></%def>
+
+<%def name="js()">
+  <script src='{{{js/invite/invite_app.js}}}'></script>
+</%def>
+
+<%def name="title()">邀请新人 - 好规划</%def>

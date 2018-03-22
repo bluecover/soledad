@@ -1,0 +1,27 @@
+random(min,max)
+  return floor(math(0, 'random')*(max - min + 1) + min)
+
+@keyframes shaking
+  for i in 1..49
+    {2% * i}
+      x = random(-7,7)
+      y = random(-0,0)
+      r = random(-5,5)
+      transform: translate((x*0.3)px, (y*0.3)px) rotate((r*0.2)deg)
+      -webkit-transform: translate((x*0.3)px, (y*0.3)px) rotate((r*0.2)deg)
+  0%, 100%
+    transform: translate(0, 0) rotate(0)
+    -webkit-transform: translate(0, 0) rotate(0)
+
+.shaking
+  display: inline-block
+  transform-origin: center center
+  animation-duration: 100ms
+  animation-iteration-count: infinite
+  animation-name: shaking
+  animation-timing-function: ease-in-out
+  -webkit-animation-name: shaking
+  -webkit-animation-duration: 100ms
+  -webkit-transform-origin: center center
+  -webkit-animation-iteration-count: infinite
+  -webkit-animation-timing-function: ease-in-out

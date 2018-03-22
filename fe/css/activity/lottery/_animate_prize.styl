@@ -1,0 +1,57 @@
+@keyframes bounceUpZoomOut
+  0%, 10%, 20%, 30%, 40%
+    transform: translateX(-50%)
+
+  10%
+    bottom: 10em
+
+  20%
+    bottom: 8.8em
+
+  30%
+    bottom: 9.2em
+
+  40%
+    bottom: 9em
+
+  80%
+    bottom: 9em
+    transform: translateX(-50%) scale(1)
+    opacity: 1
+
+  100%
+    bottom: 9em
+    transform: translateX(-50%) scale(6)
+    opacity: 0
+
+
+@keyframes bounceInZoomOut
+  0%, 10%, 20%, 30%, 40%, 50%
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000)
+
+  0%
+    opacity: 0
+    transform: scale3d(.3, .3, .3)
+
+  10%
+    transform: scale3d(1.1, 1.1, 1.1)
+
+  20%
+    transform: scale3d(.9, .9, .9)
+
+  30%
+    opacity: 1
+    transform: scale3d(1.03, 1.03, 1.03)
+
+  40%
+    transform: scale3d(.97, .97, .97)
+
+  50%
+    opacity: 1
+    transform: scale3d(1, 1, 1)
+  80%
+    opacity: 1
+    transform: scale3d(1, 1, 1)
+  100%
+    opacity: 0
+    transform: scale3d(3, 3, 3)

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html class="${self.html_class()}">
+  <head>
+    <meta content="charset=utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="x-csrf-token" content="${csrf_token()}" />
+    % if request.endpoint:
+      <meta name="x-endpoint" content="${(request.endpoint).split('.')[0]}"/>
+    % endif
+    <meta content="好规划网（www.guihua.com）免费为您提供专业、专属、易懂、可行的在线理财规划及理财咨询服务。是国内领先的理财方案定制平台。" name="description"/>
+    <meta content="理财规划,投资理财,个人理财,家庭理财,在线理财网" name="keywords"/>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" sizes="128x128" href="{{{img/icon/icon-128x128-2.png}}}">
+    <link rel="icon" sizes="192x192" href="{{{img/icon/icon-192x192-2.png}}}">
+    <link rel="apple-touch-icon" href="{{{img/icon/icon-2.png}}}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{{img/icon/icon-76x76-2.png}}}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{{img/icon/icon-120x120-2.png}}}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{{img/icon/icon-152x152-2.png}}}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{{img/icon/icon-180x180-2.png}}}">
+
+    ${self.more_meta()}
+    <title>${self.title()}</title>
+    <link rel="stylesheet" href="{{{css/common/common.css}}}" />
+    <!--[if lte IE 8]>
+    <style>
+      .mobile-element { display: none !important; }
+    </style>
+    <![endif]-->
+    ${self.css()}
+    <!-- COLLECTED CSS -->
+  </head>
+  <body class="${'develop' if config['DEBUG'] else ''} ${self.body_class()}">
+    ${self.header()}
+
+    ${self.content()}
+
+    ${self.floatbar()}
+
+    ${self.app_download_float()}
+
+    ${self.account()}
+
+    ## PhantomJS need the es5-shim
+    % if config['TESTING']:
+      <script src="{{{js/lib/lowie.min.js}}}"></script>
+    % else:
+    <!--[if lte IE 8]>
+      <script src="{{{js/lib/lowie.min.js}}}"></script>
+    <![endif]-->
+    % endif
+    <script src="{{{js/lib/base.min.js}}}"></script>
+    <script src="{{{js/common.js}}}"></script>
+    ${self.js()}
+    <!-- COLLECTED JS -->
+  </body>
+</html>
+
+<%def name="content()">
+  <div class="content-wrapper">
+    <div class="main-wrapper">
+      ${self.main()}
+      ${self.footer()}
+    </div>
+  </div>
+  ${self.sidenav()}
+  ${self.notification()}
+</%def>
+
+<%def name="header()">
+  <%include file="mods/header.html" args="pagetitle=self.pagetitle()"/>
+</%def>
+
+<%def name="footer()">
+  <%include file="mods/footer.html" />
+</%def>
+
+<%def name="title()">好规划-在线理财规划与咨询</%def>
+<%def name="more_meta()"></%def>
+<%def name="css()"></%def>
+<%def name="js()"></%def>
+
+<%def name="main()"></%def>
+
+<%def name="floatbar()">
+  <%include file="mods/floatbar.html" />
+</%def>
+
+<%def name="app_download_float()"></%def>
+
+<%def name="account()">
+% if not g.user:
+  <div class="js-g-account gm-account modals-group"></div>
+% endif
+</%def>
+
+<%def name="notification()">
+  % if g.user and not request.user_agent.is_guihua_app:
+    <input type="hidden" id="notification">
+  % endif
+</%def>
+
+<%def name="sidenav()">
+  <div class="sidenav-wrapper js-sidenav">
+    <a href="/" class="logo">
+      <img src="{{{img/logo.png}}}" alt="好规划"/>
+    </a>
+    ${self.sidenav_content()}
+  </div>
+</%def>
+
+<%def name="sidenav_content()">
+    <%include file="mods/sidenav.html" />
+</%def>
+
+<%def name="pagetitle()">
+  <% return '好规划' %>
+</%def>
+
+<%def name="body_class()"></%def>
+
+<%def name="html_class()"></%def>

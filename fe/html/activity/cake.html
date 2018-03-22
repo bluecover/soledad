@@ -1,0 +1,208 @@
+<%inherit file="/base.html" />
+<%!
+  from jupiter.integration.weixin import get_weixin_config
+%>
+
+<%def name="content()">
+  <div class="page-loading">
+    <img src="{{{img/misc/loading.gif}}}" alt="" width="30px">
+  </div>
+
+  <div class="cake-wrapper hide">
+    ${self.start()}
+    ${self.game()}
+  </div>
+
+  ${self.modal()}
+  <%
+    dcm = request.args.get('dcm', 'guihua')
+    dcs = request.args.get('dcs', 'cake-share')
+    depth = int(request.args.get('depth', 0)) + 1
+  %>
+  <input type="hidden" id="wx_config" data-val="${get_weixin_config(jsApiList=['onMenuShareTimeline', 'onMenuShareAppMessage'])}"/>
+  <input type="hidden" id="share_url" value="${url_for('activity.cake.index', dcm=dcm, dcs=dcs, depth=depth, _external=True)}">
+</%def>
+
+<%def name="start()">
+  <div class="start-wrapper">
+    <img src="{{{img/activity/cake/index_08.png}}}" class="start08 wow" data-animate="bounceIn" data-duration=".2s" data-delay="800" data-out-delay="300">
+    <img src="{{{img/activity/cake/index_30.png}}}" class="start30 wow" data-animate="bounceIn" data-duration=".2s" data-delay="900" data-out-delay="250">
+    <img src="{{{img/activity/cake/index_5.png}}}" class="start5 wow" data-animate="bounceIn" data-duration=".2s" data-delay="1000" data-out-delay="200">
+    <img src="{{{img/activity/cake/index_05.png}}}" class="start05 wow" data-animate="bounceIn" data-duration=".2s" data-delay="1100" data-out-delay="150">
+    <img src="{{{img/activity/cake/index_170.png}}}" class="start170 wow" data-animate="bounceIn" data-duration=".2s" data-delay="1200" data-out-delay="100">
+    <img src="{{{img/activity/cake/index_oven.png}}}" class="start-oven wow" data-animate="lightSpeedIn" data-duration=".4s" data-out-delay="400">
+    <img src="{{{img/activity/cake/index_text.png}}}" class="start-text wow" data-animate="flipInY" data-duration=".4s" data-delay="400" data-out-delay="300">
+    <p><a class="btn btn-game js-btn-start" href="#">开始游戏</a></p>
+
+    <div class="ft clearfix wow" data-animate="fadeIn" data-duration=".5s" data-delay="1500" data-out-delay="100">
+      <a href="/"><img src="{{{img/activity/cake/logo.png}}}" alt="" class="logo"></a>
+      <a href="#js-modal-rule" class="btn-rule js-btn-rule" rel="onemodal:open">
+        <img class="rule" src="{{{img/activity/cake/btn_rule.png}}}" alt="">
+      </a>
+    </div>
+  </div>
+</%def>
+
+<%def name="game()">
+  <div class="game-wrapper hide">
+    % if request.user_agent.is_weixin_browser:
+    <img class="js-share img-share hide" src="{{{img/activity/cake/share.png}}}" alt="">
+    % endif
+
+    <div class="oven-wrapper">
+      <img class="oven js-oven" src="{{{img/activity/cake/oven.png}}}" data-animate="bounceInDown" data-duration=".3s">
+      <img class="line-left hide js-line" src="{{{img/activity/cake/line_left.gif}}}" alt="">
+      <img class="line-right hide js-line" src="{{{img/activity/cake/line_right.gif}}}" alt="">
+    </div>
+
+    <div class="board js-board wow" data-animate="lightSpeedIn" data-duration=".3s">
+      <span class="nail"></span>
+      <span class="nail"></span>
+      <span class="nail"></span>
+      <span class="nail"></span>
+      ${self.game_board()}
+      ${self.award_board()}
+      ${self.coupon_board()}
+    </div>
+
+    <div class="award-btn-wrapper js-meta-result hide">
+      <a class="btn btn-game js-btn-restart" href="#">不服再来</a>
+      <a class="btn btn-game js-btn-coupon last" href="#">去领奖</a>
+    </div>
+
+    <div class="award-phone-wrapper js-meta-phone hide">
+      <p><input type="text" placeholder="输入手机号领奖" class="js-input-phone" pattern="[0-9]*"></p>
+      <a class="btn btn-game js-btn-restart" href="#">再玩一次</a>
+      <a class="btn btn-game js-phone last" href="#">去领奖</a>
+    </div>
+
+    <div class="award-btn-wrapper js-meta-coupon hide">
+      <a class="btn btn-game js-btn-restart" href="#">再玩一次</a>
+      <a class="btn btn-game js-btn-award last" href="${url_for('accounts.register.register', next=url_for('welfare.index', dcm='guihua', dcs='20151224cake', _anchor='coupon'))}">现在就去</a>
+    </div>
+
+    <div class="zqzs-con js-meta-phone js-meta-coupon hide">
+      <img src="{{{img/activity/cake/zqzs.png}}}" alt="">
+      <p><span class="text-orange">稳健型</span>攒钱利器</p>
+      <p>新人专享百元礼包，<span class="text-orange">25天</span>收益<span class="text-orange">10%</span></p>
+      <p>攒钱期限自定，收益从<span class="text-orange">6.0% ~ 9.3%</span></p>
+      <p>每月享受各种<span class"text-orange">福利</span>，到期还有<span class="text-orange">新奖励</span></p>
+    </div>
+
+    <div class="js-meta-game">
+      <span class="btn-timing js-btn-timing" href="#"></span>
+    </div>
+
+    ##<a href="/" class="wow inner-logo" data-animate="fadeIn" data-duration=".5s" data-delay="100"><img src="{{{img/activity/cake/logo.png}}}" alt="" class="logo"></a>
+  </div>
+</%def>
+
+<%def name="game_board()">
+  <div class="game-board">
+    <table class="record-table">
+      <tr>
+        <td>第一回</td>
+        <td>第二回</td>
+        <td>第三回</td>
+      </tr>
+      <tr class="js-row-time">
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="result js-row-img">
+        <td><div></div></td>
+        <td><div></div></td>
+        <td><div></div></td>
+      </tr>
+    </table>
+    <p class="js-result-tip result-tip"></p>
+  </div>
+</%def>
+
+<%def name="award_board()">
+  <div class="award-board hide">
+    <p class="text-award"></p>
+    <p class="text-award-tip"></p>
+    <img src="" alt="" class="pig-award">
+  </div>
+</%def>
+
+<%def name="coupon_board()">
+  <div class="coupon-board hide">
+    <p class="text-coupon js-text-coupon hide">请7日内登录 <a href="/">www.guihua.com</a>，</p>
+    <p class="text-coupon js-text-coupon hide">从 “我的福利” 中查看奖品</p>
+    <p class="text-coupon js-text-coupon-tip">&nbsp;</p>
+    <p class="text-coupon js-text-coupon-tip">您获得的攒钱助手奖励</p>
+    <div class="coupon-wrapper clearfix">
+      <div class="cake1 hide">
+          <img src="{{{img/activity/cake/coupon_30.png}}}" alt="">
+          <img src="{{{img/activity/cake/coupon_05.png}}}" alt="">
+      </div>
+
+      <div class="cake2 hide">
+        <div class="img-wrapper">
+          <img src="{{{img/activity/cake/coupon_170.png}}}" alt="">
+        </div>
+        <div class="img-wrapper">
+          <img src="{{{img/activity/cake/coupon_5.png}}}" alt="">
+        </div>
+        <div class="img-wrapper">
+          <img src="{{{img/activity/cake/coupon_05.png}}}" alt="">
+        </div>
+      </div>
+
+      <div class="cake3 hide">
+        <div class="img-wrapper">
+          <img src="{{{img/activity/cake/coupon_170.png}}}" alt="">
+        </div>
+        <div class="img-wrapper">
+          <img src="{{{img/activity/cake/coupon_5.png}}}" alt="">
+        </div>
+        <div class="img-wrapper">
+          <img src="{{{img/activity/cake/coupon_08.png}}}" alt="">
+        </div>
+      </div>
+    </div>
+    <p class="result-tip js-award-one">每个手机号只能领一次哦</p>
+  </div>
+</%def>
+
+<%def name="modal()">
+  <div class="modals-group cake-modal" id="js-modal-rule">
+    <a href="#" rel="onemodal:close"><i class="iconfont icon-close" ></i></a>
+    <div class="onemodal-bd">
+      <h3>「活动时间」</h3>
+      <p>2015年12月24日 - 2016年1月5日</p>
+
+      <h3>「活动规则」</h3>
+      <p>活动期间玩「超级甜点师」游戏。长按按钮控制烤炉时间，3秒钟以及前后0.1秒内算成功。</p>
+      <p>连续烤三次，烤出越多蛋糕，赢得攒钱助手的奖品就越多哦。</p>
+      <p>每日挑战次数无限制，但是每位用户只可领取一次奖品，多练习几次，玩出最好成绩获得最高奖品哦。</p>
+      <p>这么难得的大羊毛，邀请你的小伙伴一起来挑战吧！</p>
+
+      <h3>「奖品明细」</h3>
+      <p>一等奖：170元满减券+5元攒钱红包+0.8%加息券</p>
+      <p>二等奖：170元满减券+5元攒钱红包+0.5%加息券</p>
+      <p>三等奖：30元满减券+0.5%加息券</p>
+
+      <h3>「参与者须知」</h3>
+      <p>活动主办方对参与者提交的个人信息保密，不会用于任何与活动无关之用途。</p>
+      <p>活动主办方不会对因网络传输原因而导致参与者提交的信息错误或延误承担任何责任。</p>
+      <p>严禁参与者使用刷号软件等破坏活动秩序的行为，如参与者有上述行为，主办方有权直接取消参与资格。</p>
+      <p>中奖者提交信息有误、手机号码或者邮箱有误、提交虚假凭证、逾期兑奖的，均视为参与者主动放弃兑奖。</p>
+      <p>如果在游戏中遇到任何疑问，请联系官方客服——好规划网微信公众号：plan141；好规划网保留活动最终解释权。</p>
+    </div>
+  </div>
+</%def>
+
+<%def name="title()">超级甜点师</%def>
+<%def name="header()"></%def>
+<%def name="floatbar()"></%def>
+<%def name="css()">
+  <link rel="stylesheet" href="{{{css/activity/cake.css}}}" type="text/css" />
+</%def>
+<%def name="js()">
+  <script src="{{{js/lib/wx_sdk.js}}}"></script>
+  <script src="{{{js/activity/cake.js}}}"></script>
+</%def>

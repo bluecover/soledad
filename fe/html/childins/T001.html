@@ -1,0 +1,240 @@
+<%inherit file="./products_base.html" />
+
+<%namespace import="more_T002,more_A001,more_A002" file='./mods/more_product.html' />
+
+<%!
+  from libs.linker import make_url
+  from jupiter.integration.weixin import get_weixin_config
+%>
+<%def name="main()">
+  <div class="ins-common-wrapper childins-t001-wrapper">
+    ${self.head()}
+    ${self.neck()}
+    ${self.body()}
+    ${parent.common_compensation_guide()}
+    ${self.reason()}
+    ${self.more()}
+    <%include file="./mods/ins_qrcode.html" />
+  </div>
+</%def>
+
+<%def name="head()">
+  <input type="hidden" id="ins_data" data-url="${url_for('ajax.mail', dcm='email_savi', dcs='phonetopc')}" data-val="${get_weixin_config(jsApiList=['onMenuShareTimeline', 'onMenuShareAppMessage'])}" data-title="美亚畅游神州境内旅行保险 - 好规划" data-desc="好规划保险精选：境内旅行的全面保障"/>
+  <div class="head-wrapper">
+    <div class="desc">
+      <h4 class="text-16">好规划保险精选  <em class="text-green">境内旅行的全面保障</em></h4>
+      <h2 class="text-bold">美亚畅游神州境内旅行保险</h2>
+      <dl class="ins-info">
+        <dt class="text-12">保险信息</dt>
+        <dd>旅行意外险</dd>
+        <dd>消费型</dd>
+        <dd>期限可选</dd>
+      </dl>
+      <dl>
+        <dt class="text-12">保障范围</dt>
+        <dd><i class="iconfont icon-checked"></i>意外伤害</dd>
+        <dd><i class="iconfont icon-checked"></i>医药补偿</dd>
+        <dd><i class="iconfont icon-checked"></i>紧急救援</dd>
+        <dd><i class="iconfont icon-checked"></i>旅行延误等</dd>
+      </dl>
+    </div>
+    <div class="buy text-center">
+      <p  class="text-orange">￥<em>10.00</em> 起</p>
+      <a href="#" class="btn btn-primary btn-large btn-start js-btn-start" data-type="zm" data-url="${make_url(redirect_url)}">立即投保</a>
+    </div>
+  </div>
+</%def>
+
+<%def name="neck()">
+  <div class="title-box">保障全面的旅行险</div>
+  <div class="block-wrapper section-wrapper">
+   <h3>三档计划可选，满足不同需求</h3>
+   <table class="table-box">
+      <tr>
+        <td></td>
+        <td>计划1: <br class="mobile-element">40元/5天  </td>
+        <td class="text-orange">计划2: <br class="mobile-element">45元/5天</td>
+        <td>计划3: <br class="mobile-element">85元/5天</td>
+      </tr>
+      <tr>
+        <td>人身意外</td>
+        <td>20万</td>
+        <td>30万</td>
+        <td>60万</td>
+      </tr>
+      <tr>
+        <td>医药补偿</td>
+        <td>3万</td>
+        <td>4万</td>
+        <td>5万</td>
+      </tr>
+      <tr>
+        <td>医疗运送</td>
+        <td>10万</td>
+        <td>10万</td>
+        <td>10万</td>
+      </tr>
+      <tr>
+        <td>旅行延误</td>
+        <td>600元</td>
+        <td>600元</td>
+        <td>600元</td>
+      </tr>
+      <tr>
+        <td>银行卡<br class="mobile-element">盗刷</td>
+        <td>5000元</td>
+        <td>10000元</td>
+        <td>15000元</td>
+      </tr>
+      <tr>
+        <td>6项<br class="mobile-element">其他保障</td>
+        <td>12.2万</td>
+        <td>12.6万</td>
+        <td>13.1万</td>
+      </tr>
+    </table>
+    <p class="text-light text-12 tips-text">* 本保险产品及后续服务由中民保险网提供，中民保险网具有保监会网销资格的正规资质（保险经纪业务许可证：260636000000800）</p>
+  </div>
+  <div class="block-wrapper section-wrapper">
+    <div class="clause-wrapper">
+      <h3>针对旅行，定制贴心条款</h3>
+      <div class="twocol-content">
+        <div class="left-col">
+          <div class="circle-box">1</div>
+        </div>
+        <div class="right-col">
+          <h4>高风险运动也能保</h4>
+          <p>一般意外险不保障的登山、骑车、骑马、滑雪、潜水等高风险运动，本款均可保障（跳伞、赛车等除外，具体以责任免除条款为准）。</p>
+        </div>
+      </div>
+      <div class="twocol-content">
+        <div class="left-col">
+          <div class="circle-box">2</div>
+        </div>
+        <div class="right-col">
+          <h4>24小时紧急救援</h4>
+          <p>若发生紧急事故，可拨打合作机构 Travel Guard 24小时紧急支援热线400-888-3080（境内）。</p>
+        </div>
+      </div>
+      <div class="twocol-content">
+        <div class="left-col">
+          <div class="circle-box">3</div>
+        </div>
+        <div class="right-col">
+          <h4>时间灵活自选</h4>
+          <p>起始日期自由指定，保障期限1天 – 1年按需选择。</p>
+        </div>
+      </div>
+    </div>
+    <div class="service-wrapper">
+      <h3 class="text-dark">还有周到服务，省时省心</h3>
+      <div class="service-box">
+        <div class="twocol-content middle-align">
+          <div class="left-col">
+            <img src="{{{img/childins/a_002.png}}}" alt="">
+          </div>
+          <div class="right-col">
+            <p class="text-dark text-16">24小时理赔</p>
+            <p class="text-lighter">客服电话400-8822-300</p>
+          </div>
+        </div>
+      </div>
+      <div class="service-box">
+        <div class="twocol-content middle-align">
+          <div class="left-col">
+            <img src="{{{img/childins/a_001.png}}}" alt="">
+          </div>
+          <div class="right-col">
+            <p class="text-dark text-16">在线快速投保</p>
+            <p class="text-lighter">5分钟填保单，在线支付</p>
+          </div>
+        </div>
+      </div>
+      <div class="service-box">
+        <div class="twocol-content middle-align">
+          <div class="left-col">
+            <img src="{{{img/childins/a_003.png}}}" alt="">
+          </div>
+          <div class="right-col">
+            <p class="text-dark text-16">为全家投保</p>
+            <p class="text-lighter">可以代配偶、父母投保</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="body()">
+  <div class="title-box">投保指南</div>
+  <div class="block-wrapper section-wrapper">
+    <table class="table-coverage">
+      <tr class="coverage-row">
+        <td class="text-lighter">保障<br class="desktop-element">计划</td>
+        <td>
+          <p>已经投保意外险：推荐计划二；</p>
+          <p>尚未投保意外险：推荐计划三。</p>
+        </td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">保障<br class="desktop-element">范围</td>
+        <td>
+          <p>意外身故及伤残保障：意外事故导致的180日内身故或伤残，可获相应保险金；</p>
+          <P>医药补偿：遭受合同约定的意外事故或疾病，90日内进行的必要治疗，可报销医药费用；</P>
+          <P>住院津贴：旅行期间入院治疗，可获50元/天的津贴；</P>
+          <P>慰问探访费用补偿：一旦住院治疗，可补偿一名亲属前往探访的交通、食宿费用；</P>
+          <P>旅行绑架及非法拘留：每24小时赔偿一定金额；</P>
+          <p>紧急医疗运送和送返：因意外事故或疾病导致的医疗运送费用；</p>
+          <p>身故遗体送返：不幸身故导致的丧葬及遗体运送费用；</p>
+          <p>未成年人旅行送返费用补偿：本人出险时，同行的未成年人购买机票或机票改签的费用；</p>
+          <p>旅行延误：原计划搭乘的公共交通工具延误时，可获赔偿；</p>
+          <p>银行卡盗刷：银行卡丢失而造成的账款损失，可获赔偿；</p>
+          <p>个人责任：因意外事故造成他人伤亡、财产损失，依法进行赔偿后，可获相应保险金。</p>
+        </td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">年龄</td>
+        <td>1 - 80周岁。</td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">保障<br class="desktop-element">期限</td>
+        <td>1天 – 1年，请根据出行天数选择。</td>
+      </tr>
+    </table>
+  </div>
+</%def>
+
+<%def name="reason()">
+  <div class="title-box">为什么买旅行险</div>
+  <div class="block-wrapper reason-wrapper">
+    <div class="section">
+      <h4><svg class="icon-lightning" src="{svg{{img/childins/lightning.svg}}}"></svg>长时间、高频率乘坐交通工具，增加意外事故发生概率。</h4>
+      <h4><svg class="icon-lightning" src="{svg{{img/childins/lightning.svg}}}"></svg>高强度、高风险的户外活动，易导致意外受伤。</h4>
+      <h4><svg class="icon-lightning" src="{svg{{img/childins/lightning.svg}}}"></svg>水土不服、环境陌生，一旦生病就医将支出大笔的医药费。</h4>
+      <p>旅行期间，各种风险的发生概率都大幅高于日常生活，因此也需要更有针对性地补充保障。尤其行程中包含登山、滑雪、潜水、露营等“高风险运动”时，一般意外险不涵盖此类活动，所以更需要含有相应保障的旅行险。</p>
+    </div>
+    <div class="text-center">
+      <a class="btn btn-primary btn-start js-btn-start" data-type="zm" href="#" data-url="${make_url(redirect_url)}">立即投保</a>
+      <p class="text-12 text-lighter"><em class="text-orange">*</em> 本页面仅作推荐用途，保险条款以保险合同为准，<br class="mobile-element">付款前请详细了解</p>
+    </div>
+  </div>
+</%def>
+
+<%def name="more()">
+  <div class="title-box">更多精选保险</div>
+  <div class="block-wrapper more-wrapper">
+    ${more_T002()}
+    ${more_A001()}
+    ${more_A002()}
+  </div>
+</%def>
+
+<%def name="js()">
+  <script src='{{{js/lib/wx_sdk.js}}}'></script>
+  <script src="{{{js/childins/ins.js}}}"></script>
+</%def>
+
+<%def name="pagetitle()">
+  <% return '保险精选' %>
+  </%def>
+  <%def name="title()">美亚畅游神州境内旅行保险 - 好规划</%def>

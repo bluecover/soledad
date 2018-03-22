@@ -1,0 +1,189 @@
+@import 'jeet'
+@import '../../mods/_tips.styl'
+
+.wallet-mine-wrapper
+  .info-con
+    margin-top: 15px
+    margin-bottom: 15px
+    @media $mobile
+      color: #fff
+    .title
+      padding: 15px 20px
+      background: $blue_gray_40
+      font-size: 20px
+      color: #fff
+      .total
+        font-size: 14px
+    .profit
+      clearfix()
+    .profit-item
+      span(1/2)
+      background: #fff
+      height: 250px
+      @media $mobile
+        height: auto
+        stack()
+    .profit-number
+      padding-top: 60px
+      text-align: center
+      border-right: 1px solid $border_color
+      @media $mobile
+        background-color: $blue_gray_40
+        padding-top: 30px
+        padding-bottom: 20px
+        .text-light,
+        .text-orange
+          color: #fff !important
+      .number-total
+        margin-bottom: 30px
+      .total
+        margin: 0 5px
+      .number
+        font-size: 50px
+        margin-top: 15px
+        margin-bottom: 30px
+      .btn-withdraw
+        transition: all .15s ease-in-out
+        margin: 5px 10px
+        padding: 0 30px
+        @media $mobile
+          padding: 5px 40px
+          font-size: 18px
+        &.blue
+          border: 1px solid $blue_gray_40
+          color: $blue_gray_40
+          @media $mobile
+            color: #fff
+            border-color: #fff
+          &:hover
+            background-color: $blue_gray_40
+            color: #fff
+
+        &.gray
+          border: 1px solid $gray_40
+          color: $gray_40
+          cursor: default
+
+      .btn-deposit
+        padding: 0 30px
+        background-color: $orange_60
+        color: #fff
+        margin: 5px 10px
+        @media $mobile
+          padding: 5px 40px
+          font-size: 18px
+
+    .profit-chart
+      padding: 15px
+      .chart-title
+        margin-bottom: 18px
+        color: $blue_gray_40
+        @media  $mobile
+          font-size: 18px
+          color: $gray_dark
+          margin-bottom: 15px
+          font-weight: bold
+
+  .profit-info-con
+    clearfix()
+    margin-bottom: 15px
+    .seven-item
+      height: 100px
+      background: #fff
+      col(1/3, gutter:1.8)
+    .profit-grid
+      col(2/3, gutter:1.8)
+      @media $mobile
+        col()
+      .item
+        color: $blue_gray_90
+        col(1/3, gutter:2)
+        background: #fff
+        height: 100px
+        text-align: center
+        padding: 20px 0
+        @media $mobile
+          col(1/2, gutter:0, cycle:2)
+          border-right: 1px dashed $gray_30
+          padding-left: 20px
+          &:nth-child(2n)
+            border-right: none
+          &:first-child
+            border-bottom: 1px dashed $gray_30
+          &:nth-child(2)
+            border-bottom: 1px dashed $gray_30
+        .desc
+          @media $mobile
+            color: $gray_lighter
+            font-size: 12px
+        .number
+          font-size: 32px
+          margin-top: 16px
+          @media $mobile
+            color: $gray
+            font-size: 28px
+
+  .record-con
+    margin-bottom: 0
+    table
+      width: 100%
+    thead
+      tr
+        line-height: 40px
+      @media $mobile
+        td
+          font-size: 12px
+    tr
+      line-height: 90px
+      width: 100%
+      &:last-child td
+        border-bottom: none
+      &:first-child td
+        border-bottom: 1px dotted $gray_30
+      @media $mobile
+        line-height: 60px
+    td
+      border-bottom: 1px dotted $gray_30
+      color: $gray_light
+      .number
+        @media $mobile
+          margin-top: -23px
+          display: block
+    .non-deal
+      border-bottom: none !important
+    .btn-badge-deposit,
+    .btn-badge-withdraw
+      color: #fff
+      min-width: 0
+      font-size: 14px
+      line-height: 30px
+      padding: 0 10px
+      background: $orange_40
+      margin-right: 10px
+      cursor: default
+      @media $mobile
+        display: block
+        width: 38px
+        font-size: 12px
+        line-height: 14px
+        padding: 0
+        margin-top: 7px
+    .btn-badge-withdraw
+      background: $green_40
+    .ft
+      margin-top: 30px
+      margin-bottom: 26px
+      text-align: center
+      @media $mobile
+        margin: 0
+        .btn
+          font-size: 20px
+          line-height: 60px
+          display: block
+      .loading
+        display: none
+        width: 20px
+        vertical-align: top
+        margin: 6px 4px 0 0
+        @media $mobile
+          margin: 19px 8px 0 0

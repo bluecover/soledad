@@ -1,0 +1,27 @@
+<%inherit file="./base.html" />
+
+<%def name="main()">
+  <div class="record-detail-wrapper mod-record-wrapper">
+    <div class="record-nav js-record-nav">
+      <a class="nav-item js-record on" data-filter="" href="#">全部交易</a>
+      <a class="nav-item js-record" data-filter="True" href="#">未到期交易</a>
+    </div>
+    <div id="js_record_info" class="table-record-info">
+      <div class="text-center block-wrapper">
+        <div class="js-loading">
+          <img src="{{{img/misc/loading.gif}}}" height="30">
+          <p class="loading-text">加载中……</p>
+        </div>
+        <div class="hide js-reload">
+          <a class="btn btn-primary js-reload-order">重新加载</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="js()">
+  <script src="{{{js/savings/record.js}}}"></script>
+</%def>
+
+<%def name="title()">交易记录 - 攒钱助手</%def>

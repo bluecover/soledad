@@ -1,0 +1,87 @@
+<%inherit file="./base.html" />
+<%!
+  from jupiter.integration.weixin import get_weixin_config
+%>
+
+<%def name="main()">
+<div class="ins-index-mobile-wrapper">
+  <input type="hidden"
+    id="ins_data"
+    data-url="${url_for('ajax.mail', dcm='email_savi', dcs='phonetopc')}"
+    data-val="${get_weixin_config(jsApiList=['onMenuShareTimeline', 'onMenuShareAppMessage'])}" />
+
+  <%include file="./mods/_ins_refining_banner.html" />
+
+  ${ins_intro(
+  name='accident',
+  title='意外险',
+  subtitle='明天和意外，哪一个先来？',
+  desc='全网底价 | 意外伤亡 | 意外医疗',
+  logo='''<svg src="{svg{{img/ins/c01.svg}}}"></svg>'''
+  )}
+
+  ${ins_intro(
+  name='dread',
+  title="重疾险",
+  subtitle='滚蛋吧！重疾君',
+  desc='高性价比 | 45种重疾 | 50万保障',
+  logo='''<svg src="{svg{{img/ins/c02.svg}}}"></svg>'''
+  )}
+
+  ${ins_intro(
+  name='life',
+  title='寿险',
+  subtitle='给家人最长情的告白',
+  desc='身故即赔 | 守护家人 | 保障为本',
+  logo='''<svg src="{svg{{img/ins/c03.svg}}}"></svg>'''
+  )}
+
+  ${ins_intro(
+  name='children',
+  title='儿童险',
+  subtitle='妈妈再也不用担心我生病受伤啦',
+  desc='免费规划 | 科学搭配 | 超值组合',
+  logo='''<svg src="{svg{{img/ins/c04.svg}}}"></svg>'''
+  )}
+
+  ${ins_intro(
+  name='travel',
+  title='旅行险',
+  subtitle='看世界去吧，留下风险痛快出发',
+  desc='救援医疗 | 户外运动 | 多项旅行保障',
+  logo='''<svg src="{svg{{img/ins/c05.svg}}}"></svg>'''
+  )}
+
+  <%include file="./mods/_plan_qrcode_block.html" />
+
+  <%include file="./mods/_ins_footer_mobile.html" />
+</div>
+
+<div class="ins-slide-wrapper"></div>
+</%def>
+
+<%def name="ins_intro(name='', title='', subtitle='', desc='', logo='', url='')">
+<div class="m-ins-intro m-ins-${name}-intro" data-name="${name}">
+  <div class="hd">
+    <h3 class="title">${title}</h3>
+  </div>
+  <div class="bd">
+    <h4 class="subtitle">${subtitle}</h4>
+    <p class="desc">${desc}</p>
+  </div>
+  <div class="ft">
+    ${logo | n}
+  </div>
+</div>
+</%def>
+
+<%def name="footer()"></%def>
+
+<%def name="css()">
+  <link rel="stylesheet" href="{{{css/ins/ins_mobile.css}}}" />
+</%def>
+
+<%def name="js()">
+  <script src='{{{js/lib/wx_sdk.js}}}'></script>
+  <script src="{{{js/ins/index_mobile.js}}}"></script>
+</%def>

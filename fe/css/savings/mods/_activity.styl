@@ -1,0 +1,131 @@
+@import 'jeet'
+.savings-activity-wrapper
+  h3
+    font-size: 18px
+    color: $blue_gray_80
+    margin-bottom: 20px
+    font-weight: bold
+
+  .ticket-wrapper
+    @media $mobile
+      margin-bottom: -30px
+    .total-wrapper
+      font-size: 16px
+    .total-money
+      font-size: 32px
+      color: $brand_orange
+
+  .progress-wrapper
+    margin: 30px 0
+    .col-3,
+    .col-8
+      span(3/8)
+      color: $gray_light
+      img
+        opacity: 0.5
+    .col-8
+      span(5/8)
+    .on
+      span
+        color: $brand_orange
+      img
+        opacity: 1
+    .start
+      float: left
+    .progress-bar
+      margin: 10px 0
+      background-color: #ddd
+      width: 100%
+      height: 3px
+    .progress-inner
+      background-color: $brand_orange
+      height: 3px
+      width: 0
+
+  .prize-wrapper
+    background-color: $yellow_20
+    margin-top: 20px
+    padding: 30px 20px
+    clearfix()
+    p
+      font-size: 18px
+      float: left
+      @media $mobile
+        float: none
+    .btn-wrapper
+      float: right
+      margin-top: -5px
+      @media $mobile
+        float: none
+        margin-top: 10px
+    .btn-go-savings
+      margin-left: 20px
+
+  .address-wrapper
+    background-color: #f4fbf5
+    border: 1px solid #D0ECD1
+    padding: 20px
+    margin-bottom: 60px
+    line-height: 1.5
+    @media $mobile
+      margin-bottom: 30px
+    h4
+      margin-bottom: 10px
+    p
+      margin-bottom: 10px
+  .rules-wrapper
+    border-top: 1px dotted $gray_40
+    padding-top: 30px
+    @media $mobile
+      font-size: 13px
+    p
+      margin-bottom: 20px
+      line-height: 1.8
+      text-align:justify
+      text-justify:inter-word
+    span
+      display: inline-block
+      background-color: $blue_gray_50
+      border-radius: 50%
+      width: 20px
+      height: 20px
+      text-align: center
+      line-height: 20px
+      color: #fff
+  .address-box
+    border-top: 1px dotted $gray_40
+    margin-top: 30px
+    padding-top: 30px
+    display: none
+    .item
+      padding: 15px 0
+    .input-con
+      width: 400px
+      @media $mobile
+        width: 100%
+    .address-item
+      .title
+        vertical-align: top
+      @media $mobile
+        padding: 0
+    select
+       width: 130px
+       font-size: 14px
+       col(1/3, gutter:2)
+       @media $mobile
+         stack()
+         margin-bottom: 10px
+    .btn-confirm
+      margin-left: 132px
+      margin-top: 20px
+      margin: 20px 0 20px 132px
+      @media $mobile
+        width: 100%
+        margin-left: 0
+  .btn-back
+    padding-left: 60px
+    padding-right: 60px
+    margin-top: 30px
+    margin-bottom: 20px
+    @media $mobile
+      margin-top: 30px

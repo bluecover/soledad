@@ -1,0 +1,195 @@
+<%inherit file="./base.html" />
+
+<%def name="main()">
+  <div class="detail-result-wrapper">
+    ${self.head()}
+    ${self.chart()}
+    ${self.product()}
+  </div>
+</%def>
+
+<%def name="head()">
+  <div class="block-wrapper principle-wrapper">
+    <a href="${url_for('.info', redo=1)}" class="text-12">重新规划</a>
+    <div class="twocol-content">
+      <div class="left-col">
+        <div class="circle text-center">
+          <i class="iconfont icon-result"></i>
+        </div>
+      </div>
+      <div class="right-col">
+        <h3 class="text-white text-16">理财规划原则</h3>
+        <p>1. 用货币基金确保流动性资金的增值；</p>
+        <p>2. 用短期理财产品最大化固定性支出的收益；</p>
+        <p>3. 用长期理财确保结余资金获得最高收益。</p>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="chart()">
+  % if report.savings + report.tour_children > 0:
+    <div class="block-wrapper section-wrapper">
+      <div class="title-box js-fix-bar hide">
+        <img src="{{{img/plan/pig.png}}}" alt="">每月攒钱${report.savings + report.tour_children}元，存入<span class="text-bold">攒钱助手－固定期限</span>
+      </div>
+      <h2 class="js-title">每月攒钱${report.savings + report.tour_children}元</h2>
+      <div class="chart-box js-savings-chart" data-arr="${json.dumps(report.recommended_savings_amount)}"></div>
+      <p>根据您的情况，好规划建议您每月结余<span class="text-bold text-dark">${report.savings + report.tour_children}元</span>，将这部分资金存入<span class="text-bold text-dark">攒钱助手－固定期限</span>，既能帮您防“剁手”，又能挣取稳定的收益。在未来将本金和收益用于提高生活品质、子女抚育、个人学习等。
+      </p>
+    </div>
+  % endif
+  <div class="block-wrapper section-wrapper">
+    <div class="title-box js-fix-bar hide">
+      <img src="{{{img/plan/wallet.png}}}" alt="">紧急备用金${report.erfund}元，放在<span class="text-bold">零钱包</span>攒收益
+    </div>
+    <h2 class="js-title">紧急备用金${report.erfund}元</h2>
+    % if report.erfund > plan.savings:
+      <div class="circle-group-1  text-center">
+        <div class="circle circle-imprest  text-white">
+          <h6>目标紧急<br>备用金</h6>
+          <span>${report.erfund}元</span>
+        </div>
+        <span>≈</span>
+        <div class="circle circle-savings  text-white">
+          <h6>现有储蓄</h6>
+          <span>${plan.savings}元</span>
+        </div>
+        <span>+</span>
+        <div class="circle circle-salary  text-white text-10">
+          <h6>可支配<br>收入</h6>
+          <span>${int(report.disposable_income)}元</span>
+        </div>
+        <span class="text-num">×${report.month_factor}</span>
+      </div>
+      <p>
+        好规划建议您储备<span class="text-bold text-dark">${report.erfund}元</span>(当地月平均支出金额的<span class="text-bold text-dark">${report.erfund_factor}</span>倍)作为您的紧急备用金。将现有储蓄的<span class="text-bold text-dark">${plan.savings}元</span>存入<span class="text-bold text-dark">零钱包</span>作为紧急备用金账户，剩余部分最快在未来<span class="text-bold text-dark">${report.month_factor}</span>个月存入已补齐账户。
+      </p>
+    % else:
+      <div class="circle-group-2  text-center text-white">
+        <div class="circle circle-savings">
+          <h6>现有储蓄</h6>
+          <span>${plan.savings}元</span>
+          <div class="circle circle-imprest">
+            <h6>紧急备用金</h6>
+            <span>${report.erfund}元</span>
+          </div>
+        </div>
+        <p>
+        好规划建议您储备<span class="text-bold text-dark">${report.erfund}元</span>(当地月平均支出金额的<span class="text-bold text-dark">${report.erfund_factor}</span>倍)作为您的紧急备用金。将现有储蓄的<span class="text-bold text-dark">${report.erfund}</span>元存入<span class="text-bold text-dark">零钱包</span>作为紧急备用金账户。
+        </p>
+      </div>
+    % endif
+  </div>
+  % if report.pocket_money and len(weekly_annual_rates)>0:
+    <div class="block-wrapper section-wrapper">
+      <div class="title-box js-fix-bar hide">
+        <img src="{{{img/plan/wallet.png}}}" alt="">零用钱支出${report.pocket_money}元，放在<span class="text-bold">零钱包</span>攒收益
+      </div>
+      <h2 class="js-title">零用钱支出${report.pocket_money}元</h2>
+      <%
+        from core.models.wxplan.consts import FeeRate
+        current_interest = round_half_up(FeeRate.current_interest.value*100, 2)
+      %>
+      <div class="chart-box js-change-chart" data-arr="${json.dumps([[latest_rate],[current_interest]])}"></div>
+      <p>
+        结合您的收入和当地生活条件，好规划建议您每月准备<span class="text-bold text-dark">${report.pocket_money}元</span>作为零用钱支出。与其让零用钱在银行卡“睡大觉”，不如存入<span class="text-bold text-dark">零钱包</span>获得10倍以上的收益
+      </p>
+    </div>
+  % endif
+  % if report.mpayment>0:
+    <div class="block-wrapper section-wrapper">
+      <div class="title-box js-fix-bar hide"><img src="{{{img/plan/calendar.png}}}" alt="">贷款月供${report.mpayment}元，试试<span class="text-bold">攒钱助手－自选到期日</span>
+      </div>
+      <h2 class="js-title">贷款月供${report.mpayment}元</h2>
+      <div class="chart-box js-outlay-chart" data-arr="${json.dumps([[monthly_mortgages[0]],[monthly_mortgages[1]]])}"></div>
+      <p>
+        好规划建议您将每月用于还贷的<span class="text-bold text-dark">${report.mpayment}元</span>购买一笔还款日前一两天到期的<span class="text-bold text-dark">攒钱助手－自选到期日</span>理财产品。
+      </p>
+    </div>
+  % endif
+  % if report.rent>0:
+    <div class="block-wrapper section-wrapper">
+      <div class="title-box js-fix-bar hide">
+        <img src="{{{img/plan/calendar.png}}}" alt="">房租${report.rent}元，试试<span class="text-bold">攒钱助手－自选到期日</span>
+      </div>
+      <h2 class="js-title">房租${report.rent}元</h2>
+      <div class="compare-box">
+        <div class="half-box left-box text-bold text-12">${rent_data[1]}元/月</div>
+        <div class="half-box right-box text-bold text-12">${rent_data[0]}元/月</div>
+        <div class="circle-box">VS</div>
+      </div>
+      <div class="chart-box js-rent-chart"></div>
+      <p>
+      房租大多都是按季交付，好规划建议您将每月房租<span class="text-bold text-dark">${report.rent}元</span>分别购买3个月、2个月和1个月的<span class="text-bold text-dark">攒钱助手－自选到期日</span>理财产品，灵活投资，获取收益。
+      </p>
+    </div>
+  % endif
+</%def>
+
+<%def name="product()">
+  <div class="block-wrapper pro-wrapper">
+    <h2>加薪利器</h2>
+    <div class="product-box">
+      <div class="text-center">
+        <span class="title">零钱包</span>
+      </div>
+      <div class="twocol-content">
+        <div class="left-col">
+          <img src="{{{img/plan/wallet.png}}}" alt="">
+        </div>
+        <div class="right-col">
+          <p><i class="iconfont icon-checked"></i>7x24，存取实时到账</p>
+          <p><i class="iconfont icon-checked"></i>一元起存，随时存入</p>
+          <p><i class="iconfont icon-checked"></i>远超银行收益10倍</p>
+          <p><i class="iconfont icon-checked"></i>存取0费用</p>
+        </div>
+      </div>
+      <a href="${url_for('wallet.mine.index', dcm='guihua', dcs='wxplan')}" class="btn btn-gray btn-direct">查看零钱包</a>
+    </div>
+    <div class="product-box">
+      <div class="text-center">
+        <span class="title">攒钱助手－自选到期日</span>
+      </div>
+      <div class="twocol-content">
+        <div class="left-col">
+          <img src="{{{img/plan/calendar.png}}}" alt="">
+        </div>
+        <div class="right-col">
+          <p><i class="iconfont icon-checked"></i>自选到期日，25天起</p>
+          <p><i class="iconfont icon-checked"></i>千元起投，一元递增</p>
+          <p><i class="iconfont icon-checked"></i>快速攒钱，T＋1起息</p>
+          <p><i class="iconfont icon-checked"></i>全额本息保障，放心</p>
+        </div>
+      </div>
+      <a href="${url_for('savings.landing.publicity', dcm='guihua', dcs='wxplan')}" class="btn btn-gray btn-direct">查看攒钱助手－自选到期日产品</a>
+    </div>
+    <div class="product-box">
+      <div class="text-center">
+        <span class="title">攒钱助手－固定期限</span>
+      </div>
+      <div class="twocol-content">
+        <div class="left-col">
+          <img src="{{{img/plan/pig.png}}}" alt="">
+        </div>
+        <div class="right-col">
+          <p><i class="iconfont icon-checked"></i>百元起投，有钱就攒</p>
+          <p><i class="iconfont icon-checked"></i>灵活期限，自由选择</p>
+          <p><i class="iconfont icon-checked"></i>超高收益，快速增值</p>
+          <p><i class="iconfont icon-checked"></i>全额本息保障，放心</p>
+        </div>
+      </div>
+      <a href="${url_for('savings.mine.index',dcm='guihua',dcs='wxplan')}" class="btn btn-gray btn-direct">查看攒钱助手－固定期限产品</a>
+    </div>
+  </div>
+</%def>
+
+<%def name="footer()">
+</%def>
+
+<%def name="title()">工资规划 - 规划方案</%def>
+
+<%def name="js()">
+  <script src="{{{js/lib/highcharts.min.js}}}"></script>
+  <script src="{{{js/plan/detail_result.js}}}"></script>
+</%def>

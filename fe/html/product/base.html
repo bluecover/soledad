@@ -1,0 +1,79 @@
+<%!
+  from collections import OrderedDict
+  from core.models.product.consts import FUND_NAME
+  from core.models.product.consts import INSURE_NAME
+%>
+<%inherit file="/base.html" />
+
+<%def name="pageheader()">
+  <div class="pageheader desktop-element">
+    <h1>个人中心</h1>
+  </div>
+</%def>
+
+<%def name="sidebar()">
+  <%include file="mods/nav.html" />
+  <%include file="../mods/nav_ad.html" />
+</%def>
+
+<%def name="mobile_nav()">
+<%
+  def dcls(path):
+    if path == cur_path:
+      return 'on'
+    else:
+      return ''
+
+  def fcls(path):
+    insure_nav = ['disease', 'life', 'accident', 'insurance', 'children']
+    funds_nav = ['mmf', 'bond', 'index', 'stock']
+
+    if cur_path in insure_nav:
+      if path == 'insurance':
+        return True
+
+    if cur_path in funds_nav:
+      if path == 'funds':
+        return True
+%>
+
+<div class="mobile-element">
+  <div class="mobile-header-title">
+    % if funds_type:
+      ${FUND_NAME.get(funds_type.upper()) }
+    % elif insure_type:
+      ${INSURE_NAME.get(insure_type.upper()) }
+    % else:
+      P2P网贷
+    % endif
+    <i class="iconfont icon-arrowright"></i>
+  </div>
+
+  <ul class="mobile-header-nav">
+    <li class="${dcls('p2p')}"><a href="/mine/product/p2p">P2P网贷</a></li>
+    <li class="${'unfolded' if fcls('insurance') else ''} ${dcls('insurance')}">
+      <i class="iconfont icon-arrowright"></i>
+      <a href="#" class="js-mobile-parent-nav">保险产品</a>
+      <ul>
+        <li class="${dcls('disease')}"><a href="/mine/product/insurance/disease">重疾险</a></li>
+        <li class="${dcls('life')}"><a href="/mine/product/insurance/life">定期寿险</a></li>
+        <li class="${dcls('accident')}"><a href="/mine/product/insurance/accident">综合意外险</a></li>
+        <li class="${dcls('children')}"><a href="/mine/product/insurance/children">儿童综合险</a></li>
+      </ul>
+      <span class="nav-triangle"></span>
+    </li>
+    <li class="${'unfolded' if fcls('funds') else ''} ${dcls('funds')}">
+      <i class="iconfont icon-arrowright"></i>
+      <a href="#" class="js-mobile-parent-nav">基金产品</a>
+      <ul>
+        <li class="${dcls('mmf')}"><a href="/mine/product/funds/mmf">货币型基金</a></li>
+        <li class="${dcls('bond')}"><a href="/mine/product/funds/bond">债券型基金</a></li>
+        <li class="${dcls('index')}"><a href="/mine/product/funds/index">指数型基金</a></li>
+        <li class="${dcls('stock')}"><a href="/mine/product/funds/stock">股票型基金</a></li>
+      </ul>
+      <span class="nav-triangle"></span>
+    </li>
+  </ul>
+</div>
+
+</%def>

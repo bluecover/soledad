@@ -1,0 +1,35 @@
+.record-detail-wrapper
+  padding: 40px 60px 80px
+  background: #fff
+  @media $mobile
+    padding: 0
+
+  .record-nav
+    padding-bottom: 20px
+    border-bottom: 2px solid #ddd
+    margin-bottom: 20px
+    @media $mobile
+      background: $page_bg
+      margin-bottom: 0
+
+    .nav-item
+      font-size: 16px
+      display: inline-block
+      padding: 3px 25px
+      padding-bottom: 20px
+      position: relative
+      bottom: -22px
+      color: $gray
+      @media $mobile
+        width: 48%
+        padding: 5px 0
+        padding-bottom: 20px
+        text-align: center
+      &.on
+        border-bottom: 2px solid $brand_blue
+        color: #396281
+
+  .table-record-info
+    @media $mobile
+      padding: 20px
+      padding-bottom: 60px

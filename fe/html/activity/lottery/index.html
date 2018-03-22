@@ -1,0 +1,150 @@
+<%inherit file="./base.html" />
+
+<%!
+  from jupiter.integration.weixin import get_weixin_config
+%>
+
+<%def name="content()">
+  <div class="lottery-index-wrapper">
+    ${self.lottery()}
+    ${self.modal_tmpl()}
+  </div>
+</%def>
+
+<%def name="lottery()">
+  <input type="hidden" id="wx_config" data-val="${get_weixin_config(jsApiList=['onMenuShareTimeline', 'onMenuShareAppMessage'])}"/>
+  <div id="lottery" class="lottery-wrapper">
+    <table>
+      <tbody>
+         <tr>
+           <td class="lottery-item js-lottery-item-0 silver">
+               <img src="{{{img/activity/lottery/silver.png}}}" alt="">
+           </td>
+           <td class="lottery-item js-lottery-item-1 cup">
+               <img src="{{{img/activity/lottery/cup.png}}}" alt="">
+           </td>
+           <td class="lottery-item js-lottery-item-2 kindle">
+               <img src="{{{img/activity/lottery/kindle.png}}}" alt="">
+           </td>
+           <td class="lottery-item js-lottery-item-3 wallet">
+               <img src="{{{img/activity/lottery/wallet.png}}}" alt="">
+           </td>
+           <td class="lottery-item js-lottery-item-4 leaf">
+               <img src="{{{img/activity/lottery/leaf.png}}}" alt="">
+           </td>
+         </tr>
+         <tr>
+           <td class="lottery-item js-lottery-item-21 leaf">
+               <img src="{{{img/activity/lottery/leaf.png}}}" alt="">
+           </td>
+           <td rowspan="6" colspan="3" class="lottery-main">
+               <img class="banner-img" src="{{{img/activity/lottery/banner.png}}}" alt="">
+               <h5 class="text-lighter text-12">游戏规则说明</h5>
+               <p>奖品包括不限额红包和kindle</p>
+               <p>分享朋友圈增加1次机会,日限1次</p>
+               <p>分享给好友注册，增加3次机会</p>
+               <p>受邀好友投资，增加5次机会</p>
+               <p><a href="#js-modal-tips" rel="onemodal:open">活动详细说明>></a></p>
+               <div class="btn-start js-btn-start before">
+                 <p class="text-bold">开始</p>
+                 <span>（转钱机会剩<span class="js-lottery-times">${remain_num}</span>次）</span>
+               </div>
+           </td>
+           <td class="lottery-item js-lottery-item-5 gold">
+               <img src="{{{img/activity/lottery/gold.png}}}" alt="">
+           </td>
+         </tr>
+         <tr>
+           <td class="lottery-item js-lottery-item-20 gold">
+               <img src="{{{img/activity/lottery/gold.png}}}" alt="">
+           </td>
+           <td class="lottery-item js-lottery-item-6 silver">
+               <img src="{{{img/activity/lottery/silver.png}}}" alt="">
+           </td>
+         </tr>
+         <tr>
+           <td class="lottery-item js-lottery-item-19 cup">
+               <img src="{{{img/activity/lottery/cup.png}}}" alt="">
+           </td>
+           <td class="lottery-item js-lottery-item-7 gold">
+               <img src="{{{img/activity/lottery/gold.png}}}" alt="">
+           </td>
+         </tr>
+         <tr>
+           <td class="lottery-item js-lottery-item-18 silver">
+               <img src="{{{img/activity/lottery/silver.png}}}" alt="">
+           </td>
+           <td class="lottery-item js-lottery-item-8 cup">
+               <img src="{{{img/activity/lottery/cup.png}}}" alt="">
+           </td>
+         </tr>
+         <tr>
+           <td class="lottery-item js-lottery-item-17 leaf">
+               <img src="{{{img/activity/lottery/leaf.png}}}" alt="">
+           </td>
+           <td class="lottery-item js-lottery-item-9 silver">
+               <img src="{{{img/activity/lottery/silver.png}}}" alt="">
+           </td>
+         </tr>
+         <tr>
+           <td class="lottery-item js-lottery-item-16 pig" data>
+               <img src="{{{img/activity/lottery/pig.png}}}" alt="">
+           </td>
+           <td class="lottery-item js-lottery-item-10 leaf">
+               <img src="{{{img/activity/lottery/leaf.png}}}" alt="">
+           </td>
+         </tr>
+         <tr>
+           <td class="lottery-item js-lottery-item-15 silver">
+               <img src="{{{img/activity/lottery/silver.png}}}" alt="">
+           </td>
+           <td class="lottery-item js-lottery-item-14 wallet">
+               <img src="{{{img/activity/lottery/wallet.png}}}" alt="">
+           </td>
+           <td class="lottery-item js-lottery-item-13 gold">
+               <img src="{{{img/activity/lottery/gold.png}}}" alt="">
+           </td>
+           <td class="lottery-item js-lottery-item-12 cup">
+               <img src="{{{img/activity/lottery/cup.png}}}" alt="">
+           </td>
+           <td class="lottery-item js-lottery-item-11 silver">
+               <img src="{{{img/activity/lottery/silver.png}}}" alt="">
+           </td>
+         </tr>
+      </tbody>
+    </table>
+  </div>
+</%def>
+
+<%def name="modal_tmpl()">
+  <div class="modals-group" id="js-modal-tips">
+    <div class="onemodal-hd">
+      <h4 class="text-success title">活动详情</h4>
+    </div>
+    <div class="onemodal-bd">
+      <p>1. 参与对象：好规划APP用户</p>
+      <p>2. 每位用户一开始有3次转钱机会</p>
+      <p>3. 增加转钱机会的方法：
+         <p> 分享游戏页面到微信，每天可获得1次游戏额外转钱机会，第二天再次分享可再次获得1次转钱机会；</p>
+         <p>好友点击你分享的链接并注册，每个注册的好友可以增加你3次转钱机会；</p>
+         <p> 你邀请注册好友成功投资，每个成功投资的好友可增加你5次转钱机会。</p>
+      </p>
+      <p>4. 大奖为Kindle Paperwhite，共10台。 数量有限，送完为止。中奖后客服会在2个工作日内联系您，请您注意接听电话。</p>
+      <p>5. 其余奖品为金额不等的红包，获得后可以在【我的福利】中查看，立即可用，长期有效。</p>
+      <p>6. 该活动邀请好友的奖励与平时邀请好友得20元红包的奖励不冲突，你仍然可以拿到原先的20元邀请红包奖励。</p>
+      <p>7. 本活动最终解释权规好规划所有，如经查证属实发现有作弊行为用户，好规划有权利取消您的活动资格。</p>
+    </div>
+    <div class="onemodal-ft">
+      <a class="btn btn-primary" href="#" rel="onemodal:close">确定</a>
+    </div>
+  </div>
+</%def>
+
+<%def name="body_class()">lottery-index-body</%def>
+
+<%def name="js()">
+  <script src='{{{js/lib/wx_sdk.js}}}'></script>
+  <script src='{{{js/activity/lottery.js}}}'></script>
+</%def>
+
+<%def name="title()">转钱机器</%def>

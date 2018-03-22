@@ -1,0 +1,28 @@
+<%inherit file="./base.html" />
+
+<%def name="main()">
+<%include file="./mods/carousel.html" />
+<div class="center-wrapper">
+  <%include file="./mods/center_products.html" />
+  <div class="center-planned-items">
+    <div class="hd"><h2 class="plan-title">您的规划书</h2></div>
+    <div class="bd">
+    <%include file="./mods/center_balance.html" />
+    <%include file="./mods/center_family.html" />
+    <%include file="./mods/center_property.html" />
+    <%include file="./mods/center_invest.html" />
+    <%include file="./mods/center_target.html" />
+    </div>
+  </div>
+</div>
+</%def>
+
+<%def name="title()">我的理财中心 - 好规划</%def>
+<%def name="pagetitle()">
+  <% return '理财中心' %>
+</%def>
+
+<%def name="js()">
+  <script src="{{{js/lib/highcharts.min.js}}}"></script>
+  <script src="{{{js/mine/center.js}}}"></script>
+</%def>

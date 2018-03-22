@@ -1,0 +1,24 @@
+<li class="item item-app-download js-dropdown-toggle">
+  <a class="app-download" target="_blank" href="${url_for('app.landing.index', dcm='guihua', dcs='nav')}">
+    客户端
+    <svg class="icon-mobile" src="{svg{{img/app/phone_icon.svg}}}"></svg>
+  </a>
+  <div class="dropdown-app-download js-dropdown">
+    <div class="hd">
+      <img class="qrcode" src="{{{img/app/qrcode_nav.png}}}" alt="好规划 App 二维码">
+    </div>
+    <div class="bd">
+      <h3 class="desc">下载好规划理财客户端</h3>
+      <div class="btns">
+        <a class="btn btn-blue btn-android" target="_blank" href="${url_for('download.download_app', version=guihua_android_latest.public_version, dcm='guihua', dcs='nav-android')}">
+          <svg class="icon-android" src="{svg{{img/app/android_icon.svg}}}"></svg>
+          下载安卓客户端
+        </a>
+        <a class="btn btn-blue btn-ios" target="_blank" href="${url_for('download.download_app', target='itunes', dcm='guihua', dcs='nav-ios')}">
+          <svg class="icon-android" src="{svg{{img/app/ios_icon.svg}}}"></svg>
+          下载 iOS 客户端
+        </a>
+      </div>
+    </div>
+  </div>
+</li>

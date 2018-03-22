@@ -1,0 +1,361 @@
+<%inherit file="./base_plan.html" />
+
+<%!
+  from libs.linker import make_url
+%>
+
+<%def name="main()">
+${parent.wx_share()}
+<div class="ins-plan-wrapper">
+  <div class="m-planning-intro">
+    <div class="hd">
+      <div class="wrap">
+        % if gender == u'男性':
+          <div class="avatar"><img src="{{{img/ins/plan/male_color.png}}}" alt="头像"></div>
+        % else:
+          <div class="avatar"><img src="{{{img/ins/plan/female_color.png}}}" alt="头像"></div>
+        % endif
+        <a class="desktop-element replan-btn" href="${url_for('ins.plan.consulting', plan_id=id)}">重做规划</a>
+      </div>
+    </div>
+    <div class="bd">
+      <h2 class="title">
+        ${'我' if owner == u'自己' else ('太太' if gender == u'女性' else '先生')}的保险规划
+      </h2>
+      <a class="mobile-element btn-replan" href="${url_for('ins.plan.consulting', plan_id=id)}">重做规划</a>
+
+      <%
+        if marriage == u'已婚':
+            revenue_rate = float(annual_revenue_personal)/annual_revenue_family
+
+        subject = '您' if owner == u'自己' else ('您太太' if gender == u'女性' else '您先生')
+        ins_life_text = '、寿险' if ('clear' not in family_duty and life_coverage >= 0) else ''
+      %>
+      <div class="m-ins-risk">
+        <div class="hd">
+          <h3 class="title">主要风险</h3>
+        </div>
+        <div class="bd">
+          <p>
+            ${subject}面临的 3 大风险是：意外伤害、重大疾病、身故。目前必需的险种是：意外险、重疾险${ins_life_text}。
+          </p>
+        </div>
+      </div>
+
+      % if marriage == u'已婚':
+      <div class="m-ins-priority">
+        <div class="hd">
+          <h3 class="title">投保优先级</h3>
+        </div>
+        <div class="bd">
+          <p>
+            % if revenue_rate <= 0.35:
+              ${subject}占家庭收入的比重较低，应优先为收入更高的一方投保。
+            % elif revenue_rate <= 0.65:
+              ${subject}是家庭经济支柱之一，需要合理的保障。
+            % else:
+              ${subject}为家庭贡献了大半的收入，应优先投保。
+            % endif
+          </p>
+        </div>
+      </div>
+      % endif
+
+      <div class="m-ins-premium">
+        <div class="hd">
+          <h3 class="title">保费总额</h3>
+        </div>
+        <div class="bd">
+          <p>
+            ${'您' if marriage == u'未婚' else '您家'}的保费支出，每年 ${ins_premium_least} 元最适宜，不应超过 ${ins_premium_up} 元。
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <%
+  accident_products = [
+    {
+      'title': '中民无忧综合意外基本计划（中国人寿）',
+      'desc': '全网底价，超值首选',
+      'href': url_for('ins.products.products_zhongmin', dcm='web_ins', dcs='planadult')
+    }
+  ]
+
+  accident_product_2 = {
+    'title': '苏黎世-意外自选计划',
+    'desc': '保额灵活，保障自选',
+    'href': url_for('ins.products.products_a002', dcm='web_ins', dcs='planadult')
+  }
+  accident_product_3 = {
+    'title': '国寿“住院宝”必备版',
+    'desc': '含住院医疗，无医保者必选',
+    'href': url_for('ins.products.products_a003', dcm='web_ins', dcs='planadult')
+  }
+
+  accident_product = None
+
+  if has_social_security == u'无':
+    accident_product = accident_product_3
+
+  if (accident_coverage + annual_revenue_personal*2) >= 40:
+    accident_product = accident_product_2
+
+  if not accident_product:
+    accident_product = accident_product_3
+
+  accident_products.append(accident_product)
+  %>
+
+  ${m_ins_accident(accident_products)}
+
+  <%
+  ci_products = [
+    {
+      'title': '新华 i 健康定期重大疾病保障计划',
+      'desc': '高性价比，无需体检',
+      'href': url_for('ins.products.products_ci001', dcm='web_ins', dcs='planadult')
+    }
+  ]
+  %>
+  ${m_ins_ci(ci_products)}
+
+  <%
+  life_products = [
+    {
+      'title': '合众爱家无忧定期寿险',
+      'desc': '无需体检，最简洁寿险',
+      'href': url_for('ins.products.products_l002', dcm='web_ins', dcs='planadult')
+    },
+    {
+      'title': '人保寿险精心优选定期寿险（可附加重疾险）',
+      'desc': '需体检，身体越好保费越低',
+      'href': url_for('ins.products.products_l001', dcm='web_ins', dcs='planadult')
+    }
+  ]
+  %>
+  ${m_ins_life(life_products)}
+
+  ${m_ins_guide()}
+
+  ${m_ins_consulting()}
+
+  <%
+  ins_products = []
+  if accident_product_2 in accident_products:
+    ins_products.append(accident_product_3)
+  else:
+    ins_products.append(accident_product_2)
+  endif
+
+  # 因产品下架，暂时不显示该产品
+  #if (gender == u'女性' and owner == u'自己') or (gender == u'男性' and owner == u'配偶'):
+  #  ins_product_2 = {
+  #    'title': '新华 i 她女性特定疾病保障计划',
+  #    'desc': '针对女性疾病',
+  #    'href': url_for('ins.products.products_ci002', dcm='web_ins', dcs='planadult')
+  #  }
+  #  ins_products.append(ins_product_2)
+
+  if marriage == u'已婚':
+    ins_product_3 = {
+      'title': '合众定期重大疾病保险（20年期）',
+      'desc': '针对儿童重疾',
+      'href': url_for('ins.products.products_ci003', dcm='web_ins', dcs='planadult')
+    }
+    ins_products.append(ins_product_3)
+
+  ins_product_4 = {
+    'title': '美亚畅游神州境内旅行保险',
+    'desc': '境内旅行险',
+    'href': url_for('ins.products.products_t001', dcm='web_ins', dcs='planadult')
+  }
+  ins_products.append(ins_product_4)
+
+  if len(ins_products) < 4:
+    ins_product_5 = {
+      'title': '美亚万国游踪旅游保险',
+      'desc': '境外旅行险',
+      'href': url_for('ins.products.products_t002', dcm='web_ins', dcs='planadult')
+    }
+    ins_products.append(ins_product_5)
+  %>
+
+  ${ins_recommendation(ins_products)}
+
+  <div class="m-more-plan">
+    <a class="btn btn-primary"
+      target="_blank"
+      href="${url_for('ins.plan.index')}">
+      为更多家人规划</a>
+  </div>
+
+  <%include file="./mods/_ins_footer.html" />
+  <%include file="./mods/_ins_footer_mobile.html" />
+</div>
+</%def>
+
+<%def name="m_ins_accident(accident_products)">
+<div class="m-ins-accident">
+  <div class="hd">
+    <div class="num">1</div>
+    <h3 class="title">意外险</h3>
+    <h4 class="subtitle">必备险种。应保障意外医疗、意外残疾、意外身故。</h4>
+  </div>
+  <div class="bd">
+    <h4 class="title">投保方案</h4>
+    <p><strong>保额至少 ${accident_coverage} 万元</strong>；建议选择消费型、1 年期的意外险。</p>
+  </div>
+  <div class="ft">
+    <h4 class="title">产品推荐</h4>
+    ${product_recommendation(accident_products)}
+  </div>
+</div>
+</%def>
+
+<%def name="m_ins_ci(ci_products)">
+<div class="m-ins-ci">
+  <div class="hd">
+    <div class="num">2</div>
+    <h3 class="title">重疾险</h3>
+    <h4 class="subtitle">必备险种。应至少保障 25 种常见重疾。</h4>
+  </div>
+  <div class="bd">
+    <h4 class="title">投保方案</h4>
+    <p><strong>保额至少 ${ci_coverage} 万元</strong>；建议选择消费型、${ci_period} 年期的重疾险。</p>
+  </div>
+  <div class="ft">
+    <h4 class="title">产品推荐</h4>
+    ${product_recommendation(ci_products)}
+  </div>
+</div>
+</%def>
+
+<%def name="m_ins_life(life_products)">
+<div class="m-ins-life">
+  <div class="hd">
+    <div class="num">3</div>
+    <h3 class="title">寿险</h3>
+    % if 'clear' in family_duty or life_coverage <= 0:
+    <h4 class="subtitle">暂时无需投保，未来可随家庭责任的增加随时补投。</h4>
+    % else:
+    <h4 class="subtitle">必需险种。保额应覆盖主要家庭责任。</h4>
+    % endif
+  </div>
+
+  % if not 'clear' in family_duty and life_coverage > 0:
+  <div class="bd">
+    <h4 class="title">投保方案</h4>
+    <p><strong>保额至少 ${life_coverage} 万元</strong>${'，目前保额偏高建议压缩' if life_coverage >= (annual_revenue_family*15) else ''}；建议投保消费型、${life_period} 年期的寿险。</p>
+  </div>
+  % endif
+  <div class="ft">
+    <h4 class="title">产品推荐</h4>
+    ${product_recommendation(life_products)}
+  </div>
+</div>
+</%def>
+
+<%def name="m_ins_guide()">
+<div class="m-ins-guide">
+  <div class="hd">
+    <div class="num">I</div>
+    <div class="title">简明投保指南</div>
+    <div class="subtitle">普通人也能轻松看懂的保险知识，最实用的买保险原则。</div>
+  </div>
+  <div class="bd">
+    <a class="read-online js-ins-guidebook" href="">>>立即阅读</a>
+    <a class="download-pdf js-ins-guidebook" href="">>>下载 PDF 版</a>
+  </div>
+</div>
+</%def>
+
+<%def name="m_ins_consulting()">
+<div class="m-ins-consulting">
+  <div class="hd">
+    <div class="num">C</div>
+    <div class="title">免费理财咨询</div>
+    <div class="subtitle">扫码关注好规划微信号：plan141，直接发送保险、理财问题，即有专业理财师为您解答。</div>
+  </div>
+  <div class="bd">
+    <img class="wexin-qrcode" src="{{{img/misc/qrcode.png}}}" alt="微信公众号">
+  </div>
+</div>
+</%def>
+
+<%def name="ins_recommendation(ins_products)">
+<div class="m-ins-recommendation">
+  <div class="hd">
+    <h3 class="title">更多保障</h3>
+  </div>
+  <div class="bd">
+    ${product_recommendation(ins_products)}
+  </div>
+  <div class="ft">
+    <a class="btn btn-green-ghost"
+       target="_blank"
+       href="${url_for('ins.landing.index', dcm='web_ins', dcs='planadult')}">
+       全部保险</a>
+  </div>
+</div>
+</%def>
+
+<%def name="product_recommendation(products)">
+  <ul class="m-product-rec">
+    % if len(products):
+    <div class="products-group">
+    % for product in products:
+      % if loop.index < 2:
+      <%
+        external_url = product.get('external_url')
+      %>
+      <li class="product">
+        <span class="desc">${product.get('desc')}</span>
+        <a class="product-title js-product-detail"
+          target="_blank"
+          data-partner-logo-src="${product.get('partner_logo_src')}"
+          data-url="${make_url(external_url) if external_url else ''}"
+          href="${product.get('href')}">${product.get('title')}</a>
+      </li>
+      % endif
+    % endfor
+    </div>
+    % endif
+
+    % if len(products):
+    <div class="products-group">
+      % for product in products:
+        % if loop.index >= 2:
+        <%
+          external_url = product.get('external_url')
+        %>
+        <li class="product">
+          <span class="desc">${product.get('desc')}</span>
+          <a class="product-title js-product-detail"
+            target="_blank"
+            data-partner-logo-src="${product.get('partner_logo_src')}"
+            data-url="${make_url(external_url) if external_url else ''}"
+            href="${product.get('href')}">${product.get('title')}</a>
+        </li>
+        % endif
+      % endfor
+    </div>
+    % endif
+  </ul>
+</%def>
+
+<%def name="css()">
+<link rel="stylesheet" href="{{{css/ins/plan_planning.css}}}">
+</%def>
+
+<%def name="title()">
+${'我' if owner == u'自己' else ('太太' if gender == u'女性' else '先生')}的保险规划 - 好规划
+</%def>
+
+<%def name="js()">
+<script src='{{{js/lib/wx_sdk.js}}}'></script>
+<script src="{{{js/ins/plan_planning.js}}}"></script>
+</%def>

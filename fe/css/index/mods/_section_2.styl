@@ -1,0 +1,63 @@
+.section-2
+  .m-service
+    >.hd
+      @media $mobile
+        margin: 30px auto 16px auto
+    >.bd
+      @media $screen_height_low
+        display: none
+  .section-wrap
+    @media $screen_768
+      padding: 0 10%
+    .accumulated-amount
+      .desc
+        color: $fancy_gray_90
+
+  .accumulated-amount
+    font-size: 0
+    .desc
+      font-size: 14px
+      line-height: 1
+      margin-bottom: 26px
+      @media $mobile
+        line-height: 1.5
+        margin-bottom: 16px
+    li
+      display: inline-block
+      font-size: 30px
+      margin: 0 9px
+      @media $screen_768
+        margin: 0 4px
+      @media $mobile
+        font-size: 14px
+        margin: 0 2px
+    .num
+      background-color: $gray_10
+      width: 70px
+      height: 70px
+      text-align: center
+      line-height: 70px
+      font-weight: 300
+      @media $screen_768
+        width: 40px
+        height: 40px
+        line-height: 40px
+        font-size: 28px
+      @media $mobile
+        width: 20px
+        height: 20px
+        line-height: 20px
+        font-size: 14px
+    .comma
+      color: $gray_50
+      font-size: 36px
+      vertical-align: bottom
+      padding-bottom: 5px
+      @media $screen_768
+        font-size: 30px
+      @media $mobile
+        font-size: 14px
+    .rmb
+      font-size: 14px
+      @media $mobile
+        font-size: 12px

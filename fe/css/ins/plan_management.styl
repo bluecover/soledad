@@ -1,0 +1,141 @@
+@import '../core/_global.styl'
+
+@import './plan/_var.styl'
+@import './plan/_header.styl'
+
+.ins-plan-body
+  background-color: #fff
+  .content-wrapper
+    margin: 0 auto
+  .main-wrapper
+    min-width: 0
+    width: 80%
+    margin: 0 auto
+    max-width: $min_width
+    @media $mobile
+      width: 95%
+
+.ins-plan-management-wrapper
+  .m-ins-plan-list
+    margin-top: 30px
+    >.hd
+      text-align: center
+      margin-bottom: 30px
+      .title
+        font-size: 24px
+        color: $primary_color
+        font-weight: bold
+        @media $mobile
+          font-size: 20px
+
+  .m-planner
+    display: table
+    width: 100%
+    border-collapse: collapse
+    border: 1px solid $gray_light
+    height: 125px
+    margin-bottom: 20px
+    @media $mobile
+      clearfix()
+      position: relative
+      padding: 30px 2%
+      display: block
+      height: auto
+      margin-bottom: 30px
+    &:hover
+      border: 1px solid $primary_color
+      >.ft
+        .btn-del
+          display: block
+          color: $gray
+    >.hd,
+    >.bd,
+    >.ft
+      vertical-align: middle
+      padding-right: 40px
+      display: table-cell
+      @media $mobile
+        display: inline-block
+        padding-right: 0
+    >.hd
+      padding-right: 0px
+      @media $mobile
+        margin-left: 5%
+      .avatar
+        width: 90px
+        height: 90px
+        background-color: $primary_color
+        border-radius: 50%
+        margin: 0 10px
+        padding-top: 10px
+        img
+          display: block
+          margin: 0 auto
+          height: 70px
+        @media $mobile
+          margin: 0 10px 0 0
+          width: 70px
+          height: 70px
+          img
+            height: 50px
+    >.bd
+      overflow: hidden
+      width: 72%
+      @media $mobile
+        width: auto
+      .name
+        font-size: 20px
+        font-weight: bold
+        margin-right: 10px
+      .planning-state
+        color: $brand_orange
+        &.completed
+          color: $primary_color
+      .planning-scheme
+        margin-top: 10px
+        line-height: 1.5
+        color: $gray
+      .coverage
+        border-right: 1px solid $gray
+        padding: 0 2.5%
+        @media $mobile
+          border: none
+          padding: 0
+          display: block
+          line-height: 25px
+        &:first-child
+          padding-left: 0
+        &:last-child
+          border-right: none
+    >.ft
+      position: relative
+      .btn
+        width: 120px
+      @media $mobile
+        display: block
+        position: static
+        .btn
+          width: 90%
+          line-height: 44px
+          height: 44px
+          margin: 30px 5% 0 5%
+      .btn.completed
+        background-color: $primary_color
+        &:hover
+          background-color: $primary_color_light
+      .btn-del
+        display: none
+        position: absolute
+        right: 8px
+        top: 8px
+        cursor: pointer
+        @media $mobile
+          display: block
+          color: $gray_light
+
+  .m-add-planner
+    @media $mobile
+      text-align: center
+      font-size: 16px
+    .add-planner
+      cursor: pointer

@@ -1,0 +1,127 @@
+<%inherit file="./base.html" />
+
+<%def name="main()">
+  <div class="fund-index-wrapper">
+    ${self.banner()}
+    ${self.body()}
+  </div>
+</%def>
+
+<%def name="banner()">
+  <div class="banner">
+    <img class="fund-logo" src="{{{img/logo/white_fund_logo.png}}}" alt="">
+    <div class="desktop-element feature-box-desktop">
+       <p><i class="iconfont icon-checked"></i>精选基金组合</p>
+       <p><i class="iconfont icon-checked"></i>专家跟踪服务</p>
+    </div>
+    <p class="subtitle">科学实现中长期财富增值</p>
+    <div class="feature-box-mobile mobile-element"><span><i class="iconfont icon-checked"></i>精选基金组合</span><span><i class="iconfont icon-checked"></i>专家跟踪服务</span></div>
+    <img class="fund-img" src="{{{img/fund/fund_arrow.png}}}" alt="">
+    <a href="${url_for('accounts.login.login')}" class="btn btn-primary btn-large btn-start">免费启用服务</a>
+    <div class="slogan-box">
+      <p class="slogan">已有 ${user_like_count} 人跟踪优质基金组合</p>
+    </div>
+  </div>
+</%def>
+
+<%def name="body()">
+  <div class="block-wrapper fund-main">
+    <h3 class="text-center product-group">专业投资服务随手可得</h3>
+    <div class="feature-wrapper">
+      <div class="feature">
+        <div class="circle">
+          <img src="{{{img/fund/icon_earnings.png}}}" alt="">
+          <h5 class="desktop-element">更高收益</h5>
+        </div>
+        <div class="desc-box">
+          <h5 class="mobile-element">更高收益</h5>
+          <p class="text-light">业精选基金组合，长期收益显著高于市场平均和同类平均</p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="circle">
+          <img src="{{{img/fund/icon_lighhouse.png}}}" alt="">
+          <h5 class="desktop-element">严控风险</h5>
+        </div>
+        <div class="desc-box">
+          <h5 class="mobile-element">严控风险</h5>
+          <p class="text-light">合理配置基金比例，控制组合整体风险，相对具备抗跌能力</p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="circle">
+          <img src="{{{img/fund/icon_new.png}}}" alt="">
+          <h5 class="desktop-element">跟踪服务</h5>
+        </div>
+        <div class="desc-box">
+          <h5 class="mobile-element">跟踪服务</h5>
+          <p class="text-light">持续提供调整建议，不论面对未来机遇或风险都能提前应对</p>
+        </div>
+      </div>
+    </div>
+  </div>
+ <div class="block-wrapper fund-product-wrapper">
+    <h3 class="text-center product-group">最具优势基金组合</h3>
+    <div class="product-box">
+      % for g in groups_without_like:
+        <div class="product text-center">
+          <div class="product-header text-white">
+            <h4 class="text-bold">${g.subject}</h4>
+            <p>${g.subtitle}</p>
+          </div>
+          <p>成立以来累计收益：</p>
+          <h2><em class="js-data-num">${'{:.2f}'.format(g.total_income*100)}</em>%</h2>
+          <p>${g.subtitle2}</p>
+          <a href="/fund/${g.id}" class="btn btn-primary btn-check">点击查看</a>
+        </div>
+      % endfor
+    </div>
+  </div>
+  <div class="process-wrapper block-wrapper">
+    <h3 class="text-center">如何使用基金管家？</h3>
+    <div class="process-main">
+      <div class="process-box">
+        <div class="circle-box">了解不同<em>基金组合</em></div>
+        <div class="line-box desktop-element first-child">
+        </div>
+        <div class="arrow desktop-element">></div>
+        <span class="text-center text-bold mobile-element">1</span>
+        <p>每支组合都是通过对所有基金的长期业绩考量、投资风险分析、基金经理评价等精心筛选搭配</p>
+      </div>
+      <div class="process-box">
+        <div class="circle-box">跟踪适合自己<em>的基金组合</em></div>
+        <div class="line-box desktop-element">
+        </div>
+        <div class="arrow desktop-element">></div>
+        <span class="text-center text-bold mobile-element">2</span>
+        <p>每支组合都有自己的特性，选择最感兴趣的然后 “跟踪组合” ，跟踪后可以得到模拟收益率和调仓提醒</p>
+      </div>
+      <div class="process-box">
+        <div class="circle-box">获取基金<em>组合周报</em></div>
+        <div class="line-box desktop-element">
+        </div>
+        <div class="arrow desktop-element">></div>
+        <span class="text-center text-bold mobile-element">3</span>
+        <p>市场趋势变化、个基出现异常、基金持仓偏离组合特性等情况时有发生，组合周报帮您掌控最新情况，及时调整规避风险</p>
+      </div>
+      <div class="process-box">
+        <div class="circle-box">参考专家建议<em>进行操作</em></div>
+        <div class="line-box desktop-element last-child">
+        </div>
+        <span class="text-center text-bold mobile-element">4</span>
+        <p>基金管家会适时推荐个别基金组合，同时也会提供更靠谱的操作建议，给您一个优质的决策参考</p>
+      </div>
+    </div>
+  </div>
+  <div class="block-wrapper text-center btn-wrapper">
+    <a href="${url_for('accounts.login.login')}" class="btn btn-primary btn-start">免费启用服务</a>
+    <p class="slogan">已有 <em class="text-orange">${user_like_count}</em> 人跟踪优质基金组合</p>
+  </div>
+  <%include file="mods/fund_footer.html"/>
+</%def>
+
+<%def name="js()">
+  <script src="{{{js/fund/index.js}}}"></script>
+</%def>
+
+<%def name="title()">基金组合 - 好规划</%def>

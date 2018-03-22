@@ -1,0 +1,204 @@
+<%!
+  from libs.utils.string import trunc_utf8
+  from core.models.product.consts import INSURE_TYPE
+  from core.models.product.insure import Insure
+  from libs.linker import make_url
+  from flask import request
+
+  insure_html_dict = {'重疾险':'disease',
+                      '综合意外险':'accident',
+                      '定期寿险':'life',
+                      '儿童综合险':'children',
+                      '社保':'',
+                      '少儿医保':''}
+
+  def get_insure_link(insurance):
+    return insurance.mobile_link if request.user_agent.is_mobile else insurance.link
+%>
+
+<div class="center-block center-family-block twocol-content">
+  <div class="left-col block-item-left">
+    <a class="block-left-title" href="/mine/plan/insurance">家庭保障</a>
+    % if not is_full_insured:
+    <img class="block-left-img" src="{{{img/mine/security_empty.png}}}"/>
+    <p class="left-item text-24 text-dark">保障程度不足</p>
+    <p class="left-item">
+      % if relation_number:
+      您与家人的保障不够完善，请补充缺失的基础保险
+      % else:
+      您的保障不够完善，请补充缺失的基础保险
+      % endif
+    </p>
+    % else:
+    <img class="block-left-img" src="{{{img/mine/security_full.png}}}"/>
+    <p class="left-item text-24 text-dark">保障程度充足</p>
+    <p class="left-item">
+      % if relation_number:
+      您与家人已经具备基础保障，请持续优化保险规划
+      % else:
+      您已经具备基础保障，请持续优化保险规划
+      % endif
+    </p>
+    % endif
+  </div>
+  <div class="right-col block-item-right">
+    <ul class="block-item-tab js-block-item-tab">
+      <li class="lisel">本人</li>
+      % if spouse:
+        <li>配偶</li>
+      % endif
+
+      % for index, c in enumerate(children):
+        <li>子女${index+1}</li>
+      % endfor
+    </ul>
+
+    ${self.mine_ins()}
+    ${self.spouse_ins()}
+    ${self.child_ins()}
+  </div>
+</div>
+
+<%def name="mine_ins()">
+  <div class="tabcon-list js-tabcon-list">
+    % if mine_society_insure!='0' or mine_biz_insure:
+      <div class="tabcon-title">已购保险</div>
+      <div class="tabcon-insurance">
+        % for k,v in cur_mine_insure.iteritems():
+          % if k == '社保':
+            % if v != '无社保':
+              <span>${v}</span>
+            % endif
+          % else:
+            <span>${biz_insure_dict.get(k)}</span>
+          % endif
+        % endfor
+      </div>
+    % endif
+
+    % if target_insure_plan_d and '本人' in target_insure_plan_d:
+      <div class="tabcon-title">建议投保</div>
+      % for p in target_insure_plan_d['本人']:
+        <div class="tabcon-suggest twocol-content js-tabcon-suggest">
+          <div class="left-col">${p[0]}</div>
+          <div class="right-col">
+            <span class="item">理想保额：${p[1]}</span>
+            <span class="item">保费预估：${p[2]}</span>
+            % if p[0] != '社保':
+              <a href="#" class="tabcon-suggest-btn js-tabcon-suggest-btn text-12">展开推荐</a>
+            % endif
+          </div>
+        </div>
+        <div class="tabcon-recomment-hide js-tabcon-recomment">
+          <%
+            insure = Insure.gets_by_type(INSURE_TYPE.get(insure_html_dict.get(p[0]).upper()))
+          %>
+          % for i in insure[:3]:
+            <div class="tabcon-recomment-secure">
+              <span class="tabcon-recomment-name"><a href="${make_url(get_insure_link(i))}" target="_blank">${i.name}</a></span>
+              <p>${i.rec_reason}</p>
+            </div>
+          % endfor
+        </div>
+      % endfor
+    % endif
+  </div>
+</%def>
+
+<%def name="spouse_ins()">
+  % if spouse:
+    <div class="tabcon-list hide js-tabcon-list">
+      % if spouse_society_insure!='0' or spouse_biz_insure:
+        <div class="tabcon-title">已购保险</div>
+        <div class="tabcon-insurance">
+          % for k,v in cur_spouse_insure.iteritems():
+            % if k == '社保':
+              % if v != '无社保':
+                <span>${v}</span>
+              % endif
+            % else:
+              <span>${biz_insure_dict.get(k)}</span>
+            % endif
+          % endfor
+        </div>
+      % endif
+      % if '配偶' in target_insure_plan_d:
+        <div class="tabcon-title">建议投保</div>
+        % for p in target_insure_plan_d['配偶']:
+          <div class="tabcon-suggest twocol-content js-tabcon-suggest">
+            <div class="left-col">${p[0]}</div>
+            <div class="right-col">
+              <span class="item">理想保额：${p[1]}</span>
+              <span class="item">保费预估：${p[2]}</span>
+              % if p[0] != '社保':
+                <a href="#" class="tabcon-suggest-btn js-tabcon-suggest-btn text-12">展开推荐</a>
+              % endif
+            </div>
+          </div>
+          <div class="tabcon-recomment-hide js-tabcon-recomment">
+            <%
+              insure = Insure.gets_by_type(INSURE_TYPE.get(insure_html_dict.get(p[0]).upper()))
+            %>
+            % for i in insure[:3]:
+              <div class="tabcon-recomment-secure">
+                <span class="tabcon-recomment-name"><a href="${make_url(get_insure_link(i))}" target="_blank">${i.name}</a></span>
+                <p>${i.rec_reason}</p>
+              </div>
+            % endfor
+          </div>
+        % endfor
+      % endif
+    </div>
+  % endif
+</%def>
+
+<%def name="child_ins()">
+  % for index, cur_child_insure in enumerate(cur_children_insure):
+  <%
+    target_child_insure_d = target_children_insure_d[index]
+    name_key = '子女%s（%s岁）'%(index+1, children[index].get('age'))
+  %>
+  <div class="tabcon-list hide js-tabcon-list">
+    % if cur_child_insure['社保'] != '无社保' or children[index].get('biz_insure'):
+    <div class="tabcon-title">已购保险</div>
+    <div class="tabcon-insurance">
+        % for k,v in cur_child_insure.iteritems():
+          % if k == '社保':
+            % if v != '无社保':
+            <span>${v}</span>
+            % endif
+          % else:
+            <span>${biz_insure_dict.get(k)}</span>
+          % endif
+        % endfor
+    </div>
+    % endif
+    % if name_key in target_insure_plan_d:
+    <div class="tabcon-title">建议投保</div>
+    % for p in target_insure_plan_d[name_key]:
+    <div class="tabcon-suggest twocol-content js-tabcon-suggest">
+      <div class="left-col">${p[0]}</div>
+      <div class="right-col">
+        <span class="item">理想保额：${p[1]}</span>
+        <span class="item">保费预估：${p[2]}</span>
+        % if p[0] != '少儿医保':
+          <a href="#" class="tabcon-suggest-btn js-tabcon-suggest-btn text-12">展开推荐</a>
+        % endif
+      </div>
+    </div>
+    <div class="tabcon-recomment-hide js-tabcon-recomment">
+      <%
+      insure = Insure.gets_by_type(INSURE_TYPE.get(insure_html_dict.get(p[0]).upper()))
+      %>
+      % for i in insure[:3]:
+      <div class="tabcon-recomment-secure">
+        <span class="tabcon-recomment-name"><a href="${make_url(get_insure_link(i))}" target="_blank">${i.name}</a></span>
+        <p>${i.rec_reason}</p>
+      </div>
+      % endfor
+    </div>
+    % endfor
+    % endif
+  </div>
+  % endfor
+</%def>

@@ -1,0 +1,59 @@
+<%inherit file="./base.html" />
+<%def name="header()">
+  % if not request.user_agent.is_guihua_app:
+    ${parent.header()}
+  % endif
+</%def>
+
+<%def name="main()">
+  % if loans_digest:
+  <div class="lender-detail-wrapper">
+    <div class="block-wrapper">
+      <h3 class="text-center text-bold">债券具体信息及预期出借收益情况</h3>
+      <ul class="lender-list">
+        <li>出借资讯与服务协议<p class="serial-number">${loans_digest.contract_no}</p></li>
+        <li>初始出借日期<span>${loans_digest.invest_start_date}</span></li>
+        <li>资金出借/回收方式<span>${loans_digest.reinvest}</span></li>
+        <li>申请出借金额<span>${loans_digest.plan_invest_amount}</span></li>
+        <li>实际出借金额<span>${loans_digest.principle_amount}</span></li>
+        <li>剩余未出借金额<span>${loans_digest.surplus_amount}</span></li>
+      </ul>
+    </div>
+    <div class="lender-block  block-wrapper">
+      <h3 class="text-center text-bold">债券列表</h3>
+      <%
+        loans = loans_digest.loans
+      %>
+      % if loans:
+        % for loan in loans:
+          <ul class="lender-list">
+            <li>借款协议编号<p class="serial-number">${loan.loan_receipt_no}</p></li>
+            <li>借款人姓名<span>${loan.debtor_name}</span></li>
+            <li>借款人身份证号<span>${loan.debtor_ricn}</span></li>
+            <li>借款金额<span>${loan.lending_amount}</span></li>
+            <li>借款人身份<span>${loan.debtor_type}</span></li>
+            <li>借款用途<span>${loan.debt_purpose}</span></li>
+            <li>借款人开始还款时间<span>${loan.start_date}</span></li>
+          </ul>
+        % endfor
+      % else:
+        <p class="lender-tips text-lighter">出借人详细信息尚在确认中。</p>
+      % endif
+    </div>
+  % else:
+    <div class="block-wrapper">
+      <p class="text-lighter">${error}</p>
+    </div>
+  % endif
+  </div>
+</%def>
+
+<%def name="notification()">
+</%def>
+
+<%def name="footer()"></%def>
+
+<%def name="title()">出借人信息</%def>
+<%def name="pagetitle()">
+  <% return '出借人信息' %>
+</%def>

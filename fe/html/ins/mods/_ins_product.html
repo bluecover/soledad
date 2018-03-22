@@ -1,0 +1,38 @@
+<%!
+  from libs.linker import make_url
+%>
+<%def name="ins_product(title='', category='', subtitle='', desc='', external_url='', url='', partner_logo_src='', price='20.00', price_desc='起')">
+% if title:
+<div class="ins-product">
+  <div class="hd">
+    <div class="category">
+      ${category}
+    </div>
+    <h3 class="title">
+      <a class="js-product-detail"
+        href="${url}"
+        data-partner-logo-src="${partner_logo_src}"
+        target="_blank"
+        data-url="${make_url(external_url) if external_url else external_url}">${title}</a>
+    </h3>
+    <p class="desc">${desc}</p>
+  </div>
+  <div class="bd clearfix">
+    <p class="price">
+      <em>${price}</em>
+      <span class="price-desc">${price_desc}</span>
+    </p>
+    <a class="btn btn-product-detail js-product-detail"
+      target="_blank"
+      href="${url}"
+      data-partner-logo-src="${partner_logo_src}"
+      data-url="${make_url(external_url) if external_url else external_url}">了解更多</a>
+  </div>
+</div>
+% else:
+<div class="ins-product ins-product-null">
+  <p>下一款精选保险</p>
+  <p>即将发布</p>
+</div>
+% endif
+</%def>

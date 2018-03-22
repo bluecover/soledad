@@ -1,0 +1,16 @@
+<%def name="chk_path(check_path, cur_path)"><% return 'on' if check_path == cur_path else ''%></%def>
+
+<%def name="chk_path_hide(check_path, cur_path)"><%return 'hide' if check_path != cur_path else ''%></%def>
+
+<%def name="notification()">
+  % for announcement in announcements:
+    <div class="m-notification twocol-content middle-align">
+      <div class="left-col">
+        <div class="icon-con"><i class="iconfont icon-bell"></i></div>
+      </div>
+      <div class="right-col">
+        ${announcement.content_as_html | n}
+      </div>
+    </div>
+  % endfor
+</%def>

@@ -1,0 +1,25 @@
+<%inherit file="./base.html" />
+
+<%!
+   from libs.markdown import render
+%>
+
+<%def name="title()">${article.title} - 好规划</%def>
+
+<%def name="main()">
+  <div class="viewdetail-content">
+    <h2>${article.title}
+      <a class="btn btn-label" href="/fund/weekly/category/${article.category}">${article.category_name}</a>
+    </h2>
+    % if article.publish_time:
+    <p class="sub-title">${article.author}&nbsp;&nbsp;发布时间&nbsp;&nbsp;${article.publish_time.strftime('%Y.%m.%d')}</p>
+    % endif
+    <p class="text">
+      ${render(article.content)|n}
+    </p>
+  </div>
+</%def>
+
+<%def name="pagetitle()">
+  <% return '基金组合周报' %>
+</%def>

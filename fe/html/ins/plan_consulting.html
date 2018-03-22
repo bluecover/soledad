@@ -1,0 +1,26 @@
+<%inherit file="./base_plan.html" />
+
+<%def name="main()">
+${parent.wx_share()}
+<div class="ins-plan-consulting-wrapper">
+  <div id="ins_plan_consulting" data-plan="${plan}"></div>
+  <div id="ins_start_forms" class="modals-group"></div>
+  <div id="ins_survey_forms" class="modals-group"></div>
+  <div class="ins-msg-tip js-ins-msg-tip mobile-element">
+    <p>新消息</p>
+  </div>
+</div>
+</%def>
+
+<%def name="footer()"></%def>
+
+<%def name="title()">正在规划 - 在线保险规划 - 好规划</%def>
+
+<%def name="css()">
+<link rel="stylesheet" href="{{{css/ins/plan_consulting.css}}}">
+</%def>
+
+<%def name="js()">
+<script src='{{{js/lib/wx_sdk.js}}}'></script>
+<script src="{{{js/ins/plan_consulting.js}}}"></script>
+</%def>

@@ -1,0 +1,30 @@
+<%inherit file="./base.html" />
+
+<%def name="title()">咨询与服务协议</%def>
+<%def name="pagetitle()">
+  <% return '咨询与服务协议' %>
+</%def>
+
+<%def name="header()">
+  % if not request.user_agent.is_guihua_app:
+    ${parent.header()}
+  % endif
+</%def>
+
+<%def name="footer()">
+  % if not request.user_agent.is_guihua_app:
+    ${parent.footer()}
+  % else:
+    <div class="footer-wrapper ${'desktop-element' if hide_in_mobile else ''}">
+      <div class="footer-info">
+        <div class="copyright">
+          <%
+          from datetime import date
+          copy_year = date.today().year
+          %>
+          &copy;${copy_year} Guihua.com 京ICP备14053123号-1
+        </div>
+      </div>
+    </div>
+  % endif
+</%def>

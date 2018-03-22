@@ -1,0 +1,80 @@
+.program-select-wrapper
+  input
+    -webkit-appearance: none
+  h2
+    font-size: 18px
+    font-weight: bold
+    margin: 10px 0 30px
+  .select-main
+    clearfix()
+  .select-box
+    col(1/4, gutter:2)
+    text-align: center
+    padding: 48px 0
+    border: 1px solid #DCDDDE
+    cursor: pointer
+    position: relative
+    @media $mobile
+      margin-bottom: 20px
+      stack()
+    i
+      color: #fff
+      position: absolute
+      right: 10px
+      bottom: 10px
+      display: none
+  .program-input
+    width: 0
+    height: 0
+    position: absolute
+    opacity: 0
+    &:checked
+      + .select-box
+        background-color: #96C36A
+        border-color: #96C36A
+        h3
+          color: #fff
+          em
+            color: #fff
+        p
+          color: #fff
+        i
+          display: block
+        .triangle
+          triangle(8px, bottom, #96C36A)
+  .badge
+    width: 16px
+    position: absolute
+    left: 5px
+    top: -1px
+    background-color: #EC5351
+    font-size: 12px
+    color: #fff
+    padding-top: 3px
+    padding-bottom: 10px
+    &.badge-hot
+      background-color: $orange_70
+    @media $mobile
+      font-size: 10px
+  .triangle
+    position: absolute
+    bottom: -1px
+    left: 0
+    triangle(8px, bottom, #fff)
+  h3
+    font-size: 18px
+    color: #396281
+    font-weight: 500
+    em
+      color:$orange_70
+  p
+    margin-top: 20px
+    color: #969CA0
+  .btn-select
+    margin: 50px auto 20px
+    padding-left: 70px
+    padding-right: 70px
+    border: none
+    @media $mobile
+      margin: 0
+      width: 100%

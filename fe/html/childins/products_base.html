@@ -1,0 +1,16 @@
+<%inherit file="/base.html" />
+<%namespace import="compensation_guide" file='./mods/compensation_guide.html' />
+
+
+<%def name="common_compensation_guide()">
+  ${compensation_guide()}
+</%def>
+
+
+<%def name="css()">
+  <link rel="stylesheet" href="{{{css/childins/childins.css}}}" />
+</%def>
+
+<%def name="pagetitle()">
+  <% return '儿童保险规划' %>
+  </%def>

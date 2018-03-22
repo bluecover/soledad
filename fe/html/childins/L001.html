@@ -1,0 +1,363 @@
+<%inherit file="./products_base.html" />
+
+<%namespace import="more_L002,more_A001,more_CI001" file='./mods/more_product.html' />
+
+<%!
+  from libs.linker import make_url
+  from jupiter.integration.weixin import get_weixin_config
+%>
+
+<%def name="main()">
+  <div class="ins-common-wrapper childins-l001-wrapper">
+    ${self.head()}
+    ${self.neck()}
+    ${self.body()}
+    ${parent.common_compensation_guide()}
+    ${self.reason()}
+    ${self.more()}
+    <%include file="./mods/ins_qrcode.html" />
+  </div>
+</%def>
+
+<%def name="head()">
+  <input type="hidden" id="ins_data" data-url="${url_for('ajax.mail', dcm='email_savi', dcs='phonetopc')}" data-val="${get_weixin_config(jsApiList=['onMenuShareTimeline', 'onMenuShareAppMessage'])}" data-title="人保寿险精心优选定期寿险 - 好规划" data-desc="好规划保险精选：寿险与重疾的超值组合，越健康越便宜"/>
+  <div class="head-wrapper">
+    <div class="desc">
+      <h4 class="text-16">好规划保险精选 <em class="text-green">寿险与重疾的超值组合 </em></h4>
+      <h2 class="text-bold">人保寿险精心优选定期寿险（可附加重疾险）</h2>
+      <dl class="ins-info">
+        <dt class="text-12">保险信息</dt>
+        <dd>定期寿险</dd>
+        <dd>消费型</dd>
+        <dd>期限可选</dd>
+        <dd>需要体检</dd>
+      </dl>
+      <dl>
+        <dt class="text-12">保障范围</dt>
+        <dd><i class="iconfont icon-checked"></i>身故</dd>
+        <dd><i class="iconfont icon-checked"></i>30种重大疾病 </dd>
+        <dd><i class="iconfont icon-checked"></i>全残</dd>
+      </dl>
+    </div>
+    <div class="buy text-center">
+      <p  class="text-orange">￥<em>150.00</em> 起</p>
+      <a href="#" class="btn btn-primary btn-large btn-start js-btn-start" data-type="700du" data-url="${make_url(redirect_url)}">立即投保</a>
+    </div>
+  </div>
+</%def>
+
+<%def name="neck()">
+  <div class="title-box">越健康越便宜的保险</div>
+  <div class="block-wrapper section-wrapper">
+    <div class="clause-wrapper">
+      <h3>简明版保险条款</h3>
+      <div class="twocol-content">
+        <div class="left-col">
+          <div class="circle-box">1</div>
+        </div>
+        <div class="right-col">
+          <h4>保什么</h4>
+          <p>在保障期限内一旦身故，得到一笔一次性大额赔付；</p>
+          <p>若附加重疾或全残保障，确诊患30种重大疾病之一，或因为疾病/意外全残，得到一笔大额赔付。</p>
+        </div>
+      </div>
+      <div class="twocol-content">
+        <div class="left-col">
+          <div class="circle-box">2</div>
+        </div>
+        <div class="right-col">
+          <h4>如何投保与体检</h4>
+          <p>1：在线填写投保信息，用时约10分钟；</p>
+          <p>2：等待工作人员电话预约体检时间、地点，一般为投保起3工作日内；</p>
+          <p>3：按照约定时间进行体检（全程专人陪同），最快预约次日体检；</p>
+          <p>4：等待体检结果、确定保费（<span class="text-green">体检结果越好保费越低</span>），一般5工作日内完成；</p>
+          <p>5：银行扣款，体检结果优良者直接扣款，体检结果欠佳者电话确认是否继续投保，一般2工作日内完成；</p>
+          <p>6：电话确认地址、快递保单，一般扣款后一周内收到保单；</p>
+          <p>7：签收保单、邮寄回执，最终承保以保险公司收到回执日期为准。</p>
+          <p>* 详细投保流程与注意事项，请于体检前询问保险公司人员。</p>
+        </div>
+      </div>
+      <div class="twocol-content">
+        <div class="left-col">
+          <div class="circle-box">3</div>
+        </div>
+        <div class="right-col">
+          <h4>投保告知</h4>
+          <p>在线填写信息与体检时，将填写2次健康问卷，请认真如实填写。问卷中未涉及的健康问题无需告知保险公司、也不会影响投保和理赔。</p>
+        </div>
+      </div>
+      <div class="twocol-content">
+        <div class="left-col">
+          <div class="circle-box">4</div>
+        </div>
+        <div class="right-col">
+          <h4>犹豫期和等待期</h4>
+          <p>犹豫期10天，期间退保仅扣除少量工本费；犹豫期后退保只能退回很少的保费；另外，体检结果优良者退保，需自行支付体检费用。</p>
+          <p>等待期90天，少于行业平均天数；期间由疾病造成重疾或身故，仅退还已交保费；因意外身故，按保额全额赔付。</p>
+        </div>
+      </div>
+      <div class="twocol-content">
+        <div class="left-col">
+          <div class="circle-box">5</div>
+        </div>
+        <div class="right-col">
+          <h4>如何赔付</h4>
+          <p>一经确认身故，或在二级/二级以上医院确诊上述重大疾病，即可拨打销售网站客服电话400-101-1136，将有专业人员协助您报案理赔。</p>
+        </div>
+      </div>
+      <div class="tips">
+        <p>
+          <span class="text-orange">*  </span>查阅详细条款，请点击“立即投保”按钮，选择“阅读条款”；其中第7节“您需要了解的重要术语”包含30种病种清单。
+        </p>
+        <p>&nbsp;&nbsp;更多问题也欢迎至好规划微信号plan141咨询。</p>
+      </div>
+    </div>
+    <div class="chart-wrapper">
+      <h3>好规划精选<span class="text-green">全网底价保险</span>，以30岁女性投保50万寿险+20万重疾险（20年期）为例，保费对比如下</h3>
+      <div class="chart-box">
+        <div class="title-main">
+          <h5>分别投保</h5>
+          <em class="text-lighter">1420元</em>
+        </div>
+        <div class="chart-main">
+            <div class="column background-blue column-1">500元</div>
+            <div class="column background-green column-2">920元</div>
+          <div class="desc-box">
+            <p class="text-12 text-lighter"><em class="background-blue"></em>新华 i 守护定期寿险</p>
+            <p class="text-12 text-lighter"><em class="background-green"></em>新华 I 健康定期重疾险</p>
+          </div>
+        </div>
+      </div>
+      <div class="chart-box">
+        <div class="title-main">
+          <h5>组合投保</h5>
+          <em class="text-lighter text-orange">1120元</em>
+        </div>
+        <div class="chart-main">
+          <div class="column background-blue column-3">400元</div>
+          <div class="column background-green column-4">720元</div>
+          <p class="text-orange tips text-12 desktop-element">* 本产品由700度网提供</p>
+          <div class="desc-box">
+            <p class="text-12 text-lighter"><em class="background-blue"></em>“精心优选”定期寿险-超优体</p>
+            <p class="text-12 text-lighter"><em class="background-green"></em>“精心优选”附加重疾-超优体</p>
+          </div>
+          <p class="text-orange tips text-12 mobile-element">* 本产品由700度网提供</p>
+        </div>
+      </div>
+    </div>
+    <div class="service-wrapper">
+      <h3 class="text-dark">还有贴心服务，省时省心</h3>
+      <div class="service-box">
+        <div class="twocol-content middle-align">
+          <div class="left-col">
+            <img src="{{{img/childins/a_002.png}}}" alt="">
+          </div>
+          <div class="right-col">
+            <p class="text-dark text-16">24小时理赔</p>
+            <p class="text-lighter">客服电话400-101-1136</p>
+          </div>
+        </div>
+      </div>
+      <div class="service-box">
+        <div class="twocol-content middle-align">
+          <div class="left-col">
+            <img src="{{{img/childins/a_003.png}}}" alt="">
+          </div>
+          <div class="right-col">
+            <p class="text-dark text-16">为全家投保</p>
+            <p class="text-lighter">可以代配偶、父母投保</p>
+          </div>
+        </div>
+      </div>
+      <div class="service-box">
+        <div class="twocol-content middle-align">
+          <div class="left-col">
+            <img src="{{{img/childins/a_008.png}}}" alt="">
+          </div>
+          <div class="right-col">
+            <p class="text-dark text-16">每年缴费提醒</p>
+            <p class="text-lighter">提前1月提醒，从容缴费</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="body()">
+  <div class="title-box">投保指南</div>
+  <div class="block-wrapper section-wrapper">
+    <table class="table-coverage">
+      <tr class="coverage-row">
+        <td class="text-lighter">推荐<br class="desktop-element">方案</td>
+        <td>
+          <p>27岁，女性：30年期30年交，寿险50万+重疾20万+全残，超优体保费1185元/年；</p>
+          <p>35岁，女性：30年期30年交，寿险50万+重疾40万+全残，超优体保费2351元/年。</p>
+        </td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">投保<br class="desktop-element">年龄</td>
+        <td>18 – 55周岁。</td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">保障<br class="desktop-element">期限</td>
+        <td class="last-child">
+          <div class="desc-text">
+            <p>10年、20年、30年（推荐）、至60岁、至70岁（不推荐）。</p>
+          </div>
+          <div class="coverage-detail-box">
+            <div class="text-16 title"><i class="iconfont icon-ciask"></i><span class="text-green">保险期间怎么选</span></div>
+            <p>寿险的意义在于“去世后为他人留笔钱”，保险期限一般以实际需求为准，如保至孩子完成学业，或以房贷年限作为保障期限。</p>
+            <p>重疾保障应终身具备，但保障期限过长将使保费过高。建议35岁以下投保30年期，36岁以上投保20年期；并且每年拿出保费1-2倍的资金自行储备，用作保险到期后的医疗金，善加理财这笔钱就能逐渐赶超重疾险的保额。</p>
+          </div>
+        </td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">缴费<br class="desktop-element">方式</td>
+        <td>期交（推荐）、趸交。</td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">缴费<br class="desktop-element">期间</td>
+        <td>与保险期间一致。</td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">健康<br class="desktop-element">体质</td>
+        <td>
+          <p>吸烟情况如实选择；</p>
+          <p>体质可先选“超优体”，体检后将更新为真实体质。</p>
+        </td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">寿险<br class="desktop-element">保额</td>
+        <td class="last-child">
+          <div class="desc-text">
+          <p>50 – 2000万元。</p>
+          </div>
+          <div class="coverage-detail-box">
+            <div class="text-16 title"><i class="iconfont icon-ciask"></i><span class="text-green">寿险保额怎么选</span></div>
+            <p>寿险保额应以家庭责任为限，通常包括赡养父母、抚养子女、照顾配偶、偿还债务等。</p>
+            <p>相应地，以父母余生各项费用缺口、孩子成年或完成学业所需费用、债务金额作为保额都是合理的。</p>
+            <p>不过，建议以个人年收入10倍为保额上限，过多的保障将造成过大的保费压力。</p>
+          </div>
+        </td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">重疾<br class="desktop-element">保额</td>
+        <td class="last-child">
+          <div class="desc-text">
+            <p>0 – 150万元；</p>
+            <p>从身故保额中支取（若先患重疾而后身故，身故时获得重疾赔付后的剩余保额）。</p>
+          </div>
+          <div class="coverage-detail-box">
+            <div class="text-16 title"><i class="iconfont icon-ciask"></i><span class="text-green">重疾保额怎么选</span></div>
+            <table class="table-box">
+              <tr>
+                <td>年收入（个人）</td>
+                <td>保额下限</td>
+              </tr>
+              <tr>
+                <td>6万元以下</td>
+                <td>10万元</td>
+              </tr>
+              <tr>
+                <td>6 - 15万元</td>
+                <td>20万元</td>
+              </tr>
+              <tr>
+                <td>15万元以上</td>
+                <td> 30万元</td>
+              </tr>
+            </table>
+            <p>另外，尚无任何医疗保障者，应在此基础上提高保额10-20万元。</p>
+          </div>
+        </td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">附加<br class="desktop-element">全残</td>
+        <td>
+          <p>建议附加此项；</p>
+          <p>与身故共享保额（全残或身故只赔付一种）。</p>
+        </td>
+      </tr>
+    </table>
+  </div>
+</%def>
+
+<%def name="reason()">
+  <div class="title-box">为什么买定期寿险</div>
+  <div class="block-wrapper reason-wrapper">
+    <div class="section">
+      <h2 class="text-green text-16">什么是定期寿险</h2>
+      <p><em class="text-dark">“定期”</em>表示保险责任在一定的保障期内有效，并非终身保障；</p>
+      <p><em class="text-dark">“寿险”</em>是针对身故进行赔付的险种，不区分身故原因 <em class="text-lighter">（不包括除外责任，详情请参考保险合同）</em>；</p>
+      <p>定期寿险就是在保障期内以被保险人死亡为前提给付保险金的人身保险。</p>
+    </div>
+    <div class="section">
+      <h2 class="text-green text-16">为什么买定期寿险</h2>
+      <h4 class="text-dark"><svg class="icon-lightning" src="{svg{{img/childins/lightning.svg}}}"></svg>身故损失大</h4>
+      <p> 多数年轻人上有老下有小，还有房贷车贷等多重负担。一旦不幸身故，家人在伤痛之余生活质量也将难以保证。尤其家庭经济支柱身故，会带来难以承受的经济压力。</p>
+    </div>
+    <div class="section">
+      <h4 class="text-dark"><svg class="icon-lightning" src="{svg{{img/childins/lightning.svg}}}"></svg>风险须防范</h4>
+      <table class="table-box">
+        <tr>
+          <td>身故人数</td>
+          <td>25岁</td>
+          <td>35岁</td>
+          <td>40岁</td>
+        </tr>
+        <tr>
+          <td>男性</td>
+          <td>750</td>
+          <td>1170</td>
+          <td>1669</td>
+        </tr>
+        <tr>
+          <td>女性</td>
+          <td>345</td>
+          <td>557</td>
+          <td>816</td>
+        </tr>
+        <tr>
+          <td colspan="5" class="align-right">单位：每百万人身故人数</td>
+        </tr>
+      </table>
+      <p>随着年龄增长，因为疾病、意外身故的人数均有增长，男性的死亡率甚至接近千分之2。</p>
+    </div>
+    <div class="section">
+      <h4 class="text-dark"><svg class="icon-lightning" src="{svg{{img/childins/lightning.svg}}}"></svg>性价比更高</h4>
+      <p>同等保额的终身寿险，保费动辄为定期寿险的十几倍；而终身保障并不必要：老年阶段子女已独立、房贷已还完，肩负的家庭责任较少。应该将节省下来的保费用于养老金规划。</p>
+      <div class="coverage-detail-box">
+        <div class="text-16 title"><i class="iconfont icon-ciask"></i><span class="text-green">您是否需要寿险</span></div>
+        <p class="text-lighter">如果您不幸身故，将导致某人生活陷入困境，并且保障此人的生活质量是您的责任，您就需要投保寿险，并以他/她作为受益人；如果身故不会明显影响任何人的物质生活质量，则无需投保。</p>
+      </div>
+    </div>
+    <p>定期寿险有效分担身故带来的经济压力，是给家人的一份安心保障，建议所有成年人投保。</p>
+    <p>（本保险仅适用于成人，为儿童构筑保障请戳：<a href="/ins/children/?dcm=web_ins&dcs=L001">儿童保险</a>）</p>
+    <div class="text-center">
+      <a class="btn btn-primary btn-start js-btn-start" data-type="700du" href="#" data-url="${make_url(redirect_url)}">立即投保</a>
+      <p class="text-12 text-lighter"><em class="text-orange">*</em> 本页面仅作推荐用途，保险条款以保险合同为准，<br class="mobile-element">付款前请详细了解</p>
+    </div>
+  </div>
+</%def>
+
+<%def name="more()">
+  <div class="title-box">更多精选保险</div>
+  <div class="block-wrapper more-wrapper">
+   ${more_L002()}
+   ${more_A001()}
+   ${more_CI001()}
+  </div>
+</%def>
+
+<%def name="js()">
+  <script src='{{{js/lib/wx_sdk.js}}}'></script>
+  <script src="{{{js/childins/ins.js}}}"></script>
+</%def>
+
+<%def name="pagetitle()">
+  <% return '保险精选' %>
+</%def>
+
+
+<%def name="title()">人保寿险精心优选定期寿险 - 好规划</%def>

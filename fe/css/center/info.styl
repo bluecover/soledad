@@ -1,0 +1,70 @@
+@import '../core/_global.styl'
+
+.info-wrapper
+  padding: 40px 40px 60px
+  border: 1px solid $border_color
+  background: #fff
+  min-height: 450px
+  position: relative
+  @media $mobile
+    border-left: none
+    border-right: none
+    width: auto
+    margin: 0
+    padding: 20px
+
+.info-tip
+  margin-bottom: 30px
+  background: #f5f5f5
+  border: 1px solid $border_color
+  padding: 10px 30px
+  line-height: 22px
+  p
+    margin: 10px 0
+  @media $mobile
+    padding: 10px
+
+.info-section
+  margin-bottom: 30px
+  .header-options
+    margin: 20px 0 0
+  .risk-afford
+    padding: 0
+
+.risk-info
+  .item
+    padding-left: 55px
+    @media $mobile
+      padding-left: 0
+  .risk-afford
+    padding-left: 55px
+    @media $mobile
+      padding-left: 0
+  .item-info
+    padding-left: 55px
+    @media $mobile
+      padding-left: 0
+  .risk-fix-padding
+    padding-top: 30px
+
+.submit-section
+  margin-top: 60px
+  padding-left: 135px
+  &.submit-info4
+    padding-left: 55px
+    @media $mobile
+      padding-left: 0
+  @media $mobile
+    padding-left: 0
+    text-align: center
+    .btn
+      width: 90%
+  .error-msg
+    margin: 20px 0
+    color: $brand_red
+  .btn-form
+    width: 200px
+    height: 50px
+    line-height: 50px
+    @media $mobile
+      width: 90%

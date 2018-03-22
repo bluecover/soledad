@@ -1,0 +1,241 @@
+<%!
+  from core.models.location.location import Location
+%>
+
+<%inherit file="./base.html" />
+
+<%def name="info_content()">
+  <form action="" method="POST" autocomplete="off" class="js-form-info1 form-wrapper">
+    <input type="hidden" name="csrf_token" value="${csrf_token()}">
+    <div class="info-tip">
+      <p>请花上几分钟填写如下问卷，这将指导理财师更好地为您服务。</p>
+      <p>匿名制保护隐私，您的信息被严格保密。</p>
+    </div>
+
+    <div class="info-section separate-line">
+      <div class="progress"><i></i></div>
+      <h2>您的基本信息</h2>
+      <div class="item">
+        <span class="title">性别</span>
+        <input type="radio" name="gender" value="male" id="male" class="styled-input" checked/>
+        <label for="male" class="label-gender"><i class="iconfont icon-revmale"></i>&nbsp;&nbsp;男</label>
+        <input type="radio" name="gender" value="female" class="styled-input" id="female" ${'checked' if g.plan and g.plan.data.gender and g.plan.data.gender == 'female' else ''}/>
+        <label for="female" class="label-gender"><i class="iconfont icon-revfemale"></i>&nbsp;&nbsp;女</label>
+      </div>
+
+      <div class="item">
+        <span class="title">年龄</span>
+        <div class="input-con">
+          <input type="text" pattern="[0-9]*" name="age" class="validate two-col" id="age" value="${g.plan.data.age if g.plan and g.plan.data.age else ''}" data-validate="require,adultAgeLimit" data-validate-keyup="nature" maxlength="2"/>
+          <span class="input-unit" data-title="您的年龄">岁</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <span class="title">您的职业</span>
+        <div class="input-con">
+          <select name="career" class="mine-career validate" data-validate="require">
+            <option value="">请选择</option>
+            <option value="1" ${'selected' if g.plan and g.plan.data.career and g.plan.data.career == '1' else ''}>公务员</option>
+            <option value="2" ${'selected' if g.plan and g.plan.data.career and g.plan.data.career == '2' else ''}>国企、事业单位职工</option>
+            <option value="3" ${'selected' if g.plan and g.plan.data.career and g.plan.data.career == '3' else ''}>私企、外企职工</option>
+            <option value="4" ${'selected' if g.plan and g.plan.data.career and g.plan.data.career == '4' else ''}>私营业主、自由职业者</option>
+            <option value="5" ${'selected' if g.plan and g.plan.data.career and g.plan.data.career == '5' else ''}>学生</option>
+            <option value="6" ${'selected' if g.plan and g.plan.data.career and g.plan.data.career == '6' else ''}>待业</option>
+            <option value="7" ${'selected' if g.plan and g.plan.data.career and g.plan.data.career == '7' else ''}>其他</option>
+          </select>
+        </div>
+      </div>
+
+      <%
+        china = Location.get('100000')
+        if g.plan and g.plan.data.province:
+          current_province = Location.get(g.plan.data.province)
+        else:
+          current_province = Location.get('110000')
+      %>
+
+      <div class="item">
+        <span class="title">现居住地</span>
+        <div class="input-con">
+          <select name="province" id="js_province">
+            % for p in china.children:
+              <option value="${p.id}" ${'selected' if g.plan and p.id==g.plan.data.province else ''}>${p.name_cn}</option>
+            % endfor
+          </select>
+        </div>
+        <div class="input-con">
+          <select name="city" id="js_city">
+            % for c in current_province.children:
+              <option value="${c.id}" ${'selected' if g.plan and c.id==g.plan.data.city else ''}>${c.name_cn}</option>
+            % endfor
+          </select>
+        </div>
+      </div>
+
+      <div class="item">
+        <span class="title">手机</span>
+        <div class="input-con">
+          <input type="text" name="phone" class="validate" value="${g.plan.data.phone if g.plan and g.plan.data.phone else ''}" data-validate="phone" maxlength="11" data-validate-msg="仅用作极其必要的验证和通知，不会向任何第三方泄露, 请放心填写"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-section separate-line">
+      <h2>您的保险情况</h2>
+      <div class="item">
+        <span class="title">社会保险</span>
+        <div class="input-con">
+          <select name="mine_society_insure" data-society-insure="${g.plan.data.mine_society_insure if g.plan and g.plan.data.mine_society_insure else 0}">
+          </select>
+        </div>
+      </div>
+
+      <div class="js-biz-insure-con">
+        <div class="item">
+          <input type="hidden" name="mine_biz_insure" data-insure="${json.dumps(g.plan.data.mine_biz_insure) if g.plan and g.plan.data.mine_biz_insure else ''}">
+          <span class="title"></span>
+          <a href="#" class="js-add-insure">+ 添加商业保险</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <h2>家庭其他成员</h2>
+      <%
+        has_spouse = True if g.plan and g.plan.data.spouse=='1' else False
+      %>
+
+      <div class="js-spouse-info ${'' if has_spouse else 'hide'}">
+        <div class="item">
+          <span class="title js-del-spouse"><i class="iconfont icon-revdel text-red"></i> 配偶</span>
+          <div class="input-con">
+            <input type="text" pattern="[0-9]*" name="spouse_age" class="validate two-col" value="${g.plan.data.spouse_age if has_spouse else ''}" data-validate="require,adultAgeLimit" data-validate-keyup="nature" maxlength="2" data-validate-condition="spouse"/>
+            <span class="input-unit" data-title="配偶年龄">岁</span>
+          </div>
+          <div class="input-con">
+            <select name="spouse_career" data-validate-condition="spouse">
+              <option value="1" ${'selected' if has_spouse and g.plan.data.spouse_career=='1' else ''}>公务员</option>
+              <option value="2" ${'selected' if has_spouse and g.plan.data.spouse_career=='2' else ''}>国企、事业单位职工</option>
+              <option value="3" ${'selected' if has_spouse and g.plan.data.spouse_career=='3' else ''}>私企、外企职工</option>
+              <option value="4" ${'selected' if has_spouse and g.plan.data.spouse_career=='4' else ''}>私营业主、自由职业者</option>
+              <option value="5" ${'selected' if has_spouse and g.plan.data.spouse_career=='5' else ''}>待业</option>
+              <option value="6" ${'selected' if has_spouse and g.plan.data.spouse_career=='6' else ''}>其他</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="item">
+          <span class="title">社会保险</span>
+          <div class="input-con">
+            <select name="spouse_society_insure" data-society-insure="${g.plan.data.spouse_society_insure if has_spouse else 0}">
+            </select>
+          </div>
+        </div>
+
+        <div class="js-biz-insure-con">
+          <div class="item">
+            <input type="hidden" name="spouse_biz_insure" data-insure="${json.dumps(g.plan.data.spouse_biz_insure) if has_spouse and g.plan.data.spouse_biz_insure else ''}">
+            <span class="title"></span>
+            <a href="#" class="js-add-insure" data-name="item_mine_biz">+ 添加配偶商业保险</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="item ${'hide' if has_spouse else ''}">
+        <span class="title"></span>
+        <input type="hidden" name="spouse" value="${1 if has_spouse else ''}" class="js-spouse">
+        <a class="js-add-spouse" href="#"><i class="iconfont icon-revadd text-green"></i> 添加配偶</a>
+      </div>
+
+      <div class="item">
+        <span class="title"></span>
+        <a class="js-add-child" href="#"><i class="iconfont icon-revadd text-green"></i> 添加未成年子女</a>
+        <input type="hidden" name="children" data-val="${json.dumps(g.plan.data.children) if g.plan and g.plan.data.children else ''}">
+      </div>
+    </div>
+
+    <div class="submit-section">
+      <span class="title"></span>
+      % if err_message:
+      <div class="error-msg">表单填写有误</div>
+      % endif
+      <a class="btn btn-green js-submit-form btn-form" href="#">保存，下一步</a>
+    </div>
+  </form>
+
+  <script id="tmpl_biz_insure" type="text/template">
+    <div class="item js-biz-item">
+      <span class="title"><i class="iconfont icon-revdel js-del-insure"></i> 已购商业保险</span>
+      <div class="input-con narrow">
+        <select class="js-biz-type">
+          <option value="1">重疾险</option>
+          <option value="2">人身意外险</option>
+          <option value="3">寿险</option>
+          <option value="4">医疗险</option>
+          <option value="5">少儿综合险</option>
+          <option value="6">养老险</option>
+          <option value="7">教育年金险</option>
+          <option value="8">其他险种</option>
+        </select>
+      </div>
+      <div class="input-con narrow">
+        <input type="text" pattern="[0-9]*" class="js-biz-insure-year-fee validate three-col wide-left" data-validate="require,guihuaLimitRequire" data-validate-keyup="nature"/>
+        <span class="input-prefix">年缴保费</span>
+        <span class="input-unit" data-title="年缴保费">元</span>
+      </div>
+      <div class="input-con narrow">
+        <input type="text" pattern="[0-9]*" class="js-biz-insure-quota validate three-col" data-validate="require,guihuaLimitRequire" data-validate-keyup="nature"/>
+        <span class="input-prefix">保额</span>
+        <span class="input-unit" data-title="保额">元</span>
+      </div>
+    </div>
+  </script>
+
+  <script id="tmpl_society_insure" type="text/template">
+    <option value="0">无社保</option>
+    <option value="1">五险（标准）</option>
+    <option value="2">四险（少生育险）</option>
+    <option value="3">三险（少生育、工伤险）</option>
+    <option value="4">六险（多大额补充医保）</option>
+    <option value="5">个人缴纳社保</option>
+    <option value="6">新农合、农村养老险</option>
+    <option value="7">公务员社保（免缴）</option>
+    <option value="8">少儿医保、学生医保</option>
+  </script>
+
+  <script id="tmpl_child" type="text/template">
+    <div class="js-child-con">
+      <div class="line-through-title">
+        <span class="through-title">子女 <span class="js-child-number"></span></span>
+      </div>
+      <div class="item">
+        <span class="title"><i class="iconfont icon-revdel text-red js-del-child"></i> 子女 <span class="js-child-number"></span></span>
+        <div class="input-con">
+          <input type="text" pattern="[0-9]*" class="validate two-col js-child-age" data-validate="require,minorsAgeLimit" data-validate-keyup="nature" maxlength="2"/>
+          <span class="input-unit" data-title="子女年龄">岁</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <span class="title">社会保险</span>
+        <div class="input-con">
+          <select class="js-child-society-insure"></select>
+        </div>
+      </div>
+
+      <div class="js-biz-insure-con">
+        <div class="item">
+          <span class="title"></span>
+          <a href="#" class="js-add-insure">+ 添加子女商业保险</a>
+        </div>
+      </div>
+    </div>
+  </script>
+</%def>
+
+<%def name="title()">个人信息 - 好规划</%def>
+
+<%def name="js()">
+  <script src="{{{js/mine/info_1.js}}}"></script>
+</%def>

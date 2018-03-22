@@ -1,0 +1,160 @@
+@import '../core/_global'
+@import '../plugin/animate.css'
+@import '../plugin/fullpage.css'
+@import '../mods/_water_circle.styl'
+
+.wow
+  visibility: hidden
+
+.page-loading
+  position: fixed
+  left: 0
+  right: 0
+  bottom: 0
+  top: 0
+  img
+    position: absolute
+    top: 50%
+    left: 50%
+    margin-top: -15px
+    margin-left: -15px
+
+#fullpage
+  max-width: 500px
+  margin: 0 auto
+
+.section
+  text-align: center
+  position: relative
+  .text-con
+    padding-top: 10%
+    p
+      color: #fff
+      font-size: 20px
+      line-height: 2em
+      em
+        font-size: 30px
+        line-height: 2.6em
+
+  .one-img
+    position: absolute
+    bottom: 2%
+    left: 0
+    right: 0
+
+  .one-money
+    position: relative
+    top: -60px
+
+  .one-star
+    position: absolute
+    bottom: 30%
+    left: 0
+    right: 0
+
+  .water-circle-mod
+    margin: 10px auto 0
+    width: 145px
+    .bd
+      background-color: #fff
+    .measure-mark
+      color: #fff
+    .water
+      background-color: #FFD046
+
+  .two-img
+    position: absolute
+    bottom: 0
+    left: 0
+    right: 0
+
+  #savings
+    position: absolute
+    bottom: 45%
+    left: 0
+    right: 0
+
+  .two-star
+    position: relative
+
+  .two-pig
+    position: relative
+    bottom: -3px
+
+  .three-img
+    position: absolute
+    bottom: 0
+    left: 0
+    right: 0
+    .cake-con
+      position: absolute
+      bottom: 110%
+      left: 0
+      right: 0
+    .cake
+      position: relative
+      top: 5px
+      left: 0
+      right: 0
+    .flyer
+      position: absolute
+      left: 50%
+      right: 0
+      margin-left: -30%
+      top: -30px
+    .savings
+      position: absolute
+      left: 50%
+      right: 0
+      margin-left: -10%
+      top: -15px
+    .candle
+      position: absolute
+      left: 53%
+      top: -20px
+      right: 0
+    .text
+      line-height: 1.6em
+      text-align: center
+      color: #fff
+      font-size: 16px
+      padding-bottom: 10px
+
+  .four-img
+    position: absolute
+    bottom: 10%
+    left: 0
+    right: 0
+    .btn-red
+      background-color: $brand_red
+      color: #fff
+      margin-right: 20px
+    .invite
+      color: #fff
+      font-size: 18px
+      line-height: 2em
+      margin-bottom: 10px
+    .pig
+      padding-top: 50px
+      display: block
+      margin: 0 auto
+
+.btn-music
+  position: fixed
+  right: 20px
+  top: 20px
+  z-index: 2
+  width: 30px
+  height: 30px
+  animation: rotating 1.2s linear infinite
+  background-repeat: no-repeat
+  background-image: url('{{{img/activity/400m/normalmusic.svg}}}')
+  background-size: contain
+  &.off
+    animation: none
+
+@keyframes rotating
+  from
+    transform: rotate(0 deg)
+  to
+    transform: rotate(360 deg)

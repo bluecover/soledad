@@ -1,0 +1,285 @@
+<%inherit file="./products_base.html" />
+
+<%namespace import="more_A003,more_A001,more_CI001" file='./mods/more_product.html' />
+
+<%!
+  from libs.linker import make_url
+  from jupiter.integration.weixin import get_weixin_config
+%>
+
+<%def name="main()">
+  <div class="ins-common-wrapper childins-a002-wrapper">
+    ${self.head()}
+    ${self.neck()}
+    ${self.body()}
+    ${parent.common_compensation_guide()}
+    ${self.reason()}
+    ${self.more()}
+    <%include file="./mods/ins_qrcode.html" />
+  </div>
+</%def>
+
+<%def name="head()">
+  <input type="hidden" id="ins_data" data-url="${url_for('ajax.mail', dcm='email_savi', dcs='phonetopc')}" data-val="${get_weixin_config(jsApiList=['onMenuShareTimeline', 'onMenuShareAppMessage'])}" data-title="苏黎世-意外自选计划 - 好规划" data-desc="好规划保险精选：自选保障的超值意外险"/>
+  <div class="head-wrapper">
+    <div class="desc">
+      <h4 class="text-16">好规划保险精选 <em class="text-green">自选保障的超值意外险</em></h4>
+      <h2 class="text-bold">苏黎世-意外自选计划</h2>
+      <dl class="ins-info">
+        <dt class="text-12">保险信息</dt>
+        <dd>综合意外险</dd>
+        <dd>消费型</dd>
+        <dd>一年期</dd>
+      </dl>
+      <dl>
+        <dt class="text-12">保障范围</dt>
+        <dd><i class="iconfont icon-checked"></i>意外身故/残疾</dd>
+        <dd><i class="iconfont icon-checked"></i>意外医疗</dd>
+        <dd><i class="iconfont icon-checked"></i>交通意外</dd>
+        <dd><i class="iconfont icon-checked"></i>意外住院</dd>
+      </dl>
+    </div>
+    <div class="buy text-center">
+      <p  class="text-orange">￥<em>28.00</em> 起</p>
+      <a href="#" class="btn btn-primary btn-large btn-start js-btn-start" data-type="700du" data-url="${make_url(redirect_url)}">立即投保</a>
+    </div>
+  </div>
+</%def>
+
+<%def name="neck()">
+  <div class="title-box">灵活自选的意外险</div>
+  <div class="block-wrapper section-wrapper">
+    <div class="feature-wrapper">
+      <div class="feature-main">
+        <div class="feature-box">
+          <div class="circle-box"><i class="iconfont icon-safeguard"></i><em class="desktop-element">保障自选</em></div>
+          <h4 class="mobile-element">保障自选</h4>
+          <p>7项保障，按需搭配</p>
+        </div>
+        <div class="feature-box">
+          <div class="circle-box"><i class="iconfont icon-copper"></i><em class="desktop-element">保额灵活</em></div>
+          <h4 class="mobile-element">保障灵活</h4>
+          <p>5-100万保额，丰俭由人</p>
+        </div>
+        <div class="feature-box">
+          <div class="circle-box"><i class="iconfont icon-inscompre"></i><em class="desktop-element">扩展社保用药</em></div>
+          <h4 class="mobile-element">扩展社保用药</h4>
+          <p>可报销社保以外的自费项目</p>
+        </div>
+      </div>
+    </div>
+    <div class="category-wrapper">
+      <h3 class="text-dark">好规划精选<em class="text-green text-bold">全网底价</em>保险，以10万元人身意外+1万元意外医疗（1年期）的保险为例，保费对比如下</h3>
+       <div class="category-row">
+        <div class="desc-box">平安一年期综合意外险</div>
+        <div class="fee-box">
+          <p class="plan1">保费：114.8元</p>
+        </div>
+      </div>
+      <div class="category-row">
+        <div class="desc-box">泰康e顺综合意外保障计划 </div>
+        <div class="fee-box">
+          <p class="plan2"> 保费：94元</p>
+        </div>
+      </div>
+      <div class="category-row">
+        <div class="desc-box">苏黎世-意外自选计划  </div>
+        <div class="fee-box">
+          <p class="plan3">保费：80元</p><em class="text-orange text-12">* 本产品由700度网提供</em>
+        </div>
+      </div>
+    </div>
+    <div class="service-wrapper">
+      <h3 class="text-dark">还有贴心服务，省时省心</h3>
+      <div class="service-box">
+        <div class="twocol-content middle-align">
+          <div class="left-col">
+            <img src="{{{img/childins/a_001.png}}}" alt="">
+          </div>
+          <div class="right-col">
+            <p class="text-dark text-16">在线快速投保</p>
+            <p class="text-lighter">5分钟填保单，在线支付</p>
+          </div>
+        </div>
+      </div>
+      <div class="service-box">
+        <div class="twocol-content middle-align">
+          <div class="left-col">
+            <img src="{{{img/childins/a_002.png}}}" alt="">
+          </div>
+          <div class="right-col">
+            <p class="text-dark text-16">24小时理赔</p>
+            <p class="text-lighter">客服电话400-101-1136</p>
+          </div>
+        </div>
+      </div>
+      <div class="service-box">
+        <div class="twocol-content middle-align">
+          <div class="left-col">
+            <img src="{{{img/childins/a_003.png}}}" alt="">
+          </div>
+          <div class="right-col">
+            <p class="text-dark text-16">为全家投保</p>
+            <p class="text-lighter">可以代配偶、父母投保</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="body()">
+  <div class="title-box">投保指南</div>
+  <div class="block-wrapper section-wrapper">
+    <table class="table-coverage">
+      <tr class="coverage-row">
+        <td class="text-lighter">推荐<br class="desktop-element">方案</td>
+        <td>
+          <p>同时投保<a href="https://www.guihua.com/ins/product/A001/" target="_blank">中民无忧综合意外基本计划三</a>（30万元）与本产品：意外身故/残疾40万元，保费224元。</p>
+        </td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">投保<br class="desktop-element">年龄</td>
+        <td>6个月 – 60周岁。</td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">保障<br class="desktop-element">期限</td>
+        <td class="last-child">
+          <div class="desc-text">
+            <p>1年。</p>
+          </div>
+        </td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">意外<br class="desktop-element">伤害</td>
+        <td>
+          <div class="desc-text">
+            <p>保障范围：意外伤害事故导致不幸身故，全额给付人身意外保险金；或按伤残等级，对应合同约定比例给付保险金；</p>
+            <p>保    额：5万元 – 100万元（推荐10 - 50万元）。</p>
+          </div>
+          <div class="coverage-detail-box">
+            <div class="text-16 title"><i class="iconfont icon-ciask"></i><span class="text-green">保额怎么选</span></div>
+            <p>建议北上广深至少30万元、一二线城市至少20万元、地/县级市和城镇至少10万元；暂无寿险者可适当提高保额；另外根据收入水平、物价水平酌情增减。</p>
+            <p>单份意外险保额不建议超过50万元，超过50万元后保费将额外上浮，理赔时也需要更多材料。如果需要较高的意外保额，建议您搭配我们精选的其他意外险投保。</p>
+          </div>
+        </td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">意外<br class="desktop-element">医疗</td>
+        <td>
+          <div class="desc-text">
+            <p>保障范围：可选项目，因意外伤害在二级（含）以上公立医院诊疗，报销赔付意外医疗保险金；</p>
+            <p>保额：0 – 5万元。</p>
+          </div>
+          <div class="coverage-detail-box">
+            <div class="text-16 title"><i class="iconfont icon-ciask"></i><span class="text-green">保额怎么选</span></div>
+            <p>用以应对轻度意外伤害带来的医疗支出时，保额一般为意外伤害保额的10%左右，不超过3万元。无社保者建议提高保额；有其他医疗保险者可稍降保额，同时注意避免重复投保。</p>
+          </div>
+        </td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">扩展<br class="desktop-element">社保外<br class="desktop-element">用药</td>
+        <td>
+          <div class="desc-text">
+            <p>保障范围：可选项目，意外医疗费用中，当地社保不予报销的自费项目、药品，可以报销；</p>
+            <p>保    额：500 – 5000元，上限为意外医疗保额的10%。</p>
+          </div>
+        </td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">不建议<br class="desktop-element">投保<br class="desktop-element">项目</td>
+        <td>
+          <div class="desc-text">
+            <p>航空：被保险驾驶乘坐飞机导致不幸身故，全额给付人身意外保险金；或按伤残等级，对应合同约定比例给付保险金；仅建议常坐飞机者考虑此项。</p>
+            <p>公共交通：乘坐公共交通工具时意外身故/残疾，给付保险金；不建议投保，保障弱保费高，如确有需求，可增加综合意外险保额，性价比更高。</p>
+            <p>自驾车：自驾车时意外身故/残疾，给付保险金；不建议投保，保障弱保费高，如确有需求，可增加综合意外险保额，性价比更高。</p>
+            <p>意外住院补贴：因意外伤害在二级（含）以上公立医院住院，按约定金额*住院天数给付保险金；不建议投保，保障功能弱且保费较高。</p>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</%def>
+
+<%def name="reason()">
+  <div class="title-box">为什么买意外险</div>
+  <div class="block-wrapper reason-wrapper">
+    <div class="section">
+      <h4 class="text-orange"><svg class="icon-lightning" src="{svg{{img/childins/lightning.svg}}}"></svg>意外伤害概率高，风险须防范</h4>
+      <p>小到扭伤烫伤，大到撞车空难，意外事故高发。参考下表，在25-35岁的男性中，平均35%的死亡由意外造成。而针对女性，这一数值高达75%。</p>
+      <table class="table-box">
+        <tr>
+          <td>年龄</td>
+          <td>男性死亡 </td>
+          <td>女性死亡</td>
+          <td>意外死亡</td>
+          <td>意外致残</td>
+        </tr>
+        <tr>
+          <td>25岁</td>
+          <td>750</td>
+          <td>345</td>
+          <td rowspan="2">336</td>
+          <td rowspan="2">309</td>
+        </tr>
+        <tr>
+          <td>35岁</td>
+          <td>1170</td>
+          <td>557</td>
+        </tr>
+        <tr>
+          <td colspan="5" class="align-right">单位：每百万人身故人数</td>
+        </tr>
+      </table>
+    </div>
+    <div class="section">
+      <h4 class="text-orange"><svg class="icon-lightning" src="{svg{{img/childins/lightning.svg}}}"></svg>意外事故带来经济损失，意外险雪中送炭</h4>
+      <table class="table-box">
+        <tr>
+          <td>事故</td>
+          <td>后果</td>
+          <td>意外险的作用</td>
+        </tr>
+        <tr>
+          <td>意外<br class="mobile-element">致亡</td>
+          <td>子女、父母无人赡养</td>
+          <td rowspan="2">一次性赔付<br class="mobile-element">大笔保险金</td>
+        </tr>
+        <tr>
+          <td>意外<br class="mobile-element">致残</td>
+          <td >高额治疗费、收入减少，<br class="mobile-element">经济压力巨大</td>
+        </tr>
+        <tr>
+          <td>意外<br class="mobile-element">受伤</td>
+          <td>短期资金紧张、打乱<br class="mobile-element">理财计划</td>
+          <td>报销诊疗费用</td>
+        </tr>
+      </table>
+    </div>
+    <p>意外险有效缓解意外伤害带来的经济压力，是给家人的一份安心保障，建议所有成年人投保。</p><p>（本保险仅适用于成人，为儿童构筑保障请戳：<a href="https://www.guihua.com/ins/children/?dcm=web_ins&dcs=A002">儿童保险</a>）</p>
+    <div class="text-center">
+      <a class="btn btn-primary btn-start js-btn-start" data-type="700du" href="#" data-url="${make_url(redirect_url)}">立即投保</a>
+      <p class="text-12 text-lighter"><em class="text-orange">*</em> 本页面仅作推荐用途，保险条款以保险合同为准，<br class="mobile-element">付款前请详细了解</p>
+    </div>
+  </div>
+</%def>
+
+<%def name="more()">
+  <div class="title-box">更多精选保险</div>
+  <div class="block-wrapper more-wrapper">
+    ${more_A001()}
+    ${more_A003()}
+    ${more_CI001()}
+  </div>
+</%def>
+
+<%def name="js()">
+  <script src='{{{js/lib/wx_sdk.js}}}'></script>
+  <script src="{{{js/childins/ins.js}}}"></script>
+</%def>
+
+<%def name="pagetitle()">
+  <% return '保险精选' %>
+</%def>
+
+<%def name="title()">苏黎世-意外自选计划 - 好规划</%def>

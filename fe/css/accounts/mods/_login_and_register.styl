@@ -1,0 +1,70 @@
+.accounts-box
+  .accounts-content
+    float: left
+    padding-left: 150px
+    width: 609px
+    border-right: 1px solid #cfdee4
+    @media $mobile
+      width: 100%
+      padding: 0px
+      border: none
+      border-bottom: 1px solid #cfdee4
+      padding-bottom: 5%
+      margin: 5% 0 10%
+
+  .accounts-content-title-wrapper
+    width: 260px
+    @media $mobile
+      width: 100%
+
+    .accounts-title
+      line-height: 40px
+      position: relative
+      color: #A6B1C5
+      font-size: 13px
+      z-index: 1
+      width: 80px
+      text-align: center
+      background: #edeef2
+      margin: 0 auto
+
+    .title-bg
+      position: relative
+      top: -20px
+      border-top: 1px solid #DDE0E5
+
+  .accounts-aside
+    display: none
+
+  .gm-account
+    display: block
+    @media $mobile
+      width: 90%
+      margin: 0 5%
+    .wrapper
+      min-height: 0
+      background: none
+      >.hd
+        display: none
+      >.bd
+        margin: 0
+        width: 260px
+        background: none
+        min-height: 0
+        @media $mobile
+          width: 100%
+
+  .m-account-form
+    margin: 10px 0 0 0
+    width: 100%
+    @media $mobile
+      padding: 0
+    >.hd
+      display: none
+    >.bd
+      .split-line,
+      .btn-register,
+      .btn-login
+        display: none
+    >.ft
+      display: none

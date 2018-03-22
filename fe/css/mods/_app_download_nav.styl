@@ -1,0 +1,49 @@
+@import '../core/mixins/_dropdown.styl'
+
+.app-download
+  display: inline-block
+  line-height: 51px
+  &:hover
+    opacity: .7
+  .svgicon
+    vertical-align: middle
+    width: 8px
+    height: 13px
+    margin-left: 5px
+    margin-top: -3px
+
+.dropdown-app-download
+  display: none
+  right: 0
+  padding: 30px 10px 30px 30px
+  @extend $dropdown
+  >.hd,
+  >.bd
+    display: table-cell
+    vertical-align: middle
+  >.hd
+    display: table-cell
+    padding-right: 20px
+    .qrcode
+      display: block
+      width: 100px
+      height: 100px
+  >.bd
+    .desc
+      color: $gray_70
+      line-height: 1.5
+    .btns
+      width: 170px
+    .btn
+      display: block
+      color: #fff
+      font-size : 14px
+      padding-left: 10px
+      width: 150px
+      text-align: left
+      margin: 3px 0
+    .svgicon
+      vertical-align: middle
+      width: 16px
+      height: (30/25)*16px
+      margin-top: -4px

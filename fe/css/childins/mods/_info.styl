@@ -1,0 +1,131 @@
+.info-childins-wrapper
+  .item-info
+    padding-left: 0
+  .item-title
+    display: inline-block
+    text-align: left
+    margin-bottom: 8px
+    color: #333
+  .date-tips
+    display: none
+    display: unquote('inline\9')
+  .icon-calendar
+    position: absolute
+    right: 10px
+    top: 3px
+    color: #999
+  .radio-desc
+    display: inline-block
+    vertical-align: top
+    cursor: pointer
+    em
+      display: inline-block
+      vertical-align: top
+      margin-top: -5px
+      margin-right: 50px
+      color: #666
+  .radio-circle
+    width: 18px
+    height: 18px
+    border: 2px solid #ddd
+    border-radius: 50%
+    display: inline-block
+    margin-right: 10px
+    vertical-align: top
+    &:after
+      content: ''
+      width: 6px
+      height: 6px
+      background-color: #396281
+      margin: 4px
+      border-radius: 50%
+      display: none
+  .input-radio
+    width: 0
+    height: 0
+    position: absolute
+    opacity: 0
+    &:checked
+      + .radio-desc
+        .radio-circle
+          border: 2px solid #396281
+          &:after
+            display: block
+  .desc-text
+    display: inline-block
+    vertical-align: top
+    margin-top: -5px
+    margin-right: 50px
+  .item-tips
+    background-color: $gray_20
+    display: inline-block
+    padding: 0 7px
+    color: #666
+    font-size: 12px
+    line-height: 25px
+    @media $mobile
+      font-size: 11px
+      display: block
+      margin-bottom: 10px
+  .btn-group
+    font-size: 0
+    margin-bottom: 20px
+  .btn
+    padding: 0 50px
+    font-size: 14px
+    @media $mobile
+      width: 45%
+  .btn-submit
+    margin-right: 20px
+    @media $mobile
+      margin-right: 10%
+  .item-edu
+    display: none
+
+  .project-wrapper
+    background-color: #ECF0F3
+    padding: 30px 30px 20px
+    position: relative
+    top: -10px
+    margin-bottom: 20px
+    display: none
+    @media $mobile
+      padding: 20px
+    .item
+      line-height: 1
+      padding: 0
+    &:before
+      content: ''
+      width: 0
+      height: 0
+      border-left: 6px solid transparent
+      border-right: 6px solid transparent
+      border-bottom: 10px solid #ECF0F3
+      position: absolute
+      top: -10px
+      left: 4px
+    h4
+      color:#396281
+      margin-bottom: 22px
+      @media $mobile
+        font-size: 14px
+        line-height: 1.4
+    .input-row
+      margin: 15px 0
+      .radio-desc
+        position: relative
+        @media $mobile
+          .radio-circle
+            position:absolute
+            top:50%
+            transform:translateY(-50%)
+          em
+            margin-right: 0
+            margin-left: 25px
+            text-align: justify
+            text-justify: inter-word
+            line-height: 1.4
+      em
+        margin-top: 2px
+    .project-box
+      display: none

@@ -1,0 +1,29 @@
+.coupon-item
+  height: 140px
+  width: 32%
+  margin-right: 2%
+  display: inline-block
+  font-size: 14px
+  position: relative
+  padding: 10px 15px
+  margin-bottom: 25px
+  background-color: #F5F5F5
+  cursor: pointer
+  border: 1px solid $gray_30
+  box-shadow: 0 0 0 6px #F5F5F5
+  &:nth-child(3n)
+    margin-right: 0
+  &:before
+    content: ''
+    position: absolute
+    top: 4px
+    left: 4px
+    border: 1px solid $gray_30
+    width: 0
+    width: calc(100% - 8px)
+    height: 130px
+    @media $mobile
+      display: none
+  @media $mobile
+    width: 100%
+    margin: 20px 0

@@ -1,0 +1,150 @@
+@import 'center/_balance.styl'
+@import 'center/_invest.styl'
+@import 'center/_family.styl'
+@import 'center/_property.styl'
+@import 'center/_target.styl'
+@import 'center/_unplanned.styl'
+@import 'jeet'
+
+.center-wrapper
+  @import 'center/_product_info.styl'
+  @import 'center/_product_invest.styl'
+  margin: 0 auto
+  @media $mobile
+    width: 100%
+
+  .text-24
+    font-size: 24px
+
+  .plan-title
+    color: $gray_50
+    margin: 25px 0 8px
+    @media $mobile
+      margin-left: 10px
+
+  .center-block
+    margin-bottom: 15px
+    background: #fff
+    width: 100%
+    display: table
+    table-layout: fixed
+    @media $mobile
+      display: block
+
+  .block-item-left
+    background: #f3f9ff
+    width: 25%
+    padding: 40px
+    position: relative
+    text-align: center
+    &:after
+      content: ""
+      position: absolute
+      right: 0px
+      top: 30%
+      margin-top: -5px
+      triangle(10px, right, color=#fff)
+    @media $mobile
+      display: block
+      width: 100%
+      padding: 30px 10% 10px
+      &:after
+        triangle(10px, right, color=#f3f9ff)
+
+
+  .block-left-title
+    font-size: 18px
+    color: $gray_dark
+    font-weight: 900
+    text-align: left
+    display: block
+
+  .block-left-img
+    max-width: 140px
+    margin: 20px auto
+    @media $mobile
+      margin: 20px auto
+
+  .left-item
+    line-height: 1.7
+    margin-bottom 15px
+    text-align: left
+    @media $mobile
+      text-align: center
+
+  .block-item-right
+    padding: 40px 60px
+    margin: 0 auto
+    @media $mobile
+      display: block
+      width: 100%
+      padding: 50px 5%
+
+  .block-item-summary
+    margin-bottom: 30px
+    line-height: 1.7
+    p
+      margin-bottom: 20px
+    em
+      color: #db5a4f
+
+  .block-right-title
+    font-size: 18px
+    color: $gray_dark
+    font-weight: 900
+    margin-bottom: 20px
+    .text-normal
+      font-weight: 600
+      color: $gray_30
+
+  .property-detail-con
+    clearfix()
+    padding-left: 25px
+    padding-bottom: 15px
+    margin-bottom: 30px
+    border-bottom: 1px dashed $border_color
+    &:last-child
+      border-bottom: none
+      margin-bottom: 0
+    &.no-padding
+      padding-left: 0
+      border-bottom: none
+    .item
+      col(1/2, gutter:2, cycle:2)
+      margin-bottom: 10px
+      @media $mobile
+        stack()
+    .title
+      margin-right: 10px
+
+  .chart-property-pie
+    width: 160px
+    height: 160px
+
+  .center-products
+    line-height: 1
+    >.hd
+      margin-bottom: 8px
+      margin-top: -5px
+      .title
+        color: $gray_50
+    >.hd.mobile-element
+      margin: 0
+    .tabs
+      border-bottom: 5px solid $blue_gray_40
+      background-color: #fff
+    .tabs.saving-active
+      border-bottom: 5px solid $orange_40
+    .tab
+      text-align: center
+      float: left
+      width: 50%
+      padding: 15px 0
+      color: $gray_50
+      font-size: 18px
+    .tab-wallet.active
+      color: $blue_gray_60
+      font-weight: bold
+    .tab-saving.active
+      color: $orange_60
+

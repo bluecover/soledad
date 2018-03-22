@@ -1,0 +1,119 @@
+@import 'jeet'
+
+.center-info-block
+  margin-bottom: 15px
+  clearfix()
+  .savings-logo
+    display: block
+  .info-tab-savings
+    float: left
+    padding: 20px 30px
+    background: $orange_60
+    width: 25%
+    height: 155px
+    cursor: pointer
+    @media $mobile
+      width: 100%
+      float: none
+      margin: 20px 0
+    &:hover
+      background: lighten($orange_60, 10%)
+
+  .info-unsaving
+    margin: 0 auto
+    text-align: center
+    .title
+      color: #fff59d
+      margin-bottom: 15px
+    img
+      width: 150px
+    .btn-start-saving
+      background: #fff
+      color: #ffa726
+      display: block
+      max-width: 180px
+      margin: 15px auto 0
+
+  .savings-title
+    max-width: 300px
+    margin: 5px auto 30px
+    h2
+      display: inline-block
+      color: #fff
+      font-size: 18px
+      font-weight: 900
+
+    p
+      line-height: 18px
+      display: inline-block
+      color: $orange_60
+      background: #fff
+      padding: 0 3px
+      border-radius: 3px
+      margin-left: 5px
+
+  .saving-content
+    max-width: 300px
+    margin: 0 auto 30px
+
+  .saving-content-item
+    width: 48%
+    display: inline-block
+
+  .saving-content-num
+    font-size: 20px
+    font-weight: 900
+    color: #fff
+    margin-bottom: 10px
+
+  .saving-content-word
+    color: #a04F1B
+    font-size: 13px
+
+  .info-tab-wrapper
+    width: 73.5%
+    float: right
+    @media $mobile
+      display: block
+      width: 100%
+
+  .info-tab
+    col(1/4, gutter:2)
+    background: #fff
+    height: 155px
+    text-align: center
+    padding: 25px
+    @media $mobile
+      col(1/2, gutter:0, cycle:2)
+      text-align: center
+      border-right: 1px dashed #ccc
+      &:nth-child(2n)
+        border-right: none
+      &:first-child
+        border-bottom: 1px dashed #ccc
+      &:nth-child(2)
+        border-bottom: 1px dashed #ccc
+
+    h2
+      color: $gray
+      font-size: 16px
+      margin-bottom: 5px
+
+    .iconfont
+      line-height: 70px
+      font-size: 45px
+
+    p
+      font-weight: 900
+
+    .color_yellow
+      color: $orange_50
+
+    .color_red
+      color: $red_50
+
+    .color_blue
+      color: $blue_gray_50
+
+    .color_purple
+      color: $purple_50

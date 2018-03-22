@@ -1,0 +1,119 @@
+  .accounts-title-wrapper
+    padding-bottom: 20px
+    border-bottom: 1px dotted $border_color
+    margin-bottom: 20px
+    .accounts-title
+      color: #111
+      font-size: 18px
+      margin-right: 5px
+      line-height: 1.5
+      @media $mobile
+        display: block
+
+    .accounts-subtitle
+      font-size: 13px
+      color: $gray_light
+
+  .accounts-common-content
+    font-size: 14px
+
+    .current-phone
+      padding: 10px 0
+
+    .bind-num
+      display: inline-block
+      font-size: 15px
+      margin: 0 0 20px 5px
+
+    .input-wrapper
+      margin: 20px 0
+      label
+        width: 61px
+        display: inline-block
+
+        line-height: 40px
+        padding-right: 5px
+        @media $mobile
+          width: 100%
+          text-align: left
+          display: block
+    .input-wrapper-title
+      display: inline-block
+      width: 50px
+
+    .common-input
+      width: 292px
+      @media $mobile
+        width: 100%
+        margin: 0 auto
+
+    .input-prompt
+      display: none
+      padding: 5px 0 0 65px
+      color: $red_50
+      @media $mobile
+        padding:5px 0 0 0
+
+    .form-error
+      color: red
+      margin-top: -10px
+      padding: 0 0 10px 65px
+
+    .code-input
+      width: 160px
+      @media $mobile
+        width: 55%
+
+    .btn-send-code
+      font-size: 14px
+      width: 120px
+      height: 40px
+      line-height: 40px
+      margin-left: 10px
+      border: 1px solid $border_color
+      color: $gray_dark
+      background: #f5f5f5
+      &:hover
+        background: #fcfcfc
+      @media $mobile
+        min-width: 0px
+        width: 40%
+        margin-left: 5%
+
+    .btn-getcoding
+      button-variant(#fff, #aaa, #aaa)
+
+    .btn-disable-getcode
+      display: none
+      font-size: 14px
+      width: 120px
+      height: 40px
+      line-height: 40px
+      margin-left: 10px
+      border: 1px solid $border_color
+      button-variant(#fff, #aaa, #aaa)
+      @media $mobile
+        min-width: 0px
+        width: 40%
+        margin-left: 5%
+
+    input
+      outline: none
+      color: $gray_light
+      height: 40px
+      line-height: 40px 
+      padding: 0 10px
+      border: 1px solid $border_color
+      &:focus
+        border: 1px solid #c5d3fd
+
+    .btn-common
+      font-size: 14px
+      height: 40px
+      line-height: 40px
+      width: 160px
+      margin-left: 65px
+      @media $mobile
+        display: block;
+        width: 100%;
+        margin: 15px auto 30px;

@@ -1,0 +1,79 @@
+<%inherit file="./plan.html" />
+
+<%def name="plan_content()">
+  <div class="plan-content">
+    <div class="chapter-title">
+      <div class="twocol-content middle-align">
+        <span class="chapter-num left-col">3</span>
+        <div class="title-content right-col">
+          <p class="title-desc">应对不时之需</p>
+          <h1>储备紧急备用金</h1>
+        </div>
+      </div>
+    </div>
+
+    <p class="gh-tips">好规划建议：${gh_suggest_reserve_doc}</p>
+
+    <p>每个经济独立的个人或家庭，都应该储备一定额度的可以随时取用的紧急备用金，用来应对以下情况：暂时失业中断收入，紧急医疗或意外，灾害导致的超支费用，应付短期周转等。实际上，进行专业理财规划前，很多人已经自觉不自觉地留出一笔活期存款以备不时之需。那么怎么做可以更科学合理呢？</p>
+
+    <p>
+      <ul>
+        <li>原则1：在金额上，通常以月平均支出的3-6倍为宜。</li>
+        <li>原则2：在储备方式上，适宜投向风险极低且流动性好（可随时取用）的投资品种，如活期存款和货币基金。</li>
+      </ul>
+    </p>
+
+    <p>您${'家庭' if relation_number else ''}目前月均支出约${format(expend_month,',')}元。对您来说，紧急备用金较为理想的储备方案是：现金和活期存款${'%s~%s'%(format(target_deposit_current_floor,','),format(target_deposit_current_ceiling,','))}元 + 货币基金${'%s~%s'%(format(target_funds_money_floor,','),format(target_funds_money_ceiling,','))}元。这样安排的好处是，既能够保证应急需要，也可以通过投资获得适当收益。</p>
+
+    <h3 class="action">
+      <i class="iconfont icon-note"></i>
+      行动计划：
+    </h3>
+    <p>对照您的现有储备,我们为您制订如下行动计划，达成储备紧急备用金 ${format(target_reserve_fund,',')} 元的目标。</p>
+
+    <%
+      text_color = {"过高": "text-red", "不足": "text-orange", "合理": "text-green"}
+    %>
+    <div class="data-table">
+      <table>
+        <thead>
+          <tr class="hd-orange">
+            <th>现有储备</th>
+            <th width="15%">评价</th>
+            <th class="last">行动</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>现金及活期存款 ${format(deposit_current_r,',')} 元</td>
+            <td class="${text_color[dep_evl]}">${dep_evl}</td>
+            <td>${dep_act}</td>
+          </tr>
+          <tr>
+            <td>货币基金 ${format(funds_money_r,',')} 元</td>
+            <td class="${text_color[fun_evl]}">${fun_evl}</td>
+            <td>${fun_act}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="table-comment">注：为执行、计算方便，上表中的金额均四舍五入至百位。</div>
+    </div>
+
+    <h3>好规划的更多提醒:</h3>
+    <ol>
+      <li>余额宝、活期通等互联网理财产品,本质上就是货币基金。</li>
+      <li>信用卡也可以在需要时起到补充紧急备用金的作用。</li>
+      <li>紧急备用金也可用于平时的现金周转。但一经动用,须以较高优先级尽快补齐。</li>
+      <li>若您的收支情况发生变化,应及时调整紧急备用金额度。</li>
+    </ol>
+
+  </div>
+</%def>
+
+<%def name="plan_pager()">
+  <div class="plan-pager-wrapper">
+    <a href="/mine/plan/insurance">下一章：保险规划</a>
+  </div>
+</%def>
+
+<%def name="title()">3. 储蓄紧急备用金 - 好规划</%def>

@@ -1,0 +1,63 @@
+.childins-a002-wrapper
+  .category-wrapper
+    .desc-box
+      span(.27)
+      @media $mobile
+        stack()
+  .feature-wrapper
+    clearfix()
+    border-bottom: 1px dotted $gray_30
+    padding-bottom: 30px
+    @media $mobile
+      padding-bottom: 10px
+    .circle-box
+      font-size: 20px
+      text-align: center
+      border-radius: 50%
+      background-color: #FFF
+      width: 120px
+      height: 120px
+      padding-top: 25px
+      margin: 0 auto 30px
+      color: $green_60
+      border: 1px solid $green_30
+      @media $mobile
+        float: left
+        padding-top: 20px
+        width: 80px
+        height: 80px
+        margin-bottom: 10px
+      i
+        font-size: 40px
+      em
+        font-size: 16px
+        display: block
+        margin-top: 10px
+        color: $gray_70
+        @media $mobile
+          font-size: 18px
+    p
+      line-height: 24px
+      border-right: 1px solid $gray_30
+      color: $gray_50
+      @media $mobile
+        text-align: left
+        border-right: none
+        margin-left: 105px
+    h4
+      text-align: left
+      margin-top: 20px
+      margin-bottom: 5px
+      margin-left: 105px
+      font-size: 18px
+  .feature-main
+    clearfix()
+  .feature-box
+    span(1/3)
+    margin-bottom: 20px
+    text-align: center
+    &:last-child
+      p
+        border-right: none
+    @media $mobile
+      stack()

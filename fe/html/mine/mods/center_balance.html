@@ -1,0 +1,32 @@
+<%!
+  from core.models.utils import dec_2_pct
+%>
+<div class="center-block center-balance-block twocol-content">
+  <div class="left-col block-item-left">
+    <a class="block-left-title" href="/mine/plan/balance">收支分析</a>
+    % if balance_month_ratio < 0:
+      <img class="block-left-img" src="{{{img/mine/card.gif}}}"/>
+    % else:
+      <div class="js-balance-chart-total balance-total-chart" data-ratio="${balance_month_ratio}"></div>
+    % endif
+    <p class="left-item text-24 text-dark">月结余率 <span class="text-bold">${dec_2_pct(balance_month_ratio)}</span></p>
+    <p class="left-item">${gh_suggest_balance_doc}</p>
+  </div>
+
+  <div class="right-col block-item-right">
+    <h2 class="block-right-title">月收支</h2>
+    <div class="js-balance-chart balance-chart-wrapper" data-income="${spouse_income_month_extra if spouse and spouse_income_month_extra else 0},${spouse_income_month_salary if spouse and spouse_income_month_salary else 0},${income_month_extra or 0},${income_month_salary or 0}" data-outcome="${expend_month_ent},${expend_month_trans},${expend_month_shopping},${expend_month_house},${expend_month_extra}"></div>
+
+    <h2 class="block-right-title">储备紧急备用金</h2>
+    <div class="property-detail-con no-padding">
+      <div class="item">
+        <span class="title">现金/活期存款</span>
+        <span class="text-dark">${format(target_deposit_current_floor, ',')}~${format(target_deposit_current_ceiling, ',')} 元</span>
+      </div>
+      <div class="item">
+        <span class="title">货币基金</span>
+        <span class="text-dark">${format(target_funds_money_floor, ',')}~${format(target_funds_money_ceiling, ',')} 元</span>
+      </div>
+    </div>
+  </div>
+</div>

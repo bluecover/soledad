@@ -1,0 +1,102 @@
+<%inherit file="./base.html" />
+
+<%def name="info_content()">
+  <form action="" method="POST" class="js-form-info3 form-wrapper">
+    <input type="hidden" name="csrf_token" value="${csrf_token()}">
+    <div class="info-section separate-line">
+      <h2>您的现金类资产</h2>
+      <div class="item">
+        <span class="title">现金及活期存款</span>
+        <div class="input-con">
+          <input type="text" class="validate two-col" name="deposit_current" pattern="[0-9]*" value="${g.plan.data.deposit_current or ''}" data-validate="require,guihuaLimitRequire" data-validate-keyup="nature"/>
+          <span class="input-unit" data-title="现金及活期存款">元</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <span class="title">定期存款</span>
+        <div class="input-con">
+          <input type="text" class="validate two-col" name="deposit_fixed" pattern="[0-9]*" value="${g.plan.data.deposit_fixed or ''}" data-validate="guihuaLimit" data-validate-keyup="nature"/>
+          <span class="input-unit">元</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-section separate-line">
+      <h2>您的基金类资产</h2>
+      <div class="header-options js-header-property">
+        <a href="#" data-name="funds_money" data-val="${g.plan.data.funds_money or ''}" class="option-item">货币基金/余额宝</a>
+        <a href="#" data-name="funds_hybrid" data-val="${g.plan.data.funds_hybrid or ''}" class="option-item">混合型基金</a>
+        <a href="#" data-name="funds_bond" data-val="${g.plan.data.funds_bond or ''}" class="option-item">债券型基金</a>
+        <a href="#" data-name="funds_stock" data-val="${g.plan.data.funds_stock or ''}" class="option-item">股票型基金</a>
+        <a href="#" data-name="funds_index" data-val="${g.plan.data.funds_index or ''}" class="option-item">指数基金</a>
+        <a href="#" data-name="funds_other" data-val="${g.plan.data.funds_other or ''}" class="option-item">其他基金</a>
+      </div>
+    </div>
+
+    <div class="info-section separate-line">
+      <h2>您的其他金融资产</h2>
+      <div class="header-options js-header-property">
+        <a href="#" data-name="invest_bank" data-val="${g.plan.data.invest_bank or ''}" class="option-item">银行理财产品</a>
+        <a href="#" data-name="invest_stock" data-val="${g.plan.data.invest_stock or ''}" class="option-item">股票</a>
+        <a href="#" data-name="invest_national_debt" data-val="${g.plan.data.invest_national_debt or ''}" class="option-item">国债</a>
+        <a href="#" data-name="invest_p2p" data-val="${g.plan.data.invest_p2p or ''}" class="option-item">P2P网贷</a>
+        <a href="#" data-name="invest_metal" data-val="${g.plan.data.invest_metal or ''}" class="option-item">贵金属</a>
+        <a href="#" data-name="invest_insure" data-val="${g.plan.data.invest_insure or ''}" data-msg="已缴纳的保费和保费分红" class="option-item">储蓄型保险</a>
+        <a href="#" data-name="invest_other" data-val="${g.plan.data.invest_other or ''}" class="option-item">其他</a>
+      </div>
+    </div>
+
+    <div class="info-section separate-line">
+      <h2>您${'家庭' if g.plan.data.children or g.plan.data.spouse else '' }的实物资产</h2>
+      <div class="header-options js-header-property">
+        <a href="#" data-name="real_estate_value" data-val="${g.plan.data.real_estate_value or ''}" class="real option-item js-house">房产</a>
+        <a href="#" data-name="car_value" data-val="${g.plan.data.car_value or ''}" data-msg="汽车折旧后的市价" class="real option-item">汽车</a>
+        <a href="#" data-name="real_collection_value" data-val="${g.plan.data.real_collection_value or ''}" class="real option-item">收藏品</a>
+        <a href="#" data-name="real_other_value" data-val="${g.plan.data.real_other_value or ''}" class="real option-item">其他</a>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <h2>您的负债</h2>
+      <div class="header-options js-header-property">
+        <a href="#" data-name="real_estate_loan" data-val="${g.plan.data.real_estate_loan or ''}" class="real option-item" data-keyup="loanLimit">未还房贷</a>
+        <a href="#" data-name="consumer_loans" data-val="${g.plan.data.consumer_loans or ''}" class="option-item">信用卡/消费贷款</a>
+      </div>
+    </div>
+
+    <div class="submit-section">
+      <span class="title"></span>
+      % if err_message:
+      <div class="error-msg">表单填写有误</div>
+      % endif
+      <a class="btn btn-green js-submit-form btn-form" href="#">保存，下一步</a>
+    </div>
+  </form>
+
+  <script id="tmpl_property" type="text/template">
+    <div class="item">
+      <span class="title"></span>
+      <div class="input-con">
+        <input type="text" class="validate two-col js-input" pattern="[0-9]*" data-validate="guihuaLimit" data-validate-keyup="nature"/>
+        <span class="input-unit">元</span>
+      </div>
+    </div>
+  </script>
+
+  <script id="tmpl_real_property" type="text/template">
+    <div class="item">
+      <span class="title"></span>
+      <div class="input-con">
+        <input type="text" class="validate two-col js-input" pattern="[0-9]*" data-validate="guihuaRealPropertyLimit" data-validate-keyup="nature"/>
+        <span class="input-unit">万元</span>
+      </div>
+    </div>
+  </script>
+</%def>
+
+<%def name="title()">资产详情 - 好规划</%def>
+
+<%def name="js()">
+  <script src="{{{js/mine/info_3.js}}}"></script>
+</%def>

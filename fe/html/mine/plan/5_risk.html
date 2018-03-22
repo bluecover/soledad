@@ -1,0 +1,55 @@
+<%inherit file="./plan.html" />
+
+<%def name="plan_content()">
+  <div class="plan-content">
+    <div class="chapter-title">
+      <div class="twocol-content middle-align">
+        <span class="chapter-num left-col">5</span>
+        <div class="title-content right-col">
+          <p class="title-desc">了解适合自己的风险水平</p>
+          <h1>风险承受能力和偏好</h1>
+        </div>
+      </div>
+    </div>
+
+    <p class="gh-tips">好规划建议：${gh_suggest_risk_doc}</p>
+
+    <p>在投资中，任何收益总是伴随相应的风险，收益越高风险越大。理财规划的一个重要目标就是把投资风险控制在合理水平——既处于风险承受能力范围之内，也符合您的风险偏好。</p>
+
+    <div class="data-table">
+      <h4 class="table-title table-title-response">您的风险承受能力<span class="mobile-element">:${rtc_rank-1}</span></h4>
+      <div class="plan-risk-chart desktop-element" data-rank="${rtc_rank-1}"></div>
+      <div class="risk-tips">
+        <div class="title">* 好规划采用 11 项指标做风险承受能力评估：</div>
+        <div class="tips-content">年龄、职业、家庭、收入、结余、保障、金融资产、房产、负债、投资经验、投资期限。</div>
+      </div>
+    </div>
+
+    <div class="data-table">
+      <h4 class="table-title table-title-response">您的风险偏好<span class="mobile-element">:${rtw_rank-1}</span></h4>
+      <div class="plan-risk-type-chart desktop-element" data-rank="${rtw_rank-1}"></div>
+      <div class="risk-tips">
+        <div class="title">* 好规划基于您对风险测评问题的回答、以及投资现状，做风险偏好的衡量。</div>
+      </div>
+    </div>
+
+    % if rtw_rank > rtc_rank:
+      <p>在投资过程中，您${'的家庭' if relation_number else ''}可以承受最多${rtc_rank_ratio}的投资风险（风险承受能力${rtc_rank_doc}），即使您主观上愿意冒更大的风险（风险偏好${rtw_rank_doc}），也仍应以这样较为稳健的风格进行投资，避免产生超出预期的损失，影响财务健康。</p>
+      <p>因此，接下来<span class="text-blue">在为您做投资规划时，我们将以实际风险承受能力为准，把投资风险控制在${risk_rank_ratio}以内</span>，在此基础上争取最大收益。</p>
+    % elif rtw_rank == rtc_rank:
+      <p>在投资过程中，您${'的家庭' if relation_number else ''}可以承受最多${rtc_rank_ratio}的投资风险（风险承受能力${rtc_rank_doc}）。这与您主观上的风险偏好（${rtw_rank_doc}）较为匹配，投资心态良好，请继续保持。</p>
+      <p>接下来，<span class="text-blue">在为您做投资规划时，我们将把${risk_rank_ratio}作为风险控制目标</span>，在此基础上争取最大收益。</p>
+    % elif rtw_rank < rtc_rank:
+      <p>为获得较高收益，您主观上可接受最多${rtw_rank_ratio}的投资风险（风险偏好${rtw_rank_doc}）。虽然您${'的家庭' if relation_number else ''}实际上具备更强的风险承受能力（可承受${rtc_rank_ratio}的投资风险），但在投资过程中保持良好心态更为重要，以免由于超出预期的损失，影响您做出正确的投资决策。</p>
+      <p>因此，接下来<span class="text-blue">在为您做投资规划时，我们将尊重您的意愿，把投资风险控制在${risk_rank_ratio}以内</span>，在此基础上争取最大收益。</p>
+    % endif
+  </div>
+</%def>
+
+<%def name="plan_pager()">
+  <div class="plan-pager-wrapper">
+    <a href="/mine/plan/invest">下一章：投资规划</a>
+  </div>
+</%def>
+
+<%def name="title()">5. 风险承受能力与偏好 - 好规划</%def>

@@ -1,0 +1,114 @@
+@import '../core/_global.styl'
+@import '../mods/_redirect_dlg.styl'
+
+$accident_color = #ffb935
+$dread_color = #b46cfe
+$life_color = #f5729e
+$children_color = $green_50
+$travel_color = #50a8ff
+
+// 该文件引用上述变量
+@import './mods/_ins_detail_mobile.styl'
+
+.ins-slide-wrapper
+  position: fixed
+  overflow-y: auto
+  width: 100%
+  top: 0
+  left: 0
+  bottom: 0
+  z-index: 2
+  background: $page_bg
+  transform: translateX(100%)
+
+.ins-index-mobile-wrapper
+  @import './mods/_ins_refining_banner.styl'
+  @import './mods/_plan_qrcode_block.styl'
+  @import './mods/_ins_product_footer.styl'
+
+  .m-ins-refining-banner,
+  .m-ins-intro
+    text-align: center
+    color: #fff
+    >.hd
+      padding-top: 30px
+      .title
+        font-size: 24px
+        font-weight: bold
+    >.bd
+      margin: 8px 0 15px 0
+      .subtitle
+        font-size: 16px
+        margin-bottom: 12px
+      .desc
+        font-size: 12px
+        opacity: .8
+    >.ft
+      .svgicon
+        vertical-align: bottom
+        width: 300px
+        height: 110px
+
+  .m-ins-refining-banner
+    height: auto
+    padding: 10px 0 0 0
+    margin: 0
+    >.hd
+      .title
+        font-size: 38px
+      .subtitle
+        margin-top: 10px
+        font-size: 20px
+        color: #fff
+    >.bd
+      margin-top: 30px
+      color: $gray_90
+    .ins-desc-list
+      display: inline-block
+      margin: 0 auto
+    >.ft
+      position: static
+
+  .m-ins-accident-intro
+    background-color: $accident_color
+    >.ft
+      position: relative
+      bottom: 10px
+
+  .m-ins-dread-intro
+    background-color: $dread_color
+    >.ft
+      position: relative
+      bottom: 10px
+
+  .m-ins-life-intro
+    background-color: $life_color
+
+  .m-top-banner,
+  .m-ins-children-intro
+    background-color: $children_color
+
+  .m-ins-travel-intro
+    background-color: $travel_color
+
+.ins-detail-show
+  animation-name: translate_x_show
+  animation-duration: .3s
+  animation-fill-mode: both
+
+.ins-detail-hide
+  animation-name: translate_x_hide
+  animation-duration: .3s
+  animation-fill-mode: both
+
+@keyframes translate_x_show
+  from
+    transform: translateX(100%)
+  to
+    transform: translateX(0)
+
+@keyframes translate_x_hide
+  from
+    transform: translateX(0)
+  to
+    transform: translateX(100%)

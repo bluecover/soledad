@@ -1,0 +1,42 @@
+.table-trading
+  width: 100%
+  tr
+    cursor: pointer
+    &.item-special
+      td
+        border-bottom: none
+  td
+    border-bottom: 1px dotted #ccc
+    color: $gray_light
+    @media $mobile
+      padding-bottom: 20px
+  .detail-item
+    line-height: 50px
+    width: 100%
+    position: relative
+    &:hover
+      background: #eee
+    @media $mobile
+      line-height: 20px
+      &:hover
+        background: none
+  .item-date
+    width: 20%
+    padding-left: 10px
+    @media $mobile
+      display: block
+      width: auto
+    img
+      margin-right: 5px
+  .item-status
+    padding-right: 10px
+    width: 15%
+    @media $mobile
+      width: auto
+  .tr-item-date
+    td
+      border-bottom: none
+      padding-top: 15px
+      padding-bottom: 2px
+      img
+        margin-right: 5px

@@ -1,0 +1,65 @@
+<%page args="palette,link"/>
+<%!
+  from itertools import groupby
+  from operator import attrgetter
+
+  from core.models.welfare.coupon import Coupon, CouponRegulation
+  from core.models.welfare.package import Package
+  from core.models.welfare.firewood.consts import FIREWOOD_BURNING_RATIO
+%>
+
+<%def name="notification_title(palette)">
+  <%
+    package = Package.get(palette.properties.get('welfare_package_id'))
+  %>
+  恭喜您获得${package.kind.name}
+</%def>
+
+<%def name="notification_timestamp(palette)">
+  ${palette.creation_time.strftime('%Y-%m-%d %H:%M:%S')}
+</%def>
+
+<%def name="notification_content(palette)">
+  <%
+    package = Package.get(palette.properties.get('welfare_package_id'))
+    dynamic_firewood_amount = palette.properties.get('dynamic_firewood_worth', 0)
+    welfare_texts = []
+    coupons = package.kind.coupon_wrappers
+    firewood = package.kind.firewood_wrapper
+
+    if coupons:
+      coupon_texts = []
+      coupon_count = len(coupons)
+      total_deduction = max_rate = 0
+
+      for c in coupons:
+        regulation = c.kind.regulation
+        if regulation.kind is CouponRegulation.Kind.quota_deduction:
+          total_deduction += regulation.deduct_quota
+        elif regulation.kind is CouponRegulation.Kind.annual_rate_supplement:
+          max_rate = max(max_rate, regulation.supply_rate)
+
+      if total_deduction:
+        coupon_texts.append(u'%s可抵扣%s元' % (u'共' if coupon_count > 1 else '', total_deduction))
+      if max_rate:
+        coupon_texts.append(u'%s可加息%s%%' % (u'最高' if coupon_count > 1 else '', max_rate))
+      welfare_texts.append(u'获得%s张礼券，%s' % (coupon_count, u'，'.join(coupon_texts)))
+
+    if firewood:
+      worth = dynamic_firewood_amount if dynamic_firewood_amount else firewood.worth
+      welfare_texts.append(u'获得抵扣红包%s元，攒钱每%s元可以使用1元' % (worth, FIREWOOD_BURNING_RATIO))
+
+  %>
+  恭喜您${u'；'.join(welfare_texts) if welfare_texts else u'获得优惠礼包'}，点击查看详情。
+</%def>
+
+<div class="notice-main">
+  <div class="title">
+    <h3>${self.notification_title(palette)}</h3>
+  </div>
+  <p class="notice-date">${self.notification_timestamp(palette)}</p>
+  <p class="notice-info">${self.notification_content(palette)}</p>
+  % if link:
+    <i class="iconfont icon-forward mobile-element"></i>
+  % endif
+</div>

@@ -1,0 +1,102 @@
+<div class="modals-group dlg-record-detail">
+  <div class="onemodal-hd">
+    <a href="#" rel="onemodal:close"><i class="iconfont icon-close" ></i></a>
+    <h4>
+      <span>
+        {{ savings_money }} 元
+        {{#if order_type}}
+          {{ order_type }}
+        {{/if}}
+        {{#if order_status}}
+          {{ order_status }}
+        {{/if}}
+      </span>
+      <span>{{ frozen_time }}封闭期&nbsp; | &nbsp;{{ annual_rate }}% 预期年化收益</span>
+    </h4>
+  </div>
+
+  <div class="onemodal-bd">
+    <table>
+      {{#if expect_income_amount}}
+      <tr>
+        <td>收益预估：</td>
+        <td>{{ expect_income_amount }} </td>
+      </tr>
+      {{/if}}
+      {{#if income_amount}}
+      <tr>
+        <td>实际收益：</td>
+        <td>{{ income_amount }} </td>
+      </tr>
+      {{/if}}
+      {{#if hikes}}
+      {{#each hikes}}
+      <tr>
+        <td>{{ @key }}：</td>
+        <td>{{ this }}</td>
+      </tr>
+      {{/each}}
+      {{/if}}
+      {{#if rebates}}
+      {{#each rebates}}
+      <tr>
+        <td>{{ @key }}：</td>
+        <td>{{ this }}</td>
+      </tr>
+      {{/each}}
+      {{/if}}
+      {{#if invest_date}}
+      <tr>
+        <td>交易时间：</td>
+        <td>{{ invest_date }}</td>
+      </tr>
+      {{/if}}
+      {{#if interest_start_date}}
+      <tr>
+        <td>起息时间：</td>
+        <td>{{ interest_start_date }}</td>
+      </tr>
+      {{/if}}
+      <tr>
+        <td>到期时间：</td>
+        <td>{{ due_date }}</td>
+      </tr>
+      <tr>
+        <td>回款卡：</td>
+        <td>{{ bankcard }}</td>
+      </tr>
+      {{#if exit_type}}
+      <tr>
+        <td>回款方式：</td>
+        <td>{{ exit_type }}</td>
+      </tr>
+      {{/if}}
+      {{#if contract_url}}
+      <tr>
+        <td>资产合同：</td>
+        <td><a href={{contract_url}} target='_blank'>点击查看</a></td>
+      </tr>
+      {{/if}}
+
+    </table>
+  </div>
+
+  <div class="onemodal-ft">
+    {{#if spring_festival }}
+    <div class="text-center">
+      {{#if redirect_url }}
+        <a href={{redirect_url}}>
+          <img src={{img_src}} alt="微信分享" width="85">
+        </a>
+      {{/if}}
+      {{#if qrcode_url }}
+        <a href='#' class="js-wx-share" rel="onemodal:close">
+          <img src={{img_src}} alt="微信分享" width="85">
+        </a>
+      {{/if}}
+    </div>
+    {{else}}
+    <a href="#" class="btn btn-primary" rel="onemodal:close">确定</a>
+    {{/if}}
+  </div>
+</div>

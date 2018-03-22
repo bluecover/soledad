@@ -1,0 +1,148 @@
+.savings-mine-info
+  position: relative
+  .title
+    padding: 15px 20px
+    background: $orange_40
+    color: #fff
+    font-size: 20px
+  .summary-mask
+    position: absolute
+    bottom: 0
+    left: 0
+    background-color: #fff
+    background-color: rgba(255,255,255,.4)
+    content: ''
+    width: 100%
+    height: 234px
+    z-index: 3
+    @media $mobile
+      height: 440px
+    .loading
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translateX(-50%) translateY(-50%)
+      text-align: center
+      z-index: 4
+  .summary-wrapper
+    background-color: #fff
+    margin-bottom: 15px
+    position: relative
+    clearfix()
+    @media $mobile
+      margin-bottom: 10px
+    .summary-col
+      span(1/2)
+      padding: 10px 20px 20px
+      position: relative
+      &:first-child
+        border-right: 1px solid $gray_20
+        @media $mobile
+          background-color: $orange_40
+          border-right: none
+          padding-bottom: 60px
+      @media $mobile
+        stack()
+
+    .total-desc
+      margin-top: 70px
+      @media $mobile
+        color: #fff
+        margin-top: 40px
+    .total-num
+      font-size: 50px
+      margin-top: 10px
+      margin-bottom: 60px
+      color: $orange_60
+      @media $mobile
+        color: #fff
+        margin-bottom: 30px
+      span
+        color: #444
+        font-size: 14px
+        margin-left: 5px
+        @media $mobile
+          color: #fff
+    .everyday-profit
+      position: absolute
+      top: 10px
+      left: 20px
+      @media $mobile
+        position: absolute
+        top: auto
+        left:50%
+        transform: translateX(-50%)
+        color: #fff
+    .triangle
+      float: left
+      margin-top: 4px
+      margin-right: 5px
+      width: 0
+      height: 0
+      border-style: solid
+      border-width: 0 5px 7px 5px
+      border-color: transparent transparent $orange_60 transparent
+      @media $mobile
+        margin-top: 1px
+        border-color: transparent transparent #fff transparent
+    .target-desc
+      margin-top: 10px
+      margin-bottom: 10px
+    .water-level-box
+      height: 150px
+      padding-top: 10px
+      position: relative
+    .line
+      width: 180px
+      height: 1px
+      left: 50%
+      margin-left: -95px
+      border-top: 1px dashed $orange_60
+      position: absolute
+      bottom: 0
+      z-index: 2
+      &.cur
+        transition: all 1s ease-out
+    .bottle
+      border-radius: 50%
+      border: 1px solid $orange_40
+      width: 140px
+      height: 140px
+      margin: 0 auto
+      position: relative
+      overflow: hidden
+      padding-top: 45px
+      &.over
+        padding-top: 40px
+      p
+        position: relative
+        z-index: 1
+        &.number-box
+          font-size: 20px
+      em
+        font-size: 48px
+
+    .water
+      position: absolute
+      background-color: #FDF6E5
+      width: 100%
+      height: 0
+      bottom: 0
+      &.cur
+        transition: all 1s ease-out
+    .mark-box
+      width: auto
+      white-space: nowrap
+      background-color: $orange_40
+      padding: 3px
+      position: absolute
+      left: 186px
+      top: -9px
+      color: #fff
+      border-radius: 3px
+      &:before
+        content: ''
+        triangle(3px, right, color=$orange_40)
+        position: absolute
+        left: -6px
+        top: 6px

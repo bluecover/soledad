@@ -1,0 +1,21 @@
+{{#each transactions}}
+<tr>
+  <td>
+    {{#if isDeposit}}
+    <span class="btn btn-badge-deposit">已存入</span>
+    {{else}}
+    <span class="btn btn-badge-withdraw">已取出</span>
+    {{/if}}
+    <span class="number">
+      {{amount}} 元
+    </span>
+  </td>
+  <td class="text-center">{{creation_date}}</td>
+  {{#if isDeposit}}
+  <td class="text-center">{{value_date}}</td>
+  {{else}}
+  <td class="text-center">{{creation_date}}</td>
+  {{/if}}
+  <td class="text-right desktop-element">{{bankcard.bank.name}}: {{bankcard.display_card_number}}</td>
+</tr>
+{{/each}}

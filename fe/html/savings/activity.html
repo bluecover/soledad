@@ -1,0 +1,140 @@
+<%inherit file="./base.html" />
+<%!
+  from core.models.hoard.consts import RP_THRESHOLD
+%>
+
+<%def name="main()">
+  <div class="saving-complete-wrapper">
+    ${self.detail()}
+    ${self.rules()}
+  </div>
+</%def>
+
+<%def name="detail()">
+  <div class="savings-activity-wrapper">
+    <div class="banner block-wrapper">
+      <img src="{{{img/savings/banner_dumplings.png}}}" alt="">
+      <h2 class="text-bold">攒钱路上</h2>
+      <p>粽么能离的开你 <span class="desktop-element">（づ￣ 3￣)づ</span></p>
+    </div>
+    <div class="ticket-wrapper block-wrapper">
+      <%
+        claimed_num = len(claimed) if claimed else 0
+        scattered_num = len(scattered) if scattered else 0
+
+        actual_completed = float(recount) / RP_THRESHOLD
+        display_completed = 1.0 if scattered_num > 0 else actual_completed
+      %>
+      <div class="left-box">
+        <h3>累计受益</h3>
+        <div class="ticket-box">
+          <div class="ticket inline-ele">
+            粽子<em class="text-bold">券</em>
+          </div>
+          <span class="inline-ele text-helvetica text-16">X</span>
+          <span class="inline-ele text-helvetica js-ticket-num">${claimed_num}</span>
+          <span class="inline-ele">=</span>
+          <img class="inline-ele" src="{{{img/savings/dumplings1.png}}}" alt="">
+          <span class="inline-ele text-helvetica text-16">X</span>
+          <span class="inline-ele text-helvetica js-dumplings-num">${4 * claimed_num}</span>
+        </div>
+      </div>
+      <div class="right-box">
+        <div class="progress desktop-element">
+          <div class="progress-text">达成</div>
+          <div class="progress-rate">
+            <span class="js-rate text-helvetica" data-rate="${display_completed}"></span> <em>%</em>
+            <input type="hidden" name="actual_completed" data-val="${actual_completed}">
+          </div>
+        </div>
+        <div class="right-wrapper">
+          <a href="#" class="btn btn-disable btn-activity mobile-element">领完了</a>
+          <p>粽子送完了，敬请关注下次活动</p>
+          <a href="#" class="btn btn-disable btn-activity desktop-element">领完了</a>
+         </div>
+      </div>
+    </div>
+</%def>
+
+<%def name="rules()">
+  <div class="activity-detail block-wrapper">
+    <h3 class="desktop-element">收货地址</h3>
+    <input type="hidden" name="address_id" data-val="${address.id_ if address else 0}">
+    <div class="address-wrapper">
+      <%
+        name = phone = region = street = ''
+        if address:
+          name = address.receiver_name
+          phone = address.receiver_phone
+          region = address.region[0]
+          street = address.street
+      %>
+      <div class="${'' if address else 'hide'} js-address-wrapper">
+       <h3 class="mobile-element">收货地址</h3>
+       <p><span class="text-bold js-name-txt">${name}</span> <span class="js-phone-txt">${phone}</span></p>
+        <p>
+          <span class="js-address-txt">${region}</span><span class="js-street-txt">${street}</span> <a href="#" class="js-address">修改地址</a><a href="#" class="js-address-cancel hide">取消修改</a>
+        </p>
+      </div>
+      <div class="${'hide' if address else ''} js-unaddress-wrapper">
+        <h4>你尚未绑定地址,<a href="#" class="js-address">点击绑定</a><a href="#" class="js-address-cancel hide">取消绑定</a></h4>
+        <span>请于6月18日前完成地址绑定，否则我们无法将粽子券送到您的手中。</span>
+      </div>
+
+      <form action="" class="form-wrapper address-box js-address-form">
+        <div class="item">
+          <span class="title">收件人姓名：</span>
+          <div class="input-con">
+            <input type="text" class="js-name validate" data-validate="require" />
+          </div>
+        </div>
+        <div class="item">
+          <span class="title">收件人手机号：</span>
+          <div class="input-con">
+            <input type="text" class="js-phone validate" data-validate="require,phone" />
+          </div>
+        </div>
+        <div class="item address-item">
+          <span class="title">收件人地址：</span>
+          <input type="hidden" name="district_codes" data-val="${address.region[1] if address else [0,0,0]}">
+          <div class="input-con">
+              <select class="js-province" >
+                <option value='0' class="js-province-defalut">省份</option>
+              </select>
+              <select class="js-city">
+                <option value='0' class="js-city-defalut">县市</option>
+              </select>
+              <select class="js-district validate" data-validate="require,addselect">
+                <option value='0' class="js-district-defalut">地区</option>
+              </select>
+          </div>
+        </div>
+        <div class="item">
+          <div class="title"></div>
+          <div class="input-con">
+            <input type="text" placeholder="请输入你所在的具体地址" class="js-street validate" data-validate="require" />
+          </div>
+        </div>
+        <a href="#" class="btn btn-primary btn-confirm js-btn-confirm">确定</a>
+      </form>
+    </div>
+    <h3>活动规则</h3>
+    <div class="rules-wrapper">
+      <p><span class="text-helvetica">1</span> 活动时间：2015年6月8日上线之时起至2015年6月18日</p>
+      <p><span class="text-helvetica">2</span> 参加活动的产品：攒钱助手全部3种产品</p>
+      <p><span class="text-helvetica">3</span> 活动期间，攒钱每3万元，即可领取能兑换4个精品粽子的粽子券一张，多买多送，送完为止</p>
+      <p><span class="text-helvetica">4</span> 粽子券通过快递送到您手中，因此需要您在18日之前绑定您的地址。超过时限未绑定的，视为您主动放弃粽子券</p>
+      <p><span class="text-helvetica">5</span> 该活动只针对中国大陆地区用户</p>
+    </div>
+    <div class="text-center">
+      <a href="/savings/mine" class="btn btn-gray btn-back desktop-element">返回</a>
+    </div>
+  </div>
+  </div>
+</%def>
+
+<%def name="js()">
+  <script src="{{{js/savings/activity.js}}}"></script>
+</%def>
+
+<%def name="title()">端午节活动 - 好规划</%def>

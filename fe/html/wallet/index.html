@@ -1,0 +1,199 @@
+<%inherit file="./base.html" />
+<%namespace name="app_download" file="../mods/app_download_float.html" />
+<%namespace name="utils" file="/utils.html" />
+
+<%def name="app_download_float()">
+  ${app_download.app_download_float(dcs='wallet-home-float')}
+</%def>
+
+<%def name="main()">
+  ${utils.notification()}
+
+  <div class="wallet-index-wrapper">
+    ${self.banner()}
+    ${self.body()}
+    ${self.chart()}
+    ${self.feature()}
+    ${self.advantage()}
+  </div>
+  <%include file="mods/wallet_footer.html"/>
+</%def>
+
+<%def name="banner()">
+  <div class="banner">
+    <img class="change-logo" src="{{{img/logo/w_change_logo.png}}}" alt="">
+    <div class="desktop-element feature-box-desktop">
+      <p><i class="iconfont icon-checked"></i>1 元起投</p>
+      <p><i class="iconfont icon-checked"></i>随存随取</p>
+    </div>
+    <p class="subtitle">聪明人决不会让钱偷懒</p>
+    <div class="feature-box-mobile mobile-element"><span><i class="iconfont icon-checked"></i>灵活支取</span><span><i class="iconfont icon-checked"></i>快速增值</span></div>
+    <img class="change-img" src="{{{img/wallet/wallet_banner.png}}}" alt="">
+    % if not request.user_agent.is_guihua_app:
+      <a href="${url_for('wallet.mine.index')}" data-url="${url_for('wallet.mine.index')}" class="${'js-g-login' if not g.user else ''} btn btn-primary btn-large btn-start">进入零钱包</a>
+    % endif
+  </div>
+</%def>
+
+<%def name="chart()">
+  <%
+    annual_rate_data = [(unicode(r.date), round_half_up(r.annual_rate, 2)) for r in dashboard.weekly_annual_rates]
+    latest_date = dashboard.latest_annual_rate.date
+    latest_rate = round_half_up(dashboard.latest_annual_rate.annual_rate, 2)
+  %>
+  <div class="block-wrapper chart-wrapper">
+    <div class="chart-box">
+      <h3 class="text-blue text-bold mobile-element">${latest_date.strftime('%m月%d日')}七日年化收益：<em class="text-orange">${latest_rate}%</em></h3>
+      <p class="text-blue mobile-element">把钱转入零钱包即购买了由${dashboard.provider.fund_company_name}基金提供的货币基金，天天收益，日日复利</p>
+      <div class="chart-main js-seven-chart" data-annual-rates="${json.dumps(annual_rate_data)}"></div>
+    </div>
+    <div class="desc-box">
+      <h3 class="text-blue text-bold desktop-element">${latest_date.strftime('%m月%d日')}七日年化收益：<em class="text-orange">${latest_rate}%</em></h3>
+      <p class="text-blue desktop-element">把钱转入零钱包即购买了由${dashboard.provider.fund_company_name}基金提供的货币基金，可获得远高于银行理财产品的收益</p>
+      <p class="text-lighter">注：货币基金不等同于银行存款，过往业绩不预示其未来表现，市场有风险，投资需谨慎</p>
+    </div>
+  </div>
+</%def>
+<%def name="feature()">
+ <div class="block-wrapper feature-wrapper">
+    <div class="text-center title-box">
+      <h2 class="text-bold">你的零钱应该这样用</h2>
+      <p>零钱包让你的钱也动起来</p>
+    </div>
+    <div class="feature-row">
+      <div class="feature-box">
+        <div class="twocol-content middle-align">
+          <div class="left-col">
+            <div class="circle-box text-center">
+              <img src="{{{img/wallet/feature_01.png}}}" alt="">
+            </div>
+          </div>
+          <div class="right-col">
+            <h4>闲钱好去处，赚钱动起来</h4>
+            <p class="text-lighter">远超银行收益 10 倍左右，活期、工资、结余等您都可以放入零钱包，获取稳定收益</p>
+          </div>
+        </div>
+      </div>
+      <div class="feature-box">
+        <div class="twocol-content middle-align">
+          <div class="left-col">
+            <div class="circle-box text-center">
+              <img src="{{{img/wallet/feature_02.png}}}" alt="">
+            </div>
+          </div>
+          <div class="right-col">
+            <h4>小钱攒大钱，铜板变金山</h4>
+            <p class="text-lighter">一元起存，随时存入，零散资金随时可存入，积累后可作大额投资</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="feature-row">
+      <div class="feature-box">
+        <div class="twocol-content middle-align">
+          <div class="left-col">
+            <div class="circle-box text-center">
+              <img src="{{{img/wallet/feature_03.png}}}" alt="">
+            </div>
+          </div>
+          <div class="right-col">
+            <h4>取现实时到账</h4>
+            <p class="text-lighter">7×24 小时存取实时到账，${dashboard.provider.fund_bank_name}银行托管，需要用钱随时可提现并马上到账</p>
+          </div>
+        </div>
+      </div>
+      <div class="feature-box">
+        <div class="twocol-content middle-align">
+          <div class="left-col">
+            <div class="circle-box text-center">
+              <img src="{{{img/wallet/feature_04.png}}}" alt="">
+            </div>
+          </div>
+          <div class="right-col">
+            <h4>投资中转站，收益不暂停</h4>
+            <p class="text-lighter">存取 0 费用，下一次投资计划开始前，资金放在零钱包避免投资空档期</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="advantage()">
+  <div class="block-wrapper advantage-wrapper">
+    <div class="text-center title-box reverse">
+      <h2 class="text-bold">给你更好用的零钱包</h2>
+      <p>高收益，存取0费用，实时，安全</p>
+    </div>
+    <div class="advantage-box">
+      <div class="advantage">
+        <div class="circle-box text-center">
+          <img src="{{{img/wallet/advantage_01.png}}}" alt="">
+        </div>
+        <div class="desc-box">
+           <h4>高收益</h4>
+           <p>收益超越银行活期 10 倍以上</p>
+        </div>
+      </div>
+      <div class="advantage">
+        <div class="circle-box text-center">
+          <img src="{{{img/wallet/advantage_02.png}}}" alt="">
+        </div>
+        <div class="desc-box">
+           <h4>实时到账</h4>
+           <p>7×24 小时存取，实时到账</p>
+        </div>
+      </div>
+      <div class="advantage">
+        <div class="circle-box text-center">
+          <img src="{{{img/wallet/advantage_03.png}}}" alt="">
+        </div>
+        <div class="desc-box">
+           <h4>存取 0 费用</h4>
+           <p>存款、取款没有任何手续费</p>
+        </div>
+      </div>
+      <div class="advantage">
+        <div class="circle-box text-center">
+          <img src="{{{img/wallet/advantage_04.png}}}" alt="">
+        </div>
+        <div class="desc-box">
+           <h4>安全有保障</h4>
+           <p>资金由${dashboard.provider.fund_bank_name}托管，安全有保障</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="js()">
+  <script src="{{{js/lib/highcharts.min.js}}}"></script>
+  <script src="{{{js/wallet/index.js}}}"></script>
+</%def>
+
+<%def name="header()">
+  % if not request.user_agent.is_guihua_app:
+    ${parent.header()}
+  % endif
+</%def>
+
+<%def name="footer()">
+  % if not request.user_agent.is_guihua_app:
+    ${parent.footer()}
+  % else:
+    <div class="footer-wrapper ${'desktop-element' if hide_in_mobile else ''}">
+      <div class="footer-info">
+        <div class="copyright">
+          <%
+          from datetime import date
+          copy_year = date.today().year
+          %>
+          &copy;${copy_year} Guihua.com 京ICP备14053123号-1
+        </div>
+      </div>
+    </div>
+  % endif
+</%def>
+
+
+<%def name="title()">零钱包 - 好规划</%def>

@@ -1,0 +1,439 @@
+@import '../../mods/_redirect_dlg.styl'
+
+.ins-common-wrapper
+  .title-box
+    padding: 15px 0 15px 40px
+    font-size: 24px
+    color: #fff
+    background-color: $green_50
+    @media $mobile
+      padding: 15px 0 15px 20px
+      font-size: 20px
+  h3
+    font-size: 18px
+    line-height: 1.5
+    margin-bottom: 30px
+    font-weight: bold
+    @media $mobile
+      margin-bottom: 20px
+  .coverage-detail-box
+    padding: 30px 70px 20px
+    background-color: #fafafa
+    @media $mobile
+      padding: 30px 10px 10px
+    i
+      font-size: 30px
+      float: left
+      margin-right: 10px
+      margin-top: -6px
+      color: $green_50
+    .title
+      position: relative
+      left: -40px
+      margin-bottom: 15px
+      @media $mobile
+        left: auto
+    p
+      margin: 15px 0
+      line-height: 1.8
+
+  .section-wrapper
+    margin-bottom: 0
+  .table-box
+    width: 70%
+    border-left: 1px solid $gray_30
+    color: $gray_60
+    margin-bottom: 10px
+    @media $mobile
+      width: 100%
+      font-size: 13px
+    td
+      padding: 10px 2px
+      text-align: center
+      border-right: 1px solid $gray_30
+      border-bottom: 1px solid $gray_30
+      line-height: 1.5
+    tr
+      &:first-child
+        background-color: $gray_20
+        color: $gray_70
+        td
+          border-top: 1px solid $gray_30
+          min-width: 32px
+
+  .head-wrapper
+    position: relative
+    background-color: #F9FAFB
+    clearfix()
+    margin-bottom: 15px
+    @media $mobile
+      background-color: #fff
+      margin-bottom: 0
+    h2
+      font-size: 24px
+      margin: 10px 0 35px
+      line-height: 1.5
+      @media $mobile
+        margin: 5px 0 30px
+    .desc
+      span(.7)
+      padding: 40px 50px
+      background-color: #FFF
+      border-right: 1px solid $gray_10
+      @media $mobile
+        stack()
+        padding: 20px
+      dl
+        display: inline-block
+        margin-right: 50px
+        vertical-align: top
+        margin-bottom: 10px
+        @media $mobile
+          margin-right: 0
+          display: block
+        &.ins-info
+          clearfix()
+          dd
+            line-height: 15px
+            display: list-item
+            list-style-type: disc
+            list-style-position: inside
+            @media $mobile
+              margin-bottom: 15px
+              float: left
+        dd
+          margin-top: 10px
+          color: $gray_50
+          @media $mobile
+            display: inline-block
+            margin-right: 15px
+        i
+          margin-right: 3px
+          font-size: 15px
+    .buy
+      span(.3)
+      padding: 40px 50px
+      top: 50%
+      right: 0
+      position: absolute
+      transform: translateY(-50%)
+      @media $mobile
+        stack()
+        top: auto
+        transform: translateY(0)
+        position: relative
+        padding: 20px 20px 40px
+    .tag-row
+      margin:10px 0 50px
+      span
+        padding: 2px 5px
+        border: 1px solid $gray_40
+        margin-right: 10px
+        @media $mobile
+          margin-right: 5px
+    p
+      margin-bottom: 30px
+      @media $mobile
+        text-align: center
+        margin-bottom: 10px
+      em
+        font-size: 30px
+
+  .plan-wrapper
+    border-bottom: 1px dotted $gray_40
+    padding-bottom: 10px
+    @media $mobile
+      padding-top: 10px
+  .plan-row
+    margin-bottom: 20px
+    &.plan-2
+      margin-bottom: 22px
+      .mark-box
+        background-color: $orange_60
+        opacity: 1
+        &:after
+          triangle(3px, left, color=$orange_60)
+          @media $mobile
+            display: none
+      p
+        padding-bottom: 2px
+        font-size: 18px
+        @media $mobile
+          font-size: 15px
+        em
+          font-size: 24px
+          @media $mobile
+            font-size: 17px
+    .mark-box
+      background-color: $green_50
+      padding: 3px 5px
+      color: #fff
+      position: relative
+      margin-right: 10px
+      border-radius: 2px
+      opacity: .7
+      width: 50px
+      display: inline-block
+      text-align: center
+      @media $mobile
+        padding: 3px 0
+        font-size: 12px
+        width: 40px
+        display: block
+        margin-bottom: 5px
+      &:after
+        content:''
+        position: absolute
+        right: -6px
+        top: 7px
+        triangle(3px, left, color=$green_50)
+        @media $mobile
+          display: none
+    p
+      font-size: 15px
+      display: inline-block
+      @media $mobile
+        font-size: 14px
+
+  .tips-text
+    margin: 5px 0
+    line-height: 1.8
+  .category-wrapper
+    padding-top: 45px
+    border-bottom: 1px dotted $gray_40
+    padding-bottom: 25px
+    @media $mobile
+      padding-top: 25px
+    p
+      display: inline-block
+    .category-row
+      clearfix()
+      margin-bottom: 20px
+    .desc-box
+      span(.23)
+      padding: 3px 0
+      margin-bottom: 10px
+      color: $gray_50
+      @media $mobile
+        stack()
+        margin-bottom: 5px
+    .fee-box
+      span(.42)
+      color: #fff
+      @media $mobile
+        stack()
+      p
+        background-color: $gray_40
+        padding: 3px 10px
+        &.plan1
+          width: 100%
+        &.plan2
+          width: 72%
+          background-color: $gray_40
+        &.plan3
+          width: 60%
+          background-color: $green_50
+          margin-right: 10px
+
+  .service-wrapper
+    padding-top: 40px
+    margin-bottom: 10px
+    clearfix()
+    @media $mobile
+      padding-top: 20px
+    .service-box
+      col(1/3,gutter: 6)
+      border-right: 1px dotted $gray_40
+      &:last-child
+        border-right: none
+      @media $mobile
+        stack()
+        border-right: none
+        margin-top: 30px
+    img
+      width: 60px
+      margin-top: -10px
+    p
+      margin-bottom: 10px
+
+  .table-coverage
+    width: 100%
+  .coverage-row
+    &:last-child
+      td
+        border-bottom: 1px solid $gray_30
+    >td
+      padding: 10px 20px
+      border-top: 1px solid $gray_30
+      @media $mobile
+        border-left: 1px solid $gray_30
+        padding: 10px
+      &.last-child
+        padding: 0
+    >td
+      &:first-child
+        background-color: $fancy_gray_10
+        width: 10%
+        text-align: center
+        border-right: 1px solid $gray_30
+        border-left: 1px solid $gray_30
+        font-size: 16px
+        @media $mobile
+          width: 100%
+          display: block
+          text-align: left
+          border-bottom: none
+    >td
+      &:last-child
+        width: 90%
+        border-right: 1px solid $gray_30
+        @media $mobile
+          width: 100%
+          display: block
+    p
+      margin: 15px 0
+      line-height: 1.8
+
+    .desc-text
+      padding: 10px 20px
+      @media $mobile
+        padding: 10px
+
+  .reason-wrapper
+    margin-bottom: 0
+    h2
+      margin-bottom: 15px
+    h4
+      margin-bottom: 20px
+      font-size: 15px
+      line-height: 1.5
+      clearfix()
+      @media $mobile
+        font-size: 14px
+      .icon-lightning
+        width: 15px
+        height: 21px
+        float: left
+        margin-top: -5px
+        margin-right: 5px
+    .section
+      margin-bottom: 40px
+      @media $mobile
+        margin-bottom: 20px
+    p
+      line-height: 1.8
+    .table-box
+      margin: 20px 0
+    .align-right
+      text-align: right
+    .btn-start
+      margin: 50px 0 10px
+      padding: 3px 100px
+      @media $mobile
+        width: 100%
+
+  .more-wrapper
+    margin-bottom: 0
+    padding-top: 10px
+    .product-item
+      display: block
+      border-bottom: 1px dotted $gray_20
+      padding: 32px 0
+      clearfix()
+      &:last-child
+        border-bottom: none
+      &:hover
+        background-color: #f5f5f5
+      @media $mobile
+        padding: 20px 0
+        &:hover
+          background-color: #fff
+    .icon-box
+      span(.1)
+      display: inline-block
+      vertical-align: middle
+      color: $green_50
+      text-align: center
+      @media $mobile
+        stack()
+        text-align: left
+        margin-bottom: 10px
+      i
+        margin-bottom: 10px
+        display: block
+        font-size: 24px
+        @media $mobile
+          display: inline-block
+          margin-bottom: 0
+          margin-right: 5px
+          font-size: 18px
+      h6
+        @media $mobile
+          display: inline-block
+    .product-info
+      span(.9)
+      padding-left: 21px
+      border-left: 1px solid $gray_20
+      vertical-align: middle
+      display: inline-block
+      @media $mobile
+        stack()
+        border-left: none
+        padding-left: 0
+      p
+        line-height: 1.5
+        color: #444
+      h5
+        color: #444
+        font-weight: bold
+        font-size: 18px
+        margin-bottom: 5px
+        @media $mobile
+          margin-bottom: 7px
+      span
+        color: $gray_50
+        margin-right: 10px
+        @media $mobile
+          margin-right: 0
+      .fr
+        float: right
+        margin-top: 8px
+        @media $mobile
+          margin-top: 0
+      i
+        color: $gray_40
+    .btn-detail
+      min-width: 80px
+      margin-right: 10px
+
+  .foot-wrapper
+    background-color: #fafafa
+    p
+      margin: 10px 0
+
+  .clause-wrapper
+    .circle-box
+      background-color: $green_50
+      width: 25px
+      height: 25px
+      line-height: 26px
+      border-radius: 50%
+      text-align: center
+      color: #fff
+      font-size: 16px
+    h4
+      margin: 5px 0 15px
+      color: $gray_80
+    p
+      margin-bottom: 10px
+      line-height: 1.7
+      color: $gray_50
+    .twocol-content
+      margin-bottom: 20px
+      &:last-child
+        margin-bottom: 10px
+
+    .tips
+      margin-top: -10px
+      background-color: #f5f5f5
+      padding: 20px 20px 15px

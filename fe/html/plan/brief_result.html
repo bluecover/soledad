@@ -1,0 +1,89 @@
+<%inherit file="./base.html" />
+
+<%!
+  import random
+%>
+
+<%def name="main()">
+  <div class="brief-result-wrapper">
+    ${self.banner()}
+    ${self.strategy()}
+  </div>
+</%def>
+
+<%def name="banner()">
+  <div class="block-wrapper result-wrapper text-center">
+    <a href="${url_for('.info', redo=1)}" class="text-12">重新规划</a>
+    <p class="text-12">合理分配工资，每月加薪</p>
+    <h2 class="text-white">${raise_quota}<em>%</em></h2>
+  </div>
+  <div class="block-wrapper compare-wrapper">
+    <input class="js-data-list" type="hidden" value="${norm_dist}">
+    <p class="text-center text-dark">
+      加薪<span class="text-orange js-date-text"></span>后，您的收入超过&nbsp;&nbsp;<em class="text-orange js-num"></em>
+      <span class="text-orange">%</span>&nbsp;&nbsp;的${province.province if province else '北京'}人
+    </p>
+    <div class="people-wrapper">
+      % for _ in range(0,10):
+        <div class="item-box js-item-box">
+        </div>
+      % endfor
+    </div>
+    <div class="drag-box dragdealer" id="drag_box">
+      <div class="bg js-bg"></div>
+      <div class="handle drag-btn"></div>
+      <span class="text-10 text-lighter">滑动看看十年后的你超过了多少人</span>
+    </div>
+    <p class="desc"><span class="text-bold">收入诊断：</span>${income_msg}</p>
+  </div>
+</%def>
+
+<%def name="strategy()">
+  <div class="block-wrapper process-wrapper">
+    <h3 class="text-center text-bold">工资规划如何加薪？</h3>
+    <div class="process-main">
+      <div class="process-box">
+        <h5>备足紧急备用金  随取随用保收益</h5>
+        <span class="text-center text-bold">1</span>
+        <p>好规划建议您建立一个流动性充足的紧急备用金账户，将备用金存入货币基金账户，享受高额收益。</p>
+      </div>
+      <div class="process-box">
+        <h5>控制日常零用钱 机动灵活不浪费</h5>
+        <span class="text-center text-bold">2</span>
+        <p>钱是挣出来的，也是攒出来的。控制您的日常支出，并将日常零用钱存入随存随取的货币基金，获取增值。</p>
+      </div>
+      <div class="process-box">
+        <h5>巧用周期性支出 提前准备获增值</h5>
+        <span class="text-center text-bold">3</span>
+        <p>房贷、房租、车贷等固定的周期性支出可以用于购买短期到期的理财产品，最大化利用您的资金</p>
+      </div>
+       <div class="process-box">
+        <h5>培养攒钱好习惯 厚积薄发办大事</h5>
+        <span class="text-center text-bold">4</span>
+        <p>每个月将部分工资用于强制储蓄，购买长期理财，既能享受高额的收益，同时也能避免自己大手大脚长期月光。</p>
+      </div>
+       <div class="process-box">
+        <h5>即刻开启好规划 专业理财免费用</h5>
+        <span class="text-center text-bold">5</span>
+        <p>好规划结合您的收入情况，提供合理的分配建议和完整的理财规划，并提供最具竞争力的产品实现您的理财方案。</p>
+      </div>
+    </div>
+    %if not g.user:
+    <div class="js-accounts-form gm-account accounts-content-form" data-raise-quota="${raise_quota}%"} data-dcs="wxplan" data-dcm="guihua" data-url="${url_for('.result')}">
+    </div>
+    %else:
+      <a href="${url_for('.result')}" class="btn btn-primary register-submit">查看如何加薪${raise_quota}%</a>
+    %endif
+  </div>
+</%def>
+
+<%def name="footer()">
+</%def>
+
+<%def name="title()">工资规划 - 收入诊断</%def>
+
+<%def name="js()">
+  <script src="{{{js/plan/brief_result.js}}}"></script>
+</%def>
+
+

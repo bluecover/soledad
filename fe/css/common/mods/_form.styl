@@ -1,0 +1,258 @@
+.form-wrapper
+  .separate-line:after
+    content: ''
+    display: block
+    margin: 50px 0
+    border-bottom: 1px dotted #ccc
+
+  h2
+    color: $gray_dark
+    font-size: 18px
+    line-height: 22px
+    margin-bottom: 20px
+
+  .item
+    padding: 10px 0
+    line-height: 30px
+    position: relative
+    @media $mobile
+      padding: 10px 0
+
+    .title
+      display: inline-block
+      width: 128px
+      text-align: right
+      padding-right: 20px
+      vertical-align: middle
+      .iconfont
+        cursor: pointer
+        color: $gray_30
+      @media $mobile
+        display: block
+        width: auto
+        text-align: left
+        margin-bottom: 3px
+        padding: 0
+
+  .multiple-line-item
+    .title
+      vertical-align: top
+    .right-content
+      display: inline-block
+      @media $mobile
+        display: block
+
+  .item-info
+    padding-left: 128px
+    line-height: 1.4
+    @media $mobile
+      padding-left: 0
+
+  .option-item
+    display: inline-block
+    border: 1px solid $border_color
+    padding: 10px 25px
+    color: $gray
+    margin-right: 10px
+    margin-bottom: 15px
+    transition: background-color .15s ease, color .15s ease
+    line-height: 1.2
+    cursor: pointer
+    &.on
+      background: $brand_blue url('{{{img/misc/smchk.png}}}') right bottom no-repeat
+      color: #fff
+
+  .label-gender
+    margin-right: 15px
+    padding: 3px 15px
+    cursor: pointer
+    border: 1px solid #fff
+    .iconfont
+      display: inline-block
+      color: $gray_light
+      transform-origin: 50% 47%
+    .icon-revmale
+      transform-origin: 48% 48%
+
+  .styled-input
+    display: none
+    display: unquote('inline-block\9')
+    &:checked + .option-item
+      background: $brand_blue url('{{{img/misc/smchk.png}}}') right bottom no-repeat
+      color: #fff
+    &:checked + .label-gender
+      border: 1px solid $border_color
+      border-radius: 20px
+      .iconfont
+        transition: transform 0.5s ease-in
+        transform: rotate(360deg)
+      .icon-revmale
+        color: #25cdb7
+      .icon-revfemale
+        color: #f6779e
+
+  .input-con
+    display: inline-block
+    width: 280px
+    position: relative
+    margin-right: 15px
+    vertical-align: middle
+    &.narrow
+      width: 220px
+    &.narrower
+      width: 130px
+    &.narrowest
+      width: 100px
+    @media $mobile
+      display: block
+      width: auto
+      margin-right: 0
+      margin-bottom: 15px
+      &.narrow
+        width: 100%
+      &.narrower,
+      &.narrowest
+        width: 46%
+        margin-right: 3%
+        display: inline-block
+        &:last-child
+          margin-right: 0
+      &.narrowest
+        width: 30%
+
+    input[type="text"],
+    input[type="password"]
+      display: block
+      font-size: 14px
+      width: 100%
+      height: 35px
+      border: 1px solid $border_color
+      background-color: #fff
+      background-image: none
+      padding: 6px 12px
+      line-height: 1.42857143
+      transition: border-color ease-in-out .15s
+      outline: none
+      &:disabled
+        background: $gray_10
+        color: $gray_60 !important
+
+      &:focus
+        border: 1px solid #c5d3fd
+      &.two-col
+        padding-right: 35px
+      &.three-col
+        padding-right: 35px
+        padding-left: 60px
+      &.wide-left
+        padding-left: 85px
+      &.has-error
+        border: 1px solid #ffc0a5
+      &.input-vcode
+        width:55%
+        display: inline-block
+    .btn-send-vcode,
+    .btn-vcode-verify
+      width: 40%
+      display: inline-block
+      float: right
+      @media $mobile
+        font-size: 13px
+
+    .input-prefix
+      position: absolute
+      top: 6px
+      left: 0
+      padding: 0 10px
+      border-right: 1px solid $border_color
+      line-height: 23px
+      color: $gray_light
+      text-align: center
+    .input-unit
+      color: $gray_light
+      line-height: 23px
+      position: absolute
+      border-left: 1px solid $border_color
+      padding: 0 10px
+      top: 6px
+      right: 0
+    input:focus ~ .input-prefix,
+    input:focus ~ .input-unit
+      color: $gray
+
+    select
+      display: inline-block
+      border: 1px solid $border_color
+      padding: 4px
+      vertical-align: middle
+      font-size: 14px
+      outline: none
+      width: 100%
+      height: 35px
+      background: #fff
+      margin-right: 15px
+      &:disabled
+        background: $gray_10
+        color: $gray_60 !important
+      @media $mobile
+        width: 100%
+        margin-right: 0
+
+  .input-group
+    position: relative
+    display: table
+    border-collapse: separate
+    width: 100%
+    input
+      -webkit-appearance: none
+    input[type="text"]
+      display: table-cell
+      position: relative
+      float: left
+      border-radius: 0
+      width: 100%
+      height: 40px
+      padding: 9px 10px
+      color: #555
+      background-color: #fff
+      border: 1px solid $border_color
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075)
+      transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+      &:focus
+        outline: none !important
+    .input-prefix
+    .input-unit
+      display: table-cell
+      padding: 6px 12px
+      color: #555
+      text-align: center
+      background-color: $gray_50
+      color: #fff
+      width: 1%
+      white-space: nowrap
+      vertical-align: middle
+    .input-unit
+      border-left: none
+    .input-prefix
+      border-right: none
+
+.form-vertical
+  .item
+    padding: 10px 0
+    .title
+      display: block
+      width: auto
+      text-align: left
+      margin-bottom: 3px
+      padding: 0
+
+  .multiple-line-item
+    .right-content
+      display: block
+
+  .item-info
+    padding-left: 0
+
+  select
+    width: 100%
+    margin-right: 0

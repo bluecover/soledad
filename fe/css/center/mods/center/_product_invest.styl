@@ -1,0 +1,91 @@
+@import '../../../mods/_water_circle.styl'
+
+.product-invest-mod
+  float: left
+  width: 49%
+  color: #fff
+  margin-left: 2%
+  &:first-child
+    margin-left: 0
+  @media $mobile
+    width: 100%
+    float: none
+    margin-left: 0
+  >.hd
+    height: 50px
+    padding-left: 18px
+    padding-right: 16px
+    background-color: $blue_gray_50
+    line-height: 50px
+    .title
+      font-size: 20px
+      display: inline-block
+    .action
+      float: right
+      color: #fff
+      &:hover
+        opacity: .7
+
+.invest-total
+  background-color: $blue_gray_40
+  padding-bottom: 30px
+  line-height: 1
+  >.hd
+    padding-left: 18px
+    padding-top: 14px
+    .icon
+      triangle(6px, bottom, $blue_gray_50)
+      margin-right: 3px
+      margin-top: -10px
+      vertical-align: middle
+  >.bd
+    margin: 24px 0 0
+    text-align: center
+    .profit-num
+      margin-top: 12px
+      margin-bottom: 33px
+      strong
+        font-size: 50px
+    .btn
+      margin: 0 10px
+    .btn.gray,
+    .btn.gray:hover
+      border: 1px solid #ccc
+      color: #ccc
+      cursor: default
+      background: none
+
+.profit-chart-mod
+  height: 216px
+  background-color: #fff
+  .chart-title
+    padding: 15px 0 15px 18px
+    color: $orange_60
+  >.bd
+    padding: 0 18px
+
+.saving-product.product-invest-mod
+  >.hd
+    background-color: $orange_50
+
+  .invest-total
+    background-color: $orange_40
+    >.hd
+      .icon
+        border-color: transparent transparent $orange_60 transparent
+
+  .invest-goal-mod
+    height: 216px
+    text-align: center
+    background-color: #fff
+    overflow: hidden
+    >.hd
+      padding: 20px 0 10px
+      color: $blue_gray_60
+      strong
+        color: $orange_50
+        margin: 0 5px
+    .water-circle-mod
+      margin: 10px auto 0
+      width: 145px
+

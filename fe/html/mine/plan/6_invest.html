@@ -1,0 +1,423 @@
+<%!
+  from core.models.utils import dec_2_pct
+  from core.models.plan.formula.data import average_earning_data
+%>
+<%inherit file="./plan.html" />
+
+<%def name="plan_content()">
+  <div class="plan-content">
+    <div class="chapter-title">
+      <div class="twocol-content middle-align">
+        <span class="chapter-num left-col">6</span>
+        <div class="title-content right-col">
+          <p class="title-desc">资产配置</p>
+          <h1>投资规划</h1>
+        </div>
+      </div>
+    </div>
+
+      <p class="gh-tips">好规划建议：${gh_suggest_invest_doc}</p>
+
+    <p>对于投资，好规划的基本观点是：投资的本质是管理风险，而不是一味追求更高的收益率。唯有在收益和风险之间取得平衡，才是资产长期稳健增值之道。</p>
+    <p>因此，我们以资产配置作为投资规划的核心思路。正如“不要将所有鸡蛋放在同一个篮子里”，过去数十年的理论和实践证明，资产配置方法通过分散投资，能够有效规避市场风险，创造长期稳健的投资回报。</p>
+    <p>好规划将主流投资品种分为低风险、中等风险、高风险三类；首先是根据您${'家庭' if relation_number else ''}可以承受的风险水平确定配置比例；再结合您的财务现状，对每个大类中具体投资品种的选择给出建议。</p>
+
+    <h3>您的可投资资产</h3>
+    <p>您${'家庭' if relation_number else ''}的金融资产总额为${format(fin_assets_r,',')}元（为计算方便，四舍五入至百位）。在前面的规划中，我们建议您将其中${format(dep_des+fun_des, ',')}元（活期存款和货币基金）作为紧急备用金来储备，作单独的规划安排。因此：<br><span class="text-blue">您当前的可投资资产为 ${format(fin_assets_r,',')}元-${format(dep_des+fun_des, ',')}元=${format(investable_assets,',')}元</span></p>
+    % if investable_assets<2000:
+    <p>您的可投资资产较低，当务之急是积累资产，以免“巧妇难为无米之炊”。不过在现阶段，需要您先形成科学的资产配置观念，并以此指导未来结余资金的安排。接下来将以2,000元为例，为您展示好规划推荐的资产配置方案。</p>
+    % endif
+
+    <h3>您的资产配置方案</h3>
+    <p>在上一章“风险承受能力和偏好”中，我们一起得到结论：在投资过程中，您最多可以承受${risk_rank_ratio}的风险。在投资规划中，我们将严格控制您的投资风险在${risk_rank_ratio}以内，并且在此基础上，应用统计学原理和国际主流的马克维茨资产配置模型，基于过去十年的市场数据为您设计投资方案。</p>
+
+    <p>我们按照${dec_2_pct(low_risk_ratio)}：${dec_2_pct(medium_risk_ratio)}：${dec_2_pct(high_risk_ratio)}的比例，为您分别配置低风险、中风险和高风险资产。按照过去10年各类资产的平均收益率计算，这一组合的预期年化收益率为${dec_2_pct(expect_ave_return, place=2)}。</p>
+
+    <p>如果在10年前以该配置比例投资，实际市场运行（2004-2013）的结果是：获得年化${dec_2_pct(his_ave_return, place=2)}的收益，累计总回报${dec_2_pct(total_return, place=2)}。这一组合表现出显著的收益率优势，远超绝大多数固定收益理财产品。</p>
+
+    <div class="data-table">
+      <div class="deploy-value-chart plan-pie-chart">
+        <div class="pie-con">
+          <div class="deploy-value-pieholder pie-holder"></div>
+          <div class="deploy-pie-title">本组合预期年化收益率 ${dec_2_pct(expect_ave_return, place=2)}</div>
+          <div class="deploy-pie-subtitle">过去 10 年的实际年化收益率 ${dec_2_pct(his_ave_return, place=2)}</div>
+        </div>
+        <ul class="pie-data">
+          <li>
+            <div class="risk-desc">
+              <div class="risk-title text-green"><span class="pie-bg" data-num="${low_risk_ratio}" data-color="#70C862" data-name="低风险"></span>低风险投资 ${low_risk_assets} 元</div>
+              <div class="risk-content">推荐品种：货币基金、银行理财产品、国债、部分互联网理财产品</div>
+            </div>
+          </li>
+          <li>
+            <div class="risk-desc">
+              <div class="risk-title text-orange"><span class="pie-bg" data-num="${medium_risk_ratio}" data-color="#FFB56E" data-name="中风险"></span>中风险投资 ${medium_risk_assets} 元</div>
+              <div class="risk-content">推荐品种：二级债券型基金、优选P2P网贷</div>
+            </div>
+          </li>
+          <li>
+            <div class="risk-desc">
+              <div class="risk-title text-red"><span class="pie-bg" data-num="${high_risk_ratio}" data-color="#FF6752" data-name="高风险"></span>高风险投资 ${high_risk_assets} 元</div>
+              <div class="risk-content">推荐品种：股票型基金、指数型基金、混合型基金</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="table-comment">注：为执行、计算方便，上图中的金额均四舍五入至百位。</div>
+    </div>
+
+    <p>关于各投资品种，我们准备了更多介绍信息，请参见本节附录：《主流投资品种一览》。我们也特别筛选了适合您投资的具体产品，并将提供持续的咨询服务，请参见您在本站的<a href="/mine" target="_blank">行动计划</a>。</p>
+
+    <h3>波动风险：</h3>
+    <%
+        ave_data = average_earning_data[str(risk_rank)]
+        stock_data = average_earning_data['6']
+    %>
+    <p>下图展示了2010年至2014年6月，好规划推荐方案与激进投资方案（全部配置股票型基金）之间的收益波动对比。不难看出，好规划推荐方案的波动范围明显更小、较好地规避了市场风险。同时，从近四年半的综合收益率来看，好规划推荐方案的表现（${dec_2_pct(ave_data[-1], place=2)}）也显著超过全部配置股票型基金（${dec_2_pct(stock_data[-1], place=2)}）。</p>
+
+    <p>简言之，资产配置令长期投资的收益相对可以预期，不至因为市场难以预料的波动而影响投资的安全性。在震荡的市场或者熊市中，资产配置将帮助你有效规避风险；而当市场转牛，资产配置又可以帮助你获得超额回报。</p>
+
+    <div class="data-table">
+      <div class="fluctuation-risk-chart" data-guihua="${fluctuation_risk_data_gh}" data-jijin="${fluctuation_risk_data_jj}"></div>
+    </div>
+
+    <h3 class="action">
+      <i class="iconfont icon-note"></i>
+      行动计划1：
+    </h3>
+    <p class="text-16 text-dark">优化现有资产配置</p>
+
+    <p>推荐方案的实现很难一蹴而就，其过程与您的资产现状，以及当下市场条件有关。您可以在未来一年中逐步调整和优化，以达到理想配置。根据上述低、中、高风险资产${dec_2_pct(low_risk_ratio)}：${dec_2_pct(medium_risk_ratio)}：${dec_2_pct(high_risk_ratio)}的理想配置，行动计划如下：</p>
+
+    <%
+      text_color = {"过高": "text-red", "不足": "text-orange", "合理": "text-green"}
+    %>
+    <div class="data-table">
+      <table>
+        <thead>
+          <tr class="hd-orange">
+            <th>现有资产</th>
+            <th width="18%">评价</th>
+            <th class="last">行动</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-left">
+              <span class="text-16 text-dark">低风险：</span>
+            % if sum(raw_low_assets_d.values()) == 0:
+                <br>暂无配置
+            % else:
+                % for (name, money) in raw_low_assets:
+                  %if money != 0:
+                    <br>${name}  ${format(money,',')}元
+                  % endif
+                % endfor
+            % endif
+            </td>
+            <td class="${text_color[low_evl]}">${low_evl}</td>
+            <td class="text-left">
+              <span class="text-16 text-dark">${low_act if low_act=='不变' else low_act+'：共'+format(change_low_amount,',')+'元'}</span><br>
+            % for (name, p) in deduction_low_plan:
+              ## data for deduction
+              ${name}  ${format(p,',')+'元' if p != '不变' else p}<br>
+            % endfor
+            ## data for increase
+            ${increase_low_product}
+            </td>
+          </tr>
+
+          <tr>
+            <td class="text-left">
+              <span class="text-16 text-dark">中等风险：</span>
+            % if sum(raw_medium_assets_d.values()) == 0:
+                <br>暂无配置
+            % else:
+                % for (name, money) in raw_medium_assets:
+                  %if money != 0:
+                    <br>${name}  ${format(money,',')}元
+                  % endif
+                % endfor
+            % endif
+            </td>
+            <td class="${text_color[medium_evl]}">${medium_evl}</td>
+            <td class="text-left">
+              <span class="text-16 text-dark">${medium_act if medium_act=='不变' else medium_act+'：共'+format(change_medium_amount,',')+'元'}</span><br>
+            % for (name, p) in deduction_medium_plan:
+              ## data for deduction
+              ${name}  ${format(p,',')}元<br>
+            % endfor
+            ## data for increase
+            ${increase_medium_product}
+            </td>
+          </tr>
+
+          <tr>
+            <td class="text-left">
+              <span class="text-16 text-dark">高风险：</span>
+            % if sum(raw_high_assets_d.values()) == 0:
+                <br>暂无配置
+            % else:
+                % for (name, money) in raw_high_assets:
+                  %if money != 0:
+                    <br>${name}  ${format(money,',')}元
+                  % endif
+                % endfor
+            % endif
+            </td>
+            <td class="${text_color[high_evl]}">${high_evl}</td>
+            <td class="text-left">
+              <span class="text-16 text-dark">${high_act if high_act=='不变' else high_act+'：共'+format(change_high_amount,',')+'元'}<br></span>
+            % for (name, p) in deduction_high_plan:
+              ## data for deduction
+              ${name}  ${format(p,',')}元<br>
+            % endfor
+            ## data for increase
+            ${increase_high_product}
+          </tr>
+
+        </tbody>
+      </table>
+      <div class="table-comment">注：低风险部分的“现有资产”中，已刨除用作紧急备用金的资金。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为执行、计算方便，上表中的金额均四舍五入至百位。</div>
+    </div>
+
+    <p>由于投资期限和收益现状等原因，直接对现有资产进行优化可能存在较大难度，那么可将重点放在未来收支结余的投资分配上。</p>
+
+    <h3 class="action">
+      <i class="iconfont icon-note"></i>
+      行动计划2：
+    </h3>
+    <p class="text-16 text-dark">用未来收支结余优化资产配置</p>
+    <p>我们可以有两种方法来处理未来收支结余的投资去向。</p>
+    <p>一是“平推法”。每月的结余资金按照既定比例（${dec_2_pct(low_risk_ratio)}：${dec_2_pct(medium_risk_ratio)}：${dec_2_pct(high_risk_ratio)}），分别投入各个风险等级的投资品种中。其中效率最高的方式是基金定投。</p>
+    <p>二是“渐进法”。未来的结余集中进行单笔投资，分别投向不通风险级别的品种。这种方法因其灵活，更有利于把握随时出现的投资机会。</p>
+    <p>对于这两种方法，我们都优选了一些具体的投资产品或组合供您选择，请参见您在本站的<a href="/mine" target="_blank">行动计划</a>。</p>
+
+    <h3>收益预估</h3>
+    <p>按照上述配置进行投资，实现预期收益后，在未来几年，您的投资收益与资产增值情况预估如下：</p>
+
+    <div class="data-table">
+      <div class="value-predict-chart" data-balance="${value_predict_data_balance}" data-invest="${value_predict_data_invest}" data-assets="${value_predict_data_assets}"></div>
+      <div class="table-comment">注：“收支结余”年度增长率假设为10%；“投资收益”部分按推荐配置预期收益率计算；未考虑其他大项支出的影响。</div>
+    </div>
+
+    <p>最后，资产配置是一个动态的过程。您的财务状况与市场行情将不断变化，建议您定期（3个月、6个月、1年）更新规划书，以便及时获得好规划的专业建议。</p>
+
+    ${self.invest_low()}
+    ${self.invest_mid()}
+    ${self.invest_high()}
+  </div>
+</%def>
+
+<%def name="invest_low()">
+  <h3>附录：主流投资品种一览 <span>( 2015年3月1日更新 ) </span></h3>
+  <div class="data-table">
+    <table class="invest-table">
+      <thead>
+        <tr class="hd-green">
+          <th class="last" colspan="3">无／低风险类</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="3" width="6%">国债</td>
+          <td width="10%">年化收益</td>
+          <td class="text-left">4% — 4.42%（取自2015年11月10日发售的电子式国债）</td>
+        </tr>
+        <tr>
+          <td>简述</td>
+          <td class="text-left">政府面向社会发行的满足长期储蓄性投资需求的债务凭证，一般购买凭证式、电子式国债。</td>
+        </tr>
+        <tr>
+          <td>评价</td>
+          <td class="text-left"><span class="rec-comment">推荐，3-5年长期投资首选。</span>安全，收益较高，但投资期长，提前兑付将损失部分收益。</td>
+        </tr>
+        <tr class="fix-bg">
+          <td rowspan="3">货币基金</td>
+          <td>年化收益</td>
+          <td class="text-left">0.9 - 4.49%（取自成立时间在1年以上的178支A类货币基金近1年的收益范围）</td>
+        </tr>
+        <tr class="fix-bg">
+          <td>简述</td>
+          <td class="text-left">专门投向风险极低的货币市场工具的基金，流动性与活期储蓄类似。余额宝等产品属于该类。</td>
+        </tr>
+        <tr class="fix-bg">
+          <td>评价</td>
+          <td class="text-left"><span class="rec-comment">推荐，日常流动资金首选。</span>风险极低，流动性极好，但长期收益不高，所以不适合大额投入。</td>
+        </tr>
+        <tr>
+          <td rowspan="3">银行理财产品</td>
+          <td>年化收益</td>
+          <td class="text-left">2.9% — 4.7%（取自6大行R2级180天5-10万起购浮动收益理财产品近3个月收益范围）</td>
+        </tr>
+        <tr>
+          <td>简述</td>
+          <td class="text-left">银行接受客户的委托管理资金，投资收益和风险由客户与银行按照约定方式承担。</td>
+        </tr>
+        <tr>
+          <td>评价</td>
+          <td class="text-left"><span class="rec-comment">推荐，5万以上1年内投资首选。</span>部分产品风险较低，流动性好，但产品间差别较大，需甄别。</td>
+        </tr>
+        <tr class="fix-bg">
+          <td rowspan="3">分级基金A类</td>
+          <td>年化收益</td>
+          <td class="text-left">2.28% — 7%（取自目前全部207支分级基金A类的预估收益范围）</td>
+        </tr>
+        <tr class="fix-bg">
+          <td>简述</td>
+          <td class="text-left">分级基金将一支基金分为A、B两类份额，设定不同的收益分配机制，A类优先享受约定收益。</td>
+        </tr>
+        <tr class="fix-bg">
+          <td>评价</td>
+          <td class="text-left"><span class="rec-comment">可选，门槛低收益确定。</span>但产品间差别较大，需要一定甄别能力。部分产品不能提前赎回。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</%def>
+
+<%def name="invest_mid()">
+  <div class="data-table">
+    <table class="invest-table">
+      <thead>
+        <tr class="hd-orange">
+          <th class="last" colspan="3">中等风险类</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="3" width="6%">纯债基金</td>
+          <td width="10%">年化收益</td>
+          <td class="text-left">1.29% — 24.27%（取自成立时间在1年以上的163支纯债基金近1年的收益范围）</td>
+        </tr>
+        <tr>
+          <td>简述</td>
+          <td class="text-left">风险相对较低的基金，主要投资于债券，不投资权益类资产和可转债。</td>
+        </tr>
+        <tr>
+          <td>评价</td>
+          <td class="text-left"><span class="rec-comment">不推荐。</span>相比无/低风险类产品不具优势。风险较低，收益稳定，但收益水平偏低。</td>
+        </tr>
+
+        <tr class="fix-bg">
+          <td rowspan="3">一级债券型基金</td>
+          <td>年化收益</td>
+          <td class="text-left">3.43% — 71.54%（取自成立时间在3年以上的128支一级债基近3年的收益范围）</td>
+        </tr>
+        <tr class="fix-bg">
+          <td>简述</td>
+          <td class="text-left">80%以上投资于债券，20%以内资产可在一级市场申购新股，但不能在二级市场上购买股票。</td>
+        </tr>
+        <tr class="fix-bg">
+          <td>评价</td>
+          <td class="text-left"><span class="rec-comment">可选。</span>可同时分享债市和打新股的收益，但是受新股发行政策、时间和数量的影响。</td>
+        </tr>
+
+        <tr>
+          <td rowspan="3">二级债券型基金</td>
+          <td>年化收益</td>
+          <td class="text-left">-15.03% — 115.93%（取自成立时间在3年以上的266支二级债基近3年的收益范围）</td>
+        </tr>
+        <tr>
+          <td>简述</td>
+          <td class="text-left">80%以上投资于债券，20%以内资产既可在一级市场申购新股，也可在二级市场上购买股票。</td>
+        </tr>
+        <tr>
+          <td>评价</td>
+          <td class="text-left"><span class="rec-comment">推荐。</span>可同时分享债市和股市的收益，投资品种比一级债基灵活多样。</td>
+        </tr>
+
+        <tr class="fix-bg">
+          <td rowspan="3">P2P网贷</td>
+          <td>年化收益</td>
+          <td class="text-left">3.65% — 13%（取自前十大P2P网贷平台近期投资标的的预期年化收益率范围）</td>
+        </tr>
+        <tr class="fix-bg">
+          <td>简述</td>
+          <td class="text-left">投资者通过网贷平台，竞标向个人或企业借款方放贷，获取约定的收益的投资行为。</td>
+        </tr>
+        <tr class="fix-bg">
+          <td>评价</td>
+          <td class="text-left"><span class="rec-comment">可选。</span>收益率突出，但市场监管尚不完善，平台良莠不齐，需选择规模大与可靠的平台。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</%def>
+
+<%def name="invest_high()">
+  <div class="data-table">
+    <table class="invest-table">
+      <thead>
+        <tr class="hd-red">
+          <th class="last" colspan="3">高风险类</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="3">股票型基金</td>
+          <td>年化收益</td>
+          <td class="text-left">25.9% — 136.34%（取自成立时间在5年以上的32支主动管理型股基近5年的收益范围）</td>
+        </tr>
+        <tr>
+          <td>简述</td>
+          <td class="text-left">80%以上的资产投资于股票市场，风险较大，适于长期投资的基金产品。</td>
+        </tr>
+        <tr>
+          <td>评价</td>
+          <td class="text-left"><span class="rec-comment">推荐。</span>由专业基金团队管理，与购买股票相比，风险更分散费用较低。但行情波动较大。</td>
+        </tr>
+
+        <tr class="fix-bg">
+          <td rowspan="3" width="6%">混合型基金</td>
+          <td width="10%">年化收益</td>
+          <td class="text-left">-34.33% — 220.38%（取自成立时间在5年以上的373支混合基金近5年的收益范围）</td>
+        </tr>
+        <tr class="fix-bg">
+          <td>简述</td>
+          <td class="text-left">对股票和债券的投资比例可灵活调整，不符合股票基金和债券基金分类标准的基金产品。</td>
+        </tr>
+        <tr class="fix-bg">
+          <td>评价</td>
+          <td class="text-left"><span class="rec-comment">可选。</span>可灵活增减股票和债券的比例，有效追踪两市行情。基金之间业绩分化明显。</td>
+        </tr>
+
+        <tr>
+          <td rowspan="3">指数型基金</td>
+          <td>年化收益</td>
+          <td class="text-left">-33.48% — 75.47%（取自成立时间在3年以上的148支被动指数型基金近3年的收益范围）</td>
+        </tr>
+        <tr>
+          <td>简述</td>
+          <td class="text-left">通过购买某指数所包含的股票，构建指数基金的投资组合，以取得与指数大致相同的收益率。</td>
+        </tr>
+        <tr>
+          <td>评价</td>
+          <td class="text-left"><span class="rec-comment">可选。</span>业绩与跟踪的指数密切相关，受基金经理影响较小，牛市中表现强于主动管理型股基。</td>
+        </tr>
+
+        <tr class="fix-bg">
+          <td rowspan="3">股票</td>
+          <td>年化收益</td>
+          <td class="text-left">-16.52% — 311.15%（取自2004年至2015年上证指数的年度涨幅范围）</td>
+        </tr>
+        <tr class="fix-bg">
+          <td>简述</td>
+          <td class="text-left">股份公司发行的所有权凭证，可通过股票交易所按照市场实时价格对已上市的股票买卖交易。</td>
+        </tr>
+        <tr class="fix-bg">
+          <td>评价</td>
+          <td class="text-left"><span class="rec-comment">可选。</span>价格波动幅度大速度快，投资者需有一定风险承受能力及个股与时机的选择能力。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</%def>
+
+<%def name="plan_pager()">
+  <div class="plan-pager-wrapper">
+    <a href="/mine/plan/target">下一章：实现理财目标</a>
+  </div>
+</%def>
+
+<%def name="title()">6. 投资规划 - 好规划</%def>

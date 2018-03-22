@@ -1,0 +1,221 @@
+@import '../../mods/_loading_dot.styl'
+.childins-result-wrapper
+  .banner-wrapper
+    margin-bottom: 15px
+    @media $mobile
+      margin-bottom: 0
+  .block-wrapper
+    @media $mobile
+      margin-bottom: 0
+  .result-title
+    padding: 20px 50px
+    cursor: pointer
+    @media $mobile
+      padding: 20px
+      background-color: $green_50
+      color: #fff
+      clearfix()
+    .icon-back
+      font-size: 12px
+      position: relative
+      top: 8px
+      float: right
+      transform: rotate(180deg)
+      transition: transform .2s ease
+      color: $gray_50
+      margin-left: 3px
+      @media $mobile
+        color: white
+        font-size: 16px
+        top: 6px
+    .sub-title
+      color: $gray_50
+    .more
+      float: right
+      padding-top: 7px
+      color: $gray_50
+      @media $mobile
+        color: $blue_gray_10
+        float: left
+        padding-top: 10px
+      em
+        color: $orange_70
+    .text-bold
+      @media $mobile
+        color: #fff !important
+    h3
+      font-size: 24px
+      display: inline-block
+      margin-right: 15px
+      @media $mobile
+        margin-right: 3px
+        float: left
+    &:hover
+      margin-bottom: 15px
+      cursor: pointer
+      @media $mobile
+        margin-bottom: 0
+    &:hover,
+    &.highlight
+      background-color: $green_50
+      color: $blue_gray_10
+      + .result-basic
+        border-bottom: 1px solid $gray_30
+      .sub-title
+        color: $blue_gray_10
+      h3
+        color: #fff
+      .more
+        color: $blue_gray_10
+        em
+          color: #fff
+      .icon-back
+        color: #fff
+    &.highlight
+      .icon-back
+        display: inline-block
+        transform: rotate(270deg)
+        color: #fff
+      margin-bottom: 0
+      cursor: default
+
+  .result-type
+    &.block-wrapper
+      @media $mobile
+        background-color: transparent
+    .icon-con
+      background: $green_50
+      width: 50px
+      height: 50px
+      border-radius: 50%
+      display: inline-block
+      text-align: center
+      line-height: 50px
+    .icon-umbrella
+      color: #fff
+      font-size: 30px
+    .replan
+      float: right
+      padding-top: 5px
+      @media $mobile
+        position: absolute
+        right: 20px
+    .left-col
+      padding-right: 20px
+      @media $mobile
+        padding-right: 10px
+    .title
+      margin-top: 5px
+      margin-bottom: 10px
+      font-size: 24px
+      @media $mobile
+        font-size: 14px
+    .user-info
+      color: $gray_50
+    .user-info span
+      @media $mobile
+        display: inline-block
+        font-size: 10px
+      &:first-child
+        padding-right: 20px
+        margin-bottom: 5px
+    .result-content
+      margin-top: 20px
+      color: $gray_light
+      line-height: 1.6
+      margin-left: 72px
+      @media $mobile
+        margin-left: 0
+        margin-top: 10px
+
+  .result-advice
+    margin-bottom: 0
+    h3
+      font-size: 24px
+      display: inline-block
+      margin-right: 20px
+      @media $mobile
+        margin-top: 30px
+    p
+      line-height: 1.8
+    .text-bold
+      margin: 25px 0 15px 0
+    .text-light
+      margin: 10px 0
+    .btn-replan
+      display: block
+      margin: 50px auto 30px
+      width: 350px
+      padding: 0px 50px
+      @media $mobile
+        width: 100%
+
+  .result-recommend
+    margin-bottom: 15px
+    background: #fff
+    width: 100%
+    line-height: 1.6
+    padding-bottom: 10px
+    @media $mobile
+      margin-bottom: 0
+    .twocol-content
+      table-layout: fixed
+      display: table
+      @media $mobile
+        display: block
+    .re-left
+      width: 33%
+      padding: 30px 40px
+      text-align: center
+      @media $mobile
+        display: block
+        width: 100%
+        border-bottom: 1px solid $border_color
+        padding: 30px 20px
+        img
+          width: 80%
+    .re-right
+      width: 67%
+      border-left: 1px solid $gray_10
+      @media $mobile
+        display: block
+        width: 100%
+        border-left: none
+        padding: 0 20px
+    .recommend-info
+      text-align: left
+      padding-left: 1em
+      @media $mobile
+        padding-left: 0
+      .title
+        line-height: 35px
+    .recommend-item
+      border-bottom: 1px dotted $gray_20
+      padding: 30px 10%
+      @media $mobile
+        padding: 30px 0
+      &:last-child
+        border-bottom: none
+      .desc
+        margin: 8px 0 15px
+      .title
+        font-size: 20px
+        color: $gray_dark
+      .reason
+        margin-top: 10px
+        color: $gray_50
+        .left-col
+          padding-top: 2px
+      .btn-buy-ins
+        float: right
+        min-width: 70px
+  .childins-footer-wrapper
+    @media $mobile
+        background:  $green_50
+        color: #fff
+        a
+          color: #fff
+
+.dlg-result-tips
+  .btn-cancle
+    margin-left: 20px

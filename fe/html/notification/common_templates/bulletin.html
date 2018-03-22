@@ -1,0 +1,25 @@
+<%page args="bulletin"/>
+
+<%def name="bulletin_title(bulletin)">
+  ${bulletin.title}
+</%def>
+
+<%def name="bulletin_timestamp(bulletin)">
+  ${bulletin.creation_time.strftime('%Y-%m-%d %H:%M:%S')}
+</%def>
+
+<%def name="bulletin_content(bulletin)">
+  ${bulletin.content}
+</%def>
+
+<div class="notice-main">
+  <div class="title">
+    <h3>${self.bulletin_title(bulletin)}</h3>
+  </div>
+  <p class="notice-date">${self.bulletin_timestamp(bulletin)}</p>
+  <p class="notice-info">${self.bulletin_content(bulletin)}</p>
+  % if bulletin.target_link:
+    <i class="iconfont icon-forward mobile-element"></i>
+  % endif
+</div>
+

@@ -1,0 +1,53 @@
+<%!
+  from core.models.utils import dec_2_pct
+%>
+<div class="center-info-block">
+  <div class="info-tab-savings js-savings-block">
+    % if int(saving_manager.total_invest_amount):
+      <div class="savings-title">
+        <h2>攒钱助手</h2>
+        <p>进行中</p>
+      </div>
+      <div class="saving-content">
+        <div class="saving-content-item">
+          <p class="saving-content-num">${round(saving_manager.total_profit, 2)}</p>
+          <p class="saving-content-word">累计收益</p>
+        </div>
+        <div class="saving-content-item">
+          <p class="saving-content-num">${int(saving_manager.on_account_invest_amount)}</p>
+          <p class="saving-content-word">攒钱总额</p>
+        </div>
+      </div>
+    </a>
+  % else:
+    <div class="info-unsaving">
+      <div class="title">本息担保 一年增值10%</div>
+      <img src="{{{img/mine/saving_logo.png}}}" alt="攒钱助手">
+      <a class="btn btn-start-saving" href="/savings">马上开通</a>
+    </div>
+  % endif
+  </div>
+
+  <div class="info-tab-wrapper">
+    <div class="info-tab">
+      <h2>现金/存款</h2>
+      <i class="iconfont icon-money color_yellow"></i>
+      <p>${format(deposit_current, ',')} 元</p>
+    </div>
+    <div class="info-tab">
+      <h2>基金资产</h2>
+      <i class="iconfont icon-chain color_red"></i>
+      <p>${format(funds_assets, ',')} 元</p>
+    </div>
+    <div class="info-tab">
+      <h2>实物资产</h2>
+      <i class="iconfont icon-house color_blue"></i>
+      <p>${format(physical_assets, ',')} 元</p>
+    </div>
+    <div class="info-tab">
+      <h2>负债/贷款</h2>
+      <i class="iconfont icon-debt color_purple"></i>
+      <p>${format(total_debt, ',')} 元</p>
+    </div>
+  </div>
+</div>

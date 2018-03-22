@@ -1,0 +1,26 @@
+--index-url=http://devpi.tuluu.com/guihua/pypi
+
+# static authentication
+flake8
+flake8-immediate
+flake8-single-quotes-enhance
+pep8-naming
+
+# unit test
+pytest
+pytest-cov
+mock
+freezegun
+
+# integration test
+splinter
+selenium>=2.47,<2.48
+pyvirtualdisplay
+
+# doc
+sphinx<1.4.0
+sphinxcontrib-httpdomain
+
+# release
+wheel
+devpi-client

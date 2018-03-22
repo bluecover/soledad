@@ -1,0 +1,122 @@
+$bubble
+  overflow: hidden
+  padding: 0 10px
+  position: relative
+  &:before
+    content: ''
+    position: absolute
+  .wrap
+    display: inline-block
+    padding: 10px
+    line-height: 1.5
+    border-radius: 4px
+    @media $mobile
+      padding: 10px 8px
+
+$avatar
+  border-radius: 50%
+  background-color: $gray_light
+  border: 1px solid $gray_light
+  img
+    display: block
+    width: 40px
+    height: 40px
+  @media $mobile
+    background-color: #fff
+    img
+      width: 35px
+      height: 35px
+
+.m-planner-bubble
+  margin-top: 20px
+  >.hd
+    @extend $avatar
+    float: left
+    margin: 0 10px
+    @media $mobile
+      margin: 0 2px 0 0
+  >.bd
+    @extend $bubble
+    @media $mobile
+      margin: 0
+    &:before
+      border-top: 10px solid #f5f5f5
+      border-left: 14px solid transparent
+      left: 1px
+      @media $mobile
+        border-top: 10px solid #fff
+    .wrap
+      background-color: #f5f5f5
+      @media $mobile
+        background-color: #fff
+
+.m-user-bubble
+  margin-top: 20px
+  text-align: right
+  >.bd
+    @extend $bubble
+    @media $mobile
+      margin: 0 0 0 35px
+    &:before
+      border-top: 10px solid #d4edf4
+      border-right: 14px solid transparent
+      right: 0
+    .wrap
+      background-color: #d4edf4
+      text-align: left
+
+.m-click-bubble
+  text-align: right
+  margin: 20px 0 0 0
+  >.bd
+    display: inline-block
+    cursor: pointer
+    color: #fff
+    @extend $bubble
+    &:before
+      border-top: 10px solid $primary_color
+      border-right: 14px solid transparent
+      right: 0
+    .wrap
+      background-color: $primary_color
+      padding: 0 10px
+      line-height: 42px
+    a
+      color: #fff
+      display: inline-block
+      line-height: 42px
+      &:hover
+        color: #fff
+    .iconfont
+      display: inline-block
+      width: 30px
+      height: 20px
+      @media $mobile
+        width: 20px
+        height: 15px
+
+.m-loading-bubble
+  li
+    display: inline-block
+    margin: 0 4px
+    width: 5px
+    height: 5px
+    background-color: #fff
+    border-radius: 50%
+    animation-name: loading
+    animation-duration: .8s
+    animation-iteration-count: infinite
+    animation-direction: alternate
+    animation-fill-mode: both
+    &:nth-child(2)
+      animation-delay: .4s
+    &:nth-child(3)
+      animation-delay: .8s
+    @media $mobile
+      background-color: $gray
+
+@keyframes loading
+  from
+    background-color: $gray_light
+  to
+    background-color: $gray

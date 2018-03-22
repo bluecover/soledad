@@ -1,0 +1,25 @@
+.gm-next-arrow
+  position: absolute
+  bottom: 30px
+  left: 0
+  right: 0
+  width: 18px
+  margin: 0 auto
+  @media $mobile
+    bottom: 15px
+    width: 12px
+.anchor-next
+  .svgicon
+    display: block
+    width: 18px
+    height: (18/12)*7 px
+    @media $mobile
+      width: 12px
+      height: 7px
+      &:last-child
+        opacity: .4
+    path
+      fill: $gray_30
+  &:hover
+    .svgicon
+      opacity: .7

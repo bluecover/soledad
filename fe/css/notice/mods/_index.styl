@@ -1,0 +1,114 @@
+.notice-index-wrapper
+  .notice-tips
+    @media $mobile
+      padding: 20px
+      background-color: #FFF
+      margin-top: -10px
+  .notice-title
+    margin-top: -5px
+    margin-bottom: 8px
+  .block-title
+    padding: 15px 20px
+    background: $blue_gray_40
+    color: $gray_20
+
+  .notice-list
+    padding: 35px 50px
+    background-color: #FFF
+    @media $mobile
+      padding: 10px 0 5px
+      background-color: #edeef2
+    .notice-item
+      padding: 20px 10px 20px 20px
+      background-color: #FFF
+      position: relative
+      display: block
+      transition: background-color ease .3s
+      @media $mobile
+        padding: 15px 10px 15px
+        font-size: 0
+        margin-bottom: 10px
+      &[href='#']
+        &:hover
+          background-color: #fff
+          cursor: default
+      &.read
+        .notice-dot
+           background-color: $gray_40
+        h3,.notice-info
+          color: $gray_60
+        @media $mobile
+          h3,.notice-info
+            color: $gray_50
+      &:hover
+        background-color: $gray_10
+        transition: background-color ease .3s
+        cursor: pointer
+    .icon-wrapper
+      width: 30px
+      float: left
+    .notice-main
+      margin-left: 30px
+      margin-right: 20px
+    .notice-date
+      color: $gray_40
+      margin-bottom: 8px
+      font-size: 14px
+      @media $mobile
+        font-size: 12px
+        margin-bottom: 5px
+    i
+      color: $gray_30
+      top: 50%;
+      position: absolute
+      transform: translateY(-50%)
+      right: 10px
+    .title
+      margin-bottom: 2px
+    h3
+      color: #1466bf
+      vertical-align: middle
+      display: inline-block
+      font-size: 16px
+      font-weight: bold
+      @media $mobile
+        font-size: 14px
+        color: $gray_70
+    .notice-dot
+      width: 6px
+      height: 6px
+      background-color: $blue_40
+      border-radius: 100%
+      margin-top: 3px
+      margin-left: 8px
+    .icon-box
+      border-radius: 50%
+      background-color: $orange_30
+      width: 18px
+      height: 18px
+      position: relative
+      top: -2px
+    .icon-gift
+      width: 18px
+      height: 18px
+      padding: 3px
+    p
+      line-height: 1.8
+      color: $gray_60
+    .notice-info
+      font-size: 14px
+      @media $mobile
+        font-size: 12px
+        line-height: 1.6
+  .more-wrapper
+    padding: 20px 0 60px
+    @media $mobile
+      width: 88%
+      padding: 0
+      margin: 0 auto
+      background-color: #edeef2
+
+  .btn-more
+    padding: 3px 60px
+    @media $mobile
+        width: 100%

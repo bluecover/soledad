@@ -1,0 +1,254 @@
+<%inherit file="./products_base.html" />
+
+<%namespace import="more_CA003,more_CA001,more_CI003" file='./mods/more_product.html' />
+
+<%!
+  from libs.linker import make_url
+  from jupiter.integration.weixin import get_weixin_config
+%>
+
+<%def name="main()">
+  <div class="ins-common-wrapper">
+    ${self.head()}
+    ${self.neck()}
+    ${self.body()}
+    ${parent.common_compensation_guide()}
+    ${self.reason()}
+    ${self.more()}
+    <%include file="./mods/ins_qrcode.html" />
+  </div>
+</%def>
+
+<%def name="head()">
+  <input type="hidden" id="ins_data" data-url="${url_for('ajax.mail', dcm='email_savi', dcs='phonetopc')}" data-val="${get_weixin_config(jsApiList=['onMenuShareTimeline', 'onMenuShareAppMessage'])}" data-title="中民国寿健康宝贝A计划 - 好规划" data-desc="好规划保险精选：孩子需要的全部保障，这一份都有了"/>
+  <div class="head-wrapper">
+    <div class="desc">
+      <h4 class="text-16">好规划保险精选 <em class="text-green">3险合1的超值儿童险</em></h4>
+      <h2 class="text-bold">中民国寿健康宝贝A计划</h2>
+      <dl class="ins-info">
+        <dt class="text-12">保险信息</dt>
+        <dd>儿童综合险</dd>
+        <dd>消费型</dd>
+        <dd>一年期</dd>
+      </dl>
+      <dl>
+        <dt class="text-12">保障范围</dt>
+        <dd><i class="iconfont icon-checked"></i>住院医疗</dd>
+        <dd><i class="iconfont icon-checked"></i>意外医疗</dd>
+        <dd><i class="iconfont icon-checked"></i>意外伤残</dd>
+      </dl>
+    </div>
+    <div class="buy text-center">
+      <p  class="text-orange">￥<em>350.00</em> /年</p>
+      <a href="#" class="btn btn-primary btn-large btn-start js-btn-start" data-type="zm" data-url="${make_url(redirect_url)}">立即投保</a>
+    </div>
+  </div>
+</%def>
+
+<%def name="neck()">
+  <div class="title-box">1-2岁的超值儿童险</div>
+  <div class="block-wrapper section-wrapper">
+    <div class="clause-wrapper">
+      <h3>简明版保险条款</h3>
+      <div class="twocol-content">
+        <div class="left-col">
+          <div class="circle-box">1</div>
+        </div>
+        <div class="right-col">
+          <h4>保什么</h4>
+          <p>住院医疗：因意外或疾病住院，按50%-90%阶梯赔付医药费，最高10万元；</p>
+          <p>意外医疗：因意外伤害就医，赔付80%医药费，最高1万元；</p>
+          <p>意外伤残：因意外伤害导致身体残疾，最高赔付10万元。</p>
+        </div>
+      </div>
+      <div class="twocol-content">
+        <div class="left-col">
+          <div class="circle-box">2</div>
+        </div>
+        <div class="right-col">
+          <h4>如何简单投保</h4>
+          <p><span class="text-green">无需体检</span>、无需等待，全程在线投保。</p>
+          <p>投保时请如实填写健康问卷；问卷中未涉及的健康问题无需告知保险公司，也不会影响投保和理赔。</p>
+        </div>
+      </div>
+      <div class="twocol-content">
+        <div class="left-col">
+          <div class="circle-box">3</div>
+        </div>
+        <div class="right-col">
+          <h4>犹豫期和等待期</h4>
+          <p>犹豫期10天，期间退保仅扣除少量工本费；犹豫期后退保只能退回很少的保费。</p>
+          <p>住院医疗等待期60天，低于行业平均天数；期间因疾病住院无法赔付，因意外住院正常赔付。</p>
+        </div>
+      </div>
+      <div class="twocol-content">
+        <div class="left-col">
+          <div class="circle-box">4</div>
+        </div>
+        <div class="right-col">
+          <h4>如何赔付</h4>
+          <p>一旦出险，即可拨打销售网站客服电话400-8822-300，将有专业人员协助您报案理赔。</p>
+        </div>
+      </div>
+      <div class="tips">
+        <p>
+          <span class="text-orange">*  </span> 查阅详细条款，请点击“立即投保”按钮，选择“具体条款”。
+        </p>
+        <p>&nbsp;&nbsp;更多问题也欢迎至好规划微信号plan141咨询。</p>
+      </div>
+    </div>
+    <div class="category-wrapper">
+      <h3 class="text-dark">好规划精选<em class="text-green text-bold">全网超值</em>保险，以1-2岁的儿童综合险为例，几款热销产品保费对比如下</h3>
+      <table class="table-box">
+        <tr>
+          <td>产品</td>
+          <td>意外残疾 </td>
+          <td>意外医疗</td>
+          <td>住院医疗</td>
+          <td>意外身故</td>
+          <td>年保费</td>
+        </tr>
+        <tr>
+          <td>民安爱幼保障计划</td>
+          <td>2.5万</td>
+          <td>0.5万</td>
+          <td>2万</td>
+          <td>2.5万</td>
+          <td>438元</td>
+        </tr>
+        <tr>
+          <td>泰康珍爱宝贝保障计划</td>
+          <td>8万</td>
+          <td>0.8万</td>
+          <td>10万</td>
+          <td>6万</td>
+          <td>398元</td>
+        </tr>
+        <tr  class="text-green">
+          <td>中民国寿健康宝贝A计划</td>
+          <td>10万</td>
+          <td>1万</td>
+          <td>10万</td>
+          <td>0</td>
+          <td>350元</td>
+        </tr>
+      </table>
+      <br>
+      <p class="text-light text-12 tips-text">* 本保险产品及后续服务由中民保险网提供，中民保险网具有保监会网销资格的正规资质（保险经纪业务许可证：260636000000800）</p>
+    </div>
+    <div class="service-wrapper">
+      <h3 class="text-dark">还有周到服务，省时省心</h3>
+      <div class="service-box">
+        <div class="twocol-content middle-align">
+          <div class="left-col">
+            <img src="{{{img/childins/a_001.png}}}" alt="">
+          </div>
+          <div class="right-col">
+            <p class="text-dark text-16">在线快速投保</p>
+            <p class="text-lighter">5分钟填保单，在线支付</p>
+          </div>
+        </div>
+      </div>
+      <div class="service-box">
+        <div class="twocol-content middle-align">
+          <div class="left-col">
+            <img src="{{{img/childins/a_002.png}}}" alt="">
+          </div>
+          <div class="right-col">
+            <p class="text-dark text-16">24小时理赔</p>
+            <p class="text-lighter">客服电话400-8822-300</p>
+          </div>
+        </div>
+      </div>
+      <div class="service-box">
+        <div class="twocol-content middle-align">
+          <div class="left-col">
+            <img src="{{{img/childins/a_008.png}}}" alt="">
+          </div>
+          <div class="right-col">
+            <p class="text-dark text-16">每年续投提醒</p>
+            <p class="text-lighter">提前1月提醒，从容续投</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="body()">
+  <div class="title-box">投保指南</div>
+  <div class="block-wrapper section-wrapper">
+    <table class="table-coverage">
+      <tr class="coverage-row">
+        <td class="text-lighter">投保<br class="desktop-element">年龄</td>
+        <td>推荐 1 – 2周岁少儿投保。</td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">保障<br class="desktop-element">期限</td>
+        <td>
+          1年。
+        </td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">保障<br class="desktop-element">内容</td>
+        <td>
+            <p>住院医疗：在二级/二级以上医院住院，对社保范围内的医疗费用按50%-90%阶梯赔付，500元起，最高10万元；</p>
+            <p>意外医疗：因意外伤害在二级/二级以上医院诊疗，对社保范围内的医疗费用按80%赔付，100元起，最高1万元；</p>
+            <p>意外残疾：因意外伤害导致身体残疾，依残疾程度不同赔付相应保险金，最高10万元。</p>
+        </td>
+      </tr>
+    </table>
+  </div>
+</%def>
+
+<%def name="reason()">
+  <div class="title-box">孩子需要哪些保障</div>
+  <div class="block-wrapper reason-wrapper">
+    <div class="section">
+      <h3 class="text-dark">孩子需要这3种保障</h3>
+      <p class="text-green"><i class="iconfont icon-ghcheck"></i> 住院医疗</p>
+      <p>孩子很容易生病，我国儿童保险理赔案件中，医疗费用类的占比超过70%。尤其目前“漂二代”难以享受社会医保，更加需要补充医疗保障。</p>
+      <p>医疗保障分为住院、门诊两类，住院的花销更大，应优先保障。无论住院原因是发烧腹泻、重大疾病、意外受伤，保险都能有效分担医疗费用。</p>
+      <br>
+      <p class="text-green"><i class="iconfont icon-ghcheck"></i> 意外伤害</p>
+      <p>我国每年有20%-40%的儿童遭遇各种意外伤害。适当的保障可以帮助全家更加从容地应对意外、照顾孩子。</p>
+      <p>磕碰、烫伤等轻/中度意外伤害经常就医治疗，需要意外医疗保障。而严重意外导致的伤残，需要意外残疾保障，保险金可以帮助孩子早日恢复正常生活</p>
+      <br>
+      <p class="text-green"><i class="iconfont icon-ghcheck"></i> 重大疾病</p>
+      <p>儿童罹患白血病、癌症、先心等重大疾病的概率不断升高，一旦不幸患病，高额诊疗费用将成为巨大的经济压力，甚至导致孩子丧失良好的成长环境。这就需要足额的重疾保障，一旦确诊即可赔付，利于给孩子更好的治疗。</p>
+      <p>重疾保障一般需要15-30万元，除了儿童综合险外，还应单独投保儿童重疾险。</p>
+    </div>
+    <div class="section">
+      <h3 class="text-dark">孩子不需要这2种保障</h3>
+      <p class="text-red"><i class="iconfont icon-close"></i> 身故</p>
+      <p>孩子并不肩负家庭责任，不幸身故也不会直接影响家庭收入，因此无需身故保障。</p><br>
+      <p class="text-red"><i class="iconfont icon-close"></i> 疾病门诊</p>
+      <p>疾病门诊的花费较低、频率较高，相应保险的保费极高，几乎与保额持平。因此不建议投保。疾病门诊费用自理即可。</p>
+    </div>
+    <div class="text-center">
+      <a class="btn btn-primary btn-start js-btn-start" data-type="zm" href="#" data-url="${make_url(redirect_url)}">立即投保</a>
+      <p class="text-12 text-lighter"><em class="text-orange">*</em> 本页面仅作推荐用途，保险条款以保险合同为准，<br class="mobile-element">付款前请详细了解</p>
+    </div>
+  </div>
+</%def>
+
+<%def name="more()">
+  <div class="title-box">更多精选保险</div>
+  <div class="block-wrapper more-wrapper">
+   ${more_CI003()}
+   ${more_CA003()}
+   ${more_CA001()}
+  </div>
+</%def>
+
+<%def name="js()">
+  <script src='{{{js/lib/wx_sdk.js}}}'></script>
+  <script src="{{{js/childins/ins.js}}}"></script>
+</%def>
+
+<%def name="pagetitle()">
+  <% return '保险精选' %>
+</%def>
+
+
+<%def name="title()">中民国寿健康宝贝A计划 - 好规划</%def>

@@ -1,0 +1,82 @@
+.product-wrapper
+  border: 1px solid $border_color
+  margin-bottom: 30px
+  @media $mobile
+    border-left: none
+    border-right: none
+    &:first-child
+      margin-top: 30px
+  .product-title
+    position: relative
+    overflow: hidden
+    padding: 15px 25px
+    border-bottom: 1px solid #e8e8e8
+    background: #f1f1f1
+    @media $mobile
+      padding-left: 10px
+    h2
+      font-size: 20px
+      color: $brand_blue
+      background: #f1f1f1
+    img
+      position: absolute
+      right: 0px
+      top: 0px
+
+  .product-content
+    display: table
+    border-bottom: 1px solid #e8e8e8
+    background: #fff
+    .item-wrapper
+      display: table-cell
+      float: none
+      padding: 15px 25px
+      vertical-align: top
+      width: 70%
+      border-right: 1px solid #e8e8e8
+      @media $mobile
+        padding-left: 10px
+      .item
+        font-size: 14px
+        color: $gray
+        margin-bottom: 10px
+        div
+          float: left
+          line-height: 1.5em
+          width: 50%
+
+    .product-detail
+      position: relative
+      float: none
+      vertical-align: top
+      width: 30%
+      display: table-cell
+      .product-detail-btn
+        position: absolute
+        margin: auto
+        top: 0
+        right: 0
+        bottom: 0
+        left: 0
+        width: 108px
+        height: 36px
+        @media $mobile
+          padding: 0
+          min-width: 88px
+          width: 88px
+
+  .recommend-reason
+    background: #fff
+    padding: 15px 25px
+    @media $mobile
+      padding-left: 10px
+    h3
+      font-size: 16px
+      line-height: 30px
+      font-weight: 900
+      color: $gray_dark
+      i
+        color: $primary_color
+
+    .reason-content
+      line-height: 1.5em

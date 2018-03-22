@@ -1,0 +1,484 @@
+<%
+  product_savings = {
+  'title_desktop': '<svg src="{svg{{img/index/title_savings_blue.svg}}}"></svg>',
+  'title_mobile': '<img class="svgicon" src="{{{img/logo/w_savings_logo.png}}}" />',
+  'subtitle_desktop': '养成储蓄习惯实现理财目标',
+  'subtitle_mobile': '高收益的定期理财',
+  'logo': '<svg src="{svg{{img/index/logo_savings.svg}}}"></svg>',
+  'desc': [
+  '9.3% 收益高 稳定安全',
+  '25天 期限短 灵活自由',
+  '100元 起投低 想攒就攒'
+  ],
+  'btn_text': '开始攒钱',
+  'url': url_for('savings.landing.index'),
+  }
+
+  product_wallet = {
+  'title_desktop': '<svg src="{svg{{img/index/title_wallet_blue.svg}}}"></svg>',
+  'title_mobile': '<img class="svgicon" src="{{{img/logo/w_change_logo.png}}}" />',
+  'subtitle_desktop': '精打细算不让闲钱零钱偷懒',
+  'subtitle_mobile': '帮您赚钱的移动钱包',
+  'logo': '<svg src="{svg{{img/index/logo_wallet.svg}}}"></svg>',
+  'desc': [
+  '1元起投 随存随取',
+  '7x24小时 存取实时到账',
+  '0费用 申购赎回免费'
+  ],
+  'btn_text': '存入零钱包',
+  'url': url_for('wallet.landing.index'),
+  }
+%>
+
+<div class="section section-1" data-anchor="section-1">
+  <div class="section-wrap">
+    <div class="hd wow" data-delay=".2s" data-animate="zoomIn">
+      <h2 class="title desktop-element">轻松一点，开启理财规划</h2>
+      <h2 class="title mobile-element">轻松开启理财规划</h2>
+    </div>
+    <div class="bd">
+      <h3 class="subtitle wow" data-delay=".2s" data-animate="zoomIn">乐享理财收益，让你轻松一点</h3>
+
+      ${m_plan_form()}
+    </div>
+
+    ${next_arrow()}
+  </div>
+</div>
+
+<div class="section section-2" data-anchor="section-2">
+  <div class="section-wrap">
+  <div class="hd">
+    <h2 class="title wow" data-animate="fadeInUp">您身边的理财规划师</h2>
+  </div>
+  <div class="bd">
+    <div class="accumulated-amount">
+      <p class="desc wow desktop-element" data-delay=".2s" data-animate="fadeInUp">截至目前，已有 ${format(user_count, ',')} 位用户通过好规划进行理财，累计理财金额已达</p>
+      <p class="desc wow mobile-element" data-delay=".2s" data-animate="fadeInUp">截至目前，已有 ${format(user_count, ',')} 位用户通过好规划<br/>进行理财，累计理财金额已达</p>
+      <ul class="amount wow" data-delay=".2s" data-animate="fadeInUp">
+        <%
+        investment_sum_amount_str = format(int(investment_sum_amount), ',')
+        %>
+        % for char in investment_sum_amount_str:
+        <li class="${'comma' if char==',' else 'num'}">${char}</li>
+        % endfor
+        <li class="rmb">元</li>
+      </ul>
+    </div>
+    <%
+    all_service = [{
+    'logo': '<svg src="{svg{{img/index/notes.svg}}}"></svg>',
+    'title': '获得建议',
+    'desc': '根据您的财务状况，理财师结合大数据对您现在的资产结构进行规划建议',
+    },
+    {
+    'logo': '<svg src="{svg{{img/index/target.svg}}}"></svg>',
+    'title': '制定计划',
+    'desc': '根据您的财务目标，为您建立具体的理财目标，制定详尽的理财规划',
+    },
+    {
+    'logo': '<svg src="{svg{{img/index/linechart.svg}}}"></svg>',
+    'title': '安全投资',
+    'desc': '选取优质的理财产品，为理财方案挑选产品，确保理财产品安全',
+    },
+    {
+    'logo': '<svg src="{svg{{img/index/hands.svg}}}"></svg>',
+    'title': '专业服务',
+    'desc': '理财师每日为您提供投资机会、市场解读和理财攻略，并随时为您答疑',
+    }]
+    %>
+    <div class="m-plan-service desktop-element">
+      % for service in all_service:
+      <div class="m-service wow" data-delay=".2s" data-animate="zoomIn">
+        ${m_service(service)}
+      </div>
+      % endfor
+    </div>
+
+    <div class="m-slides mobile-element wow" data-delay=".2s" data-animate="fadeInUp">
+      % for idx in range(0, 4):
+      <div class="slide">
+        <div class="m-service">
+          ${m_service(all_service[idx])}
+        </div>
+      </div>
+      % endfor
+      <div class="btn-prev js-btn-prev disable">
+        <i class="iconfont icon-back"></i>
+      </div>
+      <div class="btn-next js-btn-next">
+        <i class="iconfont icon-forward"></i>
+      </div>
+    </div>
+  </div>
+
+  ${next_arrow()}
+</div>
+</div>
+
+<div class="section section-3" data-anchor="section-3">
+  <div class="section-wrap">
+  <div class="hd">
+    <h2 class="title wow" data-animate="fadeInUp">想理财，无从下手？</h2>
+  </div>
+  <div class="bd">
+    <h3 class="subtitle wow" data-delay=".2s" data-animate="fadeInUp">全面体检，私人定制，开启理财大门</h3>
+    <div class="desc-pic-wrap wow" data-delay=".5s" data-animate="fadeInLeft">
+      <div class="js-website-screenshot website-screenshot">
+        <img class="screenshot" src="{{{img/index/website_screenshot.png}}}" alt="产品页面截图">
+      </div>
+      <div class="desc-pic">
+        <svg src="{svg{{img/index/mac.svg}}}"></svg>
+      </div>
+    </div>
+    <p class="desc wow" data-delay=".2s" data-animate="fadeInUp">专业理财师团队基于国际主流理财规划和资产配置理论，将智能算法和实践<br\>经验结合，从收支预算、建立保障到财富增值，为您定制专属理财规划方案。</p>
+  </div>
+
+  ${next_arrow()}
+  </div>
+</div>
+
+% if not request.user_agent.is_mobile:
+<div class="section section-4" data-anchor="section-4">
+  <div class="section-wrap">
+  <div class="hd">
+    <h2 class="title wow" data-animate="fadeInUp">想理财，难以执行？</h2>
+  </div>
+  <div class="bd">
+    <h3 class="subtitle wow" data-delay=".2s" data-animate="fadeInUp">设定目标，精选产品，降低理财门槛</h3>
+    <p class="desc wow" data-delay=".2s" data-animate="fadeInUp">好规划将分析您的收支状况，使理财目标具体化，同时以中立立场和严谨态度筛选各类优质产品，让您不再无从选择。</p>
+
+    <div class="desktop-element">
+      <div class="wow m-product-intro" data-delay=".2s" data-animate="zoomIn">
+        ${m_product_intro(product_savings)}
+      </div>
+      <div class="wow m-product-intro" data-delay=".2s" data-animate="zoomIn">
+        ${m_product_intro(product_wallet)}
+      </div>
+    </div>
+
+    <div class="m-slides mobile-element">
+      <div class="slide">
+      <div class="wow m-product-intro" data-delay=".2s" data-animate="zoomIn">
+        ${m_product_intro(product_savings)}
+      </div>
+      </div>
+      <div class="slide">
+      <div class="wow m-product-intro" data-delay=".2s" data-animate="zoomIn">
+        ${m_product_intro(product_wallet)}
+      </div>
+      </div>
+      <div class="btn-prev js-btn-prev disable">
+        <i class="iconfont icon-back"></i>
+      </div>
+      <div class="btn-next js-btn-next">
+        <i class="iconfont icon-forward"></i>
+      </div>
+    </div>
+
+  </div>
+
+  ${next_arrow()}
+  </div>
+</div>
+%endif
+
+% if request.user_agent.is_mobile:
+<div class="section section-7" data-anchor="section-7">
+  <div class="section-wrap">
+    <div class="bd">
+
+      <div class="wow m-product-intro">
+        <div class="hd wow" data-animate="fadeInDown">
+          <h2 class="title">${product_savings.get('title_mobile') | n}</h2>
+        </div>
+        <div class="bd">
+          <h3 class="subtitle wow"
+            data-animate="fadeInDown">${product_savings.get('subtitle_mobile')}</h3>
+          <div class="logo-wrap wow" data-delay=".1s" data-animate="zoomIn">
+            ${product_savings.get('logo') | n}
+          </div>
+          <ul class="desc">
+            % for desc in product_savings.get('desc'):
+            <li class="wow"
+              data-delay="${str(loop.index * .2 + .3) + 's'}"
+              data-animate="flipInX">${desc}</li>
+            % endfor
+          </ul>
+          <a class="btn btn-primary btn-plan wow"
+            data-delay=".8s"
+            data-animate="zoomIn"
+            href="${product_savings.get('url')}">${product_savings.get('btn_text')}</a>
+        </div>
+
+      </div>
+    </div>
+
+    ${next_arrow()}
+  </div>
+</div>
+
+<div class="section section-8" data-anchor="section-8">
+  <div class="section-wrap">
+    <div class="bd">
+
+      <div class="m-product-intro">
+        <div class="hd wow" data-animate="fadeInDown">
+          <h2 class="title">${product_wallet.get('title_mobile') | n}</h2>
+        </div>
+        <div class="bd">
+          <h3 class="subtitle wow"
+            data-animate="fadeInDown">${product_wallet.get('subtitle_mobile')}</h3>
+          <div class="logo-wrap wow" data-delay=".1s" data-animate="zoomIn">
+            ${product_wallet.get('logo') | n}
+          </div>
+          <ul class="desc">
+            % for desc in product_wallet.get('desc'):
+            <li class="wow"
+              data-delay="${str(loop.index * .2 + .3) + 's'}"
+              data-animate="flipInX">${desc}</li>
+            % endfor
+          </ul>
+          <a class="btn btn-primary btn-plan wow"
+            data-delay=".8s"
+            data-animate="zoomIn"
+            href="${product_wallet.get('url')}">${product_wallet.get('btn_text')}</a>
+        </div>
+      </div>
+
+    </div>
+
+    ${next_arrow()}
+  </div>
+</div>
+% endif
+
+<div class="section section-5" data-anchor="section-5">
+  <div class="section-wrap">
+  <div class="hd">
+    <h2 class="title wow" data-animate="fadeInUp">想理财，疑问难解？</h2>
+  </div>
+  <div class="bd">
+    <h3 class="subtitle wow" data-delay=".25s" data-animate="fadeInUp">理财服务，随时随地，专业为您理财</h3>
+    <%
+    all_feature = [{
+    'logo': '<svg src="{svg{{img/index/free.svg}}}"></svg>',
+    'title': '终生免费',
+    'desc_desktop': '「好规划」为您免费提供量身定制、中立、专业易懂和可执行的在线理财规划及理财相关咨询服务。',
+    'desc_mobile': '免费提供在线理财规划及咨询服务',
+    },
+    {
+    'logo': '<svg src="{svg{{img/index/24.svg}}}"></svg>',
+    'title': '7x24小时',
+    'desc_desktop': '扫描二维码关注好规划微信号（或直接添加 plan141），随时可与理财师进行沟通，获取理财师的专业解答。',
+    'desc_mobile': ' 关注微信号 plan141，随时解答',
+    },
+    {
+    'logo': '<svg src="{svg{{img/index/safety.svg}}}"></svg>',
+    'title': '安全保障',
+    'desc_desktop': '专业理财师为您筛选稳健型理财产品，充足的风险准备金保障本息不受损失，银行监管资金安全，每一笔交易都透明、放心。',
+    'desc_mobile': ' 本息保障、银行监管、交易透明',
+    },
+    {
+    'logo': '<svg src="{svg{{img/index/expert.svg}}}"></svg>',
+    'title': '专家规划',
+    'desc_desktop': '理财师团队成员均具备国际认证金融理财师CFP/AFP资质和多年理财服务经验，为您提供切实可行的理财指导和建议。',
+    'desc_mobile': '提供切实可行的理财指导和建议',
+    }]
+    %>
+    <div class="m-plan-feature">
+      % for feature in all_feature:
+        % if loop.index % 2 == 0:
+        <div class="m-service wow" data-delay=".2s" data-animate="fadeInLeft">
+          ${m_service(feature)}
+        </div>
+        % else:
+        <div class="m-service wow" data-delay=".2s" data-animate="fadeInRight">
+          ${m_service(feature)}
+        </div>
+        % endif
+      % endfor
+    </div>
+  </div>
+
+  ${next_arrow()}
+  </div>
+</div>
+
+<div class="section section-6" data-anchor="section-6">
+  <div class="section-outer-wrap">
+    <div class="section-wrap section-wrap-1">
+      <div class="hd">
+        <h2 class="title wow" data-delay=".2s" data-animate="fadeInDown">现在开始，成为我们的第 ${format(user_count + 1, ',')} 位用户</h2>
+      </div>
+      <div class="bd">
+        <h3 class="subtitle wow" data-delay=".2s" data-animate="fadeInUp">获得人生的第一份理财规划</h3>
+
+        <div class="desktop-element">
+          ${m_plan_form()}
+        </div>
+        <a class="btn btn-primary btn-plan js-g-register mobile-element wow"
+          href="${url_for('accounts.register.register', next=url_for('mine.mine.mine'))}"
+          data-url="${url_for('mine.mine.mine')}"
+          data-animate="bounceInDown"
+          data-delay=".4s">立即开始规划</a>
+      </div>
+    </div>
+  </div>
+  <div class="section-wrap-2">
+      <div class="hd">
+        <h2 class="title">合作机构</h2>
+      </div>
+      <div class="bd">
+        <ul class="partners">
+          <li>
+            <svg class="logo-yx" src="{svg{{img/index/logo_yx.svg}}}"></svg>
+          </li>
+          <li>
+            <svg class="logo-yxpz" src="{svg{{img/index/logo_yxpz.svg}}}"></svg>
+          </li>
+          <li>
+            <svg class="logo-ms" src="{svg{{img/index/logo_ms.svg}}}"></svg>
+          </li>
+          <li>
+            <svg class="logo-zm" src="{svg{{img/index/logo_zm.svg}}}"></svg>
+          </li>
+          <li>
+            <svg class="logo-700" src="{svg{{img/index/logo_700.svg}}}"></svg>
+          </li>
+        </ul>
+      </div>
+
+      <%include file="../../mods/footer.html" />
+  </div>
+</div>
+
+<%def name="m_service(service)">
+  <div class="hd">
+    <div class="logo-wrap">
+      ${service.get('logo') | n}
+    </div>
+    <h3 class="title">${service.get('title')}</h3>
+  </div>
+  <div class="bd">
+    % if service.get('desc'):
+    <p class="desc">
+      ${service.get('desc')}
+    </p>
+    % endif
+    % if service.get('desc_mobile'):
+    <p class="desc desktop-element">
+      ${service.get('desc_desktop')}
+    </p>
+    % endif
+    % if service.get('desc_mobile'):
+    <p class="desc mobile-element">
+      ${service.get('desc_mobile')}
+    </p>
+    % endif
+  </div>
+</%def>
+
+<%def name="m_plan_form()">
+<div class="m-plan-form wow" data-delay=".2s" data-animate="fadeInUp">
+  <div class="m-select m-select-age js-dropdown-toggle js-gm-select">
+    <div class="hd">
+      <button class="btn select">
+        <span class="prefix">今年</span>
+        <span class="btn-value default">31-40岁</span>
+        <span class="caret"></span>
+      </button>
+    </div>
+    <div class="bd js-dropdown">
+    <ul class="dropdown">
+      <li>
+        <span class="option">
+          <span class="text">18-24岁</span>
+        </span>
+      </li>
+      <li>
+        <span class="option">
+          <span class="text">25-30岁</span>
+        </span>
+      </li>
+      <li>
+        <span class="option">
+          <span class="text">31-40岁</span>
+        </span>
+      </li>
+      <li>
+        <span class="option">
+          <span class="text">41-50岁</span>
+        </span>
+      </li>
+    </ul>
+    </div>
+  </div>
+
+  <div class="m-select m-select-gender js-dropdown-toggle js-gm-select">
+    <div class="hd">
+      <button class="btn select">
+        <span class="btn-value default">
+          <svg src="{svg{{img/index/female.svg}}}"></svg>
+          <span class="text">女生</span>
+        </span>
+        <span class="caret"></span>
+      </button>
+    </div>
+    <div class="bd js-dropdown">
+    <ul class="dropdown">
+      <li>
+        <span class="option">
+          <svg src="{svg{{img/index/male.svg}}}"></svg>
+          <span class="text">男生</span>
+        </span>
+      </li>
+      <li>
+        <span class="option">
+          <svg src="{svg{{img/index/female.svg}}}"></svg>
+          <span class="text">女生</span>
+        </span>
+      </li>
+    </ul>
+    </div>
+  </div>
+
+  <a class="btn btn-primary btn-plan js-g-register desktop-element"
+    href="${url_for('accounts.register.register', next=url_for('mine.mine.mine'))}"
+    data-url="${url_for('mine.mine.mine')}">立即开始规划</a>
+
+  <a class="btn btn-primary btn-plan js-g-register mobile-element wow"
+    href="${url_for('accounts.register.register', next=url_for('mine.mine.mine'))}"
+    data-url="${url_for('mine.mine.mine')}">立即开始规划</a>
+
+</div>
+</%def>
+
+<%def name="m_product_intro(product)">
+  <div class="hd">
+    <h2 class="title mobile-element">${product.get('title_mobile') | n}</h2>
+    <h2 class="title desktop-element">${product.get('title_desktop') | n}</h2>
+  </div>
+  <div class="bd">
+    <h3 class="subtitle desktop-element">${product.get('subtitle_desktop')}</h3>
+    <h3 class="subtitle mobile-element">${product.get('subtitle_mobile')}</h3>
+    ${product.get('logo') | n}
+
+    <ul class="desc">
+    % for desc in product.get('desc'):
+    <li>${desc}</li>
+    % endfor
+    </ul>
+
+    <a class="btn btn-primary btn-plan" href="${product.get('url')}">${product.get('btn_text')}</a>
+  </div>
+</%def>
+
+<%def name="next_arrow()">
+<div class="ft">
+  <a class="anchor-next js-anchor-next" href="#">
+    <svg src="{svg{{img/index/next.svg}}}" class="mobile-element animated"></svg>
+    <svg src="{svg{{img/index/next.svg}}}" class="animated"></svg>
+  </a>
+</div>
+</%def>

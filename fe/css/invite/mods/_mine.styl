@@ -1,0 +1,215 @@
+.bd_weixin_popup
+  .bd_weixin_popup_foot
+    display: none
+
+.hd
+  font-size: 18px
+  line-height: 20px
+  margin-bottom: 15px
+  @media $mobile
+    font-size: 18px
+    margin-bottom: 25px
+    text-align: center
+strong
+  color: $orange_80
+
+.invite-mine-wrapper
+  .share-box
+    padding: 20px
+    .title
+      margin-bottom: 8px
+    p
+      line-height: 1.8
+    .arrow-img
+      margin-left: 5px
+      width: 100px
+    .icon-smile
+      width: 30px
+      display: block
+      margin: 0 auto 10px
+    span
+      position: relative
+
+  .top-banner
+    .banner
+      width: 100%
+    .title
+      position: absolute
+      width: 100%
+      left: 50%
+      top: 0
+      font-size: 62px
+      line-height: 70px
+      padding-top: 50px
+      color: #fff
+      margin-left: -50%
+      @media $mobile
+        font-size: 22px
+        line-height: 22px
+        padding-top: 20px
+    .subtitle
+      position: absolute
+      width: 100%
+      left: 50%
+      top: 150px
+      font-size: 36px
+      color: $orange_90
+      line-height: 40px
+      margin-left: -50%
+      @media $mobile
+        font-size: 16px
+        line-height: 30px
+        top: 50px
+
+  .invite-mod
+    background-color: $yellow_20
+    text-align: center
+    padding: 20px
+  .invite-mod-bd
+    display: inline-block
+    font-size: 18px
+    padding: 0 20px
+    @media $mobile
+      font-size: 12px
+      line-height: 25px
+      padding: 10px 5px 20px
+    h5
+      font-size: 14px
+      margin-bottom: 20px
+    .over-tip
+      @media $mobile
+        display: inline-block
+        font-size: 14px
+        padding-top: 10px
+    .invite-link
+      word-break: break-word
+      @media $mobile
+        font-size: 16px
+        margin-left: 0
+        display: block
+    .link-saving
+      margin: 0 5px
+    .saving-tip
+      @media $mobile
+        font-size: 18px
+    .icon-smile
+      display: inline-block
+      vertical-align: middle
+      margin-right: 20px
+      width: 48px
+      height: 48px
+      @media $mobile
+        display: block
+        margin: 0 auto 10px
+
+  .share-mod
+    margin-bottom: 10px
+    .share-btns
+      margin: 0 auto
+      width: 140px
+    a
+      display: inline-block
+      height: 24px
+      width: 24px
+      vertical-align: middle
+      margin-right: 10px
+      &:hover
+        opacity: .6
+    .share-btn
+      width: 35px
+      height: 35px
+      border-radius: 50%
+    .btn-weixin
+      background: #56c33e url('{{{img/invite/wechat.png}}}') center center no-repeat
+      background-size: 65%
+    .btn-qzone
+      background: #1f9bd7 url('{{{img/invite/qzone.png}}}') center center no-repeat
+      background-size: 65%
+    .btn-tsina
+      background:#cb1c00 url('{{{img/invite/weibo.png}}}') center center no-repeat
+      background-size: 65%
+
+  .invite-desc-mod
+    margin-top: 56px
+    @media $mobile
+      margin-top: 20px
+    .title
+      margin-bottom: 20px
+    .bd
+      li
+        position: relative
+        margin-bottom: 10px
+      .mark
+        position: absolute
+        top: 3px
+        left: 0
+        padding: 2px 6px
+        line-height: 14px
+        border-radius: 2px
+        color: #fff
+      .num-mark
+        background-color: #ccc
+      .money-mark
+        background-color: $orange_50
+      .desc
+        display: inline-block
+        margin-left: 50px
+        color: $gray
+        line-height: 1.8
+        @media $mobile
+          margin-left: 30px
+
+  .invite-list
+    margin-top: 40px
+    .hd
+      margin-bottom: 25px
+      @media $mobile
+        margin-top: 20px
+      .title
+        display: inline-block
+      .stats-info
+        display: inline-block
+        font-size: 14px
+        @media $mobile
+          display: block
+          text-align: left
+          margin-top: 25px
+      .people
+        margin: 0 25px 0 15px
+        @media $mobile
+          display: block
+          margin: 5px 0
+    .bd
+      table
+        border-collapse: collapse
+        width: 100%
+      thead
+        color: $gray_40
+        border-bottom: 1px solid $gray_10
+        td
+          padding-bottom: 15px
+      tbody
+        tr
+          line-height: 49px
+          border-bottom: 1px dotted $gray_20
+      td
+        text-align: center
+        &:first-child
+          text-align: left
+        &:last-child
+          text-align: right
+          @media $mobile
+            text-align: center
+      .mark
+        width: 60px
+        height: 24px
+        line-height: 24px
+        vertical-align: middle
+        text-align: center
+        color: #fff
+        display: inline-block
+        background-color: $green_40
+        border-radius: 2px
+        margin-right: 4px
+      .mark-done
+        background-color: $gray_40

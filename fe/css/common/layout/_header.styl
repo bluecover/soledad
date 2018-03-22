@@ -1,0 +1,218 @@
+red-dot(top,right)
+  width: 8px
+  height: 8px
+  background-color: $red_50
+  position: absolute
+  top: top
+  right: right
+  border-radius: 100%
+  border: 1px solid #fff
+
+.header-wrapper
+  background: #fff
+  min-width: 1170px
+  border-bottom: 1px solid rgba(0,0,0,0.12)
+  @media $mobile
+    min-width: 0
+
+  .header-content
+    clearfix()
+    padding-left: 25px
+    margin: 0 auto
+    position: relative
+    vertical-align: middle
+    height: 50px
+    background-color: #f6f6f8
+    @media $mobile
+      width: auto
+      padding: 0
+      height: 40px
+
+  .logo
+    float: left
+    padding: 10px 20px
+    @media $mobile
+      padding: 5px 15px
+    img
+      height: 30px
+
+  .nav-con
+    @import '../mods/_app_download_nav'
+    float: right
+    vertical-align: middle
+    font-size: 0
+    &.unlogin
+      .item
+        border-right: none
+      .icon-mobile
+        display: inline-block
+    .icon-mobile
+      display: none
+    .item
+      padding-left: 20px
+      padding-right: 20px
+      display: inline-block
+      border-right: 1px solid $gray_20
+      text-align: center
+      font-size: 14px
+      position: relative
+
+    a
+      color: $gray
+      &:hover
+        opacity: .8
+    .active
+      background: $brand_orange
+      padding: 8px 20px
+      margin-right: 15px
+      a
+        color: #fff
+    .icon-admin
+      width: 25px
+      height: 25px
+      vertical-align: middle
+      margin-right: 10px
+    .welfare-nav
+      position: relative
+      line-height: 51px
+      .icon-gift
+        vertical-align: middle
+        width: 15px
+        height: 15px
+        margin-left: 3px
+        margin-top: -3px
+      .red-dot
+        red-dot(-3px,-3px)
+
+  .account-info
+    padding-right: 30px
+    line-height: 50px
+    position: relative
+    .red-dot
+      red-dot(-3px,-4px)
+
+  .dropdown-menu
+    text-align: left !important
+    z-index: 20
+    position: absolute
+    left: 0
+    top: 51px
+    background: #fff
+    border: 1px solid #ccc
+    width: 160px
+    display: none
+    box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.18)
+    width: 140px
+    @media $mobile
+      width: 120px
+      left: auto
+      right: 0
+      top: 40px
+    li
+      display: block
+      padding: 0 18px
+      border-top: 1px dotted $border_color
+      margin: 0
+      width: 100%
+      height: auto
+      &:first-child
+        border-top: none
+      &:hover
+        background: #eee
+    a
+      display: block
+      line-height: 42px
+      padding: 0
+      color: #333
+      height: auto
+      font-size: 13px
+      text-align: left
+      font-weight: 100
+      &:hover
+        border-bottom: none !important
+      span
+        position: relative
+        .red-dot
+          red-dot(-2px !important,-3px !important)
+
+  .mobile-header
+    text-align: center
+    font-size: 17px
+    font-weight: bold
+    line-height: 40px
+    .account
+      position: absolute
+      right: 15px
+      color: #999
+      .red-dot
+        red-dot(7px,2px)
+    .icon-account
+      font-size: 26px
+
+    .app-download
+      position: absolute
+      left: 65px
+      top: 4px
+      .svgicon
+        width: 13px
+        height: (13/8)*13px
+        fill: #999
+    .welfare-nav
+      position: absolute
+      right: 60px
+      top: -1px
+      .icon-gift
+        vertical-align: middle
+        width: 22px
+        height: 22px
+        fill: #999
+      .red-dot
+        red-dot(8px,-2px)
+
+  .lines-button
+    position: absolute
+    top: 0
+    left: 0
+    padding: 8px 10px 15px 20px
+    outline: none
+    transition: .3s
+    user-select: none
+    line-height: 14px
+    .lines
+      position: relative
+      display: inline-block
+      width: 20px
+      height: 3px
+      background: #999
+      border-radius: 3px
+      transition: 0.3s
+      &:before,
+      &:after
+        display: inline-block
+        width: 20px
+        height: 3px
+        background: #999
+        border-radius: 3px
+        transition: 0.3s
+        position: absolute
+        left: 0
+        content: ''
+        transform-origin: 0.28571rem center
+      &:before
+        top: 6px;
+      &:after
+        top: -6px;
+  .close
+    transform: scale3d(0.8, 0.8, 0.8)
+  .close .lines
+    background: transparent
+    &:before,
+    &:after
+      transform-origin: 50% 50%
+      top: 2px
+      width: 24px
+    &:before
+      transform: rotate3d(0, 0, 1, 45deg)
+    &:after
+      transform: rotate3d(0, 0, 1, -45deg)
+

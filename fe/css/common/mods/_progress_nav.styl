@@ -1,0 +1,50 @@
+.progress-nav
+  margin: 40px auto 30px
+  position: relative
+  text-align: center
+  @media $mobile
+    width: auto
+    margin: 15px auto
+  a
+    margin-left: 100px
+    color: $gray_light
+    font-size: 16px
+    vertical-align: middle
+    &:first-child
+      margin-left: 0
+    &.on,
+    &:hover
+      .title
+        color: $brand_orange
+    &.disabled
+      pointer-events: none  // Future-proof disabling of clicks
+      cursor: default
+      color: $gray_30
+    .iconfont
+      font-size: 22px
+      width: 22px
+      display: inline-block
+    @media $mobile
+      display: inline-block
+      font-size: 14px
+      width: 24%
+      margin: 0
+
+.progress-dot
+  display: none
+  position: absolute
+  top: -1px
+  left: 0
+  height: 2px
+  width: 100px
+  background: #c5d3fd
+  i
+    width: 8px
+    height: 8px
+    border: 2px solid $brand_orange
+    border-radius: 50%
+    display: inline-block
+    position: absolute
+    left: 100px
+    top: -3px
+    background: #fff

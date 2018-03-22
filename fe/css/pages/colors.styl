@@ -1,0 +1,38 @@
+@import '../core/_global.styl'
+@import 'jeet'
+
+$clr_list_class_name = ('.red' '.pink' '.purple' '.deep-purple' '.indigo' '.blue'\
+                  '.cyan' '.teal' '.green' '.light-green' '.deep-green'\
+                  '.yellow' '.orange' '.deep-orange' '.brown' '.blue-gray' '.purple-gray' '.fancy-gray' '.gray')
+
+for list, i_list in $clr_list
+  for color, index in list
+    {$clr_list_class_name[i_list]}-{$clr_item_name[index]}
+      background: color
+
+
+.color-palette-wrapper
+  center(max-witdh=1200px)
+  margin-top: 30px
+
+  h1
+    font-size: 30px
+    text-align: center
+    margin-bottom: 30px
+
+  .color-list
+    col(1/4, cycle:4)
+    margin-bottom: 30px
+
+  .color-item
+    height: 40px
+    line-height: 40px
+    margin-bottom: 5px
+    padding: 0 20px
+    color: #444
+    //text-shadow: 2px 2px #000
+    transition: transform .2s ease-in-out
+    box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.1);
+    &:hover
+      transform: scale(1.1)
+      cursor: pointer

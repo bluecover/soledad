@@ -1,0 +1,45 @@
+<%
+  def dcls(path):
+    if path == cur_path:
+      return 'on'
+    else:
+      return ''
+
+  def fcls(path):
+    insure_nav = ['disease', 'life', 'accident', 'insurance', 'children']
+    funds_nav = ['mmf', 'bond', 'index', 'stock']
+
+    if cur_path in insure_nav:
+      if path == 'insurance':
+        return True
+
+    if cur_path in funds_nav:
+      if path == 'funds':
+        return True
+%>
+
+<div class="side-nav">
+  <ul>
+    <li><a href="/mine/product/p2p" class="${dcls('p2p')}">P2P网贷</a></li>
+    <li class="${'unfolded' if fcls('insurance') else ''}">
+      <a href="/mine/product/insurance" class="${dcls('insurance')} ${'active-li' if fcls('insurance') else ''}">保险产品</a>
+      <ul>
+        <li><a href="/mine/product/insurance/disease" class="${dcls('disease')}">重疾险</a></li>
+        <li><a href="/mine/product/insurance/life" class="${dcls('life')}">定期寿险</a></li>
+        <li><a href="/mine/product/insurance/accident" class="${dcls('accident')}">综合意外险</a></li>
+        <li><a href="/mine/product/insurance/children" class="last ${dcls('children')}">儿童综合险</a></li>
+      </ul>
+      <span class="nav-triangle"></span>
+    </li>
+    <li class="${'unfolded' if fcls('funds') else ''}">
+      <a href="/mine/product/funds" class="${dcls('funds')} ${'active-li' if fcls('funds') else ''}">基金产品</a>
+      <ul>
+        <li><a href="/mine/product/funds/mmf" class="${dcls('mmf')}">货币型基金</a></li>
+        <li><a href="/mine/product/funds/bond" class="${dcls('bond')}">债券型基金</a></li>
+        <li><a href="/mine/product/funds/index" class="${dcls('index')}">指数型基金</a></li>
+        <li><a href="/mine/product/funds/stock" class="last ${dcls('stock')}">股票型基金</a></li>
+      </ul>
+      <span class="nav-triangle"></span>
+    </li>
+  </ul>
+</div>

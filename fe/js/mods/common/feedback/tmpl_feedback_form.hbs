@@ -1,0 +1,20 @@
+<div class="twocol-content">
+  <div class="left-col"><img src="{{ wechat_img }}" alt="好规划微信：plan141" width="120" height="120"/></div>
+  <div class="right-col">
+    <p class="feedback-txt js-feedback-txt">感谢您使用“好规划”的服务！在使用中如果有任何的疑问和意见，我们建议您通过微信公众号“好规划”跟我们进行实时反馈。请扫描二维码或者搜索“好规划”与我们的理财师进行一对一沟通。<br/>您也可以通过网页进行<a href="#" class="js-show-operate-btn">反馈留言</a>，我们会尽快为您答复！</p>
+    <div class="js-feedback-operate feedback-operate">
+      <div class="feedback-con item">
+        <textarea name="feedback" class="validate js-feedback-textarea" cols="30" rows="10" placeholder="请输入您的宝贵意见" data-validate="require,count"></textarea>
+        <span class="tips"></span>
+      </div>
+      {{#if user_email}}
+        <input class="email-input js-email" type="hidden" name="contact" value={{ user_email }} />
+      {{else}}
+        <div class="item">
+          <input class="em validate ail-input js-ail-input" data-validate="require,email" type="text" name="contact" placeholder="欢迎您留下邮箱地址，以便接收反馈问题的最新进展，或与我们进行深入沟通" />
+        </div>
+      {{/if}}
+      <a class="btn btn-blue feed-submit js-feed-submit" href="#">提交</a>
+    </div>
+  </div>
+</div>

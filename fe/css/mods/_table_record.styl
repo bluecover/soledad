@@ -1,0 +1,69 @@
+.mod-record-wrapper
+  table
+    width: 100%
+  thead
+    tr
+      line-height: 40px
+    @media $mobile
+      td
+        font-size: 12px
+    td
+      color: $gray_40
+
+  tr
+    line-height: 70px
+    width: 100%
+    cursor: pointer
+    &:last-child td
+      border-bottom: none
+    &:first-child td
+      border-bottom: 1px dotted $gray_30
+    @media $mobile
+      line-height: 60px
+
+  td
+    border-bottom: 1px dotted $gray_30
+    color: $gray_light
+    .number
+      @media $mobile
+        margin-top: -23px
+        display: block
+  tbody
+    tr
+      &:hover
+        background-color: $gray_10
+
+  .btn-badge
+    color: #fff
+    min-width: 0
+    line-height: 25px
+    padding: 0 5px
+    background: $green_30
+    margin-right: 10px
+    border-radius: 0
+    font-size: 12px
+    @media $mobile
+      display: block
+      width: 38px
+      font-size: 12px
+      height: 15px
+      line-height: 15px
+      padding: 0
+      margin-top: 7px
+      margin-bottom: 1px
+  .btn-warning
+    background-color: $red_30
+  .btn-primary
+    background-color: $orange_30
+  .btn-info
+    background-color: $gray_30
+  .ft
+    margin-top: 30px
+    text-align: center
+    @media $mobile
+      margin-top: 20px
+      margin-bottom: 20px
+      .btn
+        font-size: 20px
+        line-height: 60px
+        display: block

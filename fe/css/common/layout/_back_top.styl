@@ -1,0 +1,17 @@
+.gm-back-top
+  display: none
+  position: fixed
+  right: 40px
+  bottom: 50px
+  z-index: 0
+  @media $mobile
+    bottom: 30px
+  >.bd
+    .icon
+      width: 22px
+      height: 38px
+      @media $mobile
+        width: 15px
+        height: (15/22)*38 px
+      &:hover
+        opacity: .8

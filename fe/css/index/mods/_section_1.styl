@@ -1,0 +1,120 @@
+.section-1
+  background: no-repeat center center
+  background-color: rgba(248, 248, 248, .9)
+  background-size: 100% 100%
+  background-size: cover
+  image-set("{{{img/index/section_1_background.jpg}}}", "{{{img/index/section_1_background@2.jpg}}}")
+  background-image: none \9
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='{{{img/index/section_1_background.jpg}}}', sizingMethod='scale')"
+  @media $mobile
+    background-position-y: 100%
+    background-image: url("{{{img/index/section_1_background_mobile.jpg}}}")
+  .section-wrap
+    >.hd
+      margin-top: -100px
+      @media $mobile
+        left: 0
+        width: 100%
+        position: absolute
+        top: 96px
+        top: 25vw
+        margin-top: 0
+      .title
+        color: #fff
+        font-size: 60px
+        @media $mobile
+          font-size: 28px
+          font-size: 10vw
+    >.bd
+      .subtitle
+        color: #fff
+        opacity: .9
+        font-size: 20px
+        margin-bottom: 70px
+        @media $mobile
+          left: 0
+          width: 100%
+          position: absolute
+          top: 140px
+          top: 40vw
+          font-size: 14px
+          font-size: 5vw
+    .anchor-next
+      .svgicon
+        animation-name: fadeInDown
+        animation-duration: 2s
+        animation-iteration-count: infinite
+        path
+          fill: #fff
+
+  .m-plan-form
+    .btn
+      line-height: 55px
+      height: 55px
+      width: 184px
+      font-size: 20px
+    @media $mobile
+      width: 80%
+      margin: 0 auto
+      left: 0
+      right: 0
+      position: absolute
+      bottom: 60px
+      line-height: 40px
+      .btn-plan
+        margin-top: 14px
+        width: 100%
+        line-height: 50px
+        height: 50px
+        font-size: 18px
+  .m-select
+    &:after
+      width: 235px
+      @media $mobile
+        width: 100%
+    >.hd
+        line-height: 55px
+        height: 55px
+        @media $mobile
+          line-height: 40px
+          height: 40px
+      .btn
+        width: 235px
+        line-height: 55px
+        height: 55px
+        @media $mobile
+          min-width: 0
+          width: 100%
+          padding: 0 10px
+        .svgicon
+          margin: 20px 5px 0 0
+          @media $mobile
+            margin: 10px 5px 0 0
+      .caret
+        top: 25px
+        @media $mobile
+          top: 20px
+          right: 10px
+    >.bd
+      .dropdown
+        @media $mobile
+          border-radius: 4px 4px 0 0
+          bottom: 40px
+          top: auto
+
+  @media $mobile
+    .m-select-age,
+    .m-select-gender
+      margin-right: 2%
+      width: 58%
+      >.hd
+        .btn
+          line-height: 40px
+          height: 40px
+          width: 100%
+    .m-select-gender
+      width: 40%
+      margin-right: 0
+      >.bd
+        .option
+          padding-left: 10px

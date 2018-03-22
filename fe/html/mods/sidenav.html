@@ -1,0 +1,51 @@
+<%namespace name="utils" file="/utils.html" />
+
+<%!
+from core.models.insurance.profile import Profile
+%>
+<%
+  prof = Profile.get(g.user.id) if g.user else None
+  chk_path = utils.chk_path
+  cur_path = context.get('cur_path', '')
+  arr_center = ['center', 'info', 'plan']
+  arr_fund = ['fund']
+
+  view_category = request.endpoint.split('.', 1)[0]
+%>
+<div>
+  <ul class="nav-list">
+    <li class="nav-item ${'on' if cur_path in arr_center else ''}"><a href="/mine"><i class="icon-con iconfont icon-store"></i>理财中心</a></li>
+    <ul class="nav-sub-list ${'hide' if cur_path not in arr_center else ''}">
+      <li class="nav-item ${chk_path('plan', cur_path)}"><a href="/mine/plan">在线规划书</a></li>
+      <li class="nav-item ${chk_path('info', cur_path)}"><a href="/mine/info">更新规划书数据</a></li>
+    </ul>
+  </ul>
+
+  <ul class="nav-list">
+    ## 攒钱助手
+    <li class="nav-item ${'on' if view_category == 'savings' else ''}">
+      <a href="${url_for('savings.landing.index', dcm='guihua', dcs='header')}"><i class="icon-con iconfont icon-savings"></i>攒钱助手</a>
+    </li>
+    <ul class="nav-sub-list ${'hide' if view_category != 'savings' else ''}">
+      %if g.user and orders:
+        <li class="nav-item ${chk_path('record', cur_path)}"><a href="/savings/record">交易记录</a></li>
+      %endif
+    </ul>
+
+    ## 零钱包
+    <li class="nav-item ${'on' if view_category == 'wallet' else ''}">
+      <a href="${url_for('wallet.landing.index', dcm='guihua', dcs='header')}"><i class="icon-con iconfont icon-wallet"></i>零钱包</a>
+    </li>
+
+    ## <li class="nav-item ${'on' if cur_path in arr_fund else ''}"><a href="/fund"><i class="icon-con iconfont icon-uparrow"></i>基金管家</a></li>
+
+    ## 保险
+    <li class="nav-item ${'on' if view_category == 'ins' else ''}">
+      <a href="${url_for('ins.landing.index')}"><i class="icon-con iconfont icon-sumber"></i>保险精选</a>
+    </li>
+
+    <li class="nav-item">
+      <a href="/viewpoints" target="_blank"><i class="icon-con iconfont icon-scard"></i>理财课堂</a>
+    </li>
+  </ul>
+</div>

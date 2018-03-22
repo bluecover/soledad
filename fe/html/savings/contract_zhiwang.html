@@ -1,0 +1,22 @@
+<%inherit file="./base.html" />
+
+<%def name="main()">
+  % if not error:
+    <input type="hidden" id="contract_data" data-contract="${contract}">
+  % endif
+
+  <div class="contract-wrapper block-wrapper" id='contract'>
+    %if error:
+      ${error}
+    % endif
+  </div>
+</%def>
+
+<%def name="js()">
+  <script src="{{{js/help/agreement.js}}}"></script>
+</%def>
+
+<%def name="title()">咨询与服务协议</%def>
+<%def name="pagetitle()">
+  <% return '咨询与服务协议' %>
+</%def>

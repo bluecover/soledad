@@ -1,0 +1,252 @@
+<%inherit file="./products_base.html" />
+
+<%namespace import="more_A002,more_A001,more_CI001" file='./mods/more_product.html' />
+
+<%!
+  from libs.linker import make_url
+  from jupiter.integration.weixin import get_weixin_config
+%>
+
+<%def name="main()">
+  <div class="ins-common-wrapper  childins-a003-wrapper">
+    ${self.head()}
+    ${self.neck()}
+    ${self.body()}
+    ${parent.common_compensation_guide()}
+    ${self.reason()}
+    ${self.more()}
+    <%include file="./mods/ins_qrcode.html" />
+  </div>
+</%def>
+
+<%def name="head()">
+   <input type="hidden" id="ins_data" data-url="${url_for('ajax.mail', dcm='email_savi', dcs='phonetopc')}" data-val="${get_weixin_config(jsApiList=['onMenuShareTimeline', 'onMenuShareAppMessage'])}" data-title="国寿“住院宝”必备版 - 好规划" data-desc="好规划保险精选：能保疾病住院的意外险，无医保者必投"/>
+   <div class="head-wrapper">
+    <div class="desc">
+      <h4 class="text-16">好规划保险精选  <em class="text-green">能保疾病住院的意外险</em></h4>
+      <h2 class="text-bold">国寿“住院宝”必备版</h2>
+      <dl class="ins-info">
+        <dt class="text-12">保险信息</dt>
+        <dd>综合意外险</dd>
+        <dd>消费型</dd>
+        <dd>一年期</dd>
+      </dl>
+      <dl>
+        <dt class="text-12">保障范围</dt>
+        <dd><i class="iconfont icon-checked"></i>意外身故/残疾 </dd>
+        <dd><i class="iconfont icon-checked"></i>意外医疗</dd>
+        <dd><i class="iconfont icon-checked"></i>住院医疗</dd>
+      </dl>
+    </div>
+    <div class="buy text-center">
+      <p  class="text-orange">￥<em>128.00</em> /年</p>
+      <a href="#" class="btn btn-primary btn-large btn-start js-btn-start" data-type="zm" data-url="${make_url(redirect_url)}" >立即投保</a>
+    </div>
+  </div>
+</%def>
+
+<%def name="neck()">
+  <div class="title-box">意外险也保住院医疗</div>
+  <div class="block-wrapper section-wrapper">
+    <div class="plan-wrapper">
+      <h3>对疾病住院也有保障的意外险，无医保者必投！</h3>
+      <div class="plan-row plan-2">
+        <p class="text-light">10万意外身故/残疾 + 1万意外医疗 + <span class="text-green">1万意外/疾病住院医疗</span> + 住院津贴100元/天 <br class="mobile-element">= <em class="text-orange">128</em>元/年</p>
+      </div>
+      <p class="text-light text-12 text-tips">* 本保险产品及后续服务由中民保险网提供，中民保险网具有保监会网销资格的正规资质（保险经纪业务许可证：260636000000800）</p>
+    </div>
+    <div class="category-wrapper">
+      <h3 class="text-dark">好规划精选<em class="text-green text-bold">优质低价</em>保障，满足各种需求</h3>
+      <p>对无医保人群来说，补充医疗保障非常必要。本产品提供底价住院保障，意外/疾病住院均可享受，是性价比极高的医保补充。</p>
+      <p>以50岁女性为例，本产品、纯意外险、纯医疗险的保障对比如下</p>
+      <table class="table-box">
+        <tr>
+          <td>保障需求</td>
+          <td>对应保险 </td>
+          <td>意外身故/残疾</td>
+          <td>意外医疗</td>
+          <td>住院医疗</td>
+          <td>年保费</td>
+        </tr>
+        <tr class="text-green">
+          <td>意外+医疗保障</td>
+          <td>国寿“住院宝”必备版</td>
+          <td>10万元</td>
+          <td>1万元</td>
+          <td>1万元</td>
+          <td>128元</td>
+        </tr>
+        <tr>
+          <td>仅需意外保障</td>
+          <td>中民无忧综合意外基本计划</td>
+          <td>10万元</td>
+          <td>1万元</td>
+          <td>0</td>
+          <td>60元</td>
+        </tr>
+        <tr>
+          <td>高收入者增加医疗保障</td>
+          <td>招商信诺乐享睿健高端医疗险</td>
+          <td>0</td>
+          <td>0</td>
+          <td>25万元</td>
+          <td>4406元</td>
+        </tr>
+      </table>
+    </div>
+    <div class="service-wrapper">
+      <h3 class="text-dark">还有贴心服务，省时省心</h3>
+      <div class="service-box">
+        <div class="twocol-content middle-align">
+          <div class="left-col">
+            <img src="{{{img/childins/a_001.png}}}" alt="">
+          </div>
+          <div class="right-col">
+            <p class="text-dark text-16">在线快速投保</p>
+            <p class="text-lighter">5分钟填保单，在线支付</p>
+          </div>
+        </div>
+      </div>
+      <div class="service-box">
+        <div class="twocol-content middle-align">
+          <div class="left-col">
+            <img src="{{{img/childins/a_003.png}}}" alt="">
+          </div>
+          <div class="right-col">
+            <p class="text-dark text-16">为全家投保</p>
+            <p class="text-lighter">可以代配偶、父母投保</p>
+          </div>
+        </div>
+      </div>
+      <div class="service-box">
+        <div class="twocol-content middle-align">
+          <div class="left-col">
+            <img src="{{{img/childins/a_002.png}}}" alt="">
+          </div>
+          <div class="right-col">
+            <p class="text-dark text-16">24小时理赔</p>
+            <p class="text-lighter">客服电话400-8822-300</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="body()">
+  <div class="title-box">投保指南</div>
+  <div class="block-wrapper section-wrapper">
+    <table class="table-coverage">
+      <tr class="coverage-row">
+        <td class="text-lighter">投保<br class="desktop-element">年龄</td>
+        <td>18 – 60周岁。</td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">保障<br class="desktop-element">范围</td>
+        <td>
+          <p>意外身故/残疾：因意外事故导致身故，全额给付身故保险金；因意外导致身体残疾，按合同约定比例给付残疾保险金；</p>
+          <p>意外医疗：因意外伤害在二级以上（含二级）医院诊疗，报销赔付意外医疗保险金；</p>
+          <p>住院医疗：住院时产生社保范围内的医疗费用即可报销，意外或疾病导致的住院均可报销。</p>
+        </td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">保额</td>
+        <td class="last-child">
+          <div class="desc-text">
+            <p>意外身故/残疾：10万元；</p>
+            <p>意外医疗：1万元；</p>
+            <p>意外/疾病住院医疗：1万元；</p>
+            <p>住院津贴：100元/天。</p>
+          </div>
+        </td>
+      </tr>
+      <tr class="coverage-row">
+        <td class="text-lighter">保障<br class="desktop-element">期限</td>
+        <td>365天。</td>
+      </tr>
+    </table>
+  </div>
+</%def>
+
+<%def name="reason()">
+  <div class="title-box">为什么买意外险</div>
+  <div class="block-wrapper reason-wrapper">
+    <div class="section">
+      <h4 class="text-orange"><svg class="icon-lightning" src="{svg{{img/childins/lightning.svg}}}"></svg>意外伤害概率高，风险须防范</h4>
+      <p>小到扭伤烫伤，大到撞车空难，意外事故高发。参考下表，在25-35岁的男性中，平均35%的死亡由意外造成。而针对女性，这一数值高达75%。</p>
+      <table class="table-box">
+        <tr>
+          <td>年龄</td>
+          <td>男性死亡 </td>
+          <td>女性死亡</td>
+          <td>意外死亡</td>
+          <td>意外致残</td>
+        </tr>
+        <tr>
+          <td>25岁</td>
+          <td>750</td>
+          <td>345</td>
+          <td rowspan="2">336</td>
+          <td rowspan="2">309</td>
+        </tr>
+        <tr>
+          <td>35岁</td>
+          <td>1170</td>
+          <td>557</td>
+        </tr>
+        <tr>
+          <td colspan="5" class="align-right">单位：每百万人身故人数</td>
+        </tr>
+      </table>
+    </div>
+    <div class="section">
+      <h4 class="text-orange"><svg class="icon-lightning" src="{svg{{img/childins/lightning.svg}}}"></svg>意外事故带来经济损失，意外险雪中送炭</h4>
+      <table class="table-box">
+        <tr>
+          <td>事故</td>
+          <td>后果</td>
+          <td>意外险的作用</td>
+        </tr>
+        <tr>
+          <td>意外<br class="mobile-element">致亡</td>
+          <td>子女、父母无人赡养</td>
+          <td rowspan="2">一次性赔付<br class="mobile-element">大笔保险金</td>
+        </tr>
+        <tr>
+          <td>意外<br class="mobile-element">致残</td>
+          <td >高额治疗费、收入减少，<br class="mobile-element">经济压力巨大</td>
+        </tr>
+        <tr>
+          <td>意外<br class="mobile-element">受伤</td>
+          <td>短期资金紧张、打乱<br class="mobile-element">理财计划</td>
+          <td>报销诊疗费用</td>
+        </tr>
+      </table>
+    </div>
+    <p>意外险有效缓解意外伤害带来的经济压力，是给家人的一份安心保障，建议所有成年人投保。</p><p>（本保险仅适用于成人，为儿童构筑保障请戳：<a href="https://www.guihua.com/ins/children/?dcm=web_ins&dcs=A003">儿童保险</a>）</p>
+    <div class="text-center">
+      <a class="btn btn-primary btn-start js-btn-start" data-type="zm" href="#" data-url="${make_url(redirect_url)}" >立即投保</a>
+      <p class="text-12 text-lighter"><em class="text-orange">*</em> 本页面仅作推荐用途，保险条款以保险合同为准，<br class="mobile-element">付款前请详细了解</p>
+    </div>
+  </div>
+</%def>
+
+<%def name="more()">
+  <div class="title-box">更多精选保险</div>
+  <div class="block-wrapper more-wrapper">
+    ${more_A001()}
+    ${more_A002()}
+    ${more_CI001()}
+  </div>
+</%def>
+
+<%def name="js()">
+  <script src='{{{js/lib/wx_sdk.js}}}'></script>
+  <script src="{{{js/childins/ins.js}}}"></script>
+</%def>
+
+<%def name="pagetitle()">
+  <% return '保险精选' %>
+</%def>
+
+<%def name="title()">国寿“住院宝”必备版 - 好规划</%def>

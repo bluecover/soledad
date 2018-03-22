@@ -1,0 +1,91 @@
+@import '../core/_global.styl'
+@import 'jeet'
+@import '../savings/mods/_table_record.styl'
+
+.ui-wrapper
+  width: 90%
+  max-width: 1200px
+  margin: 0 auto
+  @media $mobile
+    width: 100%
+  code
+    border: 1px solid #eaeaea
+    background: #f8f8f8
+    padding: 1px 5px
+    margin: 0 2px
+    border-radius: 3px
+    font-family: monospace;
+  .banner
+    background-color: $gray_30
+    color: black
+    margin-bottom: 0
+    h1
+      font-size: 4vw
+      margin-bottom: 20px
+      @media $mobile
+        font-size: 8vw
+        margin-bottom: 0
+      a
+        color: #fff
+    p
+      font-size: 2vw
+
+  .category-wrapper
+    .section
+      padding: 30px 0 40px
+  h2
+    font-size: 22px
+    padding-bottom: 20px
+    border-bottom: 1px dotted $gray_30
+  h3
+    font-size: 22px
+    margin-bottom: 30px
+  .button-box
+    .btn
+      font-size: 14px
+  .table-box
+    td
+      padding: 15px 0
+  .box-group
+    clearfix()
+    .left-box
+    .right-box
+      col(1/2, gutter:5)
+      @media $mobile
+        stack()
+  .form-box
+    .wide-left
+      padding-left: 50px
+  .text-box
+    p
+      line-height: 1.8
+    .text-white
+      background-color: $gray_30
+  .layouts-box
+    .list-box
+    .item-box
+      clearfix()
+      margin-bottom: 20px
+    .list
+      height: 40px
+      background-color: $gray_30
+      line-height: 40px
+    .list1
+      col(2/5, gutter: 2)
+    .list2
+      col(3/5, gutter: 2)
+    .list3
+      col(1/4,  offset: 1/20)
+    .list5
+      span(1/5)
+    .list6
+      span(1/4)
+      shift(1/20)
+    .list7
+      center(1000px)
+    .list4
+      col(.18)
+    .list8
+      col(1/4, cycle: 2)
+.btn-confirm
+  margin-right: 10px

@@ -1,0 +1,239 @@
+@import '../core/_global.styl'
+@import '../plugin/animate.css'
+@import '../mods/_next_arrow.styl'
+@import '../mods/_partner_footer.styl'
+
+@import './plan/_var.styl'
+
+$tip
+  margin-top: 10px
+
+html,body
+  width: 100%
+  @media $mobile
+    height: 100%
+
+.content-wrapper
+  margin: 0
+  height: 100%
+  .main-wrapper
+    max-width: none
+    height: 100%
+
+.ins-plan-wrapper
+  height: 100%
+  .wow
+    visibility: hidden
+
+.m-section-1
+  background-color: $primary_color
+  display: table
+  width: 100%
+  text-align: center
+  height: 100%
+
+.m-section-2
+  background-color: #fff
+
+.m-section-1
+  .logo-wrap
+    width: 45%
+    text-align: right
+    display: table-cell
+    vertical-align: middle
+    .svgicon
+      margin: -35px -25px 0 0
+      width: 360px
+      height: (360/412)*373 px
+.m-top-banner
+  display: table-cell
+  text-align: left
+  padding: 110px 0 110px 0
+  @media $mobile
+    display: block
+    text-align: center
+    padding-top: 30px
+  >.hd
+    @media $mobile
+      height: 50vh
+    .title,
+    .subtitle
+      color: #2e6293
+      font-size: 30px
+      display: inline-block
+    .title
+      font-weight: bold
+      @media $mobile
+        font-size: 5vh
+    .subtitle
+      @media $mobile
+        display: block
+        margin-top: 10px
+        font-size: 18px
+    .svgicon
+      width: 200px
+      height: (200/412)*373 px
+      width: 40vh
+      height: (40/412)*373 vh
+      margin: 30px 0
+      margin: 5vh 0
+  >.bd
+    @media $mobile
+      margin-top: 30px
+      margin-top: 5vh
+    .title
+      display: inline-block
+      color: #fff
+      font-size: 48px
+      strong
+        font-weight: bold
+      @media $mobile
+        font-size: 40px
+        font-size: 4vh
+    .feature-box
+      display: inline-block
+      color: #fff
+      margin: 20px 0 40px 0
+      @media $mobile
+        margin-top: 10px
+        display: block
+      li
+        display: block
+        margin: 0 10px
+        font-size: 13px
+        @media $mobile
+          display: inline-block
+          margin: 0 10px
+      .iconfont
+        font-size: 13px
+        display: inline-block
+        line-height: 18px
+        width: 18px
+        height: 18px
+  >.ft
+    margin-top: 20px
+    padding-left: 4px
+    @media $mobile
+      margin-top: 0
+      padding-left: 0
+      position: absolute
+      bottom: 40px
+      text-align: center
+      width: 100%
+    .btn
+      width: 230px
+      line-height: 55px
+      height: 55px
+      @media $mobile
+        width: 75%
+    .tip
+      @extend $tip
+
+.m-recommendation
+  text-align: center
+  overflow: hidden
+  >.hd
+    padding-top: 70px
+    @media $mobile
+      padding-top: 40px
+    .title
+      font-size: 28px
+      font-weight: bold
+      @media $mobile
+        font-size: 20px
+  >.bd
+    width: 800px
+    text-align: left
+    margin: 60px auto
+    @media $mobile
+      width: 100%
+      margin: 50px auto 0 auto
+    .reasons
+      text-align: center
+      li
+        display: inline-block
+        width: 49%
+        padding: 0 10% 60px 0
+        vertical-align: top
+        @media $mobile
+          width: 90%
+          padding: 0 0 40px 0
+        &:nth-child(2n)
+          padding-right: 0
+          padding-left: 10%
+          @media $mobile
+            padding: 0 0 40px 0
+      .svgicon
+        float: left
+      .sub-title
+        font-size: 16px
+      .sub-title,
+      .desc
+        margin-left: 50px
+        text-align: left
+      .desc
+        margin-top: 15px
+        color: $gray
+        line-height: 1.5
+
+.m-start-plan
+  width: 800px
+  text-align: center
+  margin: 0 auto
+  padding-bottom: 150px
+  @media $mobile
+    width: 100%
+    padding-bottom: 50px
+  >.hd
+    @extend .m-recommendation >.hd
+    border-top: 1px dotted $gray_light
+  >.bd
+    @extend .m-recommendation >.bd
+    ul
+    @extend .m-recommendation >.bd .reasons
+    li
+      width: 100%
+      padding: 0 0 40px 0
+      &:nth-child(2n)
+        padding: 0 0 40px 0
+      @media $mobile
+        width: 90%
+        margin-bottom: 0
+      &:nth-child(2)
+       .sub-title:before
+          content: '2'
+      &:nth-child(3)
+       .sub-title:before
+          content: '3'
+      .sub-title
+        position: relative
+        color: $primary_color
+        &:before
+          content: '1'
+          position: absolute
+          left: -40px
+          top: -7px
+          width: 30px
+          height: 30px
+          border-radius: 50%
+          background: $primary_color
+          color: #fff
+          text-align: center
+          vertical-align: middle
+          line-height: 30px
+          @media $mobile
+            background: none
+            border: 1px solid $primary_color
+            color: $primary_color
+  >.ft
+    padding-top: 20px
+    .btn
+      background-color: $primary_color
+      min-width: 168px
+      &:hover
+        background-color: $primary_color_light
+    .tip
+      @extend $tip
+
+.m-ins-plan-footer
+  @extend $m-partner-footer

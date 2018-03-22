@@ -1,0 +1,25 @@
+<%inherit file="./base.html" />
+
+<%def name="main()">
+  <div class="viewpoints-content">
+    <h2 class="viewpoints-title">基金组合周报</h2>
+    % for a in articles:
+    <div class="viewpoints-item">
+      % if a.category_name:
+      <a class="item-label" href="/fund/weekly/category/${a.category}">${a.category_name}</a>
+      % endif
+      <div class="viewpoints-item-content">
+        <h3><a href="${a.url}">${a.title}</a></h3>
+        <p>${a.author}<span>${a.create_time.strftime('%Y.%m.%d')}</span></p>
+      </div>
+    </div>
+    % endfor
+  </div>
+  ##<%include file="mods/paginater.html" />
+</%def>
+
+<%def name="title()">${category_name if category_name else '基金组合周报'} - 好规划</%def>
+
+<%def name="pagetitle()">
+  <% return '基金组合周报' %>
+</%def>

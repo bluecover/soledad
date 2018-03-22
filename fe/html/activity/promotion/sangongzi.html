@@ -1,0 +1,32 @@
+<%inherit file="./base.html" />
+
+<%!
+  from jupiter.integration.weixin import get_weixin_config
+%>
+
+<%def name="content()">
+  <input type="hidden" id="wx_config" data-val="${get_weixin_config(jsApiList=['onMenuShareTimeline', 'onMenuShareAppMessage'])}"/>
+  <input id="download_url" type="hidden" value="${download_url}">
+  <div class="promotion-san-wrapper">
+    <div class="banner text-center">
+      <h2>好规划@三公子</h2>
+      <p>专属福利</p>
+      <img src="{{{img/activity/promotion/sangongzi.png}}}" alt="">
+    </div>
+    <div id="phone_form" data-action=""></div>
+    <div class="rules">
+      <p class="text-lighter">1. 下载客户端后请输入领取手机号完成注册；</p>
+      <p class="text-lighter">2. 本次活动仅针对通过三公子微信公众账号注册的好规划新用户；</p>
+      <p class="text-lighter">3. 活动最终解释权归好规划理财所有</p>
+    </div>
+  </div>
+</%def>
+
+<%def name="body_class()">promotion-san-body</%def>
+
+<%def name="js()">
+  <script src='{{{js/lib/wx_sdk.js}}}'></script>
+  <script src='{{{js/activity/promotion.js}}}'></script>
+</%def>
+
+<%def name="title()">福利兑换</%def>

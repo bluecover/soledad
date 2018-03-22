@@ -1,0 +1,20 @@
+<%inherit file="/base.html" />
+
+<%def name="title()">
+% if user:
+登录成功
+% else:
+登录失败
+% endif
+</%def>
+
+<%def name="main()">
+  This is accounts page!
+  <br>
+  ${user}
+  <br>
+
+  % if user:
+  <a href='logout' name="logout" id="logout">logout</a>
+  % endif
+</%def>

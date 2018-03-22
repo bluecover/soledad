@@ -1,0 +1,140 @@
+<%inherit file="../savings/base.html" />
+
+<%!
+  from core.models.utils import round_half_up
+  from core.models.utils.switch import app_download_banner_switch
+  from core.models.hoard.xinmi import XMOrder
+
+  tip_status_map = {
+    XMOrder.Status.unpaid: u'订单处理中，请稍后~',
+    XMOrder.Status.committed: u'订单处理中，请稍后~',
+    XMOrder.Status.shelved: u'订单处理中，请稍后~',
+    XMOrder.Status.paying: u'订单已提交支付，请耐心等待~',
+    XMOrder.Status.success: u'支付成功!',
+    XMOrder.Status.failure: u'支付失败，T_T，如有疑问请联系客服处理。'
+  }
+
+%>
+
+<%def name="main()">
+  <div class="saving-complete-wrapper">
+    % if app_download_banner_switch.is_enabled:
+      ${app_banner()}
+    % endif
+    ${self.order_submitted()}
+    ${self.order_info()}
+  </div>
+</%def>
+
+<%def name="app_banner()">
+<div class="gm-top-banner">
+  <a target="_blank" href="${url_for('app.landing.index', dcm='guihua', dcs='savings-success-banner')}">
+    % if request.user_agent.is_mobile:
+    <img class="banner" src="{{{img/app/banner_640-180_@2x.png}}}" alt="好规划 App 下载 Banner" />
+    % else:
+    <img class="banner" src="{{{img/app/banner_1100-90_@2x.png}}}" alt="好规划 App 下载 Banner" />
+    %endif
+  </a>
+</div>
+</%def>
+
+<%def name="order_submitted()">
+  <h2 class="saving-complete-title">
+    <i class="iconfont icon-smcheck"></i>
+    <span class="succ-tip">${tip_status_map.get(order.status, u'订单处理中~')}</span>
+  </h2>
+  % if show_benefit:
+    <div class="activity-invited block-wrapper">
+      <p class="text-desc">恭喜您获得了<strong>20元</strong>返现，您的小伙伴也获得了我们赠送的<strong>10元</strong>返现奖励</p>
+      <p class="text-desc">邀请别人加入，您可以获得更多的<strong>10元</strong>返现奖励</p>
+      <div class="todo-action">
+       <a class="btn btn-primary btn-withdraw" href="/savings/withdraw/">去提现</a>
+       <a class="btn btn-primary invite" href="/activity/mine">邀请别人加入</a>
+      </div>
+    </div>
+  % endif
+  % if is_new_savings_user:
+  <div class="complete-banner twocol-content">
+    <div class="left-col desktop-element">
+      <img src="{{{img/misc/qrcode.png}}}" alt="">
+    </div>
+    <div class="right-col">
+      <p class="banner-follow">关注好规划微信服务号</p>
+      <h2 class="wechat-code text-orange">PLAN141</h2>
+      <p class="banner-benefit">
+        <i class="iconfont icon-ghcheck"></i> 随时查收益
+        <i class="iconfont icon-ghcheck"></i> 继续攒钱
+        <i class="iconfont icon-ghcheck"></i> 咨询
+      </p>
+    </div>
+  </div>
+  % endif
+</%def>
+
+<%def name="order_info()">
+  <div class="saving-detail block-wrapper">
+    % if order.status is XMOrder.Status.success:
+    <h2 class="block-title">交易详情</h2>
+    <div class="detail-item-con">
+      <div class="detail-item first">
+        <p>
+          <span>收益预估：</span>
+          <span>${round_half_up(order.expect_interest, 2)} 元</span>
+        </p>
+        <p>
+         % for hike in order.profit_hikes:
+           <p>
+             <span>${hike.kind.label}：</span>
+             <span>${hike.display_text}</span>
+           </p>
+         % endfor
+        </p>
+      </div>
+
+      <div class="detail-item bordered">
+        <p>
+          <span>交易时间：</span>
+          <span>${order.creation_time.date().strftime('%Y年%m月%d日')}</span>
+        </p>
+        <p>
+          <span>起息时间：</span>
+          <span>${order.start_date.strftime('%Y年%m月%d日')}</span>
+        </p>
+        <p>
+          <span>到期时间：</span>
+          <span>${order.due_date.strftime('%Y年%m月%d日')} </span>
+        </p>
+      </div>
+
+      <div class="detail-item">
+        <p>
+          <span>回款卡：</span>
+          <span>${order.bankcard.bank.name} ${order.bankcard.display_card_number}</span>
+        </p>
+        <p>
+          <span>回款方式：</span>
+          <span>到期自动转回银行卡</span>
+        </p>
+      </div>
+    </div>
+    % endif
+    <div class="text-center">
+      <a class="btn btn-gray btn-back" href="${url_for('savings.mine.index')}">返回攒钱助手</a>
+    </div>
+    % if not is_new_savings_user:
+      <div class="complete-foot block-wrapper">
+        <div class="twocol-content">
+          <div class="left-col desktop-element">
+            <img src="{{{img/misc/qrcode.png}}}" alt="">
+          </div>
+          <div class="right-col">
+             <p>关注好规划微信号plan141</p>
+             <span>随时查收益，与理财师沟通</span>
+          </div>
+        </div>
+      </div>
+    % endif
+  </div>
+</%def>
+
+<%def name="title()">支付成功－攒钱助手</%def>

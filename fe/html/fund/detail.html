@@ -1,0 +1,178 @@
+<%inherit file="./base.html" />
+
+<%!
+  from libs.utils.string import trunc_utf8
+%>
+
+<%def name="main()">
+  <div class="fund-detail-wrapper js-detail-wrapper" data-id="${group.id}">
+    ${self.theme()}
+    ${self.nav()}
+    ${self.income()}
+    ${self.configure()}
+    ${self.newspaper()}
+    ${self.info()}
+  </div>
+</%def>
+
+<%def name="theme()">
+  <div class="theme-wrapper block-wrapper">
+    <a href="${'#' if g.user else url_for('accounts.login.login',next=url_for('fund.detail',id=group.id,follow=True))}" class="btn btn-primary btn-unfollow js-btn-unfollow ${'hide' if is_liked else ''}">跟踪组合</a>
+    <a href="#" class="btn btn-disable btn-follow js-btn-follow ${'' if is_liked else 'hide'}"><i class="iconfont icon-cicheck text-green"></i>已跟踪</a>
+    <h2 class="text-white text-bold">${group.subject}
+    </h2>
+  </div>
+  <div class="theme-detail-wrapper">
+    <h4 class="mobile-element text-center text-12">本组合严控风险，但并不保证本金和收益，仅供投资参考</h4>
+    <div class="box-wrapper">
+      <div class="left-theme">
+        <div class="col">
+          <h5>组合说明：</h5>
+          <p>${group.reason}</p>
+        </div>
+        <div class="col">
+          <h5>组合亮点：</h5>
+          <p>${group.highlight}</p>
+        </div>
+        <p class="text-lighter text-12 desktop-element">注意：暂不支持购买，仅提供组合建议。本组合严控风险，但并不保证本金和收益，仅供投资参考</p>
+      </div>
+      <div class="right-theme">
+        % if group.id=='1':
+          <img src="{{{img/fund/radar1.png}}}" alt="">
+        % else:
+          <img src="{{{img/fund/radar2.png}}}" alt="">
+        % endif
+        <div class="text-lighter tip-box text-12 js-tip-box"><img src="{{{img/fund/gray_mark.png}}}" alt="">名词解释</div>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="nav()">
+  <div class="block-wrapper nav-wrapper desktop-element">
+    <div class="nav-item js-nav-item">
+      <img src="{{{img/fund/icon_money.png}}}" alt=""><span class="text-16">收益情况</span>
+    </div>
+    <div class="nav-item js-nav-item">
+      <img src="{{{img/fund/icon_pie.png}}}" alt=""><span class="text-16">组合配置</span>
+    </div>
+    <div class="nav-item js-nav-item">
+      <img src="{{{img/fund/icon_news.png}}}" alt=""><span class="text-16">组合周报</span>
+    </div>
+    <div class="nav-item js-nav-item">
+      <img src="{{{img/fund/icon_mark.png}}}" alt=""><span class="text-16">相关信息</span>
+    </div>
+  </div>
+</%def>
+
+<%def name="income()">
+  <div class="block-wrapper income-wrapper section-wrapper js-section">
+    <div class="income-main">
+      <div class="left-income">
+        <h3 class="text-bold"><img class="mobile-element" src="{{{img/fund/reverse_money.png}}}" alt=""><em>收益情况</em><span>组合于${group.create_time.strftime('%Y.%m.%d')}成立并开始测试</span></h3>
+        <div class="js-chart-box chart-wrapper"></div>
+      </div>
+      <div class="right-income">
+        <h5>成立以来的收益</h5>
+        <h2><span><em class="js-data-num">${'{0:.4g}'.format(group.total_income*100)}</em>%</span></h2>
+        <div class="col-3">
+          <div class="col">
+            <span class="text-light">近一周收益</span>
+            <p>${'{0:.4g}'.format(group.last_week_income*100)}%</p>
+          </div>
+          <div class="col">
+            <span class="text-light">近一月收益</span>
+            <p>${'{0:.4g}'.format(group.last_month_income*100)}%</p>
+          </div>
+          <div class="col">
+            <span class="text-light">近三月收益</span>
+            <p>${'{0:.4g}'.format(group.last_3month_income*100)}%</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="configure()">
+  <div class="block-wrapper configure-wrapper section-wrapper js-section">
+    <h3 class="text-bold"><img class="mobile-element" src="{{{img/fund/reverse_pie.png}}}" alt=""><em>组合配置</em><span>更新日期${group.update_time.strftime('%Y.%m.%d')}</span></h3>
+    <div class="reason-wrapper">
+      <h5>本期更新理由：</h5>
+      <p>${group.reason_update}</p>
+    </div>
+    <table class="table-trading desktop-element">
+      <tr>
+        <td>基金名称</td>
+      % for f in funds:
+        <td>${f.fund.name}</td>
+      % endfor
+      </tr>
+      <tr>
+        <td>基金代码</td>
+      % for f in funds:
+        <td>${f.fund.code}</td>
+      % endfor
+      </tr>
+      <tr>
+        <td>投资占比</td>
+      % for f in funds:
+        <td>${f.rate*100}%</td>
+      % endfor
+      </tr>
+      <tr>
+        <td>入选理由</td>
+      % for f in funds:
+        <td><a href="#" class="js-reason">查看</a><p class="hide">${f.reason}</p></td>
+      % endfor
+      </tr>
+    </table>
+    <table class="table-trading mobile-element">
+      <tr>
+        <td>基金名称</td>
+        <td>基金代码</td>
+        <td>占比</td>
+      </tr>
+    % for f in funds:
+      <tr>
+      <td>${f.fund.name}</td>
+        <td>${f.fund.code}</td>
+        <td>${f.rate*100}%</td>
+      </tr>
+    % endfor
+    </table>
+  </div>
+</%def>
+
+<%def name="newspaper()">
+  <div class="block-wrapper newspaper-wrapper section-wrapper js-section">
+    <h3 class="text-bold"><img class="mobile-element" src="{{{img/fund/reverse_news.png}}}" alt=""><em>组合周报</em><span class="sub-title">好规划会持续关注组合相关市场情况和组合内基金运作情况，并每周提供分析及操作建议</span></h3>
+    % for w in weeklys:
+    <div class="twocol-content">
+      <div class="left-col text-bold text-lighter">${w.create_time.strftime('%Y-%m-%d')}</div>
+      <div class="right-col">
+        <a target="_blank" class="text-bold" href="/fund/weekly/${w.id}">${w.title}</a>
+        <p class="desktop-element">${w.description}</p>
+        <p class="mobile-element">${trunc_utf8(w.description, 80)}</p>
+      </div>
+    </div>
+    % endfor
+  </div>
+</%def>
+
+<%def name="info()">
+  <div class="block-wrapper info-wrapper section-wrapper js-section">
+     <h3 class="text-bold"><img class="mobile-element" src="{{{img/fund/reverse_mark.png}}}" alt=""><em>相关信息</em></h3>
+     <p>${group.related}</p>
+  </div>
+  <%include file="mods/fund_footer.html" />
+</%def>
+
+
+<%def name="js()">
+  <script src="{{{js/lib/amcharts.min.js}}}"></script>
+  <script src="{{{js/lib/serial.min.js}}}"></script>
+  <script src="{{{js/fund/detail.js}}}"></script>
+</%def>
+
+<%def name="title()">基金研究中心- 好规划</%def>

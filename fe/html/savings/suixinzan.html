@@ -1,0 +1,129 @@
+<%inherit file="./base.html" />
+
+<%def name="header()">
+  % if not request.user_agent.is_guihua_app:
+    ${parent.header()}
+  % endif
+</%def>
+
+<%def name="main()">
+  <div class="savings-suixin-wrapper">
+     ${self.banner()}
+     ${self.about()}
+     ${self.foot()}
+  </div>
+</%def>
+
+<%def name="banner()">
+  <div class="banner">
+    <img class="savings-logo" src="{{{img/logo/suixinzan_logo.png}}}" alt="">
+    <div class="bubble">
+      <p>APP</p>
+      <p>专享</p>
+    </div>
+    <p class="subtitle"><span>App专享，活期产品</span>随时存取，按日计息</p>
+    <div class="twocol-content">
+      <div class="left-col">
+        <img class="qrcode desktop-element" src="{{{img/app/qrcode_nav.png}}}" alt="好规划 App 二维码">
+      </div>
+      <div class="right-col">
+        % if not request.user_agent.is_android:
+        <a href="${url_for('download.download_app', target='itunes', dcm='guihua', dcs='app-download-ios')}" class="btn btn-primary">
+          <svg class="icon-ios" src="{svg{{img/app/ios_icon.svg}}}"></svg>
+          iOS版下载更新
+        </a>
+        % endif
+        % if not request.user_agent.is_ios:
+        <a href="${url_for('download.download_app', version=guihua_android_latest.public_version, dcm='guihua', dcs='nav-android')}" class="btn btn-primary">
+          <svg class="icon-android" src="{svg{{img/app/android_icon.svg}}}"></svg>
+          Android版下载更新
+        </a>
+        % endif
+      </div>
+    </div>
+    <img class="banner-img" src="{{{img/savings/phone.png}}}" alt="">
+  </div>
+</%def>
+
+<%def name="about()">
+  <div class="about-wrapper">
+    <h3 class="text-center text-bold">关于随心攒</h3>
+    <div class="about-row">
+      <div class="about-col">
+        <svg class="icon-svg" src="{svg{{img/savings/charts.svg}}}"></svg>
+        <h4 class="mobile-element">收益</h4>
+        <div class="content-box">
+          <h4 class="desktop-element">收益</h4>
+          <h5>年化收益率与收益方式</h5>
+          <p>今日年化收益率：5.6%，按日结息</p>
+          <h5>起息时间与查看收益</h5>
+          <p>T+1工作日开始计息，计息后下一自然日可查看收益</p>
+        </div>
+      </div>
+      <div class="about-col">
+        <svg class="icon-svg" src="{svg{{img/savings/buy.svg}}}"></svg>
+        <h4 class="mobile-element">购买</h4>
+        <div class="content-box">
+          <h4 class="desktop-element">购买</h4>
+          <h5>起售时间</h5>
+          <p>每天11:00</p>
+          <h5>起投金额</h5>
+          <p>起投金额100元</p>
+          <h5>持有上限</h5>
+          <p>每人持有上限10万元，不限购买次数达到持有上限后，超过的利息照常算入收益但是不计算为本金</p>
+        </div>
+      </div>
+    </div>
+    <div class="about-row">
+      <div class="about-col">
+        <svg class="icon-svg" src="{svg{{img/savings/cash.svg}}}"></svg>
+        <h4 class="mobile-element">提现</h4>
+        <div class="content-box">
+          <h4 class="desktop-element">提现</h4>
+          <h5>提现费率</h5>
+          <p>提现费率：每自然月前5次提现免手续费，每次提现时，页面都会提示您剩余的可免费提现次数（包含当次）超过5次后，随心攒会对提现操作收取手续费，手续费为提现金额的0.2%。</p>
+          <h5>到账时间</h5>
+          <p>申请提现后资金将在0-3个工作日内到达您在随心攒所绑定的银行卡内</p>
+        </div>
+      </div>
+      <div class="about-col">
+        <svg class="icon-svg" src="{svg{{img/savings/rules.svg}}}"></svg>
+        <h4 class="mobile-element">规则</h4>
+        <div class="content-box">
+          <h4 class="desktop-element">规则</h4>
+          <h5>提现规则</h5>
+          <p>最低申请提现100元，最高每人每天申请提现30,000元。</p>
+          <p>提现时需确保余额不少于100元，或全额提现</p>
+          <p>成功购买随心攒产品之日的下一个工作日即可进行提现操作，提现当日不计息。</p>
+          <h5>随心攒的提现退出</h5>
+          <p>随心攒的提现退出会按提现申请的时间先后顺序处理。您发起提现后，资金在扣除相关费用后将于三个工作日内到账。若某日净提现额超过该日随心攒总份额(份)的 25%，对于超过 25%的部分，系统将延后当日的提现申请至下一个工作日处理，以此类推。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="foot()">
+  <div class="block-wrapper foot-wrapper text-center">
+    % if not request.user_agent.is_android:
+    <a href="${url_for('download.download_app', target='itunes', dcm='guihua', dcs='app-download-ios')}" class="btn btn-primary">
+        <svg class="icon-ios" src="{svg{{img/app/ios_icon.svg}}}"></svg>
+        iOS版下载更新
+    </a>
+    % endif
+    % if not request.user_agent.is_ios:
+    <a href="${url_for('download.download_app', version=guihua_android_latest.public_version, dcm='guihua', dcs='nav-android')}" class="btn btn-primary">
+      <svg class="icon-android" src="{svg{{img/app/android_icon.svg}}}"></svg>
+      Android版下载更新
+    </a>
+    % endif
+  </div>
+</%def>
+
+<%def name="footer()">
+  % if not request.user_agent.is_guihua_app:
+    ${parent.footer()}
+  % endif
+</%def>
+
+<%def name="title()">随心攒 - 好规划</%def>

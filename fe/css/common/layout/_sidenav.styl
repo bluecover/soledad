@@ -1,0 +1,73 @@
+$sidenav_left_padding = 30px
+$sidenav_bg = #396281
+$sidenav_bg_dark = darken($sidenav_bg, 15%)
+$sidenav_bg_light = lighten($sidenav_bg, 5%)
+$sidenav_font_color = #c5d2dd
+
+.sidenav-wrapper
+  position: fixed
+  top: 0
+  bottom: 0
+  width: 200px
+  background: $sidenav_bg
+  color: #fff
+  overflow: hidden
+  @media $mobile
+    left: -230px
+    box-shadow: 1px 1px 10px 5px rgba(0,0,0,0.3)
+    transition: left 0.3s ease-in-out
+    overflow-y: scroll
+    z-index: 20
+    padding-bottom: 50px
+
+  .logo
+    display: block
+    margin-bottom: 30px
+    padding-left: $sidenav_left_padding
+    height: 51px
+    img
+      position: relative
+      margin-top: -18px
+      top: 50%
+      height: 48px
+      left: -4px
+
+  .nav-title
+    padding-top: 15px
+    padding-left: $sidenav_left_padding
+    line-height: 35px
+    border-top: 1px solid #416a88
+    font-size: 12px
+    color: $blue_gray_30
+
+  .nav-item
+    padding-left: $sidenav_left_padding
+    position: relative
+    transform-style: preserve-3d
+    &:hover
+      background: $sidenav_bg_light
+    &.on
+      background: $orange_60
+      a
+        color: #fff
+    .icon-con
+      display: inline-block
+      line-height: 38px
+      width: 25px
+      font-size: 16px
+      opacity: .7
+    a
+      display: block
+      line-height: 45px
+      color: $sidenav_font_color
+
+  .nav-sub-list
+    .nav-item
+      padding-left: 55px
+      font-size: 12px
+      &:hover
+        background: none
+        a
+          color: #fff
+      &.on
+        background: none

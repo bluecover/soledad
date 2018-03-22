@@ -1,0 +1,53 @@
+<%inherit file="./base.html" />
+
+<%!
+  from core.models.utils import round_half_up
+%>
+
+<%def name="main()">
+  <div class="cash-record-wrapper">
+    <div class="record-wrapper block-wrapper">
+      % if g.records:
+      <div class="mod-record-wrapper">
+        <table>
+          <thead>
+           <tr>
+             <td>使用日期</td>
+             <td>变动金额</td>
+             <td>红包余额</td>
+             <td>备注</td>
+           </tr>
+          </thead>
+          <tbody>
+          % for record in g.records:
+           <tr class="js-record">
+             <td>${record.creation_time.date().isoformat()}</td>
+             <td>${record.display_amount}</td>
+             <%
+                idx = loop.index
+                balance = sum([r.signed_amount for r in g.records][idx:])
+             %>
+             <td>${round_half_up(balance, 2)}元</td>
+             <td>${record.display_remark}</td>
+           </tr>
+          % endfor
+          </tbody>
+        </table>
+      </div>
+      % else:
+        <div class="text-center">
+          <svg class="icon-search" src="{svg{{img/misc/search_icon.svg}}}"></svg>
+          <p class="record-text">暂无记录</p>
+        </div>
+      % endif
+      <div class="text-center">
+        <a href="./" class="btn btn-all">返回我的福利</a>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="title()">我的福利 - 好规划</%def>
+<%def name="pagetitle()">
+  <% return '我的返现福利' %>
+  </%def>

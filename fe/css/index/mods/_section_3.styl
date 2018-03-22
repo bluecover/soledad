@@ -1,0 +1,81 @@
+.section-3
+  background-color: #f4f8fa
+  .desc-pic-wrap
+    margin: -178px 50px 0 0
+    z-index: 1
+    position: absolute
+    top: 50%
+    right: 50%
+    margin: -200px 30px 0 0
+    @media $screen_768
+      margin: -185px 44px 0 0
+    @media $mobile
+      position: relative
+      top: auto
+      right: auto
+      margin: 0 auto
+    .screenshot
+      width: 100%
+  .website-screenshot
+    width: 480px
+    height: 262px
+    position: absolute
+    top: 23px
+    left: 0
+    right: 0
+    margin: 0 auto
+    overflow: auto
+    @media $screen_768
+      top: 15px
+      width: 322px
+      height: (322/480)*262 px
+    @media $mobile
+      top: 12px
+      width: 256px
+      height: 138px
+    @media $screen_height_low
+      top: 8px
+      width: 168px
+      height: 90px
+  .desc-pic,
+  .desc-pic-wrap
+    .svgicon
+      width: 520px
+      height: (520/545)*485 px
+      max-height: none
+      @media $screen_768
+        width: 350px
+        height: (350/545)*485 px
+      @media $mobile
+        width: 278px
+        height: (278/545)*485 px
+      @media $screen_height_low
+        width: 180px
+        height: (180/545)*485 px
+
+  .section-wrap
+    >.hd,
+    >.bd
+      width: 500px
+      text-align: left
+      margin-left: 52%
+      @media $screen_768
+        width: 350px
+      @media $mobile
+        position: relative
+        width: 100%
+        text-align: center
+        margin-left: auto
+    >.hd
+      margin-top: -10%
+      @media $mobile
+        margin-top: 20px
+        margin-top: 5vh
+    .desc
+      @media $mobile
+        text-align: left
+        margin-top: 10px
+    >.bd
+      .subtitle
+        @media $mobile
+          margin-bottom: 20px

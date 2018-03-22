@@ -1,0 +1,17 @@
+<div class="floatbar-feedback desktop-element">
+  <i class="iconfont icon-edit"></i>
+  <p>咨询客服</p>
+</div>
+
+<div class="modals-group feedback-form js-feedback-wrapper">
+  % if g.user and g.user.email:
+    <input class="js-user-email" type="hidden" value="${g.user.email}">
+  % endif
+  <form action="" class="js-feedback-form">
+    <div class="onemodal-hd">
+      <a href="#" rel="onemodal:close" ><i class="iconfont icon-close"></i></a>
+      <h4>咨询客服</h4>
+    </div>
+    <div class="onemodal-bd js-feedback-main"></div>
+  </form>
+</div>

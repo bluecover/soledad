@@ -1,0 +1,190 @@
+<%inherit file="./base.html" />
+
+<%namespace import="ins_product" file='./mods/_ins_product.html' />
+
+<%def name="body_class()">ins-body-wrapper</%def>
+
+<%def name="main()">
+<div class="ins-index-wrapper">
+  <%include file="./mods/_ins_refining_banner.html" />
+
+  ${ins_accident_block()}
+  ${ins_dread_disease_block()}
+  ${ins_life_block()}
+  ${ins_children_block()}
+  ${ins_travel_block()}
+
+  ${ins_children_banner()}
+  <%include file="./mods/_plan_qrcode_block.html" />
+
+  ${ins_footer_block()}
+</div>
+</%def>
+
+<%def name="ins_accident_block()">
+<div class="block-wrapper ins-product-block">
+  <div class="hd">
+    <div class="title-wrap">
+      <svg class="product-accident-logo" src="{svg{{img/ins/b01.svg}}}" alt="意外险Logo"></svg>
+      <h3 class="title">意外险</h3>
+    </div>
+  </div>
+  <div class="bd">
+    ${ins_product(title="中民无忧综合意外基本计划（中国人寿）",
+    url=url_for('ins.products.products_zhongmin'),
+    category="全网底价", desc="意外身故 | 意外残疾 | 意外医疗",
+    price="60.00")}
+
+    ${ins_product(title="国寿“住院宝”必备版",
+    url=url_for('ins.products.products_a003'),
+    category="无医保必投", desc="意外身故残疾 | 意外医疗 | 住院医疗",
+    price="128.00",
+    price_desc="/年")}
+
+    ${ins_product(title="苏黎世-意外自选计划",
+    url=url_for('ins.products.products_a002'),
+    category="灵活自选", desc="意外身故残疾 | 意外医疗 | 扩展社保用药",
+    price="28.00")}
+
+    ${ins_product()}
+
+  </div>
+</div>
+</%def>
+
+<%def name="ins_dread_disease_block()">
+<div class="block-wrapper ins-product-block">
+  <div class="hd">
+    <div class="title-wrap">
+      <svg class="product-dread-logo" src="{svg{{img/ins/b02.svg}}}" alt="重疾险Logo"></svg>
+      <h3 class="title">重疾险</h3>
+  </div>
+  </div>
+  <div class="bd clearfix">
+    ${ins_product(title="新华 i 健康定期重大疾病保障计划",
+    url=url_for('ins.products.products_ci001'),
+    category="性价比超高", desc="45 种重疾 | 身故",
+    price="210.00")}
+
+    ## ${ins_product(title="新华 i 她女性特定疾病保障计划",
+    ## url=url_for('ins.products.products_ci002'),
+    ## category="针对女性疾病", desc="女性特定疾病 | 特定骨折烧伤 | 意外整形",
+    ## price="65.00")}
+    ${ins_product()}
+  </div>
+</div>
+</%def>
+
+<%def name="ins_life_block()">
+<div class="block-wrapper ins-product-block">
+  <div class="hd">
+    <div class="title-wrap">
+      <svg class="product-life-logo" src="{svg{{img/ins/b03.svg}}}" alt="寿险Logo"></svg>
+      <h3 class="title">寿险</h3>
+    </div>
+  </div>
+  <div class="bd clearfix">
+    ${ins_product(title="合众爱家无忧定期寿险",
+    url=url_for('ins.products.products_l002'),
+    category="无需体检", desc="身故即赔",
+    price="100.00")}
+
+    ${ins_product(title="人保寿险精心优选定期寿险（可附加重疾险）",
+    url=url_for('ins.products.products_l001'),
+    category="越健康越便宜", desc="身故即赔",
+    price="150.00")}
+
+  </div>
+</div>
+</%def>
+
+<%def name="ins_children_block()">
+<div class="block-wrapper ins-product-block">
+  <div class="hd">
+    <div class="title-wrap">
+      <svg class="product-children-logo" src="{svg{{img/ins/b04.svg}}}" alt="儿童险Logo"></svg>
+      <h3 class="title">儿童险</h3>
+    </div>
+  </div>
+  <div class="bd clearfix">
+    ${ins_product(title="平安宝贝健康保障计划 A",
+    url=url_for('ins.products.products_ca001'),
+    partner_logo_src="{{{img/logo/zm_logo.png}}}",
+    category="30 天 - 0 周岁", desc="意外伤害 | 意外医疗 | 住院医疗 | 重大疾病",
+    price="480.00",
+    price_desc="/年")}
+
+    ${ins_product(title="中民国寿健康宝贝 A 计划",
+    url=url_for('ins.products.products_ca002'),
+    category="1 - 2 周岁", desc="意外伤残 | 意外门诊 | 住院医疗",
+    price="350.00",
+    price_desc="/年")}
+
+    ${ins_product(title="中国人寿安心学生吉祥保障计划",
+    url=url_for('ins.products.products_ca003'),
+    category="3 - 17 周岁", desc="意外残疾 | 意外医疗 | 住院医疗 | 重大疾病",
+    price="190.00",
+    price_desc="/年")}
+
+    ${ins_product(title="合众定期重大疾病保险（20年期）",
+    url=url_for('ins.products.products_ci003'),
+    category="针对儿童重疾", desc="24 种少儿重疾",
+    price="65.00")}
+
+  </div>
+</div>
+</%def>
+
+<%def name="ins_travel_block()">
+<div class="block-wrapper ins-product-block">
+  <div class="hd">
+    <div class="title-wrap">
+      <svg class="product-travel-logo" src="{svg{{img/ins/b05.svg}}}" alt="旅游险Logo"></svg>
+      <h3 class="title">旅行险</h3>
+    </div>
+  </div>
+  <div class="bd clearfix">
+    ${ins_product(title="美亚畅游神州境内旅行保险",
+    url=url_for('ins.products.products_t001'),
+    partner_logo_src="{{{img/logo/zm_logo.png}}}",
+    category="境内游", desc="意外伤害 | 医药补偿 | 紧急救援",
+    price="10.00")}
+
+    ${ins_product(title="美亚万国游踪旅游保险",
+    url=url_for('ins.products.products_t002'),
+    partner_logo_src="{{{img/logo/zm_logo.png}}}",
+    category="境外游", desc="意外伤害 | 医药补偿 | 紧急救援",
+    price="85.00")}
+
+  </div>
+</div>
+</%def>
+
+<%def name="ins_children_banner()">
+  <div class="ins-children-banner" data-url="${url_for('ins.children.index')}">
+    <img class="childins-logo" src="{{{img/logo/w_childins_logo.png}}}" alt="">
+    <div class="desktop-element feature-box-desktop">
+       <p><i class="iconfont icon-checked"></i>全面科学</p>
+       <p><i class="iconfont icon-checked"></i>性价比高</p>
+    </div>
+    <p class="subtitle">专业理财师帮你选保险</p>
+    <div class="feature-box-mobile mobile-element">
+      <span><i class="iconfont icon-checked"></i>全面科学</span>
+      <span><i class="iconfont icon-checked"></i>性价比高</span>
+    </div>
+    <img class="childins-img" src="{{{img/childins/childbanner.png}}}" alt="">
+    % if g.user:
+      <a href="${url_for('ins.children.program')}" class="btn btn-primary btn-large btn-start">免费获得规划</a>
+    % else:
+      <a href="${url_for('ins.children.program')}" class="js-g-login btn btn-primary btn-large btn-start">免费获得规划</a>
+    % endif
+  </div>
+</%def>
+
+<%def name="ins_footer_block()">
+<%include file="./mods/_ins_footer.html" />
+</%def>
+
+<%def name="js()">
+  <script src="{{{js/ins/index.js}}}"></script>
+</%def>

@@ -1,0 +1,23 @@
+<%def name="help_content(title='', subtitle='常见问题', help_doc='')">
+<div class="block-wrapper help-wrapper">
+  <div class="help-title">
+    <span class="title">${title}</span>
+    <span class="subtitle">${subtitle}</span>
+  </div>
+  <div class="js-help-main">
+    % for section in help_doc:
+    <div class="section">
+      <h3 class="text-bold" id="${'section' + str(loop.index + 1)}">${section.get('title')}</h3>
+      % for subsection in section.get('subsections'):
+      <h4 id="${subsection.get('id')}">${subsection.get('subtitle')}</h4>
+      <div class="hide">
+        % for p in subsection.get('content'):
+        <p>${p | n, decode.utf8}</p>
+        % endfor
+      </div>
+      % endfor
+    </div>
+    % endfor
+  </div>
+</div>
+</%def>

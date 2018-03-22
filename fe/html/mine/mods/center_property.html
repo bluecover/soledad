@@ -1,0 +1,64 @@
+<div class="center-block twocol-content center-property-wrapper">
+  <div class="left-col block-item-left">
+    <a class="block-left-title" href="/mine/plan">资产情况汇总</a>
+    <div class="block-left-img chart-property-pie js-chart-property-pie">
+    </div>
+    <div class="left-item">
+      <p class="text-light text-12">净资产： </p>
+      <p class="left-item text-24 text-dark">${format(net_assets, ',')}<span class="text-12 text-bold text-light"> 元</span></p>
+    </div>
+    <div class="left-item">
+      <p class="text-light text-12">总负债： </p>
+      <p class="left-item text-24 text-dark">${format(total_debt, ',')}<span class="text-12 text-bold text-light"> 元</span></p>
+    </div>
+  </div>
+
+  <div class="right-col block-item-right">
+    <h2 class="block-right-title"><span class="block-color block-blue js-pie-item" data-num="${deposit_assets}"></span>现金及存款</h2>
+    ${property_detail(deposit_assets_l)}
+
+    <h2 class="block-right-title"><span class="block-color block-yellow js-pie-item" data-num="${funds_assets}"></span>基金</h2>
+    ${property_detail(funds_assets_l)}
+
+    <h2 class="block-right-title"><span class="block-color block-purple js-pie-item" data-num="${funds_assets}"></span>其他金融资产</h2>
+    ${property_detail(other_assets_l)}
+
+    <h2 class="block-right-title"><span class="block-color block-cyan js-pie-item" data-num="${physical_assets}"></span>实物资产</h2>
+    ${property_detail(physical_assets_l, True)}
+
+    <h2 class="block-right-title"><span class="block-color block-gray"></span>负债</h2>
+    <div class="property-detail-con">
+    % if consumer_loans or real_estate_loan:
+      % if real_estate_loan:
+        <div class="item">
+          <span class="title">未还房贷</span>
+          <span class="text-dark">${format(real_estate_loan*10000, ',')} 元</span>
+        </div>
+      % endif
+      % if consumer_loans:
+        <div class="item">
+          <span class="title">信用卡/消费贷款</span>
+          <span class="text-dark">${format(consumer_loans, ',')} 元</span>
+        </div>
+      % endif
+    % else:
+      <div>无负债</div>
+    % endif
+    </div>
+  </div>
+</div>
+
+<%def name="property_detail(item, unit=None)">
+  <div class="property-detail-con">
+    % if len(item):
+      % for (title, amount) in item:
+        <div class="item">
+          <span class="title">${title}</span>
+          <span class="text-dark">${format(amount, ',')} 元</span>
+        </div>
+      % endfor
+    % else:
+      <div>暂无该类资产</div>
+    % endif
+  </div>
+</%def>

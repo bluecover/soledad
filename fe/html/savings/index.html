@@ -1,0 +1,216 @@
+<%inherit file="./base.html" />
+<%namespace name="app_download" file="../mods/app_download_float.html" />
+<%namespace name="utils" file="/utils.html" />
+
+<%!
+  from datetime import date
+
+  from core.models.consts import SITE_GOLIVE_DATE
+  from core.models.utils import round_half_up
+
+  COPYRIGHT_YEAR = date.today().year
+  site_golive_date_str = SITE_GOLIVE_DATE.strftime('%Y年%m月%d日').decode('utf-8')
+  PERIOD_UNITS = {'day': u'天', 'month': u'个月'}
+%>
+<%def name="app_download_float()">
+  ${app_download.app_download_float(dcs='savings-home-float')}
+</%def>
+
+
+<%def name="header()">
+  % if not request.user_agent.is_guihua_app:
+    ${parent.header()}
+  % else:
+  % endif
+</%def>
+
+<%def name="main()">
+  ${utils.notification()}
+
+  <div class="savings-index-wrapper">
+    ${self.banner()}
+    ${self.body()}
+    ${self.help()}
+    % if not request.user_agent.is_guihua_app:
+      ${self.step()}
+      ${self.btn()}
+      <%include file="mods/savings_footer.html"/>
+    % endif
+  </div>
+</%def>
+
+<%def name="banner()">
+  <div class="banner">
+    <img class="savings-logo" src="{{{img/logo/w_savings_logo.png}}}" alt="">
+    <div class="desktop-element feature-box-desktop">
+       <p><i class="iconfont icon-checked"></i>攒钱赚收益</p>
+       <p><i class="iconfont icon-checked"></i>目标管理</p>
+    </div>
+    <p class="subtitle">聪明理财，稳拿收益</p>
+    <div class="feature-box-mobile mobile-element"><span><i class="iconfont icon-checked"></i>攒钱赚收益</span><span><i class="iconfont icon-checked"></i>目标管理</span></div>
+    <img class="savings-img" src="{{{img/savings/pig2.png}}}" alt="">
+    % if not request.user_agent.is_guihua_app:
+      % if g.user:
+        <a class="btn btn-primary btn-large btn-start" href="${url_for('savings.mine.index')}">开始攒钱</a>
+      % else:
+        <a class="btn btn-primary btn-large btn-start js-g-login" data-url="${url_for('savings.mine.index')}" href="${url_for('savings.mine.index')}">开始攒钱</a>
+      % endif
+    % endif
+  </div>
+</%def>
+
+<%def name="body()">
+  <div class="block-wrapper product-desc">
+    <p class="text-light"><img src="{{{img/logo/o_savings_logo.png}}}" alt="">是好规划推出的攒钱规划服务，帮你在形成攒钱习惯的同时，获得较高收益，极速完成攒钱目标。攒钱助手所提供的，全部为好规划专业理财师团队筛选出的安全、稳健型固定收益产品（宜信优质P2P产品）。好规划于${site_golive_date_str}上线，目前，我们已经服务了<span class="text-orange">${(date.today() - SITE_GOLIVE_DATE).days}</span>天，共帮 <span class="text-orange">${format(user_count,',')}</span> 人攒钱：</p>
+    <div class="money-box">
+      <% str_amount = format(int(amount), ',') %>
+      % for char in str_amount:
+        % if char == ',':
+        <em class="comma">,</em>
+        % else:
+        <div class="num-box"><img src="{{{img/savings/calender.png}}}" alt="">
+          <span>${char}</span>
+        </div>
+        % endif
+      % endfor
+      <em class="unit">元</em>
+    </div>
+  </div>
+  <div class="block-wrapper product-box">
+    <%
+    sxb_rate = round_half_up(sxb_products[0].rate*100, 1)
+    sxb_min_amount = round_half_up(sxb_products[0].min_amount, 0)
+    %>
+    <h3>攒钱助手有哪些产品？</h3>
+    <div class="product-main">
+      <div class="col-wrapper">
+        <h2>新手专享</h2>
+        <div class="product product1">
+          <p class="text-dark profit">年化收益率</p>
+          ## FIXME 这里不应该写死
+          <h4 class="text-orange">15<span class="small">%</span></h4>
+          <p class="text-lighter">封闭期：7天</p>
+          <p class="text-lighter">起投金额：${sxb_min_amount} 元</p>
+        </div>
+        <div class="badge">App</div>
+      </div>
+      <div class="col-wrapper">
+        <h2>随心攒</h2>
+        <div class="product product1">
+          <p class="text-dark profit">今日年化收益率</p>
+          <h4 class="text-orange">${sxb_rate}<span class="small">％</span></h4>
+          <p class="text-lighter">随时存取，每日结息</p>
+          <p class="text-lighter">起投金额：${sxb_min_amount} 元</p>
+        </div>
+        <div class="badge">App</div>
+      </div>
+      <div class="col-wrapper">
+      <%
+        if xm_products:
+            profit_periods = sorted(p.profit_period['min'].value for p in xm_products)
+            profit_annual_rates = sorted(p.profit_annual_rate['min'] for p in xm_products)
+            profit_period_unit = PERIOD_UNITS[xm_products[0].profit_period['min'].unit]
+       %>
+        <h2>固定期限</h2>
+        <div class="product product1">
+          <p class="text-dark profit">年化收益率</p>
+          <h4 class="text-orange">${round_half_up(min(profit_annual_rates or 0), 1)}<span class="small">～</span>${round_half_up(max(profit_annual_rates or 0), 1)}<span class="small">%</span></h4>
+          <p class="text-lighter">${'/'.join(map(unicode, profit_periods))} ${profit_period_unit}</p>
+          <p class="text-lighter">起投金额：${min(p.min_amount for p in xm_products) if xm_products else 0}元</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</%def>
+
+<%def name="help()">
+  <div class="block-wrapper">
+    <h3>攒钱助手可以帮助你？</h3>
+    <div class="help-wrapper">
+      <div class="desc-col">
+        <div class="circle-box">
+          <img src="{{{img/savings/savings_index_001.png}}}" alt="健康保障">
+          <span>养成储蓄习惯</span>
+        </div>
+        <p>每月发工资，存一笔攒钱助手，<br class="desktop-element">帮我养成良好攒钱习惯，<br class="desktop-element">人生第一笔X万 get √。</p>
+      </div>
+      <div class="desc-col">
+        <div class="circle-box">
+          <img src="{{{img/savings/savings_index_002.png}}}" alt="意外保障">
+          <span>梦想储蓄罐</span>
+        </div>
+        <p>想旅行、也想体验米其林餐厅，<br class="desktop-element">每月存一笔攒钱助手，积少成多，<br class="desktop-element">梦想基金 get √。</p>
+      </div>
+      <div class="desc-col">
+        <div class="circle-box">
+          <img src="{{{img/savings/savings_index_003.png}}}" alt="教育金保障">
+          <span>获得稳健收益</span>
+        </div>
+        <p>追求股市刺激，也要稳固收益，<br class="desktop-element">用攒钱助手，每年10%，<br class="desktop-element">稳健收益 get √。</p>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="step()">
+  <div class="block-wrapper step-wrapper">
+    <h3>如何攒钱？</h3>
+    <div class="line-main">
+      <div class="line line-left">
+        <i class="iconfont icon-arrowright"></i>
+        <i class="iconfont icon-circle icon-ciphone"></i>
+        <span class="text-lighter">手机号注册</span>
+      </div>
+      <div class="line">
+        <i class="iconfont icon-arrowright"></i>
+        <i class="iconfont icon-circle icon-percent"></i>
+        <span class="text-lighter">选产品</span>
+      </div>
+      <div class="line">
+        <i class="iconfont icon-arrowright"></i>
+        <i class="iconfont icon-circle icon-pen"></i>
+        <span class="text-lighter">填写交易信息</span>
+      </div>
+      <div class="line">
+        <i class="iconfont icon-arrowright"></i>
+        <i class="iconfont icon-circle icon-cichart"></i>
+        <span class="text-lighter">随时查收益</span>
+      </div>
+      <div class="line line-right">
+        <i class="iconfont icon-circle icon-cicheck"></i>
+        <span class="text-lighter nowrap">到期回款至银行卡</span>
+      </div>
+    </div>
+  </div>
+</%def>
+
+<%def name="btn()">
+  <div class="block-wrapper">
+    <div class="text-center">
+      % if g.user:
+        <a class="btn btn-primary savings-btn" href="${url_for('savings.mine.index')}">开始攒钱</a>
+      % else:
+        <a class="btn btn-primary savings-btn js-g-login" data-url="${url_for('savings.mine.index')}" href="${url_for('savings.mine.index')}">开始攒钱</a>
+      % endif
+      <p class="slogan"><em >已帮<strong class="text-orange"> ${format(user_count,',')}</strong> 人攒钱<strong class="text-orange"> ${format(amount,',')} </strong>元，</em>快来加入吧</p>
+    </div>
+  </div>
+</%def>
+
+<%def name="footer()">
+  % if not request.user_agent.is_guihua_app:
+    ${parent.footer()}
+  % else:
+    <div class="footer-wrapper ${'desktop-element' if hide_in_mobile else ''}">
+      <div class="footer-info">
+        <div class="copyright">
+          &copy;${COPYRIGHT_YEAR} Guihua.com 京ICP备14053123号-1
+        </div>
+      </div>
+    </div>
+  % endif
+</%def>
+
+
+<%def name="title()">攒钱助手 - 好规划</%def>

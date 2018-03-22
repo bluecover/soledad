@@ -1,0 +1,74 @@
+<%inherit file="./base.html" />
+
+<%def name="header()">
+  % if not request.user_agent.is_guihua_app:
+    ${parent.header()}
+  % endif
+</%def>
+
+<%def name="main()">
+  <div class="block-wrapper notice-announcement-wrapper">
+    <h3 class="text-center">攒钱助手产品年化收益率调整公告</h3>
+    <p>尊敬的攒钱助手用户：</p>
+    <p>您好！ </p>
+    <div class="section">
+      <p>自2015年以来，央行多次降准、降息。伴随相对宽松的货币政策，市场上的优质金融资产利率也一降再降。综合考虑当前市场环境，为了能给攒钱助手用户提供优质可靠的金融产品，好规划网将随产品合作方宜信公司下调产品收益率。</p>
+    </div>
+    <div class="section">
+    <p>1. 好规划网将于 <span class="text-bold">2016年5月1日00:00起调整现有攒钱助手产品收益率</span>，调整后的各产品收益率如下：
+      <table class="table-box">
+         <tbody>
+           <tr>
+             <td>产品名称</td>
+             <td>好规划90天<br class="mobile-element">理财产品 </td>
+             <td>好规划180天<br class="mobile-element">理财产品</td>
+             <td>好规划365天<br class="mobile-element">理财产品</td>
+           </tr>
+           <tr>
+             <td>降息后<br class="mobile-element">利率</td>
+             <td>6.4%</td>
+             <td>7.0%</td>
+             <td>8.8%</td>
+           </tr>
+           <tr>
+             <td>产品类型 </td>
+             <td>固定期限 </td>
+             <td>固定期限</td>
+             <td>固定期限</td>
+           </tr>
+           <tr>
+             <td>降息时间 </td>
+             <td>2016-05-01</td>
+             <td>2016-05-01</td>
+             <td>2016-05-01</td>
+           </tr>
+         </tbody>
+       </table>
+    </p>
+    <p>2. 自选到期日产品将于2016年5月1日00:00停止销售，之前购买及后续回款不受影响。</p>
+    <p>3. 好规划即将为大家带来期限更加灵活的<span class="text-bold">新产品</span>，请关注网站和微信公众号通知。</p>
+    </div>
+    <div class="section">
+      <p>附：收益率调整细则</p>
+      <p>1. 5月1日00:00:00前已经投资成功的用户，将继续享受已投产品的原有收益率，直至产品到期，不受本次调整影响。</p>
+      <p>2. 5月1日00:00:00后投资的用户，所投产品将以调整后的产品收益率为准。</p>
+    </div>
+    <div class="section">
+      <p>最后，非常感谢您对攒钱助手及好规划网的支持和理解，本次利率调整后，我们将为老用户提供加息券福利，请您注意查看APP消息。作为您的攒钱好助手，好规划网会始终坚持以安全、可靠、高效的产品和服务陪伴用户，未来的好规划网将不负众望，继续为大家提供安全、可靠、有保障的理财产品。</p>
+    </div>
+    <div class="section">
+      <p>再次感谢您对好规划网的关注和支持！如有疑问请致电客服电话：400-065-5178 。</p>
+    </div>
+    <p class="text-right">好规划网</p>
+    <p class="text-right">2016年4月25日</p>
+  </div>
+</%def>
+
+<%def name="footer()">
+  % if not request.user_agent.is_guihua_app:
+    ${parent.footer()}
+  % endif
+</%def>
+
+<%def name="title()">降息公告 - 好规划</%def>
+

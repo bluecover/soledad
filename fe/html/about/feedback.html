@@ -1,0 +1,23 @@
+<%inherit file="./base.html" />
+
+<%def name="main()">
+  % if g.user and g.user.email:
+    <input class="js-user-email" type="hidden" value="${g.user.email}">
+  % endif
+  <div class="main-content about-content">
+    <form class="feedback-form js-feedback-form" action="">
+      <div class="onemodal-hd">
+        <h4>咨询客服</h4>
+      </div>
+      <div class="onemodal-bd js-feedback-main">
+      </div>
+    </form>
+  </div>
+</%def>
+
+<%def name="title()">咨询客服 - 好规划</%def>
+<%def name="pagetitle()">
+  <% return '咨询客服' %>
+</%def>
+
+<%def name="floatbar()"></%def>
